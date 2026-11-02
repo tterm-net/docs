@@ -70,3 +70,18 @@ A shell that cannot mark where a command starts, such as bash older than 4.4, wo
 ## Name a terminal
 
 Double-click a terminal's tab, or the terminal in the sidebar or on the project's page, and type a name: up to 40 characters, not a number alone. **Enter** saves, **Esc** cancels. The name shows in the sidebar, in tabs and on the project's page.
+
+## When a terminal ends
+
+A terminal runs in tTerm Web, not in your browser: close its tab or the browser, and it goes on running, in the sidebar under its machine. It ends:
+
+- when you end it, with **End this terminal**, or its shell exits (`exit`);
+- when the connection to its server is lost, or its machine is [removed](../../machines/remove/);
+- when its computer is offline too long: over 12 hours, or over an hour if it is awake;
+- when tTerm Web itself is updated. An update restarts tTerm Web, and the terminals open at that moment end.
+
+Its tab says why. After an update it says **tTerm Web was updated to 0.1.24.**, with links to what is new in that version and to the machine's log. The commands that ran and what they printed stay in the [machine's log](../log/).
+
+**Open a new terminal on web-01** starts a new one in the same tab, in the folder the old one was in, if that folder is still there.
+
+A long job that must not stop with its terminal, such as a build or a backup, is safer run on the machine itself under `tmux` or `screen`, or with `nohup`.

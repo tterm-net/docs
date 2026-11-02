@@ -70,3 +70,18 @@ Una shell che non sa segnalare dove inizia un comando, come le versioni di bash 
 ## Dare un nome a un terminale
 
 Fai doppio clic sulla scheda di un terminale, o sul terminale nella barra laterale o nella pagina del progetto, e scrivi un nome: fino a 40 caratteri, e non solo un numero. **Enter** salva, **Esc** annulla. Il nome compare nella barra laterale, nelle schede e nella pagina del progetto.
+
+## Quando un terminale termina
+
+Un terminale gira in tTerm Web, non nel tuo browser: chiudi la sua scheda o il browser, e il terminale resta in esecuzione, nella barra laterale sotto la sua macchina. Termina quando:
+
+- lo termini tu, con **Termina questo terminale**, o la sua shell si chiude (`exit`);
+- si interrompe la connessione al suo server, o la sua macchina viene [rimossa](../../machines/remove/);
+- il suo computer resta offline troppo a lungo: più di 12 ore, o più di un'ora se è acceso;
+- tTerm Web stesso viene aggiornato. Un aggiornamento riavvia tTerm Web, e i terminali aperti in quel momento terminano.
+
+La scheda del terminale dice perché. Dopo un aggiornamento dice **tTerm Web è stato aggiornato alla versione 0.1.24.**, con i link alle novità di quella versione e al log della macchina. I comandi eseguiti e il loro output restano nel [log della macchina](../log/).
+
+**Apri un nuovo terminale su web-01** ne avvia uno nuovo nella stessa scheda, nella directory in cui si trovava quello vecchio, se quella directory esiste ancora.
+
+Per un lavoro lungo che non deve fermarsi insieme al suo terminale, come una build o un backup, è più sicuro eseguirlo sulla macchina stessa in `tmux` o `screen`, oppure con `nohup`.

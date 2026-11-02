@@ -70,3 +70,18 @@ Um shell que não consegue marcar onde um comando começa, como o bash anterior 
 ## Nomear um terminal
 
 Clique duas vezes na aba de um terminal, ou no terminal na barra lateral ou na página do projeto, e digite um nome: até 40 caracteres, e não apenas um número. **Enter** salva, **Esc** cancela. O nome aparece na barra lateral, nas abas e na página do projeto.
+
+## Quando um terminal é encerrado
+
+Um terminal roda no tTerm Web, não no seu navegador: feche a aba dele ou o navegador, e ele continua rodando e fica na barra lateral, sob a máquina dele. Ele é encerrado:
+
+- quando você o encerra, com **Encerrar este terminal**, ou quando o shell dele termina (`exit`);
+- quando a conexão com o servidor cai, ou quando a máquina é [removida](../../machines/remove/);
+- quando o computador fica sem conexão por tempo demais: mais de 12 horas, ou mais de uma hora se ele estiver ligado;
+- quando o próprio tTerm Web é atualizado. Uma atualização reinicia o tTerm Web, e os terminais abertos nesse momento são encerrados.
+
+A aba do terminal mostra o motivo. Depois de uma atualização, aparece **O tTerm Web foi atualizado para 0.1.24.**, com links para as novidades dessa versão e para o log da máquina. Os comandos que rodaram e a saída deles ficam no [log da máquina](../log/).
+
+**Abrir um novo terminal em web-01** inicia outro na mesma aba, no diretório em que o antigo estava, se esse diretório ainda existir.
+
+Uma tarefa longa que não pode parar junto com o terminal, como um build ou um backup, roda com mais segurança na própria máquina, dentro do `tmux` ou do `screen`, ou com `nohup`.

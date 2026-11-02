@@ -70,3 +70,18 @@ Bir komutun nerede başladığını işaretleyemeyen bir kabuk, örneğin 4.4'te
 ## Terminale ad verme
 
 Terminalin sekmesine ya da kenar çubuğunda veya proje sayfasında terminalin kendisine çift tıkla ve bir ad yaz: en fazla 40 karakter, yalnızca bir sayı olamaz. **Enter** kaydeder, **Esc** iptal eder. Ad kenar çubuğunda, sekmelerde ve proje sayfasında görünür.
+
+## Terminal sonlandığında
+
+Terminal tarayıcında değil, tTerm Web'de çalışır: sekmesini ya da tarayıcıyı kapatsan da çalışmaya devam eder ve kenar çubuğunda makinesinin altında durur. Şu durumlarda sonlanır:
+
+- **Bu terminali sonlandır** ile kendin sonlandırdığında ya da kabuğu sonlandığında (`exit`);
+- sunucusuyla bağlantısı koptuğunda ya da makinesi [kaldırıldığında](../../machines/remove/);
+- bilgisayarı fazla uzun süre çevrimdışı kaldığında: 12 saatten uzun ya da açıksa bir saatten uzun süre;
+- tTerm Web'in kendisi güncellendiğinde. Güncelleme tTerm Web'i yeniden başlatır ve o anda açık olan terminaller sonlanır.
+
+Neden sonlandığını sekmesi söyler. Bir güncellemeden sonra sekmede şu yazar: **tTerm Web, 0.1.24 sürümüne güncellendi.** Yanında o sürümdeki yeniliklere ve makinenin loguna bağlantılar da bulunur. Çalıştırılan komutlar ve çıktıları [makinenin logunda](../log/) kalır.
+
+**web-01 üzerinde yeni terminal aç** aynı sekmede yenisini başlatır; eskisinin bulunduğu dizin hâlâ duruyorsa yenisi o dizinde açılır.
+
+Terminaliyle birlikte durmaması gereken uzun bir işi, örneğin bir derlemeyi ya da yedeklemeyi, makinenin kendisinde `tmux` ya da `screen` içinde veya `nohup` ile çalıştırmak daha güvenlidir.

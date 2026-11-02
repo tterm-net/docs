@@ -70,3 +70,18 @@ Eine Shell, die nicht markieren kann, wo ein Befehl beginnt, etwa bash vor Versi
 ## Ein Terminal benennen
 
 Doppelklicke auf den Tab eines Terminals oder auf das Terminal in der Seitenleiste oder auf der Seite des Projekts und tipp einen Namen ein: bis zu 40 Zeichen, nicht nur eine Zahl. **Enter** speichert, **Esc** bricht ab. Der Name erscheint in der Seitenleiste, in Tabs und auf der Seite des Projekts.
+
+## Wenn ein Terminal endet
+
+Ein Terminal läuft in tTerm Web, nicht in deinem Browser: Schließ seinen Tab oder den Browser, und es läuft weiter, in der Seitenleiste unter seiner Maschine. Es endet:
+
+- wenn du es beendest (**Dieses Terminal beenden**) oder seine Shell endet (`exit`);
+- wenn die Verbindung zu seinem Server abbricht oder seine Maschine [entfernt](../../machines/remove/) wird;
+- wenn sein Computer zu lange offline ist: über 12 Stunden oder, falls er wach ist, über eine Stunde;
+- wenn tTerm Web selbst aktualisiert wird. Bei einer Aktualisierung startet tTerm Web neu, und die Terminals, die in diesem Moment offen sind, werden beendet.
+
+Sein Tab sagt, warum. Nach einer Aktualisierung steht dort **tTerm Web wurde auf 0.1.24 aktualisiert.**, mit Links zu den Neuigkeiten in dieser Version und zum Log der Maschine. Die Befehle, die darin liefen, und ihre Ausgabe bleiben im [Log der Maschine](../log/).
+
+**Neues Terminal auf web-01 öffnen** startet im selben Tab ein neues, in dem Verzeichnis, in dem das alte war, sofern das Verzeichnis noch existiert.
+
+Ein langer Job, der nicht mit seinem Terminal enden darf, etwa ein Build oder ein Backup, läuft sicherer auf der Maschine selbst unter `tmux` oder `screen` oder mit `nohup`.

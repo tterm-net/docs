@@ -70,3 +70,18 @@ Un shell qui ne sait pas marquer le début d’une commande, comme bash avant la
 ## Nommer un terminal
 
 Double-cliquez sur l’onglet d’un terminal, ou sur le terminal dans la barre latérale ou sur la page du projet, et tapez un nom : jusqu’à 40 caractères, et pas uniquement un nombre. **Enter** enregistre, **Esc** annule. Le nom apparaît dans la barre latérale, dans les onglets et sur la page du projet.
+
+## Quand un terminal prend fin
+
+Un terminal tourne dans tTerm Web, pas dans votre navigateur : fermez son onglet ou le navigateur, et il continue de tourner, dans la barre latérale sous sa machine. Il prend fin :
+
+- quand vous y mettez fin, avec **Mettre fin à ce terminal**, ou que son shell se termine (`exit`) ;
+- quand la connexion à son serveur est perdue, ou que sa machine est [retirée](../../machines/remove/) ;
+- quand son ordinateur est hors ligne trop longtemps : plus de 12 heures, ou plus d’une heure s’il reste allumé ;
+- quand tTerm Web lui-même est mis à jour. Une mise à jour redémarre tTerm Web, et les terminaux ouverts à ce moment-là prennent fin.
+
+L’onglet du terminal indique pourquoi. Après une mise à jour, il affiche **tTerm Web est passé à la version 0.1.24.**, avec des liens vers les nouveautés de cette version et vers le journal de la machine. Les commandes exécutées et leur sortie restent dans le [journal de la machine](../log/).
+
+**Ouvrir un nouveau terminal sur web-01** en lance un nouveau dans le même onglet et dans le répertoire où était l’ancien, si ce répertoire existe encore.
+
+Pour une longue tâche qui ne doit pas s’arrêter avec son terminal, comme une compilation ou une sauvegarde, il est plus sûr de la lancer sur la machine elle-même, dans `tmux` ou `screen`, ou avec `nohup`.

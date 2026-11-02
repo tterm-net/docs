@@ -70,3 +70,18 @@ Un shell que no puede marcar dónde empieza un comando, como bash anterior a la 
 ## Poner nombre a una terminal
 
 Haz doble clic en la pestaña de una terminal, o en la terminal en la barra lateral o en la página del proyecto, y escribe un nombre: hasta 40 caracteres, y no solo un número. **Enter** guarda, **Esc** cancela. El nombre aparece en la barra lateral, en las pestañas y en la página del proyecto.
+
+## Cuando una terminal finaliza
+
+Una terminal se ejecuta en tTerm Web, no en tu navegador: si cierras su pestaña o el navegador, sigue en marcha, en la barra lateral, debajo de su máquina. Finaliza:
+
+- cuando la finalizas tú, con **Finalizar esta terminal**, o su shell termina (`exit`);
+- cuando se pierde la conexión con su servidor o se [quita](../../machines/remove/) su máquina;
+- cuando su computadora pasa demasiado tiempo sin conexión: más de 12 horas, o más de una hora si está encendida;
+- cuando se actualiza el propio tTerm Web. Una actualización reinicia tTerm Web, y las terminales abiertas en ese momento finalizan.
+
+Su pestaña dice por qué. Después de una actualización, dice **tTerm Web se actualizó a la versión 0.1.24.**, con enlaces a las novedades de esa versión y a la bitácora de la máquina. Los comandos que se ejecutaron y lo que imprimieron quedan en la [bitácora de la máquina](../log/).
+
+**Abrir una terminal nueva en web-01** inicia otra en la misma pestaña, en el directorio en el que estaba la anterior, si ese directorio todavía existe.
+
+Para un trabajo largo que no debe detenerse junto con su terminal, como una compilación o una copia de seguridad, es más seguro ejecutarlo en la propia máquina, dentro de `tmux` o `screen`, o con `nohup`.
