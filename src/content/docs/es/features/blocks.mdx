@@ -1,0 +1,72 @@
+---
+title: Bloques y línea de comandos
+description: Cómo funciona una terminal en tTerm – un bloque por comando, la línea de entrada propia de tTerm y el modo clásico.
+---
+
+En tTerm, una terminal es una serie de bloques: cada comando que ejecutas se convierte en uno, con su salida. Escribes en la línea de entrada propia de tTerm, debajo de los bloques. Cualquier bloque se puede volver a encontrar con la [búsqueda](../search/).
+
+## Un bloque
+
+Un bloque muestra el comando y cómo terminó: un punto verde o una cruz roja con el código de salida, por ejemplo **código 1**. Al lado aparecen cuánto tardó, el directorio en el que se ejecutó, la rama de git y la hora a la que empezó. Debajo está la salida. Si es larga, se ven las últimas 400 líneas, y el botón que hay encima, **Mostrar 120 líneas anteriores** o **Mostrar toda la salida**, muestra el resto.
+
+El comando que se está ejecutando se dibuja en directo, como en cualquier terminal: funcionan los colores, las barras de progreso y las solicitudes de contraseña, y lo que escribes va a él. Un programa a pantalla completa, como vim o htop, ocupa toda la ventana mientras se ejecuta, y los bloques vuelven cuando se cierra. Cuando un comando termina, su pantalla se convierte en texto que puedes seleccionar, buscar y copiar.
+
+Para detener un comando en ejecución, presiona **Detener** en su bloque, o **Ctrl+C**. Si el shell espera el resto de un comando, porque quedaron unas comillas o un heredoc sin cerrar, el bloque dice **sin iniciar**: escribe el resto en el bloque o presiona **Detener**.
+
+## Los botones de un bloque
+
+Pasa el puntero sobre un bloque terminado y aparecerán sus botones. Sus textos emergentes los nombran así:
+
+- **Copiar el comando y su salida** y **Copiar solo la salida**. Una marca en el botón indica que se copió.
+- **Volver a ejecutar** ejecuta el comando otra vez en esta terminal. El bloque nuevo aparece con un borde ámbar al empezar.
+- **Copiar enlace a este bloque** copia un enlace que abre la terminal en este bloque y lo resalta. Funciona en cualquier lugar donde hayas iniciado sesión, y solo para ti.
+- **Añadir una nota sobre este comando** abre un campo debajo, y **Enter** guarda la nota. Las notas también van a la [bitácora de la máquina](../log/), se quedan tal como se escribieron y se responden con **Responder**.
+- **Contraer bloque** oculta la salida. Un bloque contraído dice cuánto oculta, **12 líneas ocultas**, y con un clic se vuelve a expandir.
+
+## La línea de entrada
+
+La línea de entrada es de tTerm, no del shell. Lo que escribes se queda en ella hasta que presionas **Enter**, que le pasa el comando completo al shell.
+
+- **Shift+Enter** empieza una línea nueva: un comando puede tener varias.
+- **↑** y **↓** recorren tu historial, el de todos los dispositivos que usas: primero los comandos que ejecutaste en esta máquina y luego los del resto de su proyecto. Escribe el principio de un comando y solo aparecerán los que empiezan así. **Ctrl+R** muestra el historial en una lista con un campo de búsqueda, y el comando que elijas pasa a la línea.
+- Mientras escribes, el resto de un comando de tu historial aparece en gris. **Tab** o **→** lo acepta.
+- Si no hay sugerencia, **Tab** le pregunta a la máquina qué puede ser la palabra: un comando, un archivo, un directorio o una rama de git. Si hay una sola respuesta, entra directamente; si hay varias, se abre una lista. La pregunta no pasa por la terminal, así que no aparece ni en ella ni en el historial del shell.
+- **Ctrl+L** limpia la pantalla, como `clear`.
+
+A la izquierda de la línea están el directorio en el que estás y la rama de git, si la hay, y los dos son botones. El directorio muestra una lista de los directorios que hay ahí, con `..` para subir un nivel, y también acepta una ruta que escribas. La rama muestra una lista de las ramas, con las marcas **actual** y **remota**. Lo que elijas se ejecuta como un `cd` o un `git switch` normal y aparece como un bloque más.
+
+Mientras se ejecuta un comando, la línea dice **Las teclas van al comando en ejecución. Haz clic aquí para escribir el siguiente.** Puedes escribir ahí el siguiente comando, pero **Enter** solo funciona cuando el actual termina; hasta entonces, avisa: **Todavía se está ejecutando un comando. Espera a que termine o detenlo con Ctrl+C en su bloque.** En la propia línea, **Ctrl+C** borra lo que escribiste, y en una línea vacía va al shell.
+
+## Comandos peligrosos
+
+Algunos comandos destruyen algo para siempre. tTerm retiene un comando así y pregunta antes, en una barra sobre la línea: qué haría el comando, en qué máquina y qué no se puede recuperar. «Esto va a **eliminar un directorio y todo su contenido** en **web-01**. No hay forma de deshacerlo ni papelera donde buscarlo». **Ejecutarlo** ejecuta el comando, y **Cancelar** lo devuelve a la línea.
+
+Pregunta antes de:
+
+- `rm` con `-r` y `-f` – eliminar un directorio y todo su contenido;
+- `mkfs`, `fdisk`, `parted`, `wipefs` – reescribir el sistema de archivos de un disco;
+- `dd` con `of=/dev/…` – escribir directamente sobre un dispositivo;
+- `DROP DATABASE`, `DROP TABLE`, `TRUNCATE TABLE` – eliminar una base de datos o una tabla;
+- `shutdown`, `poweroff`, `halt`, `init 0` – apagar la máquina;
+- `reboot`, `init 6` – reiniciar la máquina;
+- `systemctl stop`, `disable` o `mask` para `ssh` o `sshd` – detener el servicio SSH;
+- `ufw deny`, `ufw reject`, `iptables` con `DROP` – modificar el firewall;
+- `userdel`, `deluser` – eliminar una cuenta de usuario.
+
+Si un `rm -rf` apunta a `/` o a `~`, se añade **Esto apunta a toda la máquina. No quedaría nada en ella.** tTerm pregunta igual tanto si escribiste el comando como si lo tomaste del historial o presionaste **Volver a ejecutar**.
+
+## El modo clásico
+
+En el modo clásico, la terminal funciona como cualquier otra. Cada tecla va directamente al shell, con su propio Tab e historial, y el shell lo dibuja todo, también su prompt. No hay bloques y no se comprueba nada: debajo de la terminal aparece **En este modo no se pide confirmación para los comandos peligrosos.**
+
+**Línea** y **Clásico**, a la derecha de la línea de entrada, cambian el modo; en el modo clásico, el selector está debajo de la terminal. El shell sigue como estaba, y este navegador recuerda el modo para todas tus terminales.
+
+Un shell que no puede marcar dónde empieza un comando, como bash anterior a la versión 4.4, solo funciona en el modo clásico. Ahí **Línea** aparece atenuada, y el texto emergente del selector explica por qué.
+
+## Limpiar y contraer
+
+`clear` (o `reset`) y **Ctrl+L** ocultan los bloques, pero no los borran: **Se ocultaron 3 bloques: mostrar**, arriba, los trae de vuelta. Los bloques contraídos y los ocultos siguen así en este navegador, aunque recargues la página o pases al modo clásico y vuelvas. **Mostrar comandos anteriores**, arriba, carga bloques más antiguos; se guardan 30 días.
+
+## Poner nombre a una terminal
+
+Haz doble clic en la pestaña de una terminal, o en la terminal en la barra lateral o en la página del proyecto, y escribe un nombre: hasta 40 caracteres, y no solo un número. **Enter** guarda, **Esc** cancela. El nombre aparece en la barra lateral, en las pestañas y en la página del proyecto.

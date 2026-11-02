@@ -1,0 +1,72 @@
+---
+title: Blocos e a linha de entrada
+description: Como funciona um terminal no tTerm – cada comando vira um bloco, a linha de entrada própria do tTerm e o modo clássico.
+---
+
+Um terminal no tTerm é um feed de blocos: cada comando que você roda vira um bloco, com a saída dele. Você digita na linha de entrada do próprio tTerm, embaixo do feed. Dá para encontrar os blocos de novo com a [busca](../search/).
+
+## O bloco
+
+O bloco mostra o comando e como ele terminou: um ponto verde, ou um X vermelho com o código de retorno, por exemplo **retorno 1**. Ao lado ficam quanto tempo ele levou, o diretório em que rodou, a branch do git e a hora em que começou. Embaixo vem a saída. De uma saída longa aparecem as últimas 400 linhas, e o botão acima delas, **Mostrar 120 linhas anteriores** ou **Mostrar a saída inteira**, traz o resto de volta.
+
+O comando que está rodando agora é desenhado ao vivo, como em qualquer terminal: cores, barras de progresso e pedidos de senha funcionam, e o que você digita vai para ele. Um programa de tela cheia, como o vim ou o htop, ocupa a janela inteira enquanto roda, e o feed volta quando ele fecha. Quando um comando termina, a tela dele vira texto que você pode selecionar, buscar e copiar.
+
+Para parar um comando em execução, clique em **Parar** no bloco dele ou pressione **Ctrl+C**. Se o shell estiver esperando o resto de um comando, depois de uma aspa ou de um heredoc em aberto, o bloco diz **não iniciado**: digite o resto no próprio bloco ou clique em **Parar**.
+
+## Os botões do bloco
+
+Passe o mouse sobre um bloco concluído, e os botões dele aparecem. As dicas mostram o nome de cada um:
+
+- **Copiar o comando e a saída** e **Copiar só a saída**. Um sinal de visto no botão indica que foi copiado.
+- **Executar de novo** roda o comando mais uma vez neste terminal. O novo bloco ganha um contorno âmbar quando começa.
+- **Copiar link deste bloco** copia um link que abre o feed neste bloco e o destaca. Ele funciona em qualquer lugar onde você tenha entrado na conta, e só para você.
+- **Adicionar uma nota a este comando** abre um campo embaixo dele, e **Enter** salva a nota. As notas vão também para o [log da máquina](../log/), ficam como foram escritas e podem ser respondidas com **Responder**.
+- **Recolher bloco** esconde a saída. Um bloco recolhido diz quanto está escondendo, **12 linhas ocultas**, e um clique o expande de novo.
+
+## A linha de entrada
+
+A linha de entrada é do próprio tTerm, não do shell. O que você digita fica nela até o **Enter**, que entrega o comando inteiro ao shell.
+
+- **Shift+Enter** começa uma nova linha: um comando pode ter várias.
+- **↑** e **↓** percorrem o seu histórico, de todos os dispositivos que você usa: primeiro os comandos que você rodou nesta máquina, depois os do resto do projeto dela. Digite o começo de um comando, e só aparecem os que começam assim. **Ctrl+R** mostra o histórico em lista, com um campo de busca, e o comando escolhido vai para a linha.
+- Enquanto você digita, o resto de um comando do seu histórico aparece em cinza. **Tab** ou **→** aceita a sugestão.
+- Fora isso, **Tab** pergunta à máquina o que a palavra pode ser: um comando, um arquivo, um diretório ou uma branch do git. Uma única opção entra direto; várias abrem uma lista. A pergunta não passa pelo terminal, então nada dela aparece lá nem no histórico do shell.
+- **Ctrl+L** limpa o feed, como o `clear`.
+
+À esquerda da linha ficam o diretório em que você está e a branch do git, quando houver, e os dois são botões. O diretório abre a lista dos diretórios que há nele, com `..` para subir um nível, e aceita um caminho digitado. A branch abre a lista das branches, marcadas como **atual** e **remota**. O que você escolher roda como um `cd` ou `git switch` comum e entra no feed como um bloco.
+
+Enquanto um comando roda, a linha diz **As teclas vão para o comando em execução. Clique aqui para digitar o próximo.** Você já pode digitar o próximo comando ali, mas o **Enter** só funciona depois que o atual terminar; antes disso, aparece **Um comando ainda está rodando. Espere ele terminar ou pare-o com Ctrl+C no bloco dele.** Na própria linha, **Ctrl+C** apaga o que você digitou e, numa linha vazia, vai para o shell.
+
+## Comandos perigosos
+
+Alguns comandos destroem algo para sempre. O tTerm segura um comando desses e pergunta antes, numa barra acima da linha: o que o comando faria, em qual máquina e o que não volta mais. “Este comando vai **excluir um diretório e tudo o que há dentro dele** em **web-01**. Não há como desfazer, nem lixeira onde procurar.” **Executar** roda o comando, e **Cancelar** o devolve para a linha.
+
+Ele pergunta antes de rodar:
+
+- `rm` com `-r` e `-f` – excluir um diretório e tudo o que há dentro dele;
+- `mkfs`, `fdisk`, `parted`, `wipefs` – reescrever o sistema de arquivos de um disco;
+- `dd` com `of=/dev/…` – gravar diretamente num dispositivo;
+- `DROP DATABASE`, `DROP TABLE`, `TRUNCATE TABLE` – excluir um banco de dados ou uma tabela;
+- `shutdown`, `poweroff`, `halt`, `init 0` – desligar a máquina;
+- `reboot`, `init 6` – reiniciar a máquina;
+- `systemctl stop`, `disable` ou `mask` para `ssh` ou `sshd` – parar o serviço SSH;
+- `ufw deny`, `ufw reject`, `iptables` com `DROP` – alterar o firewall;
+- `userdel`, `deluser` – excluir uma conta de usuário.
+
+Um `rm -rf` apontado para `/` ou `~` acrescenta **O alvo é a máquina inteira. Nada nela sobreviveria.** O tTerm pergunta do mesmo jeito, não importa se você digitou o comando, pegou do histórico ou clicou em **Executar de novo**.
+
+## O modo clássico
+
+No modo clássico, o terminal funciona como um terminal comum. Cada tecla vai direto para o shell, com o Tab e o histórico dele, e o shell desenha tudo, inclusive o prompt. Não há blocos, e nada é verificado: embaixo do terminal aparece **Neste modo, não há confirmação para comandos perigosos.**
+
+**Linha** e **Clássico**, à direita da linha de entrada, trocam o modo; no modo clássico, o seletor fica embaixo do terminal. O shell continua como estava, e este navegador guarda o modo para todos os seus terminais.
+
+Um shell que não consegue marcar onde um comando começa, como o bash anterior à versão 4.4, só funciona no modo clássico. Nesse shell, **Linha** fica em cinza, e a dica do seletor explica por quê.
+
+## Limpar e recolher
+
+`clear` (ou `reset`) e **Ctrl+L** tiram o feed de vista, mas não o apagam: **3 blocos ocultados: mostrar**, no topo, traz tudo de volta. Blocos recolhidos e um feed limpo continuam assim neste navegador, depois de recarregar a página e depois de passar para o modo clássico e voltar. **Mostrar comandos anteriores**, no topo, traz blocos mais antigos; eles ficam guardados por 30 dias.
+
+## Nomear um terminal
+
+Clique duas vezes na aba de um terminal, ou no terminal na barra lateral ou na página do projeto, e digite um nome: até 40 caracteres, e não apenas um número. **Enter** salva, **Esc** cancela. O nome aparece na barra lateral, nas abas e na página do projeto.

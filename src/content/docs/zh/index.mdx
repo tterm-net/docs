@@ -1,0 +1,27 @@
+---
+title: tTerm 文档
+description: 如何连接你的服务器和电脑、在终端中工作，并把访问权限掌握在自己手中。
+template: splash
+hero:
+  title: tTerm 文档
+  tagline: 如何连接你的服务器和电脑、在终端中工作，并把访问权限掌握在自己手中。
+  actions:
+    - text: 快速入门
+      link: start/quick-start/
+      icon: right-arrow
+    - text: 打开 tTerm Web
+      link: https://app.tterm.net
+      icon: external
+      variant: minimal
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<CardGrid>
+	<LinkCard title="从这里开始" description="tTerm 是什么，以及五分钟内运行第一条命令。" href="start/what-is-tterm/" />
+	<LinkCard title="机器" description="服务器用一条命令通过 SSH 接入，电脑通过小型代理接入。" href="machines/servers/" />
+	<LinkCard title="功能" description="块和命令行、用 ⌘K 搜索、笔记、机器的日志、项目。" href="features/blocks/" />
+	<LinkCard title="本地终端" description="Mac 版：安装、首次启动、把服务器迁移到云端。Windows 版和 Linux 版正在开发中。" href="local/mac/" />
+	<LinkCard title="安全" description="两分钟有效的证书、独立进行的签名，你的密钥则存放在只有你的设备能打开的保险库中。" href="security/access/" />
+	<LinkCard title="账号" description="你的方案及其限额、设备和登录。" href="account/plan/" />
+</CardGrid>

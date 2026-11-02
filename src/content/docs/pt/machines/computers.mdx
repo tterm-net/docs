@@ -1,0 +1,46 @@
+---
+title: Computador com macOS ou Linux
+description: O agente para um computador – instalado com um comando, conectado de dentro para fora, atualizado automaticamente e removido com um comando.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Um computador só precisa de um pequeno agente. Ele se conecta à nuvem sozinho e mantém essa única conexão, então não precisa de portas de entrada: o computador funciona até atrás de NAT.
+
+:::tip[No Mac, o app é mais fácil]
+[O terminal local para Mac](../../local/mac/) mantém a conexão com a nuvem enquanto está rodando, e esse Mac não precisa de agente.
+:::
+
+## Conectar
+
+No tTerm Web, abra **Adicionar uma máquina** e escolha **Computador**. Execute o comando num terminal desse computador, com o seu próprio usuário, sem sudo:
+
+```sh title="No computador"
+curl -fsSL https://connect.tterm.net/c/<token> | sh
+```
+
+O computador aparece no projeto alguns segundos depois que o comando terminar. O comando funciona uma vez, nos próximos 10 minutos.
+
+## O que o comando faz
+
+- Coloca o agente em `~/.tterm-web`: um único arquivo para este sistema, das nossas versões publicadas, conferido com o checksum do script do comando antes de rodar.
+- Cria uma chave própria para este computador e a guarda nele, legível só por você. O token do comando só serve para conectá-lo, uma única vez.
+- Inicia o agente sempre que você entra no sistema. O agente roda como você, nunca como root, e não abre portas.
+- O agente se atualiza sozinho, só para versões assinadas pelo nosso build de release, e só enquanto nenhum terminal estiver aberto no computador.
+
+<Tabs syncKey="os">
+	<TabItem label="macOS">
+		O launchd inicia o agente. Na primeira vez, o macOS pode perguntar se o `tterm-agent` pode acessar as suas pastas Mesa e Documentos: permita, se quiser trabalhar com elas pelo terminal.
+	</TabItem>
+	<TabItem label="Linux">
+		O systemd inicia o agente, com o seu usuário. Um servidor sem SSH de fora se conecta do mesmo jeito: o agente inicia a conexão sozinho.
+	</TabItem>
+</Tabs>
+
+## Remover
+
+Remova o computador na página do projeto: o agente fica sabendo e para ([mais](../remove/#computador)). Para tirar o próprio agente do computador, execute:
+
+```sh title="No computador"
+~/.tterm-web/uninstall.sh
+```

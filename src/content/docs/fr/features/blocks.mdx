@@ -1,0 +1,72 @@
+---
+title: Blocs et ligne de saisie
+description: Comment fonctionne un terminal dans tTerm – chaque commande sous forme de bloc, la ligne de saisie propre à tTerm, et le mode classique.
+---
+
+Dans tTerm, un terminal est un fil de blocs : chaque commande que vous lancez en devient un, avec sa sortie. Vous tapez dans la ligne de saisie propre à tTerm, sous le fil. Les blocs se retrouvent ensuite avec la [recherche](../search/).
+
+## Un bloc
+
+Un bloc montre la commande et la façon dont elle s’est terminée : un point vert, ou une croix rouge avec le code de retour, **code 1** par exemple. À côté figurent sa durée, le répertoire où elle s’est exécutée, la branche git et l’heure de son lancement. En dessous vient la sortie. Quand elle est longue, seules les 400 dernières lignes s’affichent, et le bouton au-dessus, **Afficher 120 lignes précédentes** ou **Afficher toute la sortie**, fait revenir le reste.
+
+La commande en cours s’affiche en direct, comme dans n’importe quel terminal : les couleurs, les barres de progression et les demandes de mot de passe fonctionnent, et ce que vous tapez lui est envoyé. Un programme en plein écran comme vim ou htop occupe toute la fenêtre tant qu’il tourne, et le fil revient quand il se ferme. Quand une commande se termine, son écran devient du texte que vous pouvez sélectionner, rechercher et copier.
+
+Pour arrêter une commande en cours, appuyez sur **Arrêter** sur son bloc, ou sur **Ctrl+C**. Si le shell attend la suite d’une commande, après un guillemet ouvert ou un heredoc, le bloc indique **non lancée** : tapez la suite dans le bloc, ou appuyez sur **Arrêter**.
+
+## Les boutons d’un bloc
+
+Survolez un bloc terminé, et ses boutons apparaissent. Leurs infobulles les nomment :
+
+- **Copier la commande et sa sortie**, et **Copier uniquement la sortie**. Une coche sur le bouton indique que c’est copié.
+- **Relancer** exécute la commande une fois de plus dans ce terminal. Au démarrage, le nouveau bloc est entouré d’un contour ambre.
+- **Copier le lien vers ce bloc** copie un lien qui ouvre le fil sur ce bloc et le met en évidence. Il fonctionne partout où vous êtes connecté, et pour vous seul.
+- **Ajouter une note sur cette commande** ouvre un champ en dessous, et **Enter** enregistre la note. Les notes vont aussi dans le [journal de la machine](../log/), restent telles qu’elles ont été écrites, et l’on y répond avec **Répondre**.
+- **Replier le bloc** masque la sortie. Un bloc replié indique ce qu’il cache, **12 lignes masquées**, et un clic le déplie.
+
+## La ligne de saisie
+
+La ligne de saisie appartient à tTerm, pas au shell. Ce que vous tapez y reste jusqu’à **Enter**, qui transmet la commande entière au shell.
+
+- **Shift+Enter** commence une nouvelle ligne : une commande peut en compter plusieurs.
+- **↑** et **↓** parcourent votre historique, qui réunit tous les appareils que vous utilisez : d’abord les commandes lancées sur cette machine, puis celles du reste de son projet. Tapez le début d’une commande, et seules celles qui commencent ainsi s’affichent. **Ctrl+R** affiche l’historique sous forme de liste, avec un champ de recherche, et la commande choisie va dans la ligne.
+- Pendant la saisie, la suite d’une commande de votre historique apparaît en gris. **Tab** ou **→** l’accepte.
+- Sinon, **Tab** demande à la machine ce que le mot peut être : une commande, un fichier, un répertoire ou une branche git. Une seule réponse s’insère directement, plusieurs ouvrent une liste. La question contourne le terminal : rien n’en apparaît, ni dans le terminal ni dans l’historique du shell.
+- **Ctrl+L** efface le fil, comme `clear`.
+
+À gauche de la ligne se trouvent le répertoire où vous êtes et la branche git, s’il y en a une, et ce sont tous deux des boutons. Le répertoire liste les répertoires qu’il contient, avec `..` pour remonter d’un niveau, et accepte un chemin tapé au clavier. La branche liste les branches, marquées **actuelle** et **distante**. Ce que vous choisissez s’exécute comme un `cd` ou un `git switch` ordinaire et arrive dans le fil sous forme de bloc.
+
+Pendant qu’une commande tourne, la ligne indique **Les touches sont envoyées à la commande en cours. Cliquez ici pour taper la suivante.** Vous pouvez y taper la commande suivante, mais **Enter** ne fonctionne qu’une fois celle-ci terminée ; avant cela, il affiche **Une commande est toujours en cours. Attendez qu’elle se termine, ou arrêtez-la avec Ctrl+C dans son bloc.** Dans la ligne elle-même, **Ctrl+C** efface ce que vous avez tapé, et sur une ligne vide, il est envoyé au shell.
+
+## Les commandes dangereuses
+
+Certaines commandes détruisent quelque chose pour de bon. tTerm retient une telle commande et demande d’abord, dans une barre au-dessus de la ligne : ce que ferait la commande, sur quelle machine, et ce qui ne reviendra pas. « Cette commande va **supprimer un répertoire et tout son contenu** sur **web-01**. Impossible d’annuler, et il n’y a pas de corbeille où le récupérer. » **Exécuter** lance la commande, **Annuler** la remet dans la ligne.
+
+tTerm demande confirmation avant :
+
+- `rm` avec `-r` et `-f` – supprimer un répertoire et tout son contenu ;
+- `mkfs`, `fdisk`, `parted`, `wipefs` – réécrire le système de fichiers d’un disque ;
+- `dd` avec `of=/dev/…` – écrire directement dans un périphérique ;
+- `DROP DATABASE`, `DROP TABLE`, `TRUNCATE TABLE` – supprimer une base de données ou une table ;
+- `shutdown`, `poweroff`, `halt`, `init 0` – éteindre la machine ;
+- `reboot`, `init 6` – redémarrer la machine ;
+- `systemctl stop`, `disable` ou `mask` pour `ssh` ou `sshd` – arrêter le service SSH ;
+- `ufw deny`, `ufw reject`, `iptables` avec `DROP` – modifier le pare-feu ;
+- `userdel`, `deluser` – supprimer un compte utilisateur.
+
+Un `rm -rf` qui vise `/` ou `~` ajoute **Elle vise la machine entière. Rien n’y survivrait.** tTerm demande de la même façon, que vous ayez tapé la commande, que vous l’ayez reprise de l’historique ou que vous ayez appuyé sur **Relancer**.
+
+## Le mode classique
+
+En mode classique, le terminal est un terminal ordinaire. Chaque touche est envoyée directement au shell, avec sa propre complétion par Tab et son propre historique, et c’est le shell qui dessine tout, son invite comprise. Il n’y a pas de blocs, et rien n’est vérifié : sous le terminal, il est écrit **Pas de confirmation pour les commandes dangereuses dans ce mode.**
+
+**Ligne** et **Classique**, à droite de la ligne de saisie, font passer d’un mode à l’autre ; en mode classique, ce sélecteur se trouve sous le terminal. Le shell continue comme avant, et ce navigateur retient le mode pour tous vos terminaux.
+
+Un shell qui ne sait pas marquer le début d’une commande, comme bash avant la version 4.4, ne fonctionne qu’en mode classique. **Ligne** y est grisé, et l’infobulle du sélecteur explique pourquoi.
+
+## Effacer et replier
+
+`clear` (ou `reset`) et **Ctrl+L** masquent le fil, sans le supprimer : **3 blocs masqués : afficher**, en haut, le fait réapparaître. Les blocs repliés et un fil effacé le restent dans ce navigateur, après un rechargement de la page comme après un aller-retour par le mode classique. **Afficher les commandes précédentes**, en haut, fait apparaître des blocs plus anciens ; ils sont conservés 30 jours.
+
+## Nommer un terminal
+
+Double-cliquez sur l’onglet d’un terminal, ou sur le terminal dans la barre latérale ou sur la page du projet, et tapez un nom : jusqu’à 40 caractères, et pas uniquement un nombre. **Enter** enregistre, **Esc** annule. Le nom apparaît dans la barre latérale, dans les onglets et sur la page du projet.

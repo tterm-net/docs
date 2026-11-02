@@ -1,0 +1,72 @@
+---
+title: Blocchi e riga di comando
+description: Come funziona un terminale in tTerm – ogni comando un blocco, una riga di input tutta di tTerm e la modalità classica.
+---
+
+Un terminale in tTerm è un flusso di blocchi: ogni comando che esegui diventa un blocco, con il suo output. Scrivi in una riga di input tutta di tTerm, sotto il flusso. I blocchi si ritrovano poi con la [ricerca](../search/).
+
+## Un blocco
+
+Un blocco mostra il comando e com'è finito: un pallino verde, oppure una croce rossa con il codice di uscita, ad esempio **uscita 1**. Accanto ci sono quanto è durato, la directory in cui è stato eseguito, il branch git e l'ora in cui è partito. Sotto c'è l'output. Di un output lungo si vedono le ultime 400 righe, e il pulsante sopra, **Mostra 120 righe precedenti** o **Mostra tutto l'output**, fa ricomparire il resto.
+
+Il comando in esecuzione si vede in diretta, come in qualsiasi terminale: colori, barre di avanzamento e richieste di password funzionano, e quello che digiti arriva al comando. Un programma a schermo intero come vim o htop occupa tutta la finestra finché è in esecuzione, e il flusso ricompare quando si chiude. Quando un comando finisce, la sua schermata diventa testo che puoi selezionare, cercare e copiare.
+
+Per fermare un comando in esecuzione, premi **Interrompi** sul suo blocco, oppure **Ctrl+C**. Se la shell aspetta il resto di un comando, dopo una virgoletta aperta o un heredoc, il blocco dice **non avviato**: scrivi il resto nel blocco, oppure premi **Interrompi**.
+
+## I pulsanti di un blocco
+
+Porta il mouse su un blocco concluso, e compaiono i suoi pulsanti. I tooltip ne dicono il nome:
+
+- **Copia il comando e il suo output** e **Copia solo l'output**. Un segno di spunta sul pulsante indica che è stato copiato.
+- **Esegui di nuovo** lancia ancora una volta il comando in questo terminale. All'avvio, il nuovo blocco ha un bordo color ambra.
+- **Copia il link a questo blocco** copia un link che apre il flusso su questo blocco e lo evidenzia. Funziona ovunque tu abbia effettuato l'accesso, e solo per te.
+- **Aggiungi una nota su questo comando** apre un campo sotto il blocco, e **Enter** salva la nota. Le note finiscono anche nel [log della macchina](../log/), restano come sono state scritte, e a una nota si risponde con **Rispondi**.
+- **Comprimi il blocco** nasconde l'output. Un blocco compresso dice quanto nasconde, **12 righe nascoste**, e un clic lo espande.
+
+## La riga di input
+
+La riga di input è di tTerm, non della shell. Quello che scrivi resta lì fino a **Enter**, che passa l'intero comando alla shell.
+
+- **Shift+Enter** va a capo: un comando può avere più righe.
+- **↑** e **↓** scorrono la tua cronologia, da tutti i dispositivi che usi: prima i comandi che hai eseguito su questa macchina, poi quelli del resto del suo progetto. Scrivi l'inizio di un comando, e compaiono solo quelli che iniziano così. **Ctrl+R** mostra la cronologia in un elenco con un campo di ricerca, e il comando che scegli finisce nella riga.
+- Mentre scrivi, il resto di un comando della tua cronologia compare in grigio. **Tab** o **→** lo accetta.
+- Altrimenti **Tab** chiede alla macchina cosa può essere la parola: un comando, un file, una directory o un branch git. Una sola risposta entra subito nella riga, più risposte aprono un elenco. La domanda non passa dal terminale, quindi non se ne vede nulla né lì né nella cronologia della shell.
+- **Ctrl+L** pulisce il flusso, come fa `clear`.
+
+A sinistra della riga ci sono la directory in cui ti trovi e il branch git, se c'è, ed entrambi sono pulsanti. La directory elenca le directory che contiene, con `..` per salire di un livello, e accetta anche un percorso digitato. Il branch elenca i branch, con le indicazioni **attuale** e **remoto**. Quello che scegli viene eseguito come un normale `cd` o `git switch` ed entra nel flusso come blocco.
+
+Mentre un comando è in esecuzione, la riga dice **I tasti vanno al comando in esecuzione. Fai clic qui per scrivere il prossimo.** Lì puoi scrivere il comando successivo, ma **Enter** funziona solo quando quello in corso è finito; prima di allora compare **Un comando è ancora in esecuzione. Aspetta che finisca, o interrompilo con Ctrl+C nel suo blocco.** Nella riga stessa **Ctrl+C** cancella quello che hai scritto, e su una riga vuota va alla shell.
+
+## Comandi pericolosi
+
+Alcuni comandi distruggono qualcosa per sempre. tTerm trattiene un comando del genere e prima chiede conferma, in una barra sopra la riga: cosa farebbe il comando, su quale macchina e cosa non si potrà recuperare. “Il comando sta per **eliminare una directory con tutto il suo contenuto** su **web-01**. Non si può annullare e non c'è un cestino in cui ritrovarla.” **Eseguilo** esegue il comando, **Annulla** lo rimette nella riga.
+
+Chiede conferma prima di eseguire:
+
+- `rm` con `-r` e `-f` – eliminare una directory con tutto il suo contenuto;
+- `mkfs`, `fdisk`, `parted`, `wipefs` – riscrivere il file system di un disco;
+- `dd` con `of=/dev/…` – sovrascrivere direttamente un dispositivo;
+- `DROP DATABASE`, `DROP TABLE`, `TRUNCATE TABLE` – eliminare un database o una tabella;
+- `shutdown`, `poweroff`, `halt`, `init 0` – spegnere il sistema;
+- `reboot`, `init 6` – riavviare il sistema;
+- `systemctl stop`, `disable` o `mask` per `ssh` o `sshd` – arrestare il servizio SSH;
+- `ufw deny`, `ufw reject`, `iptables` con `DROP` – modificare il firewall;
+- `userdel`, `deluser` – eliminare un account utente.
+
+Per un `rm -rf` puntato su `/` o `~` si aggiunge **Questo comando colpisce l'intera macchina. Non si salverebbe nulla.** tTerm chiede conferma allo stesso modo, che tu abbia digitato il comando, l'abbia preso dalla cronologia o abbia premuto **Esegui di nuovo**.
+
+## La modalità classica
+
+In modalità classica il terminale è un terminale come tutti gli altri. Ogni tasto va direttamente alla shell, con il suo Tab e la sua cronologia, e la shell disegna tutto, compreso il prompt. Non ci sono blocchi e non viene controllato nulla: sotto il terminale c'è scritto **In questa modalità non c'è conferma per i comandi pericolosi.**
+
+**Riga** e **Classica**, a destra della riga di input, cambiano modalità; in modalità Classica il selettore è sotto il terminale. La shell continua com'era, e questo browser ricorda la modalità per tutti i tuoi terminali.
+
+Una shell che non sa segnalare dove inizia un comando, come le versioni di bash precedenti alla 4.4, funziona solo in modalità classica. Lì **Riga** è in grigio, e il tooltip del selettore spiega perché.
+
+## Pulire e comprimere
+
+`clear` (o `reset`) e **Ctrl+L** tolgono il flusso dalla vista, ma non lo cancellano: **3 blocchi nascosti: mostra** in alto lo fa ricomparire. I blocchi compressi e il flusso pulito restano così in questo browser, anche dopo aver ricaricato la pagina o essere passati a Classica e ritorno. **Mostra i comandi precedenti** in alto carica i blocchi più vecchi; si conservano per 30 giorni.
+
+## Dare un nome a un terminale
+
+Fai doppio clic sulla scheda di un terminale, o sul terminale nella barra laterale o nella pagina del progetto, e scrivi un nome: fino a 40 caratteri, e non solo un numero. **Enter** salva, **Esc** annulla. Il nome compare nella barra laterale, nelle schede e nella pagina del progetto.

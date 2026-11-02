@@ -1,0 +1,63 @@
+---
+title: Notizen
+description: Notizen in den Ordnern eines Projekts – Markdown beim Tippen, Checklisten, die zeigen, wer abgehakt hat, Code mit Button zum Kopieren und ein Speichern, das zusammenführt, was zwei Geräte geschrieben haben.
+---
+
+Notizen leben in den Ordnern eines Projekts, so wie Terminals auf seinen Maschinen: Runbooks, Zugänge, Checklisten, direkt neben den Maschinen, um die es geht. Eine Notiz besteht aus einem Titel und Blöcken, die du an Ort und Stelle schreibst, und sie speichert sich selbst.
+
+## Ordner
+
+In der Seitenleiste hat jedes Projekt unter seinen Maschinen **Notizen**. **+** neben **Notizen** legt einen Ordner an: Gib ihm einen Namen und drück auf **Ordner erstellen**. **+** neben einem Ordner beginnt darin eine Notiz, in einem eigenen Tab; ein Klick auf den Ordner selbst klappt ihn nur auf oder zu. Die Seite des Projekts hat dasselbe als Buttons: **Neuer Ordner** und **Neue Notiz** an jedem Ordner.
+
+**⋯** neben einem Ordner auf der Seite des Projekts bietet **Ordner umbenennen** und **Ordner löschen**. Ein Ordner wird mit den Notizen darin gelöscht: Das Fenster listet sie auf, verschieb also vorher jede Notiz, die du behalten willst.
+
+Vorerst bist du in jedem Projekt allein, deshalb siehst nur du seine Notizen, und du schreibst, verschiebst und löschst dort jede Notiz und jeden Ordner. Unter dem Titel einer Notiz steht das auch: **nur du siehst sie**.
+
+## Schreiben
+
+Eine neue Notiz öffnet sich mit dem Cursor im Titel, und **Enter** geht weiter zum Text. Der Text besteht aus Blöcken: Text, Überschriften, Listenpunkte, Checklistenpunkte, Code und Trennlinien. **Enter** beginnt einen neuen Block, und auf einem leeren Punkt beendet es die Liste.
+
+Markdown am Anfang eines Blocks macht ihn zu dem, was es bedeutet:
+
+| Am Anfang eines Blocks tippen | Daraus wird |
+| --- | --- |
+| `#` und ein Leerzeichen | eine Überschrift |
+| `-` und ein Leerzeichen oder `1.` und ein Leerzeichen | ein Listenpunkt |
+| `- [ ]` und ein Leerzeichen | ein Checklistenpunkt, mit `- [x]` ein abgehakter |
+| `` ``` `` | Code |
+| `---` | eine Trennlinie |
+
+Überall sonst in einem Block bleibt Markdown, wie es getippt wurde. In einer leeren Zeile bietet **/** dasselbe als Liste an: **Checkliste**, **Überschrift**, **Liste**, **Code**, **Trennlinie**, **Text**. Buchstaben, die du danach tippst, grenzen die Liste ein, die Pfeiltasten bewegen dich darin, **Enter** wählt aus. Eingefügter Text mit mehreren Zeilen wird zu Blöcken, und sein Markdown wird genauso gelesen.
+
+## Code und Checklisten
+
+Ein Codeblock behält seine Zeilen: **Enter** beginnt darin eine neue Zeile, **Tab** setzt zwei Leerzeichen, und **⌘Enter** auf einem Mac (**Ctrl+Enter** auf anderen Systemen) verlässt ihn für einen neuen Block darunter. Text, den du dort einfügst, bleibt, wie er ist. **Kopieren** in seiner Ecke kopiert den Code und zeigt kurz **Kopiert**.
+
+Ein Checklistenpunkt wird über sein Kästchen abgehakt. Das Häkchen wird sofort gespeichert, und neben dem Punkt zeigt die Notiz, wer es gesetzt hat und wann: **Du · 10:02** für heute, das Datum für einen früheren Tag. Die Seitenleiste zeigt, wie weit eine Checkliste ist, 2/5, und die Seite des Projekts sagt **2 von 5 erledigt**.
+
+## Speichern
+
+Eine Notiz speichert sich einen Moment, nachdem du aufgehört hast zu tippen. Rechts neben den Tabs zeigt die Seite, wie es läuft: **Wird gespeichert …**, **Gespeichert** oder **Nicht gespeichert: keine Verbindung**.
+
+Schreib auf zwei Geräten gleichzeitig in derselben Notiz, und beide behalten ihre Änderungen: Jedes Speichern wird Block für Block mit dem zusammengeführt, was inzwischen gespeichert wurde. Nur wenn derselbe Block oder der Titel auf beiden Seiten geändert wurde, fragt die Notiz, was dort bleiben soll, **Meine behalten** oder **Andere Version behalten**; alles andere bleibt von beiden. Für das Zusammenführen bewahrt tTerm die letzten 50 Versionen jeder Notiz auf.
+
+Ohne Verbindung bleibt, was du tippst, in diesem Browser, bis es gespeichert ist, und die Seite versucht es weiter. Schließt du den Tab oder lädst die Seite neu, kommt es zurück, wenn du die Notiz wieder öffnest: **Was in dieser Notiz getippt und nicht gespeichert wurde, ist wieder da.**
+
+:::caution[Abmelden vergisst Ungespeichertes]
+Nach **Abmelden** vergisst dieser Browser, was in Notizen getippt und noch nicht gespeichert wurde.
+:::
+
+## Verschieben, kopieren oder löschen
+
+**⋯** neben einer Notiz, auf der Seite des Projekts oder oben im Tab der Notiz, bietet den Rest:
+
+- **Ordner** – die Ordner des Projekts, der Ordner der Notiz mit Häkchen: Ein Klick auf einen anderen verschiebt die Notiz dorthin. Der Menüpunkt erscheint, sobald das Projekt zwei Ordner hat.
+- **In anderes Projekt verschieben …** – das Fenster listet deine anderen Projekte mit ihren Ordnern auf: Wähl einen Ordner und drück zum Beispiel auf **In Runbooks verschieben**. Ein Projekt ohne Ordner bietet einen neuen Ordner an, benannt wie der Ordner der Notiz. Titel, Text und Verlauf der Notiz ziehen mit um, ebenso die Häkchen samt der Angabe, wer sie gesetzt hat.
+- **Als Markdown kopieren** – die ganze Notiz, ihr Titel als oberste Überschrift.
+- **Notiz löschen** – fragt vorher nach. Eine gelöschte Notiz ist endgültig weg.
+
+Die Suche findet auch Notizen: Beginne mit `n:`, siehe [Suche](../search/).
+
+## Logs
+
+**Logs** steht in der Seitenleiste als Erstes unter den Ordnern eines Projekts, markiert mit **von tTerm**. Darin liegt für jede Maschine des Projekts ein Log: jeder Befehl, der über tTerm auf ihr lief, Tag für Tag, mit den Notizen, die unter die Befehle geschrieben wurden. tTerm schreibt es, und niemand kann es ändern. Zeilen werden ein Jahr aufbewahrt, was die Befehle ausgegeben haben, 30 Tage. Mehr dazu unter [Das Log einer Maschine](../log/).

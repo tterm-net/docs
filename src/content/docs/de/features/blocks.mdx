@@ -1,0 +1,72 @@
+---
+title: Blöcke und die Befehlszeile
+description: Wie ein Terminal in tTerm funktioniert – jeder Befehl ein Block, die eigene Eingabezeile von tTerm und der klassische Modus.
+---
+
+Ein Terminal in tTerm ist ein Feed aus Blöcken: Jeder Befehl, den du ausführst, wird zu einem Block, mit seiner Ausgabe. Du tippst in die eigene Eingabezeile von tTerm unter dem Feed. Blöcke findest du mit der [Suche](../search/) wieder.
+
+## Ein Block
+
+Ein Block zeigt den Befehl und wie er ausgegangen ist: einen grünen Punkt oder ein rotes Kreuz mit dem Exit-Code, etwa **exit 1**. Daneben stehen, wie lange er gedauert hat, das Verzeichnis, in dem er lief, der git-Branch und die Startzeit. Darunter steht die Ausgabe. Von einer langen Ausgabe sind die letzten 400 Zeilen zu sehen, und der Button darüber, **120 frühere Zeilen anzeigen** oder **Ganze Ausgabe anzeigen**, holt den Rest zurück.
+
+Der Befehl, der gerade läuft, wird live dargestellt, wie in jedem Terminal: Farben, Fortschrittsbalken und Passwortabfragen funktionieren, und was du tippst, geht an ihn. Ein Vollbildprogramm wie vim oder htop bekommt das ganze Fenster, solange es läuft, und wenn es sich beendet, kommt der Feed zurück. Wenn ein Befehl endet, wird sein Bildschirm zu Text, den du markieren, durchsuchen und kopieren kannst.
+
+Um einen laufenden Befehl zu stoppen, drück auf seinem Block auf **Stoppen** oder drück **Ctrl+C**. Wartet die Shell auf den Rest eines Befehls, nach einem offenen Anführungszeichen oder einem Heredoc, steht auf dem Block **nicht gestartet**: Tipp den Rest in den Block oder drück auf **Stoppen**.
+
+## Die Buttons eines Blocks
+
+Zeig mit der Maus auf einen fertigen Block, und seine Buttons erscheinen. Ihre Tooltips nennen sie so:
+
+- **Befehl und Ausgabe kopieren** und **Nur die Ausgabe kopieren**. Ein Häkchen auf dem Button zeigt, dass kopiert wurde.
+- **Erneut ausführen** führt den Befehl in diesem Terminal noch einmal aus. Der neue Block bekommt beim Start einen bernsteinfarbenen Rahmen.
+- **Link zu diesem Block kopieren** kopiert einen Link, der den Feed an diesem Block öffnet und ihn hervorhebt. Er funktioniert überall, wo du angemeldet bist, und nur für dich.
+- **Eine Notiz zu diesem Befehl hinzufügen** öffnet ein Feld darunter, und **Enter** speichert die Notiz. Notizen kommen auch ins [Log der Maschine](../log/), bleiben, wie sie geschrieben wurden, und werden mit **Antworten** beantwortet.
+- **Block einklappen** blendet die Ausgabe aus. Ein eingeklappter Block zeigt, wie viel er verbirgt, **12 Zeilen ausgeblendet**, und ein Klick klappt ihn wieder auf.
+
+## Die Eingabezeile
+
+Die Eingabezeile gehört tTerm, nicht der Shell. Was du tippst, bleibt darin, bis du **Enter** drückst: Dann geht der ganze Befehl an die Shell.
+
+- **Shift+Enter** beginnt eine neue Zeile: Ein Befehl kann mehrere haben.
+- **↑** und **↓** blättern durch deinen Verlauf, von allen Geräten, die du nutzt: zuerst die Befehle, die du auf dieser Maschine ausgeführt hast, dann die aus dem Rest ihres Projekts. Tipp den Anfang eines Befehls, und es erscheinen nur die, die so beginnen. **Ctrl+R** zeigt den Verlauf als Liste mit einem Suchfeld, und der Befehl, den du wählst, kommt in die Zeile.
+- Während du tippst, erscheint der Rest eines Befehls aus deinem Verlauf in Grau. **Tab** oder **→** übernimmt ihn.
+- Sonst fragt **Tab** die Maschine, was das Wort sein kann: ein Befehl, eine Datei, ein Verzeichnis oder ein git-Branch. Eine Antwort wird direkt eingesetzt, mehrere öffnen eine Liste. Die Frage geht am Terminal vorbei, deshalb ist davon weder dort noch im Verlauf der Shell etwas zu sehen.
+- **Ctrl+L** leert den Feed, wie `clear`.
+
+Links neben der Zeile stehen das Verzeichnis, in dem du bist, und der git-Branch, falls es einen gibt, und beide sind Buttons. Das Verzeichnis listet die Verzeichnisse darin auf, mit `..` für eine Ebene höher, und nimmt auch einen Pfad an, den du eintippst. Der Branch listet die Branches auf, markiert mit **aktuell** und **remote**. Was du wählst, läuft als ganz normales `cd` oder `git switch` und kommt als Block in den Feed.
+
+Während ein Befehl läuft, steht in der Zeile **Tastatureingaben gehen an den laufenden Befehl. Klick hier, um den nächsten einzugeben.** Du kannst dort schon den nächsten Befehl tippen, aber **Enter** funktioniert erst, wenn dieser beendet ist; vorher heißt es **Ein Befehl läuft noch. Warte, bis er fertig ist, oder stopp ihn mit Ctrl+C in seinem Block.** In der Zeile selbst löscht **Ctrl+C**, was du getippt hast, und in einer leeren Zeile geht es an die Shell.
+
+## Gefährliche Befehle
+
+Einige Befehle zerstören etwas endgültig. tTerm hält einen solchen Befehl zurück und fragt vorher nach, in einer Leiste über der Zeile: was der Befehl tun würde, auf welcher Maschine und was nicht zurückkommt. „Auf **web-01** würde dieser Befehl **ein Verzeichnis und alles darin löschen**. Das lässt sich nicht rückgängig machen, und es gibt keinen Papierkorb.“ **Ausführen** führt den Befehl aus, **Abbrechen** legt ihn zurück in die Zeile.
+
+tTerm fragt vor diesen Befehlen nach:
+
+- `rm` mit `-r` und `-f` – ein Verzeichnis und alles darin löschen;
+- `mkfs`, `fdisk`, `parted`, `wipefs` – das Dateisystem eines Datenträgers überschreiben;
+- `dd` mit `of=/dev/…` – direkt auf ein Gerät schreiben;
+- `DROP DATABASE`, `DROP TABLE`, `TRUNCATE TABLE` – eine Datenbank oder eine Tabelle löschen;
+- `shutdown`, `poweroff`, `halt`, `init 0` – die Maschine ausschalten;
+- `reboot`, `init 6` – die Maschine neu starten;
+- `systemctl stop`, `disable` oder `mask` für `ssh` oder `sshd` – den SSH-Dienst stoppen;
+- `ufw deny`, `ufw reject`, `iptables` mit `DROP` – die Firewall ändern;
+- `userdel`, `deluser` – ein Benutzerkonto löschen.
+
+Zielt ein `rm -rf` auf `/` oder `~`, steht zusätzlich da: **Das zielt auf die ganze Maschine. Nichts darauf würde überleben.** tTerm fragt genauso nach, egal ob du den Befehl getippt, aus dem Verlauf geholt oder auf **Erneut ausführen** gedrückt hast.
+
+## Der klassische Modus
+
+Im klassischen Modus ist das Terminal ein ganz gewöhnliches. Jede Taste geht direkt an die Shell, mit ihrem eigenen Tab und Verlauf, und die Shell stellt alles selbst dar, auch ihren Prompt. Es gibt keine Blöcke, und nichts wird geprüft: Unter dem Terminal steht **In diesem Modus gibt es keine Rückfrage bei gefährlichen Befehlen.**
+
+**Zeile** und **Klassisch** rechts neben der Eingabezeile wechseln den Modus; im klassischen Modus sitzt der Umschalter unter dem Terminal. Die Shell läuft weiter wie zuvor, und dieser Browser merkt sich den Modus für alle deine Terminals.
+
+Eine Shell, die nicht markieren kann, wo ein Befehl beginnt, etwa bash vor Version 4.4, läuft nur im klassischen Modus. Dort ist **Zeile** ausgegraut, und der Tooltip des Umschalters sagt, warum.
+
+## Leeren und Einklappen
+
+`clear` (oder `reset`) und **Ctrl+L** blenden den Feed aus, löschen ihn aber nicht: **3 Blöcke ausgeblendet: anzeigen** oben holt ihn zurück. Eingeklappte Blöcke und ein ausgeblendeter Feed bleiben in diesem Browser so, auch nach einem Neuladen und nach einem Wechsel in den klassischen Modus und zurück. **Frühere Befehle anzeigen** oben holt ältere Blöcke; sie werden 30 Tage aufbewahrt.
+
+## Ein Terminal benennen
+
+Doppelklicke auf den Tab eines Terminals oder auf das Terminal in der Seitenleiste oder auf der Seite des Projekts und tipp einen Namen ein: bis zu 40 Zeichen, nicht nur eine Zahl. **Enter** speichert, **Esc** bricht ab. Der Name erscheint in der Seitenleiste, in Tabs und auf der Seite des Projekts.

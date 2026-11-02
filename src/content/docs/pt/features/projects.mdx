@@ -1,0 +1,64 @@
+---
+title: Projetos e cores
+description: Personal e os seus próprios projetos – nome, código e cor, a página do projeto, como mover uma máquina para outro projeto e como excluir um projeto.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Um projeto reúne máquinas e notas: os servidores e computadores dele, com os terminais que rodam neles, e as notas dele em pastas. Todo mundo tem o projeto Personal e, ao lado dele, você pode criar os seus próprios projetos, por exemplo um para cada cliente.
+
+## Personal
+
+O Personal vem com a sua conta, com o código P, e é o primeiro da lista na barra lateral. Como qualquer projeto, ele pode ser renomeado e ganhar outro código e outra cor, mas não pode ser excluído.
+
+## Um projeto seu
+
+<Steps>
+
+1. Na barra lateral, clique em **Novo projeto**, embaixo da lista de projetos.
+
+2. Dê um **Nome** ao projeto, de até 80 caracteres.
+
+3. O **Código curto** é gerado a partir do nome, Client X → CX, e você pode mudá-lo: de 1 a 4 letras ou dígitos, desde que não seja o código de outro projeto seu. Ele identifica o projeto na barra lateral e nas abas: CX/web-01 é um terminal na máquina web-01 do projeto.
+
+4. Escolha uma **Cor**, entre as oito. Um projeto novo recebe uma que nenhum dos seus outros projetos tem, e a **Prévia** mostra como vai ficar.
+
+5. Clique em **Criar projeto**. O projeto é seu, e a página dele se abre: adicione ali um [servidor](../../machines/servers/) ou um [computador](../../machines/computers/), ou traga uma máquina de outro projeto.
+
+</Steps>
+
+Para renomear um projeto depois, inclusive o Personal, ou mudar o código ou a cor dele, clique no lápis ao lado do nome, na página do projeto (**Editar nome, código e cor**), mude o que precisar e clique em **Salvar**.
+
+## Cores
+
+A cor de um projeto preenche o selo do código dele: na barra lateral, na página do projeto, na busca. Em **Configurações** → **Aparência** → **Cores dos projetos**, escolha **Projeto inteiro** em vez de **Selo do código**, e a barra lateral também tinge o bloco inteiro de cada projeto com a cor dele. **Configurações** fica no menu da sua conta, na parte de baixo da barra lateral, e a escolha é salva na sua conta.
+
+## A página do projeto
+
+Um clique no nome de um projeto na barra lateral abre a página dele numa aba. No topo ficam o nome, o código e o lápis, e uma linha com quantas máquinas e terminais abertos o projeto tem. Depois vêm:
+
+- **Máquinas** – um card para cada uma, com o endereço e o sistema, **Novo terminal** e os terminais que rodam nela: **Abrir** vai para um deles, e um clique duplo no nome o renomeia. O **⋯** no card tem **Mover para outro projeto** e **Remover máquina**. Um projeto sem máquinas oferece **Servidor** e **Computador** para adicionar a primeira.
+- **Notas** – as pastas e as notas delas, veja [Notas](../notes/).
+- Bem no fim, **Excluir projeto**.
+
+## Mover uma máquina
+
+<Steps>
+
+1. Na página do projeto, clique em **⋯** no card da máquina e escolha **Mover para outro projeto**.
+
+2. Escolha o projeto. A janela mostra o que a máquina vira nele, CX/web-01; se o nome dela já estiver em uso lá, ela ganha um número: web-01-2.
+
+3. Clique em **Mover para Client X**.
+
+</Steps>
+
+Os terminais dela continuam rodando, o [log](../log/) vai junto, e nada muda na própria máquina. Uma máquina só pode ser movida entre projetos que são seus: o item aparece quando você tem um segundo projeto.
+
+## Excluir um projeto
+
+**Excluir projeto**, no fim da página de um projeto, exclui o projeto com as pastas e as notas dele; o Personal não tem esse botão. Um projeto com máquinas não é excluído: a janela diz quais são, e você primeiro as move ou [remove](../../machines/remove/), com o **⋯** nos cards delas. Um projeto sem máquinas pede que você digite o nome dele e depois clique em **Excluir Client X**. Isso não pode ser desfeito.
+
+## Quem está num projeto
+
+Por enquanto, só você está em cada projeto, e você é o proprietário: a barra lateral mostra **Proprietário** ao lado do nome de cada projeto, e a linha no topo da página dele termina com **só você**. Ainda não é possível adicionar pessoas a um projeto.

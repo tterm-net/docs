@@ -1,0 +1,42 @@
+---
+title: Jak działa dostęp
+description: Certyfikaty na dwie minuty, klucze CA w osobnym procesie, połączenia tylko od wewnątrz. Jak chmura loguje się na twoje maszyny i jak odebrać jej dostęp.
+---
+
+Dostęp do twoich maszyn łatwo dać i równie łatwo odebrać. Nie potrzebujemy twoich kluczy i nie otwieramy portów.
+
+## Certyfikat na dwie minuty
+
+Dla każdego połączenia podpisujemy osobny certyfikat SSH z twoim imieniem w środku, ważny tylko dla tego serwera. Dlatego w logu serwera każde logowanie widać z imieniem osoby, która się zalogowała:
+
+```text title="/var/log/auth.log"
+Accepted publickey for tterm from 203.0.113.24 port 41522 ssh2: ED25519-CERT SHA256:… ID Anna via tTerm Web (…) to web-01 (serial 1042) CA ED25519 SHA256:…
+```
+
+## Podpisywanie w izolacji
+
+Klucze CA są w osobnym procesie bez dostępu do sieci. Rdzeń nie może ich odczytać, może tylko poprosić o podpis, a każdy podpis jest zapisywany w logu.
+
+## sshd_config bez zmian
+
+Zaufanie to jeden wiersz w `authorized_keys` jednego użytkownika, `tterm`. Niczego nie restartujemy, więc nie odetniesz sobie dostępu.
+
+## Serwery przeniesione z Maca
+
+Serwer przeniesiony z tTerm dla Maca może się otwierać na jeszcze dwa sposoby. Jeśli wybierzesz **Mój klucz**, zalogujesz się własnym kluczem z [sejfu](../keys/): logowanie podpisze jedno z twoich urządzeń, na którym sejf jest otwarty, a na serwerze nic nie zostanie dodane. Jeśli wybierzesz **Przez tego Maca**, `ssh` do serwera uruchomi twój Mac, a chmura w ogóle nie musi docierać do serwera. Trzeci sposób, **Przepustka tTerma**, to ten sam certyfikat na dwie minuty, tylko wiersz tTerma trafia do `authorized_keys` twojego własnego użytkownika, a nie `tterm`. Więcej na stronie [Przenieś do chmury](../../local/move-to-cloud/#trzy-sposoby-dostępu).
+
+## Połączenia tylko od wewnątrz
+
+Agent na komputerze sam nawiązuje połączenie: porty przychodzące nie są potrzebne. Usuniesz go jednym poleceniem.
+
+## Bez pośredników
+
+Strona tTerm Web i terminale łączą się bezpośrednio z naszym serwerem w UE. Cloudflare obsługuje u nas tylko DNS i nigdy nie widzi twoich poleceń.
+
+## Otwarty kod
+
+Kod chmury i agenta jest otwarty, na licencji AGPL v3: [github.com/tterm-net](https://github.com/tterm-net). Skrypt instalacyjny jest krótki: przeczytaj go przed uruchomieniem.
+
+## Odbieranie dostępu
+
+[Usuń serwer](../../machines/remove/), a chmura sama odbierze swój dostęp na serwerze. Jeśli serwer nie odpowie, pojawi się polecenie, które zrobi to na nim. Agenta z komputera usuwa jedno polecenie, `~/.tterm-web/uninstall.sh`. Swój klucz usuniesz z sejfu przyciskiem **Usuń** w sekcji **Ustawienia** → **Klucze**.

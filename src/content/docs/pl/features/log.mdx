@@ -1,0 +1,68 @@
+---
+title: Log maszyny
+description: Co uruchomiono na maszynie przez tTerm, wiersz po wierszu – jak czytać log, przeszukiwać go rok wstecz, pisać notatki pod poleceniami i wymazać hasło.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Każde polecenie uruchomione na maszynie przez tTerm staje się wierszem w logu tej maszyny: kto je uruchomił, kiedy, jak się zakończyło, ile trwało i gdzie. Log prowadzi tTerm i nikt nie może go zmienić. Pod poleceniem możesz zostawić notatkę.
+
+## Otwieranie logu
+
+W panelu bocznym, w sekcji **Notatki** projektu, pierwszy folder to **Logi** z dopiskiem **prowadzi tTerm**. Jest w nim log każdej maszyny projektu i liczba poleceń uruchomionych na niej dzisiaj: **12 dzisiaj**. Kliknij maszynę, a jej log otworzy się w karcie **web-01: log**.
+
+Log pokazuje po jednym dniu i otwiera się na dzisiejszym. Strzałki **Poprzedni dzień** i **Następny dzień** przenoszą do najbliższego dnia, w którym są wiersze. **Dzisiaj** przenosi cię z powrotem, a **Wybierz dzień** otwiera kalendarz. Gdy log pokazuje dzisiejszy dzień, nowe wiersze dochodzą w miarę, jak polecenia się kończą.
+
+U góry logu w menu **⋯** jest **Kopiuj jako Markdown**: kopiuje pokazany dzień, jego wiersze i notatki pod nimi.
+
+## Co jest w wierszu
+
+Każde polecenie to jeden wiersz: godzina, kto je uruchomił, samo polecenie (skrócone, jeśli jest długie) i liczba notatek pod nim. Po prawej: czas trwania, katalog, gałąź git i terminal. Nieudane polecenie ma krzyżyk i kod, z jakim się zakończyło: **kod wyjścia 1**. Między poleceniami log odnotowuje też, kiedy otwarto terminal i kiedy się zakończył, a także przeniesienie maszyny do innego projektu: **Maszyna przeniesiona przez ciebie z projektu Personal do projektu Client X**.
+
+Kliknięcie wiersza go rozwija: całe polecenie, jego wynik i notatki pod nim. Drugie kliknięcie go zwija. Z długiego wyniku widać pierwsze wiersze: **Pokaż wszystkie 27 wierszy** pokazuje resztę, a **Kopiuj wynik** kopiuje cały wynik.
+
+Najedź kursorem na wiersz albo go rozwiń, a pojawi się na nim **⋯**: **Kopiuj polecenie** i **Kopiuj link do tego wiersza**. Link otwiera log na dniu, z którego jest ten wiersz, i od razu go rozwija.
+
+## Wyszukiwanie i filtry
+
+W rzędzie pod dniem pole **Szukaj w tym logu** przeszukuje cały log, rok wstecz, i znajduje polecenia ze wszystkimi wpisanymi słowami oraz polecenia z notatką, która zawiera je wszystkie. Klawisz **/** przenosi cię do tego pola. Znalezione wiersze są pogrupowane według dni: kliknięcie wiersza go rozwija, a **Otwórz dzień** przechodzi do jego dnia. Wyszukiwanie zostaje, dopóki go nie wyczyścisz, a **Wróć do dnia** wraca do dnia, który był otwarty wcześniej.
+
+Obok są kolejność wierszy i filtry:
+
+- **Najstarsze najpierw** po kliknięciu zmienia się w **Najnowsze najpierw**, a ta przeglądarka zapamiętuje wybór.
+- **Wszyscy**: tylko wiersze jednej osoby, która uruchomiła polecenie albo napisała pod nim notatkę.
+- **Nieudane**: tylko polecenia, które się nie powiodły.
+- **Z notatkami**: tylko polecenia, pod którymi są notatki.
+- **Wszystkie terminale**: polecenia jednego terminala. Ten filtr pojawia się, gdy wiersze pochodzą z więcej niż jednego terminala.
+
+Gdy filtr jest włączony, przy dniu widać, ile poleceń jest pokazanych, **2 z 8 poleceń**, a **Wyczyść filtry** je wyłącza. Filtry działają też na to, co znalazło **Szukaj w tym logu**.
+
+[Wyszukiwanie](../search/) też przeszukuje logi wszystkich twoich maszyn: zacznij od `l:`.
+
+## Notatki pod poleceniem
+
+Najedź kursorem na wiersz i naciśnij **Dodaj notatkę**. W terminalu taki sam przycisk ma [blok](../blocks/) polecenia, z podpowiedzią **Dodaj notatkę do tego polecenia**. Tak czy inaczej notatka jest widoczna zarówno pod wierszem w logu, jak i pod blokiem w terminalu. **Enter** zapisuje notatkę, **Shift+Enter** zaczyna nowy wiersz, **Esc** anuluje.
+
+Notatka zostaje w logu tak, jak ją napisano: nie poprawia się jej ani nie usuwa, tylko się na nią odpowiada. **Odpowiedz** pod notatkami dodaje odpowiedź. Przy każdej notatce widać, kto ją napisał i kiedy, a w menu **⋯** obok niej w logu jest **Kopiuj tekst**.
+
+## Wymazywanie hasła lub tokenu
+
+Hasło albo token, które trafiły do polecenia lub notatki, można wymazać. Może to zrobić tylko właściciel projektu albo administrator. Na razie w każdym projekcie jesteś tylko ty i projekt należy do ciebie.
+
+<Steps>
+
+1. W logu naciśnij **⋯** na wierszu albo obok notatki i wybierz **Wymaż…**.
+
+2. W oknie, w polu **Powód**, napisz, co to było: hasło, token.
+
+3. Naciśnij **Wymaż**.
+
+</Steps>
+
+Wymazany tekst znika na zawsze z logu, z listy bloków terminala, z wyszukiwania i z historii pola wprowadzania. Razem z poleceniem znika też jego wynik, a także to samo polecenie wszędzie, gdzie jeszcze je uruchomiono w projekcie. W jego miejscu log zapisuje, kto go wymazał, kiedy i dlaczego: **Wymazane przez ciebie · 09:23 · hasło**. Nocne kopie zapasowe bazy danych przechowują go jeszcze, dopóki te kopie nie zostaną usunięte, czyli najdłużej przez dwa tygodnie.
+
+## Jak długo log jest przechowywany
+
+Wiersze są przechowywane przez rok, a notatki pod wierszem znikają razem z nim. Wyniki poleceń są przechowywane przez 30 dni: potem twój wiersz po najechaniu kursorem pokazuje **wyniku już nie ma**. Po [usunięciu](../../machines/remove/) maszyny jej log już się nie otwiera.
+
+Log zostaje przy swojej maszynie. [Przeniesiona do innego projektu](../projects/#przenoszenie-maszyny) maszyna zabiera cały log, razem z wierszami sprzed przeniesienia, a czytać je może każdy, kto jest w tamtym projekcie. Usunięcie projektu, z którego maszynę przeniesiono, nie zabiera z logu niczego.

@@ -16,13 +16,12 @@ hero:
 ---
 
 import { CardGrid, LinkCard } from '@astrojs/starlight/components';
-import PlannedCard from '../../components/PlannedCard.astro';
 
 <CardGrid>
 	<LinkCard title="Start here" description="What tTerm is, and your first command in five minutes." href="start/what-is-tterm/" />
 	<LinkCard title="Machines" description="A server over SSH with one command, a computer through a small agent." href="machines/servers/" />
-	<PlannedCard title="Features" description="Blocks, the command line, search with ⌘K, notes and projects." note="Being written" />
-	<LinkCard title="Local terminal" description="The Mac version: installing it and the first launch. Windows and Linux are in the works." href="local/mac/" />
-	<LinkCard title="Security" description="Two-minute certificates, signing apart, connections only from inside." href="security/access/" />
-	<PlannedCard title="Account" description="Your plan and its limits, devices and signing in." note="Being written" />
+	<LinkCard title="Features" description="Blocks and the command line, search with ⌘K, notes, a machine's log, projects." href="features/blocks/" />
+	<LinkCard title="Local terminal" description="The Mac version: installing it, the first launch, moving servers to the cloud. Windows and Linux are in the works." href="local/mac/" />
+	<LinkCard title="Security" description="Two-minute certificates, signing apart, your keys in a vault only your devices open." href="security/access/" />
+	<LinkCard title="Account" description="Your plan and its limits, devices and signing in." href="account/plan/" />
 </CardGrid>

@@ -1,0 +1,72 @@
+---
+title: Bloki i wiersz poleceń
+description: Jak działa terminal w tTermie – każde polecenie jako blok, własne pole wprowadzania tTerma i tryb klasyczny.
+---
+
+Terminal w tTermie to lista bloków: każde polecenie, które uruchamiasz, staje się blokiem razem ze swoim wynikiem. Polecenia wpisujesz we własnym polu wprowadzania tTerma, pod listą bloków. Bloki można potem odnaleźć przez [wyszukiwanie](../search/).
+
+## Blok
+
+Blok pokazuje polecenie i to, jak się zakończyło: zieloną kropkę albo czerwony krzyżyk z kodem wyjścia, na przykład **kod wyjścia 1**. Obok widać, ile trwało, w jakim katalogu działało, gałąź git i godzinę uruchomienia. Pod spodem jest wynik. Z długiego wyniku widać ostatnie 400 wierszy, a przycisk nad nimi, **Pokaż 120 wcześniejszych wierszy** albo **Pokaż cały wynik**, przywraca resztę.
+
+Polecenie, które właśnie działa, jest rysowane na żywo, jak w każdym terminalu: działają kolory, paski postępu i pytania o hasło, a to, co wpisujesz, trafia do niego. Program pełnoekranowy, taki jak vim czy htop, zajmuje całe okno, dopóki działa, a po jego zamknięciu wraca lista bloków. Gdy polecenie się zakończy, jego ekran staje się tekstem, który można zaznaczyć, przeszukać i skopiować.
+
+Aby zatrzymać działające polecenie, naciśnij **Zatrzymaj** na jego bloku albo **Ctrl+C**. Jeśli powłoka czeka na resztę polecenia, bo został otwarty cudzysłów albo heredoc, na bloku widać **nieuruchomione**: dopisz resztę w bloku albo naciśnij **Zatrzymaj**.
+
+## Przyciski bloku
+
+Najedź kursorem na zakończony blok, a pojawią się jego przyciski. Podpowiedzi nazywają je tak:
+
+- **Kopiuj polecenie i jego wynik** oraz **Kopiuj tylko wynik**. Ptaszek na przycisku oznacza, że skopiowano.
+- **Uruchom ponownie** wykonuje polecenie jeszcze raz w tym terminalu. Gdy nowy blok startuje, otacza go bursztynowa obwódka.
+- **Kopiuj link do tego bloku** kopiuje link, który otwiera terminal na tym bloku i go podświetla. Działa wszędzie, gdzie się zalogujesz, i tylko dla ciebie.
+- **Dodaj notatkę do tego polecenia** otwiera pod blokiem pole, a **Enter** zapisuje notatkę. Notatki trafiają też do [logu maszyny](../log/), zostają takie, jak je napisano, a odpowiada się na nie przyciskiem **Odpowiedz**.
+- **Zwiń blok** chowa wynik. Zwinięty blok pokazuje, ile ukrywa, na przykład **12 wierszy ukrytych**, a kliknięcie go rozwija.
+
+## Pole wprowadzania
+
+Pole wprowadzania należy do tTerma, nie do powłoki. To, co wpisujesz, zostaje w nim, dopóki nie naciśniesz **Enter**, a wtedy całe polecenie trafia do powłoki.
+
+- **Shift+Enter** zaczyna nowy wiersz: polecenie może mieć ich kilka.
+- **↑** i **↓** przewijają twoją historię ze wszystkich urządzeń, których używasz: najpierw polecenia uruchomione na tej maszynie, potem te z pozostałych maszyn jej projektu. Wpisz początek polecenia, a pojawią się tylko te, które tak się zaczynają. **Ctrl+R** pokazuje historię jako listę z polem wyszukiwania, a wybrane polecenie trafia do pola wprowadzania.
+- Podczas pisania dalsza część polecenia z historii pojawia się na szaro. **Tab** albo **→** ją przyjmuje.
+- W przeciwnym razie **Tab** pyta maszynę, czym może być słowo: poleceniem, plikiem, katalogiem czy gałęzią git. Jedna odpowiedź od razu trafia do pola, kilka otwiera listę. Pytanie trafia do maszyny z pominięciem terminala, więc nie widać go ani w nim, ani w historii powłoki.
+- **Ctrl+L** czyści listę bloków, tak jak `clear`.
+
+Na lewo od pola widać katalog, w którym jesteś, i gałąź git, jeśli jest, a oba są przyciskami. Katalog pokazuje listę katalogów w tym miejscu, z `..` prowadzącym poziom wyżej, i przyjmuje też wpisaną ścieżkę. Gałąź pokazuje listę gałęzi z oznaczeniami **bieżąca** i **zdalna**. To, co wybierzesz, wykonuje się jako zwykłe `cd` albo `git switch` i pojawia się na liście jako blok.
+
+Gdy polecenie działa, w polu widać **Klawisze trafiają do działającego polecenia. Kliknij tutaj, aby wpisać następne.** Możesz tam wpisać następne polecenie, ale **Enter** zadziała dopiero wtedy, gdy bieżące się zakończy; wcześniej pojawi się komunikat **Polecenie nadal działa. Poczekaj na nie albo przerwij je skrótem Ctrl+C w jego bloku.** W samym polu **Ctrl+C** czyści to, co wpisano, a w pustym polu trafia do powłoki.
+
+## Niebezpieczne polecenia
+
+Niektóre polecenia niszczą coś bezpowrotnie. tTerm wstrzymuje takie polecenie i najpierw pyta, na pasku nad polem wprowadzania: co polecenie zrobi, na której maszynie i czego nie da się odzyskać. „To polecenie na **web-01** ma **usunąć katalog wraz z całą zawartością**. Tego nie można cofnąć, a usunięte pliki nie trafią do kosza.” **Uruchom** wykonuje polecenie, a **Anuluj** odkłada je z powrotem do pola.
+
+Pyta przed takimi poleceniami:
+
+- `rm` z `-r` i `-f` – usunąć katalog wraz z całą zawartością;
+- `mkfs`, `fdisk`, `parted`, `wipefs` – nadpisać system plików dysku;
+- `dd` z `of=/dev/…` – zapisać dane bezpośrednio na urządzeniu;
+- `DROP DATABASE`, `DROP TABLE`, `TRUNCATE TABLE` – usunąć bazę danych lub tabelę;
+- `shutdown`, `poweroff`, `halt`, `init 0` – wyłączyć maszynę;
+- `reboot`, `init 6` – ponownie uruchomić maszynę;
+- `systemctl stop`, `disable` lub `mask` dla `ssh` lub `sshd` – zatrzymać usługę SSH;
+- `ufw deny`, `ufw reject`, `iptables` z `DROP` – zmienić reguły zapory sieciowej;
+- `userdel`, `deluser` – usunąć konto użytkownika.
+
+Przy `rm -rf` skierowanym na `/` lub `~` dochodzi jeszcze **To polecenie dotyczy całej maszyny. Nic na niej nie przetrwa.** tTerm pyta tak samo bez względu na to, czy polecenie wpisano, wzięto z historii, czy uruchomiono przyciskiem **Uruchom ponownie**.
+
+## Tryb klasyczny
+
+W trybie klasycznym masz zwykły terminal. Każdy klawisz trafia prosto do powłoki, z jej własnym Tab i historią, a powłoka sama rysuje wszystko, także znak zachęty. Nie ma bloków i nic nie jest sprawdzane: pod terminalem widać **W tym trybie niebezpieczne polecenia nie wymagają potwierdzenia.**
+
+**Blokowy** i **Klasyczny** na prawo od pola wprowadzania przełączają tryb; w trybie klasycznym przełącznik jest pod terminalem. Powłoka działa dalej tak jak przedtem, a ta przeglądarka zapamiętuje tryb dla wszystkich twoich terminali.
+
+Powłoka, która nie potrafi oznaczyć, gdzie zaczyna się polecenie, na przykład bash starszy niż 4.4, działa tylko w trybie klasycznym. Opcja **Blokowy** jest wtedy wyszarzona, a podpowiedź przełącznika wyjaśnia dlaczego.
+
+## Czyszczenie i zwijanie
+
+`clear` (albo `reset`) i **Ctrl+L** chowają listę bloków z widoku, ale jej nie usuwają: **3 bloki poza widokiem: pokaż** u góry ją przywraca. Zwinięte bloki i wyczyszczona lista zostają takie w tej przeglądarce, także po przeładowaniu strony i po przejściu do trybu klasycznego i z powrotem. **Pokaż wcześniejsze polecenia** u góry wczytuje starsze bloki; są przechowywane przez 30 dni.
+
+## Nazwa terminala
+
+Kliknij dwukrotnie kartę terminala albo sam terminal w panelu bocznym lub na stronie projektu i wpisz nazwę: do 40 znaków, nie sama liczba. **Enter** zapisuje, **Esc** anuluje. Nazwa jest widoczna w panelu bocznym, na kartach i na stronie projektu.

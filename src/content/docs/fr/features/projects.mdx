@@ -1,0 +1,64 @@
+---
+title: Projets et couleurs
+description: Personal et vos propres projets – leur nom, leur code et leur couleur, la page du projet, le déplacement d’une machine vers un autre projet et la suppression d’un projet.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Un projet, ce sont des machines et des notes réunies : ses serveurs et ses ordinateurs, avec les terminaux qui y tournent, et ses notes rangées dans des dossiers. Tout le monde a le projet Personal, et à côté, vous pouvez créer vos propres projets, un par client par exemple.
+
+## Personal
+
+Personal est créé avec votre compte, porte le code P et ouvre la liste dans la barre latérale. Comme tout projet, il peut être renommé et recevoir un autre code et une autre couleur, mais il ne peut pas être supprimé.
+
+## Un projet à vous
+
+<Steps>
+
+1. Dans la barre latérale, appuyez sur **Nouveau projet** sous la liste des projets.
+
+2. Donnez-lui un **Nom**, jusqu’à 80 caractères.
+
+3. Le **Code** est tiré du nom, Client X → CX, et vous pouvez le changer : 1 à 4 lettres ou chiffres, et pas le code d’un autre de vos projets. Il identifie le projet dans la barre latérale et dans les onglets : CX/web-01 est un terminal sur sa machine web-01.
+
+4. Choisissez une **Couleur** parmi huit. Un nouveau projet en reçoit une qu’aucun de vos autres projets n’a, et **Aperçu** montre à quoi il ressemblera.
+
+5. Appuyez sur **Créer le projet**. Vous en êtes propriétaire, et sa page s’ouvre : ajoutez-y un [serveur](../../machines/servers/) ou un [ordinateur](../../machines/computers/), ou déplacez-y une machine d’un autre projet.
+
+</Steps>
+
+Pour renommer un projet plus tard, Personal compris, ou changer son code ou sa couleur, appuyez sur le crayon à côté de son nom, sur sa page (**Modifier le nom, le code et la couleur**), changez ce qu’il faut et appuyez sur **Enregistrer**.
+
+## Couleurs
+
+La couleur d’un projet remplit la pastille de son code : dans la barre latérale, sur la page du projet, dans la recherche. Dans **Paramètres** → **Apparence** → **Couleurs des projets**, choisissez **Projet entier** au lieu de **Pastille du code**, et la barre latérale teinte aussi de sa couleur tout le bloc de chaque projet. **Paramètres** se trouve dans le menu de votre compte, en bas de la barre latérale, et ce choix est enregistré dans votre compte.
+
+## La page du projet
+
+Un clic sur le nom d’un projet dans la barre latérale ouvre sa page dans un onglet. En haut figurent son nom, son code et le crayon, puis une ligne indiquant combien il compte de machines et de terminaux ouverts. Ensuite :
+
+- **Machines** – une carte pour chacune, avec son adresse et son système, **Nouveau terminal**, et les terminaux qui y tournent : **Ouvrir** mène à l’un d’eux, un double-clic sur son nom le renomme. **⋯** sur la carte propose **Déplacer vers un autre projet** et **Retirer la machine**. Un projet sans machine propose **Serveur** et **Ordinateur** pour ajouter la première.
+- **Notes** – les dossiers et leurs notes, voir [Notes](../notes/).
+- Tout en bas, **Supprimer le projet**.
+
+## Déplacer une machine
+
+<Steps>
+
+1. Sur la page du projet, appuyez sur **⋯** sur la carte de la machine et choisissez **Déplacer vers un autre projet**.
+
+2. Choisissez le projet. La fenêtre indique ce que la machine y devient, CX/web-01 ; si son nom y est déjà pris, elle reçoit un numéro : web-01-2.
+
+3. Appuyez sur **Déplacer vers Client X**.
+
+</Steps>
+
+Ses terminaux continuent de tourner, son [journal](../log/) la suit, et rien ne change sur la machine elle-même. Une machine ne se déplace qu’entre des projets dont vous êtes propriétaire : l’option apparaît dès que vous avez un deuxième projet.
+
+## Supprimer un projet
+
+**Supprimer le projet**, en bas de la page d’un projet, le supprime avec ses dossiers et ses notes ; Personal n’a pas ce bouton. Un projet qui contient des machines n’est pas supprimé : la fenêtre les nomme, et vous devez d’abord les déplacer ou les [retirer](../../machines/remove/), avec **⋯** sur leurs cartes. Un projet sans machine vous demande de taper son nom, puis d’appuyer sur **Supprimer Client X**. Cette action est irréversible.
+
+## Qui fait partie d’un projet
+
+Pour l’instant, chaque projet ne compte que vous, et vous en êtes le propriétaire : la barre latérale affiche **Propriétaire** à côté du nom de chaque projet, et la ligne en haut de sa page se termine par **uniquement vous**. Il n’est pas encore possible d’ajouter des personnes à un projet.

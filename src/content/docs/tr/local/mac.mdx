@@ -1,0 +1,49 @@
+---
+title: Mac sürümü
+description: Mac için yerel terminal – nasıl kurulur, ilk kez nasıl açılır ve nasıl güncellenir.
+---
+
+import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Yerel terminal, Mac için bir uygulama: bu bilgisayarın kabukları bloklar halinde, aynı pencerede de bulutun tamamı. Ücretsiz, macOS 11 veya üstü, Apple Silicon ve Intel tek dosyada. [Windows](../windows/) ve [Linux](../linux/) sürümleri hazırlanıyor.
+
+<LinkButton href="https://tterm.net/tr/download/">Mac için indir</LinkButton>
+
+## Uygulamayı kurma
+
+<Steps>
+
+1. İndirdiğin `tTerm.dmg` dosyasını aç ve tTerm'i Uygulamalar klasörüne sürükle. Uygulamayı doğrudan disk görüntüsünden açarsan oraya taşınmayı önerir: kendini yalnızca Uygulamalar klasöründen güncelleyebilir.
+
+2. Uygulamayı aç. İlk açılışta macOS senden onay ister, [adımlar burada](#i̇lk-açılış-yalnızca-bir-kez). Sonrasında bu Mac'in terminalleri hesap ve ayar gerektirmeden hemen çalışır.
+
+3. İstediğin zaman giriş yap. Giriş yapınca tarayıcın açılır: girişi orada onayla, sunucuların ve notların pencerede belirir.
+
+</Steps>
+
+## İlk açılış, yalnızca bir kez
+
+Uygulama Apple Developer ID ile değil, kendi sertifikamızla imzalı, bu yüzden macOS ilk açılışta senden onay ister.
+
+<Tabs syncKey="macos">
+	<TabItem label="macOS 15 veya üstü">
+		tTerm'i aç ve **Bitti** düğmesine tıkla. Sonra **Sistem Ayarları** → **Gizlilik ve Güvenlik** bölümüne git: en altta, tTerm ile ilgili satırın yanındaki **Yine de Aç** düğmesine tıkla (bu düğme, açmayı denedikten sonra yaklaşık bir saat görünür) ve Mac'inin parolasıyla onayla.
+	</TabItem>
+	<TabItem label="macOS 11–14">
+		Finder'da Uygulamalar klasörünü aç, Kontrol tuşuna basarak tTerm'e tıkla, **Aç** seçeneğini seç ve ardından bir kez daha **Aç** düğmesine tıkla.
+	</TabItem>
+</Tabs>
+
+Bundan sonra uygulama her zamanki gibi açılır, yeni sürümleri kendisi kurar ve macOS bunlar için onay istemez.
+
+## Güncellemeler
+
+Uygulama altı saatte bir yeni sürüm olup olmadığına bakar, varsa indirir ve hiçbir şeyi bölmeyeceği bir anda kurar: sen uygulamadan çıkarken ya da terminallerinde hiçbir şey çalışmıyorken. **Ayarlar** → **Güncellemeler** bölümünde önce sana sormasını sağlayabilirsin.
+
+:::note[Güncellemeden sonra anahtar zinciri parolası]
+Bir güncellemeden sonra macOS bir kez anahtar zinciri parolanı sorabilir: parolayı gir ve **Her Zaman İzin Ver** düğmesine tıkla. Uygulama Apple Developer ID ile imzalanana kadar bu böyle kalacak.
+:::
+
+## Uygulamayı kaldırma
+
+Menü çubuğundaki simgesinden uygulamadan çık ve tTerm'i Uygulamalar klasöründen Çöp Sepeti'ne sürükle. Giriş yaptıysan Mac, Personal projesinde bir makine, uygulama da cihazlarından biri olarak kalır: [makineyi kaldır](../../machines/remove/#mac-için-tterm-kurulu-mac) ve uygulamayı **Ayarlar** → **Cihazlar** bölümünde unut.

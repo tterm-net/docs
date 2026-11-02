@@ -1,0 +1,48 @@
+---
+title: Recherche, ⌘K
+description: Un seul champ pour les commandes que vous avez lancées et ce qu’elles ont affiché, les journaux de vos machines, les notes, les terminaux, les machines, les projets et les actions possibles.
+---
+
+La recherche trouve tout dans un seul champ : les commandes de tous vos terminaux et ce qu’elles ont affiché, les journaux de vos machines, les notes, les terminaux, les machines, les projets et les actions possibles.
+
+## L’ouvrir
+
+Appuyez sur **⌘K** sur un Mac ou sur **Ctrl+Shift+K** sur les autres systèmes, ou cliquez sur **Rechercher** à droite des onglets. Ctrl sans Shift reste réservé au terminal. **Esc** ferme la recherche.
+
+Avant que vous ne tapiez quoi que ce soit, la recherche montre ce que vous avez ouvert en dernier, les commandes que vous lancez le plus souvent sur la machine du terminal actif, et quelques actions possibles.
+
+## Ce qu’elle trouve
+
+- **Commandes** – chaque commande de chacun de vos terminaux, y compris ceux qui ont pris fin, aussi longtemps que le projet les conserve : 30 jours. Une commande lancée plusieurs fois sur une même machine tient en une seule ligne, qui indique combien de fois : **lancée 3 fois**.
+- **Sortie** – ce que ces commandes ont affiché. Pour une longue sortie, la recherche lit le début et la fin.
+- **Journaux** – les journaux des machines de vos projets : les commandes qui y ont été lancées via tTerm, et les notes en dessous, jusqu’à un an en arrière.
+- **Notes** – les notes de vos projets, leurs titres et leur texte.
+- **Terminaux**, **Machines** et **Projets**, tels que la barre latérale les liste, ainsi qu’un terminal en cours qui n’a pas d’onglet.
+- **Actions** – les actions possibles, comme **Nouveau projet**, **Paramètres** ou le changement de thème.
+
+Chaque mot que vous tapez doit s’y trouver, dans n’importe quel ordre, en majuscules ou en minuscules, et un mot peut faire partie d’un mot plus long : `cert` trouve `certbot`.
+
+## Limiter à un seul type
+
+Les boutons au-dessus de la liste limitent la recherche à un seul type : **Tout**, **Commandes**, **Sortie**, **Journaux**, **Notes**, **Terminaux**, **Machines**, **Projets** et **Actions**. **Tab** passe au suivant. Un préfixe en début de recherche fait de même : `c:` commandes, `o:` sortie, `l:` journaux, `n:` notes, `t:` terminaux, `m:` machines, `p:` projets, `>` actions possibles. Par exemple :
+
+- `c: nginx` – les commandes qui contiennent *nginx* ;
+- `o: timed out` – les commandes dont la sortie contient à la fois *timed* et *out* ;
+- `> theme` – **Passer au thème sombre**, ou au thème clair.
+
+Dans **Tout**, chaque type montre ses trois premiers résultats, et **Tout voir (12)**, à côté du titre d’un type, affiche le reste.
+
+## Ouvrir un résultat
+
+**↑** et **↓** parcourent la liste. À côté s’affiche ce qu’est la ligne choisie : pour une commande, sa machine, son répertoire et sa branche, comment elle s’est terminée, quand, son terminal et les premières lignes de sa sortie.
+
+**Enter**, ou un clic, l’ouvre :
+
+- une commande ou une ligne de sortie – dans son terminal, sur son [bloc](../blocks/), marqué **Trouvé**, avec les mots mis en évidence. Le bloc s’affiche même s’il était replié ou masqué, et un terminal en mode classique l’affiche en mode **Ligne** ;
+- une ligne de journal – le [journal de la machine](../log/), à cette ligne ;
+- une note – à l’endroit où se trouvent les mots ;
+- un terminal – son onglet ; une machine – un nouveau terminal sur elle ; un projet – sa page. Une action est exécutée.
+
+**⌘Enter** sur un Mac, **Ctrl+Enter** sur les autres systèmes, place une commande dans la ligne de saisie du terminal actif sans la lancer, même quand ce terminal est sur une autre machine. Sous la ligne, il est écrit **Issue de la recherche, pas encore lancée** : **Enter** l’y exécute, **Esc** efface la ligne. En mode classique, la commande attend de la même façon à l’invite du shell. Si une commande tourne dans le terminal actif, sa ligne n’est pas libre : la recherche le signale, et vous réessayez quand elle se termine. Sans terminal actif, la commande va dans l’un de vos terminaux sur sa machine, ou dans un nouveau terminal sur celle-ci.
+
+Les boutons sous l’aperçu, **Ouvrir dans son terminal** et **Insérer dans la ligne**, font la même chose que **Enter** et **⌘Enter**.

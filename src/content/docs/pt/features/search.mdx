@@ -1,0 +1,48 @@
+---
+title: Busca, ⌘K
+description: Um só campo para os comandos que você rodou e o que eles imprimiram, os logs das suas máquinas, notas, terminais, máquinas, projetos e o que há para fazer.
+---
+
+A busca encontra tudo num só campo: os comandos de todos os seus terminais e o que eles imprimiram, os logs das suas máquinas, notas, terminais, máquinas, projetos e o que há para fazer.
+
+## Como abrir
+
+Pressione **⌘K** no Mac ou **Ctrl+Shift+K** nos outros sistemas, ou clique em **Buscar**, à direita das abas. Ctrl sem Shift continua sendo do terminal. **Esc** fecha a busca.
+
+Antes de você digitar, a busca mostra o que você abriu por último, os comandos que você mais roda na máquina do terminal em primeiro plano e algumas ações.
+
+## O que ela encontra
+
+- **Comandos** – cada comando de cada terminal seu, inclusive dos que já foram encerrados, pelo tempo em que o projeto os guarda: 30 dias. Um comando rodado várias vezes na mesma máquina é uma só linha, que diz quantas execuções houve, **3 execuções**.
+- **Saída** – o que esses comandos imprimiram. De uma saída longa, a busca lê o começo e o fim.
+- **Logs** – os logs das máquinas dos seus projetos: os comandos rodados nelas pelo tTerm e as notas embaixo deles, de até um ano atrás.
+- **Notas** – as notas dos seus projetos, com títulos e texto.
+- **Terminais**, **Máquinas** e **Projetos**, como a barra lateral os lista, e também um terminal rodando sem aba.
+- **Ações** – coisas para fazer, como **Novo projeto**, **Configurações** ou trocar o tema.
+
+Cada palavra digitada precisa estar lá, em qualquer ordem e sem diferença entre maiúsculas e minúsculas, e uma palavra pode ser parte de outra mais longa: `cert` encontra `certbot`.
+
+## Limitar a um tipo
+
+Os botões acima da lista limitam a busca a um tipo: **Tudo**, **Comandos**, **Saída**, **Logs**, **Notas**, **Terminais**, **Máquinas**, **Projetos** e **Ações**. **Tab** vai para o próximo. Um prefixo no começo faz o mesmo: `c:` comandos, `o:` saída, `l:` logs, `n:` notas, `t:` terminais, `m:` máquinas, `p:` projetos, `>` ações. Por exemplo:
+
+- `c: nginx` – os comandos que contêm *nginx*;
+- `o: timed out` – os comandos cuja saída contém *timed* e também *out*;
+- `> theme` – **Mudar para o tema escuro**, ou para o claro.
+
+Em **Tudo**, cada tipo mostra os três primeiros, e **Ver tudo (12)**, ao lado do título de um tipo, mostra o resto.
+
+## Abrir o que você encontrou
+
+**↑** e **↓** percorrem a lista. Ao lado dela aparece o que é a linha escolhida: para um comando, a máquina, a pasta e a branch, como ele terminou, quando, o terminal e as primeiras linhas da saída.
+
+**Enter**, ou um clique, abre o que foi escolhido:
+
+- um comando ou uma linha de saída – no terminal de origem, no [bloco](../blocks/) dele, marcado como **Encontrado** e com as palavras destacadas. O bloco aparece mesmo que tenha sido recolhido ou tirado de vista, e um terminal no modo clássico o mostra no modo **Linha**;
+- uma linha de um log – o [log da máquina](../log/), nessa linha;
+- uma nota – no trecho onde estão as palavras;
+- um terminal – a aba dele; uma máquina – um novo terminal nela; um projeto – a página dele. Uma ação é executada.
+
+**⌘Enter** no Mac, **Ctrl+Enter** nos outros sistemas, coloca um comando na linha de entrada do terminal em primeiro plano sem executá-lo, mesmo que esse terminal esteja em outra máquina. Embaixo da linha aparece **Da busca, ainda não executado**: **Enter** executa o comando ali, e **Esc** limpa a linha. No modo clássico, o comando espera no prompt do shell do mesmo jeito. Se um comando estiver rodando no terminal em primeiro plano, a linha dele não está livre: a busca avisa, e você tenta de novo quando ele terminar. Se não houver terminal em primeiro plano, o comando vai para um terminal seu na máquina dele, ou para um novo terminal lá.
+
+Os botões embaixo da prévia, **Abrir no terminal** e **Colocar na linha**, fazem o mesmo que **Enter** e **⌘Enter**.

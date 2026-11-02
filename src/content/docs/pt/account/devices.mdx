@@ -1,0 +1,59 @@
+---
+title: Dispositivos e login
+description: Entrar com um código do e-mail, o código rápido num dispositivo de confiança, quando uma sessão termina e os dispositivos que você pode esquecer em Configurações.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Você entra no tTerm Web com um código do e-mail. Num dispositivo de confiança, um código rápido de quatro dígitos traz você de volta.
+
+## Entrar com um código
+
+<Steps>
+
+1. Abra [app.tterm.net](https://app.tterm.net), digite o seu e-mail e clique em **Receber código**. Seis dígitos chegam por e-mail.
+
+2. Digite-os no mesmo navegador: o código só funciona lá, por 10 minutos, com cinco tentativas. Depois de um minuto, você pode clicar em **Enviar um novo código**, e o código anterior para de funcionar.
+
+3. Na primeira vez, a página pede **Seu nome** e uma caixa marcada, **Concordo com os Termos de Serviço e a Política de Privacidade**. **Criar conta** cria a conta, com o primeiro projeto dela, Personal.
+
+</Steps>
+
+Sempre que alguém entra na sua conta com um código do e-mail, o tTerm escreve para você: **New sign-in to tTerm**, com o navegador, o endereço IP dele e o horário. Por enquanto, os e-mails do tTerm chegam em inglês. Se não foi você, clique em **Esquecer todos os dispositivos** em Configurações (o botão **Open Settings** do e-mail leva até lá) e troque a senha do seu e-mail: quem entrou tinha acesso a ele.
+
+## O código rápido
+
+Logo depois do código, a página oferece **Crie um código rápido para este dispositivo**: quatro dígitos e depois os mesmos quatro mais uma vez. Dígitos todos iguais ou em sequência são recusados. Da próxima vez, este navegador pede só o código rápido.
+
+Ele só funciona junto com uma chave longa e aleatória que este navegador guarda, então não serve em nenhum outro dispositivo. Depois de cinco tentativas erradas, o dispositivo é esquecido, e volta a ser preciso um código do e-mail. **Esqueceu o código?** manda um código por e-mail na hora e, depois dele, a página oferece um novo código rápido.
+
+**Agora não** continua sem código rápido: da próxima vez, este navegador pede um código do e-mail e oferece o código rápido de novo.
+
+Depois de 8 horas sem nenhuma atividade, a sessão termina, e a página pede que você entre de novo: **Sua sessão terminou. Entre de novo: seus terminais continuaram rodando.** Num dispositivo com código rápido, o código rápido basta.
+
+## Sair
+
+A sua conta, na parte de baixo da barra lateral, abre um menu com **Configurações**, **Idioma**, **Conta** e **Sair**. **Sair** encerra a sessão e faz este navegador esquecer você: da próxima vez, ele pede um código do e-mail, não o código rápido. As notas digitadas aqui e ainda não salvas também se perdem. Seus terminais continuam rodando.
+
+Para trocar de conta, saia e entre com o outro e-mail. **Trocar de conta**, na tela do código rápido, também pede um e-mail.
+
+## Seus dispositivos
+
+**Configurações** → **Dispositivos** lista os navegadores em que você entra com um código rápido e cada tTerm para Mac com login feito pelo navegador, com os nomes que o tTerm dá a eles: Chrome on macOS, tTerm for Mac on MacBook-Pro. Cada um mostra quando foi marcado como confiável ou quando fez login, e quando foi usado pela última vez; **Este dispositivo** marca aquele em que você está.
+
+- Clique em **Esquecer** ao lado de um navegador, e lá o login volta a ser por um código do e-mail. Esqueça um tTerm para Mac, e ele sai da conta: passa a funcionar só com aquele Mac, como antes do login. Esqueça o dispositivo em que você está, e você sai da conta aqui.
+- **Esquecer todos os dispositivos…** e depois **Esquecer todos os dispositivos**: todos os dispositivos são esquecidos e todas as sessões são encerradas, inclusive esta. Depois, cada navegador pede um código do e-mail. Seus terminais continuam rodando.
+
+Um navegador guarda o código rápido por 90 dias a partir do dia em que você o criou: depois disso, ele volta a pedir um código do e-mail e oferece um novo código rápido. Um dispositivo que não faz login há 90 dias é esquecido automaticamente e sai da lista.
+
+## tTerm para Mac
+
+O [tTerm para Mac](../../local/mac/) entra na conta pelo navegador. No app, clique em **Entrar pelo navegador** na primeira tela, ou em **Entrar** no menu da parte de baixo da barra lateral: ele abre app.tterm.net e mostra um código. No navegador, entre na conta se ainda não tiver entrado, confira se a página mostra o mesmo código e clique em **Autorizar**. Se você entrou neste navegador há mais de quinze minutos, a página primeiro pede que você confirme que é você, com o código rápido ou com um código do e-mail.
+
+O Mac vira uma máquina em Personal, o app aparece em **Dispositivos**, e o tTerm escreve para você sobre o novo login, como acontece com um navegador.
+
+Para deixar o app entrar numa conta diferente da que está aberta neste navegador, clique em **Não é você? Use outra conta**, abaixo de **Cancelar**. A sessão do navegador é encerrada, o código rápido dele continua valendo, e a página pede primeiro o outro e-mail.
+
+## Seu e-mail e sua conta
+
+O seu e-mail está na página **Conta**, no mesmo menu. Para trocá-lo, escreva para [support@tterm.net](mailto:support@tterm.net). Para excluir a sua conta, escreva para lá a partir do endereço com que você entra.

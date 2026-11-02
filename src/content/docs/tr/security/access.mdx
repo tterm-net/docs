@@ -1,0 +1,42 @@
+---
+title: Erişim nasıl işler
+description: İki dakikalık sertifikalar, ayrı bir süreçte tutulan CA anahtarları, yalnızca içeriden bağlantılar. Bulutun makinelerine nasıl giriş yaptığı ve bu erişimi nasıl geri alacağın.
+---
+
+Makinelerine erişim vermek kolay, geri almak da bir o kadar kolay. Anahtarlarına ihtiyacımız yok, port da açmıyoruz.
+
+## İki dakikalık sertifika
+
+Her bağlantı için, içinde adının yazılı olduğu ve yalnızca bu sunucuda geçerli ayrı bir SSH sertifikası imzalarız. Bu yüzden sunucunun logunda her giriş, giriş yapanın adıyla görünür:
+
+```text title="/var/log/auth.log"
+Accepted publickey for tterm from 203.0.113.24 port 41522 ssh2: ED25519-CERT SHA256:… ID Anna via tTerm Web (…) to web-01 (serial 1042) CA ED25519 SHA256:…
+```
+
+## İmzalama ayrı tutulur
+
+CA anahtarları ağ erişimi olmayan ayrı bir süreçte tutulur. Çekirdek onları okuyamaz, yalnızca imza isteyebilir ve her imza kayıt altına alınır.
+
+## sshd_config'e dokunulmaz
+
+Güven için tek bir kullanıcının, yani `tterm` kullanıcısının `authorized_keys` dosyasına tek satır eklenir. Hiçbir şey yeniden başlatılmaz, bu yüzden kendini sunucunun dışında bırakamazsın.
+
+## Mac'ten taşınan sunucular
+
+Mac için tTerm'den taşınan bir sunucu iki yolla daha açılabilir. **Anahtarım** seçeneğiyle [kasandaki](../keys/) kendi anahtarınla giriş yaparsın: girişi, kasanın açık olduğu cihazlarından biri imzalar ve sunucuya hiçbir şey eklenmez. **Bu Mac üzerinden** seçeneğiyle sunucuya giden `ssh` komutunu Mac'in çalıştırır ve bulutun sunucuya erişebilmesi hiç gerekmez. Üçüncü yol olan **tTerm'in giriş izni** de aynı iki dakikalık sertifikadır; yalnızca tTerm'in satırı `tterm` yerine kendi kullanıcının `authorized_keys` dosyasında durur. Ayrıntılar [Buluta taşı](../../local/move-to-cloud/#üç-giriş-yolu) sayfasında.
+
+## Yalnızca içeriden bağlantı
+
+Bilgisayardaki ajan dışarıya kendisi bağlanır, gelen bağlantılar için port gerekmez. Tek komutla kaldırılır.
+
+## Aracı yok
+
+tTerm Web'in sayfası ve terminaller doğrudan AB'deki sunucumuza bağlanır. Cloudflare yalnızca DNS hizmetimizi sağlar ve komutlarını hiçbir zaman görmez.
+
+## Açık kaynak
+
+Bulutun ve ajanın kodu AGPL v3 lisansıyla açık: [github.com/tterm-net](https://github.com/tterm-net). Kurulum betiği kısa: çalıştırmadan önce oku.
+
+## Erişimi geri alma
+
+[Sunucuyu kaldırdığında](../../machines/remove/) bulut, sunucudaki erişimini kendisi geri alır. Sunucu yanıt vermezse bunu sunucuda yapacak bir komut görünür. Ajanı bilgisayardan tek bir komut kaldırır: `~/.tterm-web/uninstall.sh`. Kendi anahtarını kasandan çıkarmak için **Ayarlar** → **Anahtarlar** bölümünde **Kaldır** düğmesine bas.

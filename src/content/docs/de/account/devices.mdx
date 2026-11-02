@@ -1,0 +1,59 @@
+---
+title: Geräte und Anmeldung
+description: Anmeldung mit einem Code per E-Mail, der Schnellcode auf einem Gerät, dem du vertraust, wann eine Sitzung endet und welche Geräte du in den Einstellungen vergessen kannst.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Bei tTerm Web meldest du dich mit einem Code per E-Mail an. Auf einem Gerät, dem du vertraust, bringt dich ein vierstelliger Schnellcode zurück.
+
+## Mit einem Code anmelden
+
+<Steps>
+
+1. Öffne [app.tterm.net](https://app.tterm.net), gib deine E-Mail-Adresse ein und drück auf **Code anfordern**. Per E-Mail kommen sechs Ziffern.
+
+2. Gib sie im selben Browser ein: Der Code funktioniert nur dort, 10 Minuten lang, mit fünf Versuchen. Nach einer Minute kannst du auf **Neuen Code senden** drücken, und der vorherige Code gilt dann nicht mehr.
+
+3. Beim ersten Mal fragt die Seite unter **Dein Name** nach deinem Namen und braucht ein Häkchen bei **Ich stimme den Nutzungsbedingungen und der Datenschutzerklärung zu**. **Konto erstellen** legt das Konto an, mit seinem ersten Projekt, Personal.
+
+</Steps>
+
+Jedes Mal, wenn sich jemand mit einem Code per E-Mail bei deinem Konto anmeldet, schreibt dir tTerm: **New sign-in to tTerm**, mit Browser, IP-Adresse und Uhrzeit. Die E-Mails von tTerm kommen vorerst auf Englisch. Wenn du das nicht warst, drück in den Einstellungen auf **Alle Geräte vergessen** (dorthin führt **Open Settings** in der E-Mail) und ändere das Passwort deines E-Mail-Kontos: Wer sich angemeldet hat, konnte deine E-Mails lesen.
+
+## Der Schnellcode
+
+Gleich nach dem Code schlägt die Seite vor: **Erstelle einen Schnellcode für dieses Gerät**. Das sind vier Ziffern, dann dieselben vier noch einmal. Ziffern, die alle gleich sind oder aufeinanderfolgen, werden abgelehnt. Beim nächsten Mal fragt dieser Browser nur nach dem Schnellcode.
+
+Er funktioniert nur zusammen mit einem langen Zufallsschlüssel, den dieser Browser aufbewahrt, deshalb nützt er auf keinem anderen Gerät etwas. Nach fünf falschen Versuchen wird das Gerät vergessen, und es braucht wieder einen Code per E-Mail. **Code vergessen?** schickt sofort einen, und danach bietet die Seite einen neuen Schnellcode an.
+
+Mit **Nicht jetzt** geht es ohne Schnellcode weiter: Beim nächsten Mal fragt dieser Browser nach einem Code per E-Mail und bietet den Schnellcode wieder an.
+
+Nach 8 Stunden ohne Aktivität endet die Sitzung, und die Seite bittet dich, dich erneut anzumelden: **Deine Sitzung ist abgelaufen. Melde dich erneut an: Deine Terminals sind weitergelaufen.** Auf einem Gerät mit Schnellcode genügt der Schnellcode.
+
+## Abmelden
+
+Dein Konto unten in der Seitenleiste öffnet ein Menü mit **Einstellungen**, **Sprache**, **Konto** und **Abmelden**. **Abmelden** beendet die Sitzung, und dieser Browser vergisst dich: Beim nächsten Mal fragt er nach einem Code per E-Mail, nicht nach dem Schnellcode. Notizen, die du hier getippt und noch nicht gespeichert hast, werden ebenfalls vergessen. Deine Terminals laufen weiter.
+
+Um zu einem anderen Konto zu wechseln, melde dich ab und mit der anderen E-Mail-Adresse wieder an. Auch **Konto wechseln** auf dem Bildschirm des Schnellcodes fragt nach einer E-Mail-Adresse.
+
+## Deine Geräte
+
+**Einstellungen** → **Geräte** listet die Browser auf, in denen du dich mit einem Schnellcode anmeldest, und jedes tTerm für Mac, das über den Browser angemeldet ist, jeweils so benannt, wie tTerm sie sieht: Chrome on macOS, tTerm for Mac on MacBook-Pro. Bei jedem steht, wann es gemerkt oder angemeldet wurde und wann es zuletzt genutzt wurde; **Dieses Gerät** markiert das, an dem du gerade bist.
+
+- Vergisst du mit **Vergessen** einen Browser, braucht es dort wieder einen Code per E-Mail. Vergisst du tTerm für Mac, wird es abgemeldet: Es arbeitet dann nur noch mit diesem Mac, wie vor der Anmeldung. Vergisst du das Gerät, an dem du gerade bist, wirst du hier abgemeldet.
+- **Alle Geräte vergessen …**, dann **Alle Geräte vergessen**: Alle Geräte werden vergessen und alle Sitzungen beendet, auch diese. Jeder Browser fragt danach nach einem Code per E-Mail. Deine Terminals laufen weiter.
+
+Ein Browser behält seinen Schnellcode 90 Tage ab dem Tag, an dem du ihn erstellt hast: Danach fragt er wieder nach einem Code per E-Mail und bietet einen neuen Schnellcode an. Ein Gerät, das sich 90 Tage lang nicht angemeldet hat, wird von selbst vergessen und verschwindet aus der Liste.
+
+## tTerm für Mac
+
+[tTerm für Mac](../../local/mac/) meldet sich über deinen Browser an. Drück in der App auf ihrem ersten Bildschirm auf **Mit dem Browser anmelden** oder im Menü unten in der Seitenleiste auf **Anmelden**: Die App öffnet app.tterm.net und zeigt einen Code. Melde dich im Browser an, falls du es noch nicht bist, prüf, ob die Seite denselben Code zeigt, und drück auf **Zulassen**. Liegt deine Anmeldung in diesem Browser mehr als eine Viertelstunde zurück, bittet dich die Seite zuerst zu bestätigen, dass du es bist: mit dem Schnellcode oder einem Code per E-Mail.
+
+Der Mac wird zu einer Maschine in Personal, die App erscheint unter **Geräte**, und tTerm schreibt dir wegen der neuen Anmeldung, wie bei einem Browser.
+
+Um die App in ein anderes Konto zu lassen als das, bei dem dieser Browser angemeldet ist, drück unter **Abbrechen** auf **Nicht du? Anderes Konto verwenden**. Die Sitzung des Browsers endet, sein Schnellcode bleibt, und die Seite fragt zuerst nach der anderen E-Mail-Adresse.
+
+## Deine E-Mail-Adresse und dein Konto
+
+Deine E-Mail-Adresse steht auf der Seite **Konto**, im selben Menü. Um sie zu ändern, schreib an [support@tterm.net](mailto:support@tterm.net). Um dein Konto zu löschen, schreib von der Adresse dorthin, mit der du dich anmeldest.

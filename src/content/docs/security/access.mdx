@@ -21,6 +21,10 @@ The CA keys live in a separate process with no network. The core cannot read the
 
 The trust is one line in the `authorized_keys` of one user, `tterm`. Nothing is restarted, so you cannot lock yourself out.
 
+## Servers moved from a Mac
+
+A server moved from tTerm for Mac can open in two more ways. With **My key**, your own key from your [vault](../keys/) signs you in: a device of yours where the vault is open signs the login, and nothing is added on the server. With **Through this Mac**, your Mac runs `ssh` to the server, and the cloud need not reach it at all. The third way, **tTerm's pass**, is the same two-minute certificate, with tTerm's line in `authorized_keys` of your own user instead of `tterm`. More in [Move to cloud](../../local/move-to-cloud/#three-ways-in).
+
 ## Connections only from inside
 
 The agent on a computer dials out on its own, no incoming ports needed. One command removes it.
@@ -35,4 +39,4 @@ The code of the cloud and of the agent is open under AGPL v3: [github.com/tterm-
 
 ## Taking access back
 
-Remove a server on the project's page, and the cloud takes its access back on the server itself. If the server does not answer, a command that does it there appears. One command takes the agent off a computer, `~/.tterm-web/uninstall.sh`.
+[Remove a server](../../machines/remove/), and the cloud takes its access back on the server itself. If the server does not answer, a command that does it there appears. One command takes the agent off a computer, `~/.tterm-web/uninstall.sh`. A key of yours comes out of your vault with **Remove** in **Settings** → **Keys**.

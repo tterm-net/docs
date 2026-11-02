@@ -1,0 +1,30 @@
+---
+title: Início rápido
+description: Entre no tTerm Web, adicione a sua primeira máquina e execute o seu primeiro comando em cinco minutos.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Cinco minutos: o login, a sua primeira máquina e o seu primeiro comando. Você precisa de um navegador e de um servidor Linux, ou de um computador em que possa executar um comando num terminal.
+
+<Steps>
+
+1. **Entre.** Abra o [app.tterm.net](https://app.tterm.net) e digite o seu e-mail: um código chega na sua caixa de entrada. Na primeira vez, pedimos o seu nome e um código rápido de quatro dígitos para este navegador.
+
+2. **Adicione uma máquina.** Na barra lateral, clique em **+** ao lado de **Máquinas** e escolha **Servidor** ou **Computador**. Aparece um comando:
+
+   ```sh title="No servidor, como root ou como usuário com sudo"
+   curl -sSL https://connect.tterm.net/s/<token> | sudo sh
+   ```
+
+   Ele funciona uma vez, nos próximos 10 minutos. O servidor aparece no projeto assim que o script terminar, normalmente em menos de um minuto.
+
+3. **Abra um terminal.** Clique em **+** ao lado da máquina na barra lateral. O terminal abre numa aba: seu shell, seus programas, sudo.
+
+4. **Digite um comando.** Por exemplo, `uptime`. Ele volta como um bloco: a saída, o código de retorno, o tempo, o diretório e a branch. Você pode fechar a aba: o terminal continua rodando.
+
+</Steps>
+
+:::note[Um computador em vez de um servidor]
+Um computador tem um comando próprio, e você o executa sem sudo: veja [Computador](../../machines/computers/).
+:::

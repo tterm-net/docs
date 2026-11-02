@@ -1,0 +1,51 @@
+---
+title: Server Linux
+description: Come collegare un server con un solo comando, cosa fa l'installer e come revocare l'accesso.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Un server si collega via SSH standard con un solo comando. Non conserviamo chiavi: per ogni connessione firmiamo un certificato dedicato, che dura due minuti e vale solo per questo server.
+
+## Collegamento
+
+<Steps>
+
+1. In tTerm Web apri **Aggiungi una macchina** e scegli **Server**.
+
+2. Copia il comando ed eseguilo sul server, come root o come un qualsiasi utente con sudo:
+
+   ```sh title="Sul server"
+   curl -sSL https://connect.tterm.net/s/<token> | sudo sh
+   ```
+
+3. Il server compare nel progetto appena lo script finisce, di solito entro un minuto. Il cloud vi accede da solo, lo verifica e legge che macchina è: il sistema, l'indirizzo e la shell.
+
+</Steps>
+
+:::caution[Il comando funziona una volta sola]
+Funziona una sola volta, entro 10 minuti. Non hai fatto in tempo? Premi **Genera un nuovo comando**.
+:::
+
+## Cosa fa lo script
+
+- Crea l'utente `tterm`, senza password. Se l'ha già creato il nostro bot Telegram, lo riutilizza.
+- Permette al cloud di accedere come `tterm` con certificati che durano due minuti e sono fatti solo per questo server. Sul server non resta nessuna chiave.
+- Dà a `tterm` i permessi sudo, così puoi gestire il server. Basta un comando per revocarli.
+- Non tocca mai `sshd_config` e non apre porte. Si può eseguire due volte senza problemi.
+
+La fiducia è una riga nel file `authorized_keys` dell'utente `tterm`, e ogni server ha la sua riga:
+
+```text title="~tterm/.ssh/authorized_keys"
+cert-authority,principals="m-…" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5… tterm-web ca-…
+```
+
+:::tip[Un server dietro NAT, o senza SSH dall'esterno]
+Il cloud accede al server via SSH, quindi la sua porta SSH deve essere raggiungibile dall'esterno. Se non lo è, installa l'agente sul server, come su un [computer](../computers/): la connessione allora parte dall'interno.
+:::
+
+## Rimozione di un server
+
+Nella pagina del progetto premi ⋯ accanto al server e scegli **Rimuovi macchina**. Il cloud smette di accedervi e toglie il proprio accesso dal server stesso. Se il server non risponde, subito dopo compare il comando da eseguire lì. Per i dettagli, vedi [Rimuovere una macchina](../remove/).
+
+Come rimuovere tutto il resto che l'installer ha configurato lo trovi scritto in cima allo script stesso.

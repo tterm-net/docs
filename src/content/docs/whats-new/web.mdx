@@ -1,0 +1,225 @@
+---
+title: tTerm Web
+description: What each version of tTerm Web changed, from the newest – new features, changes and fixes.
+---
+
+What each version of tTerm Web changed for you, the newest first. The technical details are in the [commits on GitHub](https://github.com/tterm-net/tterm-web/commits/main).
+
+## 0.1.23
+
+2 November 2026
+
+- A machine's [log](../../features/log/) goes with it to another project, all of it, the lines from before the move too, and whoever is in the project it is in now reads it. Deleting the project it left takes none of it away.
+- The move itself is a line of the log: **You moved this machine from Personal to Client X**.
+
+## 0.1.22
+
+2 November 2026
+
+- Each line of a [machine's log](../../features/log/) fits on one line: a long command is cut short, and the line says how many notes are under it.
+- A click on a line opens it: the command in full, what it printed and its notes. Another click closes it.
+- Lines found with **Find in this log** open the same way, and the search stays until you clear it.
+
+## 0.1.21
+
+2 November 2026
+
+- What a command printed opens under its line in the [log](../../features/log/), for as long as it is kept: 30 days.
+- **Find in this log** looks through the whole log, a year back. **/** takes you there.
+- [Search](../../features/search/) finds the lines of your machines' logs and the notes under them too: **Logs** above the list, or `l:` in front of a word.
+- Beside **Find in this log**, filters: **Failed**, **With notes**, one person's lines or one terminal's. The order can be **Newest first**.
+
+## 0.1.20
+
+1 November 2026
+
+- Each machine has a [log](../../features/log/): every command run on it through tTerm is a line, with who ran it, when, how it ended, how long it took, and the folder, branch and terminal. The logs are in the **Logs** folder of the project's notes, a day at a time.
+- Notes under a command: **Add a note** on its line in the log, or the same button on its block in the terminal. A note stays as written; to answer it, press **Reply**.
+- A password or a token that got into a line or a note: the project's owner or an admin erases its words for good with **Redact…**, from the log, the terminal's feed and search. The log keeps who did it, when and why.
+- Lines are kept a year, what the commands printed 30 days.
+
+## 0.1.19
+
+1 November 2026
+
+- A server that opens with [your key](../../security/keys/) waits as long as you take to open your vault, then signs in. Before, its terminal ended after 12 seconds.
+- In tTerm for Mac, **Move to cloud** is now at the bottom of the account menu, right above **Sign out**.
+
+## 0.1.18
+
+1 November 2026
+
+- **Download tTerm for Mac** in the account menu shows only in a Mac's browser, and only until you sign in with [tTerm for Mac](../../local/mac/).
+- Its second line says what the app is: **A local terminal on your Mac**.
+
+## 0.1.17
+
+1 November 2026
+
+- Servers from your Mac open from anywhere: [Move to cloud](../../local/move-to-cloud/) in tTerm for Mac puts them in your account, each with your own key, with tTerm's own line on the server, or through the Mac while it is on.
+- In the sidebar, a server that opens with your key has a key after its name, and one that opens through your Mac says **via Mac**.
+- **Settings** → **Keys** is your [vault](../../security/keys/): the SSH keys you saved, which only your devices open; tTerm cannot. In a browser it opens the way the computer unlocks, with your Mac's approval or with your recovery code. It locks again after 8 hours without anything done, when you close tTerm Web, or with **Lock**.
+- **Add a key from a file** puts a key into your vault from the browser, locked before it leaves the browser. The first key makes the vault, with a recovery code you keep.
+- In a browser, the account menu offers **Download tTerm for Mac**.
+
+## 0.1.16
+
+31 October 2026
+
+- tTerm Web speaks the twelve languages of the site: English, Deutsch, Español, Français, Italiano, Polski, Português, Türkçe, Русский, 日本語, 한국어 and 简体中文.
+- **Language** is in the account menu, right after **Settings**. The language you choose is kept in your account. Until you choose one, the page speaks your browser's language if it is one of the twelve, and English otherwise.
+
+## 0.1.15
+
+29 October 2026
+
+- In tTerm for Mac, a new version shows itself: **Restart to update** in the top bar next to **Search**, and a card above the account in the sidebar. Once after the restart, the page says tTerm is updated, with **What's new**.
+- **Settings** → **Updates** in [tTerm for Mac](../../local/mac/): **Update by itself** (recommended, the default) or **Ask me first**, and **Check now**. Run from the disk image, tTerm offers to move itself to Applications.
+
+## 0.1.14
+
+28 October 2026
+
+- In tTerm for Mac, **Settings** → **This computer**: the switch **Open from tTerm Web and your phone**, and under it how this Mac's link to tTerm Web is.
+- A computer that tTerm for Mac opens to tTerm Web says **tTerm app** and its version on its card, where an agent's version would be.
+
+## 0.1.13
+
+28 October 2026
+
+- A pressed button shows what it did: a copy button puts a check in place of its icon for a moment, and **Copy** says **Copied**.
+- **Run again** turns its arrow once, and the new run is ringed in amber as it starts.
+
+## 0.1.12
+
+28 October 2026
+
+- The command for a [computer](../../machines/computers/) (**Add a machine**, then **Computer**) puts in tTerm's agent as one file from tTerm's releases, checked against its checksum before it runs. On macOS, and on Linux on Intel or ARM, it needs no Python.
+- The agent then updates itself: only to versions signed by tTerm's release build, and only while no terminal is open on the computer.
+- To put the new agent on a computer connected earlier, run a new command there. It stays the same machine, and its open terminals end.
+
+## 0.1.11
+
+25 October 2026
+
+- The tab's icon stays still: the green arrow no longer blinks or turns grey.
+
+## 0.1.10
+
+25 October 2026
+
+- The tab's icon loses the green dot, and tTerm's arrow turns green instead. It blinks while a command runs in a terminal of the page, and turns grey while the page has lost tTerm Web.
+
+## 0.1.9
+
+25 October 2026
+
+- tTerm Web's tab gets an icon of its own, so it is not taken for the site's: tTerm's, with a green dot in the corner. The dot blinks while a command runs, and turns into a grey ring while the page has lost tTerm Web.
+
+## 0.1.8
+
+25 October 2026
+
+- You can allow tTerm for Mac with another account than the browser's: **Not you? Use another account** ends this browser's session and asks for an email first.
+- In tTerm for Mac, your photo shows in the window too.
+
+## 0.1.7
+
+25 October 2026
+
+- [Search](../../features/search/) over everything: **⌘K** (**Ctrl+Shift+K** elsewhere), or **Search** at the top, finds the commands of all your terminals, ended ones too, what they printed, notes, terminals, machines, projects and things to do.
+- **Enter** opens a command in its terminal, at its block. **⌘Enter** (**Ctrl+Enter** elsewhere) puts it into the line of the terminal in front, without running it.
+- A photo of your own, on the **Account** page: cut to a circle in the browser, it shows where your name is written. tTerm keeps a 256-pixel copy, without what the photo says about itself.
+
+## 0.1.6
+
+24 October 2026
+
+- [tTerm for Mac](../../local/mac/) signs in with your browser: the browser asks **Allow tTerm for Mac?** and shows a code to check against the app's, and **Allow** lets the app in.
+- The Mac then becomes a machine in Personal, and the app is in **Settings** → **Devices**, where **Forget** signs it out.
+
+## 0.1.5
+
+22 October 2026
+
+- **Settings** ends with support's address alone: the Terms of Service and the Privacy Policy are on the site.
+- In tTerm for Mac before signing in, **New project** and **Add machine** say what an account brings and what the Free plan gives, and offer to sign in.
+
+## 0.1.4
+
+22 October 2026
+
+- The account at the bottom of the sidebar opens a menu: **Settings**, **Account** and **Sign out**.
+- **Account** keeps your name and plan. **Settings** has the theme, project colors and [your devices](../../account/devices/), and the email about a new sign-in leads there.
+- **Sign out** signs you out at once, and the sign-in screen says your terminals keep running.
+- In tTerm for Mac before signing in, the page shows this computer only, says **Not signed in** at the bottom of the sidebar, and offers **Sign in**.
+
+## 0.1.3
+
+21 October 2026
+
+- Fixed bash in a folder with a space in its name: it printed an error before every prompt, and the git branch did not show.
+
+## 0.1.2
+
+20 October 2026
+
+- A terminal is named where it is listed too: double-click it in the sidebar or on its project's page.
+- A [note](../../features/notes/) moves to another project with **Move to another project…** in its menu: into any of its folders, or into one made there for it, with its history and ticks.
+- Out of a project, a note goes only by the hand of those who may delete it there, and each project's journal keeps a line about it.
+
+## 0.1.1
+
+19 October 2026
+
+- [Projects](../../features/projects/) of your own besides Personal: **New project**. Any project can be renamed, Personal too.
+- Each project gets a color: it fills the project's code badge, or tints the whole project in the sidebar, as you choose.
+- A machine moves to another project with its terminals running (**Move to another project**), and a project without machines can be deleted.
+- A terminal gets a name of its own: double-click its tab.
+
+## 0.1.0
+
+19 October 2026
+
+- [Notes](../../features/notes/), in folders of each project: Markdown as you type, **/** for the rest, checklists that show who ticked an item and when, and code with **Copy**.
+- A note opens in a tab, moves to another folder and copies as Markdown. Written on two devices at once, it keeps the changes of both, and asks only where the same place changed both ways.
+- What is typed and not saved yet stays in the browser, and comes back when you open the note again.
+- The sidebar shows each project's **Machines** and **Notes**: a click on a machine or a folder folds it, the **+** beside it opens a terminal or starts a note, and a project's name opens its page.
+
+## 0.0.12
+
+18 October 2026
+
+- A certificate made for one server is no use on any other: each server trusts tTerm Web only for [its own](../../security/access/). A server connected earlier switches over the next time tTerm Web signs in to it.
+- [Removing a server](../../machines/remove/) takes tTerm Web's access back on the server itself. If the server does not answer, the page gives the command that does it there.
+- A device you forget, or one with no sign-in for 90 days, is deleted.
+- The block under the mouse stands out a little.
+
+## 0.0.11
+
+18 October 2026
+
+- The two emails, the sign-in code and the note about a new sign-in, come in tTerm's look: the logo, the code large, and the same words as plain text beside them.
+- The code email no longer repeats the address you typed.
+
+## 0.0.10
+
+17 October 2026
+
+- An account page, opened from the account at the bottom of the sidebar: your name, which you can change, your [plan](../../account/plan/) with what counts against it, your trusted devices with **Forget** and **Forget all devices**, and the theme.
+- **Sign out** makes the browser forget you: next time it takes a code from email, which is also how you switch to another account.
+
+## 0.0.9
+
+16 October 2026
+
+- Anyone can [sign up](../../start/quick-start/): a code from email, your name and a yes to the Terms of Service and the Privacy Policy.
+- On a device you trust, a four-digit quick code signs you in, anywhere else a code from email. Each sign-in from a browser tTerm Web does not know is told by email.
+- Each person sees only their own machines and terminals: up to 50 machines and 24 open terminals on the Free plan.
+- After 8 hours without anything done, the session ends, and your terminals keep running.
+
+## 0.0.1–0.0.8
+
+11–15 October 2026
+
+The build-up to the beta: nobody outside used these versions.

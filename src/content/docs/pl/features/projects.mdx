@@ -1,0 +1,64 @@
+---
+title: Projekty i kolory
+description: Personal i własne projekty – ich nazwa, kod i kolor, strona projektu, przenoszenie maszyny do innego projektu i usuwanie projektu.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Projekt to maszyny i notatki razem: jego serwery i komputery z działającymi na nich terminalami oraz jego notatki w folderach. Każdy ma projekt Personal, a obok niego możesz tworzyć własne projekty, na przykład po jednym dla każdego klienta.
+
+## Personal
+
+Personal powstaje razem z twoim kontem, ma kod P i jest pierwszy na liście w panelu bocznym. Jak w każdym projekcie możesz zmienić jego nazwę, kod i kolor, ale nie da się go usunąć.
+
+## Własny projekt
+
+<Steps>
+
+1. W panelu bocznym naciśnij **Nowy projekt** pod listą projektów.
+
+2. W polu **Nazwa** wpisz nazwę, do 80 znaków.
+
+3. **Krótki kod** powstaje z nazwy, Client X → CX, i możesz go zmienić: od 1 do 4 liter lub cyfr, byle nie kod innego twojego projektu. Oznacza projekt w panelu bocznym i na kartach: CX/web-01 to terminal na jego maszynie web-01.
+
+4. W polu **Kolor** wybierz jeden z ośmiu kolorów. Nowy projekt dostaje kolor, którego nie ma żaden z twoich pozostałych projektów, a **Podgląd** pokazuje, jak to będzie wyglądać.
+
+5. Naciśnij **Utwórz projekt**. Projekt należy do ciebie i otwiera się jego strona: dodaj tam [serwer](../../machines/servers/) lub [komputer](../../machines/computers/) albo przenieś maszynę z innego projektu.
+
+</Steps>
+
+Aby później zmienić nazwę projektu, także Personal, albo jego kod czy kolor, naciśnij ołówek obok nazwy na stronie projektu (**Edytuj nazwę, kod i kolor**), zmień, co trzeba, i naciśnij **Zapisz**.
+
+## Kolory
+
+Kolor projektu wypełnia plakietkę z jego kodem: w panelu bocznym, na stronie projektu, w wyszukiwaniu. Na stronie **Ustawienia** → **Wygląd** → **Kolory projektów** wybierz **Cały projekt** zamiast **Plakietka z kodem**, a panel boczny zabarwi kolorem projektu także cały jego blok. **Ustawienia** są w menu twojego konta na dole panelu bocznego, a wybór zapisuje się na twoim koncie.
+
+## Strona projektu
+
+Kliknięcie nazwy projektu w panelu bocznym otwiera jego stronę w karcie. U góry są jego nazwa, kod i ołówek oraz wiersz z liczbą maszyn i otwartych terminali. Dalej:
+
+- **Maszyny** – kafelek każdej maszyny z jej adresem i systemem, przyciskiem **Nowy terminal** i terminalami, które na niej działają: **Otwórz** przechodzi do terminala, a dwukrotne kliknięcie jego nazwy pozwala ją zmienić. Menu **⋯** na kafelku ma pozycje **Przenieś do innego projektu** i **Usuń maszynę**. Projekt bez maszyn proponuje **Serwer** i **Komputer**, żeby dodać pierwszą.
+- **Notatki** – foldery i ich notatki, zobacz [Notatki](../notes/).
+- Na samym końcu **Usuń projekt**.
+
+## Przenoszenie maszyny
+
+<Steps>
+
+1. Na stronie projektu naciśnij **⋯** na kafelku maszyny i wybierz **Przenieś do innego projektu**.
+
+2. Wybierz projekt. Okno pokazuje, czym maszyna będzie w tym projekcie, CX/web-01; jeśli jej nazwa jest tam zajęta, dostaje numer: web-01-2.
+
+3. Naciśnij **Przenieś do projektu Client X**.
+
+</Steps>
+
+Jej terminale działają dalej, jej [log](../log/) przechodzi razem z nią, a na samej maszynie nic się nie zmienia. Maszynę można przenosić tylko między projektami, które należą do ciebie: ta pozycja menu pojawia się, gdy masz drugi projekt.
+
+## Usuwanie projektu
+
+**Usuń projekt** na końcu strony projektu usuwa go razem z folderami i notatkami; Personal nie ma takiego przycisku. Projektu z maszynami nie da się usunąć: okno je wymienia, a ty najpierw je przenosisz albo [usuwasz](../../machines/remove/) przez **⋯** na ich kafelkach. Projekt bez maszyn prosi o wpisanie swojej nazwy, a potem o naciśnięcie **Usuń projekt Client X**. Tego nie można cofnąć.
+
+## Kto jest w projekcie
+
+Na razie w każdym projekcie jesteś tylko ty i to ty jesteś jego właścicielem: panel boczny pokazuje **Właściciel** obok nazwy każdego projektu, a wiersz u góry jego strony kończy się słowami **tylko ty**. Innych osób nie można jeszcze dodawać do projektów.

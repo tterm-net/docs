@@ -1,0 +1,46 @@
+---
+title: Ordinateur sous macOS ou Linux
+description: L’agent pour un ordinateur – installé avec une seule commande, connecté depuis l’intérieur, il se met à jour tout seul et se retire avec une seule commande.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Un ordinateur n’a besoin que d’un petit agent. Il se connecte au cloud lui-même et garde cette seule connexion, aucun port entrant n’est donc nécessaire : l’ordinateur fonctionne aussi derrière un NAT.
+
+:::tip[Sur un Mac, l’application est plus pratique]
+[Le terminal local pour Mac](../../local/mac/) garde la connexion au cloud tant qu’il tourne, et ce Mac n’a pas besoin d’agent.
+:::
+
+## Le connecter
+
+Dans tTerm Web, ouvrez **Ajouter une machine** et choisissez **Ordinateur**. Lancez la commande dans un terminal sur cet ordinateur, sous votre compte utilisateur, pas avec sudo :
+
+```sh title="Sur l’ordinateur"
+curl -fsSL https://connect.tterm.net/c/<token> | sh
+```
+
+L’ordinateur apparaît dans le projet quelques secondes après la fin de la commande. La commande fonctionne une seule fois, dans les 10 minutes.
+
+## Ce que fait la commande
+
+- Installe l’agent dans `~/.tterm-web` : un seul fichier pour ce système, pris dans nos versions publiées et vérifié avant son lancement avec la somme de contrôle inscrite dans le script de la commande.
+- Crée pour cet ordinateur une clé qui lui est propre et la garde sur place, lisible par vous seul. Le jeton de la commande sert seulement à le rattacher, une fois.
+- Démarre l’agent à chaque ouverture de session. L’agent tourne sous votre compte, jamais en root, et n’ouvre aucun port.
+- L’agent se met à jour tout seul, uniquement vers des versions signées par notre chaîne de publication, et seulement quand aucun terminal n’est ouvert sur l’ordinateur.
+
+<Tabs syncKey="os">
+	<TabItem label="macOS">
+		C’est launchd qui démarre l’agent. La première fois, macOS peut demander si `tterm-agent` a le droit d’ouvrir vos dossiers Bureau et Documents : autorisez-le si vous voulez y travailler depuis le terminal.
+	</TabItem>
+	<TabItem label="Linux">
+		C’est systemd qui démarre l’agent, sous votre compte. Un serveur sans SSH depuis l’extérieur se connecte de la même façon : l’agent sort de lui-même.
+	</TabItem>
+</Tabs>
+
+## Le retirer
+
+Supprimez l’ordinateur sur la page du projet : l’agent l’apprend et s’arrête ([en savoir plus](../remove/#un-ordinateur)). Pour retirer l’agent lui-même de l’ordinateur, lancez :
+
+```sh title="Sur l’ordinateur"
+~/.tterm-web/uninstall.sh
+```

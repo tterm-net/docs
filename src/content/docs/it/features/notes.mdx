@@ -1,0 +1,63 @@
+---
+title: Note
+description: Le note nelle cartelle di un progetto – Markdown mentre scrivi, checklist che dicono chi ha spuntato, codice con Copia e un salvataggio che unisce ciò che hanno scritto due dispositivi.
+---
+
+Le note stanno nelle cartelle di un progetto, come i terminali stanno sulle sue macchine: runbook, accessi, checklist, accanto alle macchine a cui si riferiscono. Una nota è un titolo e dei blocchi, scritti sul posto, e si salva da sola.
+
+## Cartelle
+
+Nella barra laterale ogni progetto ha **Note** sotto le sue macchine. **+** accanto a **Note** crea una cartella: dalle un nome e premi **Crea cartella**. **+** accanto a una cartella inizia una nota al suo interno, in una scheda tutta sua; un clic sulla cartella stessa si limita a comprimerla o espanderla. Nella pagina del progetto le stesse cose sono pulsanti: **Nuova cartella**, e **Nuova nota** su ogni cartella.
+
+**⋯** accanto a una cartella nella pagina del progetto offre **Rinomina cartella** ed **Elimina cartella**. Una cartella viene eliminata insieme alle note che contiene: la finestra le elenca, quindi prima sposta altrove le note che vuoi tenere.
+
+Per ora in ogni progetto ci sei solo tu, quindi solo tu ne vedi le note, e sei tu a scrivere, spostare ed eliminare ogni nota e cartella. Sotto il titolo di una nota la pagina lo dice: **la vedi solo tu**.
+
+## Scrivere
+
+Una nuova nota si apre con il cursore nel titolo, e **Enter** passa al testo. Il testo è fatto di blocchi: testo, titoli, voci di elenco, voci di checklist, codice e separatori. **Enter** inizia un nuovo blocco, e su una voce vuota chiude l'elenco.
+
+Il Markdown digitato all'inizio di un blocco lo trasforma in ciò che indica:
+
+| Digita all'inizio di un blocco | Diventa |
+| --- | --- |
+| `#` e uno spazio | un titolo |
+| `-` e uno spazio, oppure `1.` e uno spazio | una voce di elenco |
+| `- [ ]` e uno spazio | una voce di checklist, con `- [x]` una voce già spuntata |
+| `` ``` `` | codice |
+| `---` | un separatore |
+
+In qualsiasi altro punto di un blocco, il Markdown resta come l'hai digitato. In una riga vuota, **/** offre le stesse cose da un elenco: **Checklist**, **Titolo**, **Elenco**, **Codice**, **Separatore**, **Testo**. Le lettere digitate dopo la barra restringono l'elenco, le frecce si spostano al suo interno, **Enter** sceglie. Un testo di più righe incollato diventa blocchi, e il suo Markdown viene letto allo stesso modo.
+
+## Codice e checklist
+
+Un blocco di codice mantiene le sue righe: **Enter** inizia una nuova riga al suo interno, **Tab** inserisce due spazi, e **⌘Enter** su un Mac (**Ctrl+Enter** altrove) ne esce in un nuovo blocco sotto. Il testo incollato dentro resta com'è. **Copia** nel suo angolo copia il codice e per un attimo dice **Copiato**.
+
+Una voce di checklist si spunta con la sua casella. La spunta viene salvata subito, e accanto alla voce la nota dice chi l'ha spuntata e quando: **Tu · 10:02** per oggi, la data per un giorno precedente. La barra laterale mostra a che punto è una checklist, 2/5, e la pagina del progetto dice **2 su 5 completate**.
+
+## Salvataggio
+
+Una nota si salva da sola un attimo dopo che hai smesso di scrivere. A destra delle schede la pagina dice come va: **Salvataggio…**, **Salvato** o **Non salvato: nessuna connessione**.
+
+Se scrivi nella stessa nota su due dispositivi insieme, entrambi conservano le proprie modifiche: ogni salvataggio viene unito a ciò che è stato salvato nel frattempo, blocco per blocco. Solo quando lo stesso blocco, o il titolo, è cambiato da entrambe le parti, la nota chiede cosa tenere in quel punto, **Tieni la mia** o **Tieni l'altra versione**; tutte le altre modifiche, di entrambe le versioni, restano. Per poter unire le modifiche, tTerm conserva le ultime 50 versioni di ogni nota.
+
+Senza connessione, quello che scrivi resta in questo browser finché non viene salvato, e la pagina continua a riprovare. Se chiudi la scheda o ricarichi la pagina, il testo ricompare quando riapri la nota: **È tornato il testo non salvato di questa nota.**
+
+:::caution[Con Esci il testo non salvato va perso]
+Dopo **Esci**, questo browser dimentica quello che è stato scritto nelle note e non è ancora salvato.
+:::
+
+## Spostare, copiare o eliminare
+
+**⋯** accanto a una nota, nella pagina del progetto o in cima alla scheda della nota, offre il resto:
+
+- **Cartella** – le cartelle del progetto, con quella della nota spuntata: un clic su un'altra sposta lì la nota. Compare quando il progetto ha almeno due cartelle.
+- **Sposta in un altro progetto…** – la finestra elenca gli altri tuoi progetti con le loro cartelle: scegli una cartella e premi, ad esempio, **Sposta in Runbook**. Un progetto senza cartelle offre una nuova cartella, con lo stesso nome di quella della nota. Titolo, testo e cronologia della nota la seguono, e anche le spunte, con chi le ha messe.
+- **Copia come Markdown** – l'intera nota, con il titolo come intestazione principale.
+- **Elimina nota** – prima chiede conferma. Una nota eliminata è persa per sempre.
+
+Anche la ricerca trova le note: inizia con `n:`, vedi [Ricerca](../search/).
+
+## Log
+
+**Log** è la prima tra le cartelle di un progetto nella barra laterale, con l'etichetta **da tTerm**. Contiene un log per ogni macchina del progetto: ogni comando eseguito su di essa tramite tTerm, un giorno alla volta, con le note aggiunte sotto i comandi. Lo scrive tTerm, e nessuno può modificarlo. Le righe si conservano per un anno, l'output dei comandi per 30 giorni. Per saperne di più: [Il log di una macchina](../log/).

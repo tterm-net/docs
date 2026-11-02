@@ -1,0 +1,68 @@
+---
+title: Log da máquina
+description: O que foi executado numa máquina via tTerm, linha por linha – como ler o log, buscar nele até um ano atrás, escrever notas abaixo dos comandos e apagar uma senha.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Cada comando executado numa máquina via tTerm vira uma linha no log dessa máquina: quem o executou, quando, como terminou, quanto tempo levou e onde. Quem escreve o log é o tTerm, e ninguém pode alterá-lo. Abaixo de um comando, você pode deixar uma nota.
+
+## Abrir o log
+
+Na barra lateral, na seção **Notas** de um projeto, a primeira pasta é **Logs**, com o rótulo **pelo tTerm**. Nela fica um log para cada máquina do projeto, com quantos comandos rodaram em cada uma hoje: **12 hoje**. Clique numa máquina, e o log dela abre numa aba, **web-01: log**.
+
+O log mostra um dia por vez e abre no dia de hoje. As setas, **Dia anterior** e **Dia seguinte**, levam ao dia mais próximo que tem linhas. **Hoje** traz você de volta, e **Escolher um dia** abre um calendário. Enquanto o log mostra o dia de hoje, as linhas novas chegam à medida que os comandos terminam.
+
+No alto do log, o **⋯** tem **Copiar como Markdown**: o dia que está na tela, as linhas dele e as notas abaixo delas.
+
+## O que diz uma linha
+
+Cada comando é uma linha: a hora, quem o executou, o comando, cortado quando é longo, e quantas notas há abaixo dele. À direita ficam quanto tempo ele levou, a pasta, a branch do git e o terminal. Um comando que falhou tem um X e o código de retorno, **retorno 1**. Entre os comandos, o log também mostra quando um terminal foi aberto e quando foi encerrado, e quando a máquina passou para outro projeto: **Você moveu esta máquina do projeto Personal para o projeto Client X**.
+
+Clique numa linha para abri-la: o comando completo, o que ele imprimiu e as notas abaixo dele. Outro clique a fecha. Uma saída longa mostra só as primeiras linhas: **Ver todas as 27 linhas** mostra o resto, e **Copiar saída** copia a saída inteira.
+
+Passe o mouse sobre uma linha ou abra-a, e o **⋯** aparece nela: **Copiar comando** e **Copiar link desta linha**. O link abre o log no dia dessa linha, com a linha aberta.
+
+## Buscar e filtrar
+
+Na barra abaixo do dia, **Buscar neste log** procura no log inteiro, até um ano atrás: os comandos que têm todas as palavras que você digitar e os comandos com uma nota que tenha todas elas. A tecla **/** leva você até lá. Os resultados vêm agrupados por dia: clique numa linha para abri-la, e **Abrir o dia** leva ao dia dela. A busca fica ativa até você limpá-la, e **Voltar ao dia** volta para o dia em que você estava.
+
+Ao lado ficam a ordem e os filtros:
+
+- **Mais antigas primeiro** vira **Mais recentes primeiro** com um clique, e este navegador guarda a escolha.
+- **Todos**: só as linhas de uma pessoa, a que executou o comando ou escreveu uma nota abaixo dele.
+- **Com falha**: só os comandos que falharam.
+- **Com notas**: só os comandos com notas abaixo deles.
+- **Todos os terminais**: os comandos de um só terminal. Esse filtro aparece quando as linhas vêm de mais de um terminal.
+
+Com um filtro ativo, o dia mostra quantos comandos aparecem, **2 de 8 comandos**, e **Limpar filtros** desativa todos. Os filtros também valem para o que **Buscar neste log** encontrou.
+
+[A busca](../search/) também procura nos logs de todas as suas máquinas: comece com `l:`.
+
+## Notas abaixo de um comando
+
+Passe o mouse sobre uma linha e clique em **Adicionar nota**. No terminal, o [bloco](../blocks/) de um comando tem o mesmo botão, com a dica **Adicionar uma nota a este comando**. Nos dois casos, a nota aparece tanto abaixo da linha no log quanto abaixo do bloco no terminal. **Enter** salva a nota, **Shift+Enter** começa uma nova linha, **Esc** cancela.
+
+A nota fica no log como foi escrita: ela não é editada nem excluída, e sim respondida. A resposta se escreve em **Responder**, abaixo das notas. Cada nota mostra quem a escreveu e quando, e o **⋯** ao lado dela no log tem **Copiar texto**.
+
+## Apagar uma senha ou um token
+
+Uma senha ou um token que foi parar num comando ou numa nota pode ser apagado. Só o proprietário do projeto ou um administrador pode fazer isso. Por enquanto, em cada projeto só há você, e você é o proprietário dele.
+
+<Steps>
+
+1. No log, clique em **⋯** na linha, ou ao lado da nota, e escolha **Apagar…**.
+
+2. Na janela, escreva em **Motivo** o que era: uma senha, um token.
+
+3. Clique em **Apagar**.
+
+</Steps>
+
+As palavras somem para sempre do log, do feed do terminal, da busca e do histórico da linha de entrada. No caso de um comando, o que ele imprimiu também some, assim como o mesmo comando em qualquer outro lugar do projeto em que tenha rodado. No lugar das palavras apagadas, o log guarda quem as apagou, quando e por quê: **Apagado por você · 09:23 · uma senha**. As cópias noturnas do banco de dados ainda as guardam até essas cópias serem excluídas, em no máximo duas semanas.
+
+## Por quanto tempo fica guardado
+
+As linhas ficam guardadas por um ano, e as notas abaixo de uma linha saem junto com ela. O que os comandos imprimiram fica guardado por 30 dias: depois disso, uma linha sua mostra **saída não guardada** quando você passa o mouse sobre ela. Depois que uma máquina é [removida](../../machines/remove/), o log dela não abre mais.
+
+O log acompanha a máquina. Se ela for [movida para outro projeto](../projects/#mover-uma-máquina), leva o log inteiro, inclusive as linhas de antes da mudança, e quem estiver nesse projeto pode lê-las. Excluir o projeto de onde ela saiu não apaga nada do log.

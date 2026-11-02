@@ -1,0 +1,48 @@
+---
+title: Ricerca, ⌘K
+description: Un solo campo per i comandi che hai eseguito e il loro output, i log delle tue macchine, le note, i terminali, le macchine, i progetti e le azioni.
+---
+
+La ricerca trova tutto in un solo campo: i comandi di tutti i tuoi terminali e il loro output, i log delle tue macchine, le note, i terminali, le macchine, i progetti e le azioni.
+
+## Aprirla
+
+Premi **⌘K** su un Mac o **Ctrl+Shift+K** altrove, oppure fai clic su **Cerca** a destra delle schede. Ctrl senza Shift resta al terminale. **Esc** chiude la ricerca.
+
+Prima che tu scriva qualcosa, la ricerca mostra cosa avevi aperto per ultimo, i comandi che esegui più spesso sulla macchina del terminale in primo piano e qualche azione.
+
+## Cosa trova
+
+- **Comandi** – tutti i comandi di tutti i tuoi terminali, anche di quelli terminati, finché il progetto li conserva: 30 giorni. Un comando eseguito più volte sulla stessa macchina è una sola riga che dice quante volte, **3 esecuzioni**.
+- **Output** – quello che quei comandi hanno stampato. Di un output lungo, la ricerca legge l'inizio e la fine.
+- **Log** – i log delle macchine dei tuoi progetti: i comandi eseguiti su di esse tramite tTerm, e le note sotto i comandi, fino a un anno indietro.
+- **Note** – le note dei tuoi progetti, titoli e testo.
+- **Terminali**, **Macchine** e **Progetti**, come li elenca la barra laterale, e anche un terminale in esecuzione senza scheda.
+- **Azioni** – cose da fare, come **Nuovo progetto**, **Impostazioni** o cambiare tema.
+
+Ogni parola che scrivi deve esserci, in qualsiasi ordine, maiuscola o minuscola, e una parola può far parte di una più lunga: `cert` trova `certbot`.
+
+## Limitare la ricerca a un tipo
+
+I pulsanti sopra l'elenco limitano la ricerca a un tipo: **Tutti**, **Comandi**, **Output**, **Log**, **Note**, **Terminali**, **Macchine**, **Progetti** e **Azioni**. **Tab** passa al successivo. Lo stesso fa un prefisso all'inizio: `c:` comandi, `o:` output, `l:` log, `n:` note, `t:` terminali, `m:` macchine, `p:` progetti, `>` azioni. Per esempio:
+
+- `c: nginx` – i comandi che contengono *nginx*;
+- `o: timed out` – i comandi il cui output contiene sia *timed* sia *out*;
+- `> theme` – **Passa al tema scuro**, o a quello chiaro.
+
+In **Tutti** ogni tipo mostra i primi tre risultati, e **12 risultati** accanto al titolo di un tipo mostra il resto.
+
+## Aprire ciò che hai trovato
+
+**↑** e **↓** si spostano nell'elenco. Accanto si vede cos'è la riga scelta: per un comando, la macchina, la cartella e il branch, com'è finito, quando, il terminale e le prime righe del suo output.
+
+**Enter**, o un clic, la apre:
+
+- un comando o una riga di output – nel suo terminale, sul suo [blocco](../blocks/), segnato come **Trovato**, con le parole evidenziate. Il blocco compare anche se era compresso o nascosto, e un terminale in modalità Classica lo mostra in **Riga**;
+- una riga di un log – il [log della macchina](../log/), su quella riga;
+- una nota – nel punto in cui ci sono le parole;
+- un terminale – la sua scheda; una macchina – un nuovo terminale su di essa; un progetto – la sua pagina. Un'azione viene eseguita.
+
+**⌘Enter** su un Mac, **Ctrl+Enter** altrove, mette un comando nella riga di input del terminale in primo piano senza eseguirlo, anche se quel terminale è su un'altra macchina. Sotto la riga compare **Dalla ricerca, non ancora eseguito**: **Enter** lo esegue lì, **Esc** svuota la riga. In modalità classica il comando aspetta allo stesso modo al prompt della shell. Se nel terminale in primo piano è in esecuzione un comando, la sua riga non è libera: la ricerca te lo dice, e riprovi quando il comando è finito. Se non c'è un terminale in primo piano, il comando va in un tuo terminale sulla sua macchina, o in un nuovo terminale lì.
+
+I pulsanti sotto l'anteprima, **Apri nel suo terminale** e **Inserisci nella riga**, fanno quello che fanno **Enter** e **⌘Enter**.

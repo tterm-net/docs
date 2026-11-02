@@ -1,0 +1,46 @@
+---
+title: Komputer z systemem macOS lub Linux
+description: Agent dla komputera – instalacja jednym poleceniem, połączenie od wewnątrz, samodzielne uaktualnienia, usuwanie jednym poleceniem.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Komputer potrzebuje tylko niewielkiego agenta. Agent sam łączy się z chmurą i utrzymuje to jedno połączenie, więc porty przychodzące nie są potrzebne: komputer działa także za NAT-em.
+
+:::tip[Na Macu prościej z aplikacją]
+[Terminal lokalny na Maca](../../local/mac/) utrzymuje połączenie z chmurą, dopóki działa, i taki Mac nie potrzebuje agenta.
+:::
+
+## Podłączanie
+
+W tTerm Web otwórz **Dodaj maszynę** i wybierz **Komputer**. Uruchom polecenie w terminalu na tamtym komputerze, na swoim koncie, a nie przez sudo:
+
+```sh title="Na komputerze"
+curl -fsSL https://connect.tterm.net/c/<token> | sh
+```
+
+Komputer pojawi się w projekcie kilka sekund po zakończeniu polecenia. Polecenie działa jednorazowo przez najbliższe 10 minut.
+
+## Co robi polecenie
+
+- Umieszcza agenta w `~/.tterm-web`: jeden plik dla tego systemu z naszych wydań, przed uruchomieniem porównywany z sumą kontrolną ze skryptu polecenia.
+- Tworzy dla tego komputera własny klucz i przechowuje go na nim, z dostępem tylko dla ciebie. Token w poleceniu pozwala tylko dołączyć, i to jednorazowo.
+- Uruchamia agenta przy każdym logowaniu. Agent działa na twoim koncie, nigdy jako root, i nie otwiera portów.
+- Agent sam się uaktualnia, tylko do wersji podpisanych podczas kompilacji naszych wydań i tylko wtedy, gdy na komputerze nie jest otwarty żaden terminal.
+
+<Tabs syncKey="os">
+	<TabItem label="macOS">
+		Agenta uruchamia launchd. Za pierwszym razem macOS może zapytać, czy `tterm-agent` ma mieć dostęp do twoich folderów „Biurko” i „Dokumenty”: zezwól, jeśli chcesz pracować z nimi z terminala.
+	</TabItem>
+	<TabItem label="Linux">
+		Agenta uruchamia systemd, na koncie twojego użytkownika. Tak samo podłącza się serwer bez SSH z zewnątrz: agent sam nawiązuje połączenie.
+	</TabItem>
+</Tabs>
+
+## Usuwanie
+
+Usuń komputer na stronie projektu: agent dowie się o tym i się zatrzyma ([więcej](../remove/#komputer)). Aby usunąć z komputera samego agenta, uruchom:
+
+```sh title="Na komputerze"
+~/.tterm-web/uninstall.sh
+```

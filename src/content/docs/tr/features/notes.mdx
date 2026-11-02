@@ -1,0 +1,63 @@
+---
+title: Notlar
+description: Projenin klasörlerindeki notlar – yazarken Markdown, kimin işaretlediğini gösteren kontrol listeleri, Kopyala düğmeli kod ve iki cihazda yazılanları birleştiren kaydetme.
+---
+
+Terminaller projenin makinelerinde nasıl duruyorsa notlar da projenin klasörlerinde öyle durur: runbook'lar, erişim bilgileri, kontrol listeleri, ilgili oldukları makinelerin yanında. Not bir başlık ve bloklardan oluşur, olduğu yerde yazılır ve kendiliğinden kaydedilir.
+
+## Klasörler
+
+Kenar çubuğunda her projenin makinelerinin altında **Notlar** bulunur. **Notlar** başlığının yanındaki **+** bir klasör oluşturur: klasöre bir ad ver ve **Klasör oluştur** düğmesine bas. Bir klasörün yanındaki **+** o klasörde, kendi sekmesinde yeni bir not başlatır; klasörün kendisine tıklamak ise onu yalnızca daraltır ya da genişletir. Proje sayfasında aynı işler için düğmeler var: **Yeni klasör** ve her klasörde **Yeni not**.
+
+Proje sayfasında bir klasörün yanındaki **⋯** menüsünde **Klasörü yeniden adlandır** ve **Klasörü sil** bulunur. Klasör içindeki notlarla birlikte silinir: pencere bu notları listeler, bu yüzden saklamak istediğin notu önce başka bir klasöre taşı.
+
+Şimdilik her projede yalnızca sen varsın; bu yüzden notlarını yalnızca sen görürsün, oradaki tüm notları ve klasörleri de sen yazar, taşır ve silersin. Notun başlığının altında da bu yazar: **yalnızca sen görüyorsun**.
+
+## Yazma
+
+Yeni bir not açıldığında imleç başlıktadır; **Enter** metne geçer. Metin bloklardan oluşur: metin, başlıklar, liste öğeleri, kontrol listesi öğeleri, kod ve ayırıcılar. **Enter** yeni bir blok başlatır, boş bir öğede ise listeyi bitirir.
+
+Bir bloğun başına yazılan Markdown, bloğu anlamına gelen şeye dönüştürür:
+
+| Bloğun başına şunu yaz | Şuna dönüşür |
+| --- | --- |
+| `#` ve bir boşluk | başlık |
+| `-` ve bir boşluk ya da `1.` ve bir boşluk | liste öğesi |
+| `- [ ]` ve bir boşluk | kontrol listesi öğesi, `- [x]` ile işaretlenmiş bir öğe |
+| `` ``` `` | kod |
+| `---` | ayırıcı |
+
+Bloğun başka bir yerinde Markdown yazıldığı gibi kalır. Boş bir satırda **/** aynı seçenekleri bir liste halinde sunar: **Kontrol listesi**, **Başlık**, **Liste**, **Kod**, **Ayırıcı**, **Metin**. Ardından yazılan harfler listeyi daraltır, ok tuşları listede gezinir, **Enter** seçer. Birkaç satırlık yapıştırılan metin bloklara dönüşür, içindeki Markdown da aynı şekilde okunur.
+
+## Kod ve kontrol listeleri
+
+Kod bloğu satırlarını korur: içinde **Enter** yeni bir satır başlatır, **Tab** iki boşluk ekler, Mac'te **⌘Enter** (diğer sistemlerde **Ctrl+Enter**) ise bloktan çıkıp altta yeni bir blok açar. İçine yapıştırılan metin olduğu gibi kalır. Köşesindeki **Kopyala** kodu kopyalar ve bir an için **Kopyalandı** yazar.
+
+Kontrol listesi öğesini kutusundan işaretlersin. İşaret hemen kaydedilir, not da öğenin yanında onu kimin ve ne zaman işaretlediğini gösterir: bugün için **Sen · 10:02**, daha önceki bir gün için tarih. Kenar çubuğu kontrol listesinin ne kadar ilerlediğini gösterir, 2/5; proje sayfasında ise **2/5 tamamlandı** yazar.
+
+## Kaydetme
+
+Not, yazmayı bıraktıktan kısa bir süre sonra kendiliğinden kaydedilir. Sekmelerin sağında sayfa kaydetmenin durumunu gösterir: **Kaydediliyor…**, **Kaydedildi** ya da **Kaydedilmedi: bağlantı yok**.
+
+Aynı notu iki cihazda aynı anda yazarsan ikisinin de değişiklikleri korunur: her kayıt, o arada kaydedilenlerle blok blok birleştirilir. Not, yalnızca aynı blok ya da başlık iki tarafta da değiştiyse orada neyin kalacağını sorar: **Benimkini koru** ya da **Diğer sürümü koru**; geri kalan her şey iki taraftan da korunur. Birleştirme için tTerm her notun son 50 sürümünü saklar.
+
+Bağlantı yokken yazdıkların kaydedilene kadar bu tarayıcıda kalır, sayfa da denemeye devam eder. Sekmeyi kapatsan ya da sayfayı yenilesen bile notu yeniden açtığında yazdıkların geri gelir: **Bu notta yazılıp kaydedilmeyenler geri geldi.**
+
+:::caution[Çıkış yapınca unutulur]
+**Çıkış yap** dedikten sonra bu tarayıcı, notlarda yazılıp henüz kaydedilmemiş olanları unutur.
+:::
+
+## Taşıma, kopyalama ya da silme
+
+Geri kalanlar, proje sayfasında ya da notun sekmesinin üstünde, notun yanındaki **⋯** menüsündedir:
+
+- **Klasör** – projenin klasörleri, notun kendi klasörü işaretli: başka birine tıklamak notu oraya taşır. Projede ikinci bir klasör olduğunda görünür.
+- **Başka bir projeye taşı…** – pencere diğer projelerini klasörleriyle birlikte listeler: bir klasör seç ve örneğin **Runbook'lar klasörüne taşı** düğmesine bas. Klasörü olmayan bir proje, notun kendi klasörüyle aynı adı taşıyan yeni bir klasör önerir. Notun başlığı, metni ve geçmişi onunla birlikte gider; işaretler de kimin koyduğu bilgisiyle birlikte gider.
+- **Markdown olarak kopyala** – notun tamamı, başlığı en üst başlık olarak.
+- **Notu sil** – önce sorar. Silinen not bir daha geri gelmez.
+
+Arama notları da bulur: aramaya `n:` ile başla, ayrıntılar [Arama](../search/) sayfasında.
+
+## Loglar
+
+Kenar çubuğunda **Loglar**, projenin klasörleri arasında **tTerm yazar** işaretiyle ilk sırada gelir. Projenin her makinesi için bir log içerir: o makinede tTerm üzerinden çalıştırılan her komut, gün gün, komutların altına eklenen notlarla birlikte. Logu tTerm yazar ve kimse değiştiremez. Satırlar bir yıl, komutların çıktısı 30 gün saklanır. Ayrıntılar [Makinenin logu](../log/) sayfasında.

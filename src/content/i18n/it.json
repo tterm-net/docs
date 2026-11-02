@@ -1,0 +1,14 @@
+{
+	"pagefind.clear_search": "Cancella",
+	"pagefind.load_more": "Mostra altri risultati",
+	"pagefind.search_label": "Cerca nella documentazione",
+	"pagefind.filters_label": "Filtri",
+	"pagefind.zero_results": "Nessun risultato per [SEARCH_TERM]",
+	"pagefind.many_results": "[COUNT] risultati per [SEARCH_TERM]",
+	"pagefind.one_result": "[COUNT] risultato per [SEARCH_TERM]",
+	"pagefind.alt_search": "Nessun risultato per [SEARCH_TERM]. Ecco i risultati per [DIFFERENT_TERM]",
+	"pagefind.search_suggestion": "Nessun risultato per [SEARCH_TERM]. Prova una di queste ricerche:",
+	"pagefind.searching": "Ricerca di [SEARCH_TERM]…",
+	"expressiveCode.copyButtonTooltip": "Copia",
+	"expressiveCode.copyButtonCopied": "Copiato!"
+}

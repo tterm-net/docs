@@ -1,0 +1,71 @@
+---
+title: Quitar una máquina
+description: Quién puede quitar una máquina y dónde, qué pasa entonces con sus terminales y su historial, y cómo salen de la máquina el acceso de tTerm y su agente.
+---
+
+Quitar una máquina la saca de tTerm Web, junto con el acceso de tTerm a ella. Pueden hacerlo el propietario y los administradores de su proyecto.
+
+## Cómo quitarla
+
+Puedes hacerlo en dos lugares:
+
+- En la página **Máquinas**, que se abre con el logotipo de tTerm en la parte superior de la barra lateral, presiona **Quitar** en la tarjeta de la máquina.
+- En la página del proyecto, que se abre con el nombre del proyecto en la barra lateral, presiona **⋯** junto a la máquina y elige **Quitar máquina**.
+
+Antes, tTerm pregunta y explica lo que va a pasar: **¿Quitar web-01?** El botón rojo **Quitar web-01** la quita; **Cancelar** deja todo como estaba.
+
+## Qué pasa después
+
+- Las terminales de la máquina finalizan, y cada una dice por qué: **Esta terminal finalizó**, **web-01 se quitó de tTerm Web.**
+- La máquina desaparece de la barra lateral, de la página **Máquinas** y de la página del proyecto, y su bitácora, de la carpeta **Bitácoras** del proyecto.
+- Los comandos que se escribieron allí se quedan en tu historial: la [búsqueda](../../features/search/) los sigue encontrando e indica que la máquina se quitó. El registro del proyecto deja constancia de ello.
+
+## Un servidor
+
+La nube deja de iniciar sesión en el servidor y quita su propia línea de `~tterm/.ssh/authorized_keys` directamente en el servidor. Después, la página dice: **Se quitó web-01 de tTerm Web y se retiró el acceso de tTerm Web al servidor.**
+
+Si el servidor no responde, la línea se queda allí, aunque la nube ya no inicie sesión en él. Entonces una ventana muestra el comando que quita la línea. Cópialo antes de cerrar la ventana y ejecútalo en el servidor:
+
+```sh title="En el servidor"
+sudo sed -i '/^cert-authority,principals="m-…" /d' ~tterm/.ssh/authorized_keys
+```
+
+El comando de la ventana señala la línea propia de este servidor, con su `principals="m-…"`, y deja intactas todas las demás líneas del archivo. El mismo servidor en otro proyecto es allí una máquina aparte, con su propia línea, y sigue funcionando.
+
+El usuario `tterm` y su regla de sudo, `/etc/sudoers.d/tterm`, se quedan después de quitar el servidor: el bot de tTerm puede usarlos. El comando que también los elimina está al principio del script de instalación y en la ventana de un servidor que no respondió:
+
+```sh title="En el servidor"
+sudo userdel -r tterm && sudo rm -f /etc/sudoers.d/tterm
+```
+
+Con ellos se va el acceso del bot de tTerm, y también el de este servidor en tus otros proyectos.
+
+### Un servidor movido desde una Mac
+
+Un servidor movido desde [tTerm para Mac](../../local/move-to-cloud/) con **Mi clave** o **A través de esta Mac** no tiene nada de tTerm, así que no hay nada que quitar. Con **Pase de tTerm**, la línea de tTerm está en `~/.ssh/authorized_keys` del usuario con el que la Mac iniciaba sesión, y la nube la quita de la misma manera. Si un servidor así no responde, quita tú la línea allí: empieza por `cert-authority,principals="m-…"`.
+
+## Una computadora
+
+Su agente se entera al instante de que la computadora se quitó, olvida su clave y se detiene. Esa clave ya no vuelve a funcionar, así que una clave filtrada deja de servir en cuanto se quita su computadora. Una computadora que estaba en reposo o desconectada se entera la próxima vez que su agente se conecta.
+
+Para volver a conectar la computadora: **Añadir una máquina** y luego **Computadora**. El instalador le crea una clave nueva, y la computadora vuelve como una máquina nueva.
+
+El agente en sí se queda en la computadora hasta que lo desinstales:
+
+```sh title="En la computadora"
+~/.tterm-web/uninstall.sh
+```
+
+El script elimina el inicio automático del agente y todo `~/.tterm-web`, incluida la clave de la computadora, además de los scripts de shell que las terminales de tTerm ponen en `~/.tterm`. El agente del bot de tTerm, que también vive en `~/.tterm`, se queda. Por sí solo, el script no quita la computadora de tTerm Web: sigue en la lista hasta que la quites.
+
+## Una Mac con tTerm para Mac
+
+Con la sesión iniciada, es [tTerm para Mac](../../local/mac/) quien mantiene la conexión de la Mac con tTerm Web, en lugar del agente. En **Configuración** → **Esta computadora** tiene un interruptor para eso: **Acceso desde tTerm Web y tu teléfono**. Si está activado, tTerm Web y tu teléfono abren terminales en esta Mac mientras tTerm se ejecuta en ella. Si está desactivado, la Mac aparece desconectada en tTerm Web, y en la aplicación todo funciona como antes; las terminales que se abrieron en ella desde tTerm Web finalizan, pero tTerm pregunta antes.
+
+Una Mac se quita en tTerm Web como cualquier computadora. Entonces **Esta computadora** dice: **Esta Mac se quitó de tTerm Web, así que no se puede abrir desde allí. Activa esta opción para volver a añadirla.**
+
+La aplicación también es uno de tus dispositivos: **Olvidar**, en **Configuración** → **Dispositivos**, cierra su sesión, y entonces solo funciona con esta Mac. Consulta [Dispositivos e inicio de sesión](../../account/devices/).
+
+:::note[Finalizar una terminal no quita la máquina]
+Finalizar una terminal, desde la barra lateral o desde la búsqueda, termina solo ese shell, y tTerm pregunta antes. La máquina se queda, y también sus otras terminales.
+:::

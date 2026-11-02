@@ -1,0 +1,27 @@
+---
+title: Documentación de tTerm
+description: Cómo conectar tus servidores y computadoras, trabajar en las terminales y mantener el acceso bajo control.
+template: splash
+hero:
+  title: Documentación de tTerm
+  tagline: Cómo conectar tus servidores y computadoras, trabajar en las terminales y mantener el acceso bajo control.
+  actions:
+    - text: Inicio rápido
+      link: start/quick-start/
+      icon: right-arrow
+    - text: Abrir tTerm Web
+      link: https://app.tterm.net
+      icon: external
+      variant: minimal
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<CardGrid>
+	<LinkCard title="Primeros pasos" description="Qué es tTerm y tu primer comando en cinco minutos." href="start/what-is-tterm/" />
+	<LinkCard title="Máquinas" description="Un servidor por SSH con un solo comando, una computadora a través de un pequeño agente." href="machines/servers/" />
+	<LinkCard title="Funciones" description="Los bloques y la línea de comandos, la búsqueda con ⌘K, las notas, la bitácora de una máquina, los proyectos." href="features/blocks/" />
+	<LinkCard title="Terminal local" description="La versión para Mac: la instalación, el primer inicio, cómo mover servidores a la nube. Windows y Linux están en desarrollo." href="local/mac/" />
+	<LinkCard title="Seguridad" description="Certificados de dos minutos, la firma por separado, tus claves en una bóveda que solo abren tus dispositivos." href="security/access/" />
+	<LinkCard title="Cuenta" description="Tu plan y sus límites, los dispositivos y el inicio de sesión." href="account/plan/" />
+</CardGrid>

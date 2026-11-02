@@ -1,0 +1,42 @@
+---
+title: Como funciona o acesso
+description: Certificados de dois minutos, chaves da CA num processo separado, conexões só de dentro para fora. Como a nuvem entra nas suas máquinas e como revogar o acesso dela.
+---
+
+O acesso às suas máquinas é fácil de conceder e igualmente fácil de revogar. Não precisamos das suas chaves e não abrimos portas.
+
+## Um certificado de dois minutos
+
+Para cada conexão, assinamos um certificado SSH próprio com o seu nome dentro, válido só para este servidor. Por isso, o log do servidor mostra cada login com o nome de quem entrou:
+
+```text title="/var/log/auth.log"
+Accepted publickey for tterm from 203.0.113.24 port 41522 ssh2: ED25519-CERT SHA256:… ID Anna via tTerm Web (…) to web-01 (serial 1042) CA ED25519 SHA256:…
+```
+
+## Assinatura isolada
+
+As chaves da CA ficam num processo separado, sem rede. O núcleo não consegue lê-las, só pedir uma assinatura, e cada assinatura fica registrada num log.
+
+## sshd_config intocado
+
+A confiança é uma linha no `authorized_keys` de um único usuário, o `tterm`. Nada é reiniciado, então você não corre o risco de ficar trancado do lado de fora.
+
+## Servidores migrados de um Mac
+
+Um servidor migrado do tTerm para Mac pode abrir de mais duas maneiras. Com **Minha chave**, você entra com a sua própria chave, do seu [cofre](../keys/): um dispositivo seu em que o cofre está aberto assina o login, e nada é adicionado ao servidor. Com **Por este Mac**, o seu Mac executa o `ssh` até o servidor, e a nuvem nem precisa alcançá-lo. A terceira maneira, **Passe do tTerm**, é o mesmo certificado de dois minutos, com a linha do tTerm no `authorized_keys` do seu próprio usuário, em vez do `tterm`. Mais em [Migrar para a nuvem](../../local/move-to-cloud/#três-jeitos-de-entrar).
+
+## Conexões só de dentro para fora
+
+O agente no computador inicia a conexão sozinho, sem precisar de portas de entrada. Um comando o remove.
+
+## Sem intermediários
+
+A página do tTerm Web e os terminais vão direto para o nosso servidor na UE. A Cloudflare é só o nosso DNS e nunca vê os seus comandos.
+
+## Código aberto
+
+O código da nuvem e do agente é aberto, sob a AGPL v3: [github.com/tterm-net](https://github.com/tterm-net). O script de instalação é curto: leia-o antes de executar.
+
+## Como revogar o acesso
+
+[Remova um servidor](../../machines/remove/), e a nuvem retira o acesso dela no próprio servidor. Se o servidor não responder, aparece um comando que faz isso lá. Um comando tira o agente de um computador: `~/.tterm-web/uninstall.sh`. Uma chave sua sai do cofre com **Remover**, em **Configurações** → **Chaves**.

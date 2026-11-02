@@ -1,0 +1,71 @@
+---
+title: Eine Maschine entfernen
+description: Wer eine Maschine entfernen kann und wo, was dann mit ihren Terminals und ihrem Verlauf passiert und wie der Zugriff von tTerm und sein Agent von der Maschine verschwinden.
+---
+
+Wenn du eine Maschine entfernst, verschwindet sie aus tTerm Web, und mit ihr der Zugriff von tTerm auf sie. Das dürfen der Eigentümer und die Admins ihres Projekts.
+
+## Entfernen
+
+Das geht an zwei Stellen:
+
+- Auf der Seite **Maschinen**, die das tTerm-Logo oben in der Seitenleiste öffnet: Drück auf der Karte der Maschine auf **Entfernen**.
+- Auf der Seite des Projekts, die der Name des Projekts in der Seitenleiste öffnet: Drück neben der Maschine auf **⋯** und wähl **Maschine entfernen**.
+
+tTerm fragt vorher nach und sagt, was passieren wird: **web-01 entfernen?** Der rote Button **web-01 entfernen** entfernt die Maschine, **Abbrechen** lässt alles, wie es war.
+
+## Was dann passiert
+
+- Die Terminals der Maschine werden beendet, und jedes sagt, warum: **Dieses Terminal wurde beendet**, **web-01 wurde aus tTerm Web entfernt.**
+- Die Maschine verschwindet aus der Seitenleiste, von der Seite **Maschinen** und von der Seite des Projekts, und ihr Log aus den **Logs** des Projekts.
+- Die dort eingegebenen Befehle bleiben in deinem Verlauf: Die [Suche](../../features/search/) findet sie weiterhin und zeigt an, dass die Maschine entfernt wurde. Im Protokoll des Projekts bleibt ein Eintrag über das Entfernen.
+
+## Ein Server
+
+Die Cloud meldet sich nicht mehr am Server an und entfernt ihre eigene Zeile aus `~tterm/.ssh/authorized_keys`, auf dem Server selbst. Die Seite meldet dann: **web-01 wurde aus tTerm Web entfernt, und der Zugriff von tTerm Web auf den Server wurde entzogen.**
+
+Antwortet der Server nicht, bleibt die Zeile dort, auch wenn sich die Cloud nicht mehr anmeldet. Ein Fenster zeigt dann den Befehl, der die Zeile entfernt. Kopier ihn, bevor du das Fenster schließt, und führ ihn auf dem Server aus:
+
+```sh title="Auf dem Server"
+sudo sed -i '/^cert-authority,principals="m-…" /d' ~tterm/.ssh/authorized_keys
+```
+
+Der Befehl im Fenster nennt genau die Zeile dieses Servers, mit ihrem `principals="m-…"`, und lässt alle anderen Zeilen der Datei, wie sie sind. Derselbe Server in einem anderen Projekt ist dort eine eigene Maschine mit einer eigenen Zeile und funktioniert weiter.
+
+Der Benutzer `tterm` und seine sudo-Regel, `/etc/sudoers.d/tterm`, bleiben nach dem Entfernen: Der tTerm-Bot könnte sie nutzen. Der Befehl, der auch sie entfernt, steht ganz oben im Installationsskript und im Fenster eines Servers, der nicht geantwortet hat:
+
+```sh title="Auf dem Server"
+sudo userdel -r tterm && sudo rm -f /etc/sudoers.d/tterm
+```
+
+Mit ihnen endet auch der Zugriff des tTerm-Bots und der Zugriff auf diesen Server in deinen anderen Projekten.
+
+### Ein vom Mac umgezogener Server
+
+Auf einem Server, der aus [tTerm für Mac](../../local/move-to-cloud/) mit **Mein Schlüssel** oder **Über diesen Mac** umgezogen ist, liegt nichts von tTerm, also wird auch nichts entfernt. Bei **tTerm-Zugang** steht die Zeile von tTerm in `~/.ssh/authorized_keys` des Benutzers, als der sich der Mac angemeldet hat, und die Cloud entfernt sie genauso. Antwortet so ein Server nicht, entfern die Zeile dort selbst: Sie beginnt mit `cert-authority,principals="m-…"`.
+
+## Ein Computer
+
+Sein Agent erfährt sofort, dass der Computer entfernt wurde, vergisst seinen Schlüssel und stoppt. Dieser Schlüssel funktioniert nie wieder: Ein Schlüssel, der in fremde Hände geraten ist, ist wertlos, sobald sein Computer entfernt ist. Ein Computer, der im Ruhezustand oder offline war, erfährt davon, sobald sich sein Agent das nächste Mal verbindet.
+
+Um den Computer wieder zu verbinden: **Maschine hinzufügen**, dann **Computer**. Der Installer erzeugt einen neuen Schlüssel für ihn, und er kommt als neue Maschine zurück.
+
+Der Agent selbst bleibt auf dem Computer, bis du ihn entfernst:
+
+```sh title="Auf dem Computer"
+~/.tterm-web/uninstall.sh
+```
+
+Das Skript entfernt den Autostart des Agenten und das ganze Verzeichnis `~/.tterm-web` samt dem Schlüssel des Computers, dazu die Shell-Skripte, die die Terminals von tTerm in `~/.tterm` abgelegt haben. Der Agent des tTerm-Bots, der ebenfalls in `~/.tterm` liegt, bleibt. Das Skript allein entfernt den Computer nicht aus tTerm Web: Dort bleibt er in der Liste, bis du ihn entfernst.
+
+## Ein Mac mit tTerm für Mac
+
+Wenn du angemeldet bist, hält [tTerm für Mac](../../local/mac/) die Verbindung des Macs zu tTerm Web selbst, anstelle des Agenten. Unter **Einstellungen** → **Dieser Computer** gibt es dafür einen Schalter, **Für tTerm Web und dein Handy öffnen**. Ist er an, öffnen tTerm Web und dein Handy Terminals auf diesem Mac, solange tTerm dort läuft. Ist er aus, ist der Mac in tTerm Web offline, und in der App funktioniert alles wie bisher; Terminals, die aus tTerm Web auf ihm geöffnet wurden, werden nach einer Rückfrage beendet.
+
+Einen Mac entfernst du in tTerm Web wie jeden anderen Computer. Unter **Dieser Computer** steht dann: **Dieser Mac wurde aus tTerm Web entfernt, deshalb ist er nicht für tTerm Web geöffnet. Schalte die Option oben ein, um ihn wieder hinzuzufügen.**
+
+Die App ist außerdem eines deiner Geräte: **Vergessen** unter **Einstellungen** → **Geräte** meldet sie ab, und sie arbeitet dann nur noch mit diesem Mac. Siehe [Geräte und Anmeldung](../../account/devices/).
+
+:::note[Ein Terminal zu beenden heißt nicht, die Maschine zu entfernen]
+Wenn du ein Terminal beendest, über die Seitenleiste oder die Suche, endet nach einer Rückfrage genau diese eine Shell. Die Maschine bleibt, und ihre anderen Terminals bleiben auch.
+:::

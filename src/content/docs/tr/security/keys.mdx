@@ -1,0 +1,77 @@
+---
+title: SSH anahtarlarının kasası
+description: tTerm'e ulaşmadan önce cihazlarında şifrelenen kendi SSH anahtarların – kasa nasıl oluşturulur, başka bir tarayıcıda nasıl açılır ve ne zaman yeniden kilitlenir.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Kasa, onlarla bağlandığın sunucular için kendi SSH anahtarlarını saklar. Anahtar, cihazından çıkmadan önce orada şifrelenir; kasayı yalnızca senin cihazların, kilitlerini açtığın yöntemle açabilir. tTerm şifreli anahtarları, her anahtarın genel kısmı ve parmak iziyle birlikte saklar: kasayı açamaz, bir anahtarı okuyamaz. Kasa **Ayarlar** → **Anahtarlar** bölümündedir.
+
+## Sunucu anahtarınla nasıl açılır
+
+Bir sunucuyu [Mac için tTerm](../../local/mac/) uygulamasından **Anahtarım** ile ya da `ssh` komutundan sonraki şeritte **Anahtarımı kaydet** ile taşıdığında sunucu anahtarınla açılır: [Buluta taşı](../../local/move-to-cloud/) sayfasına bak. Sunucuda bir terminal açtığında tTerm, kasanın açık olduğu bir cihazından (bir tarayıcı ya da Mac için tTerm) girişi imzalamasını ister. Cihaz o anahtarla yalnızca SSH girişi imzalar, başka hiçbir şey imzalamaz; anahtar da cihazdan hiç çıkmaz. tTerm imzayı kullanmadan önce anahtarın genel kısmıyla doğrular.
+
+## Kasanı oluşturma
+
+<Tabs>
+	<TabItem label="Tarayıcıda">
+
+**Ayarlar** → **Anahtarlar** bölümünde **Dosyadan anahtar ekle** düğmesine bas ve özel anahtarını, yani `.pub` uzantısı olmayan dosyayı seç. Anahtarın parolası varsa parolayı yaz ve **Anahtarı aç** düğmesine bas: parola anahtarı bu tarayıcıda açar ve hiçbir yere gitmez. Anahtara bir ad ver ve **İleri** düğmesine bas.
+
+**Anahtarını kasana kaydet** penceresinde Mac'te **Kasamı Touch ID ile oluştur**, Windows'ta **Kasamı Windows Hello ile oluştur**, diğer cihazlarda **Kasamı geçiş anahtarıyla oluştur** düğmesine bas. Kasayı geçiş anahtarıyla saklayamayan bir tarayıcıda **Kasamı oluştur** görünür: orada kasa, her seferinde tek bir oturum için, kurtarma koduyla ya da Mac'inin onayıyla açılır.
+
+	</TabItem>
+	<TabItem label="Mac için tTerm'de">
+
+Kasa, ilk kez bir anahtar kaydettiğinde oluşturulur: Buluta taşı özelliğiyle ya da `ssh` komutundan sonraki şeritte **Anahtarımı kaydet** ile. **Anahtarını kasana kaydet** penceresinde **Kasamı Touch ID ile oluştur** düğmesine bas ve Touch ID ya da Mac'inin parolasıyla onayla.
+
+	</TabItem>
+</Tabs>
+
+### Kurtarma kodu
+
+Hemen ardından tTerm kurtarma kodunu gösterir: dörderli altı gruba ayrılmış 24 harf ve rakam. Kodu yalnızca bir kez görürsün. **Kopyala** ya da **Dosya olarak kaydet** düğmesine bas ve kodu kasanı açan cihazlardan uzakta, güvenli bir yerde sakla. Bir gün o cihazların hepsini kaybedersen anahtarlarına yeniden ulaşmanın tek yolu bu kod: tTerm onları senin için kurtaramaz. **Bitti** düğmesi, kodu sakladığını işaretledikten sonra çalışır.
+
+## Başka bir tarayıcıda açma
+
+Kasan için yeni olan bir tarayıcı kasayı **Anahtarlarını bu tarayıcıda aç** penceresinde açar. Bu pencere, **Ayarlar** → **Anahtarlar** bölümünde **Aç** düğmesine bastığında ya da anahtarınla açılan bir sunucuyu açtığında çıkar.
+
+- **Mac için tTerm'de onayla.** Kasan Mac için tTerm'de açılıyorsa pencere o Mac'i önerir: **Kasanı burada açmasını iste** düğmesine bas. Mac'te açılan pencere hangi tarayıcının istediğini, ne zaman ve hangi adresten giriş yaptığını gösterir. İki ekranda da aynı altı rakam görünür: yalnızca eşleşiyorlarsa **Touch ID ile izin ver** düğmesine bas. **Ben değilim** o tarayıcının oturumunu sonlandırır; **Ayarlar** → **Cihazlar** da başka neleri kontrol etmen gerektiğini gösterir. Bir istek beş dakika geçerlidir.
+- **Kurtarma kodunu kullan.** Kodu **Kurtarma kodu** alanına yaz ve **Aç** düğmesine bas.
+
+Geçiş anahtarı saklayabilen bir tarayıcıda tTerm ardından burada bir geçiş anahtarı saklansın mı diye sorar; böylece kasa bir dahaki sefere bu bilgisayarın kilidini açtığın yöntemle açılır: **Touch ID ile sakla** (ya da Windows Hello ile, ya da geçiş anahtarıyla) veya senin olmayan bir bilgisayarda **Yalnızca bu sefer**.
+
+Tarayıcıda oluşturulan bir kasa, Mac için tTerm'de bir kez kurtarma koduyla açılır: **Ayarlar** → **Anahtarlar** bölümünde **Kurtarma koduyla aç**. Ondan sonra kasayı orada Touch ID ya da Mac'inin parolası açar.
+
+## Ne zaman yeniden kilitlenir
+
+- **Tarayıcıda** – 8 saat boyunca hiçbir işlem yapılmadığında, tTerm Web'i kapattığında ya da yeniden yüklediğinde, çıkış yaptığında ve **Ayarlar** → **Anahtarlar** bölümünde **Kilitle** düğmesine bastığında.
+- **Mac için tTerm'de** – tTerm çalıştığı sürece, sen **Kilitle** düğmesine basana ya da çıkış yapana kadar açık kalır. Çıkış yapınca Mac kasanın kilidini de unutur: yeniden giriş yaptıktan sonra kasayı bir kez kurtarma kodunla açar.
+
+## Ayarlar → Anahtarlar
+
+Sayfanın üstünde kasanın burada açık olup olmadığı, nasıl açıldığı ve ne zaman yeniden kilitleneceği yazar. Her anahtarın bir satırı vardır: adı, türü ve kısa parmak izi; **Açtığı sunucular** ya da **Henüz onunla açılan bir sunucu yok**; bir Mac'ten ne zaman kaydedildiği ya da bir dosyadan ne zaman eklendiği; en son ne zaman kullanıldığı ya da **henüz kullanılmadı**.
+
+- **Kaldır**, bir onay sorusundan sonra anahtarı kasandan çıkarır ve tTerm şifreli kopyasını siler. Onunla açılan sunucular tTerm'de kalır ama artık açılmaz. Anahtarın kendisi geldiği yerde kalır: Mac'inde ya da kendi dosyasında.
+- **Yeni kurtarma kodu oluştur** yeni bir kodu bir kez gösterir ve elindeki kod artık çalışmaz. Anahtarların ve cihazların olduğu gibi kalır. Touch ID ya da bu tarayıcının geçiş anahtarını ister; kasana ait geçiş anahtarı olmayan bir tarayıcı ise şu anki kodunu sorar. Onu kaybettin mi? Yenisini Mac için tTerm'de oluştur.
+- **Dosyadan anahtar ekle** tarayıcıda bulunur. Mac için tTerm'de anahtarlar Buluta taşı özelliğinden ve `ssh` komutundan sonraki şeritten gelir.
+
+Anahtarların altında sayfa kasanın nerede açıldığını gösterir: kasanın kilidini tutan her Mac ve her tarayıcı ya da **Yalnızca kurtarma kodunla açılır.**
+
+### Sakladığı anahtarlar
+
+Ed25519, ECDSA P-256 ve P-384 ile RSA. DSA ve ECDSA P-521 anahtarlarını saklamaz; bir güvenlik anahtarındaki (`sk-…`) anahtarları da saklamaz, çünkü onlar oradan çıkamaz: bu anahtarların sunucuları [Mac'in üzerinden](../../local/move-to-cloud/#üç-giriş-yolu) açılır.
+
+Tarayıcı, anahtarı OpenSSH biçiminde (parolalı da olabilir) ya da parolasız PEM biçiminde (PKCS#8, PKCS#1) okur; dosya başına tek anahtar. Parolalı bir PEM dosyası önce `ssh-keygen -p -f` komutu o dosyayla çalıştırılarak OpenSSH biçimine dönüştürülür. Mac için tTerm, OpenSSH biçimindeki anahtarları okur.
+
+Bazı tarayıcılar Ed25519 anahtarlarıyla imza atamaz. Böyle bir tarayıcıda **Ayarlar** → **Anahtarlar** bunu söyler; böyle bir anahtarla açılan sunucular ise daha yeni bir tarayıcıda ya da Mac için tTerm'de açılır.
+
+## Kasanı bekleyen sunucu
+
+Cihazlarının hiçbirinde kasa açık değilken, anahtarınla açılan bir sunucudaki terminal gerektiği kadar bekler ve **web-01 anahtarınla açılır** yazar.
+
+- Geçiş anahtarı saklayan bir tarayıcıda **Touch ID ile aç**, **Windows Hello ile aç** ya da **Geçiş anahtarıyla aç** düğmesine bas.
+- Başka bir tarayıcıda, Mac'inin adıyla başlayan **… üzerinde onayla** düğmesine ya da **Kurtarma kodunu kullan** düğmesine bas.
+- Mac için tTerm'de **Touch ID ile aç** düğmesine bas; kasanın kilidi henüz olmayan bir Mac'te ise **Kurtarma kodunu kullan** düğmesine.
+
+Kasa açılınca terminalde **Anahtarınla web-01 sunucusuna giriş yapılıyor…** yazar ve terminal kendiliğinden açılır.

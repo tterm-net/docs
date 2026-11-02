@@ -1,0 +1,68 @@
+---
+title: A machine's log
+description: What was run on a machine through tTerm, line by line – how to read the log, search it a year back, write notes under commands and redact a password.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Every command run on a machine through tTerm becomes a line in that machine's log: who ran it, when, how it ended, how long it took and where. tTerm writes the log, and nobody can change it. Under a command, you can leave a note.
+
+## Open it
+
+In the sidebar, under a project's **Notes**, the first folder is **Logs**, marked **by tTerm**. It holds a log for each machine of the project, with how many commands ran there today: **12 today**. Click a machine, and its log opens in a tab, **web-01 log**.
+
+The log shows a day at a time and opens on today. The arrows, **The day before** and **The day after**, go to the nearest day with lines. **Today** brings you back, and **Pick a day** opens a calendar. While the log shows today, new lines come in as commands end.
+
+At the top of the log, **⋯** has **Copy as Markdown**: the day shown, its lines and the notes under them.
+
+## What a line says
+
+Each command is one line: the time, who ran it, the command, cut short where it is long, and how many notes are under it. On the right are how long it took, the folder, the git branch and the terminal. A command that failed has a cross and its exit code, **exit 1**. Between the commands, the log also says when a terminal was opened and when it ended, and when the machine moved to another project: **You moved this machine from Personal to Client X**.
+
+A click on a line opens it: the command in full, what it printed and the notes under it. Another click closes it. A long output shows its first lines: **Show all 27 lines** shows the rest, and **Copy output** copies it.
+
+Point at a line, or open it, and **⋯** appears on it: **Copy command** and **Copy link to this line**. The link opens the log on that line's day, with the line open.
+
+## Find and filter
+
+In the row under the day, **Find in this log** looks through the whole log, a year back: the commands with every word you type, and the commands with a note that has every word. **/** takes you there. What it finds is grouped by day: a click on a line opens it, and **Open the day** goes to its day. The search stays until you clear it, and **Back to the day** returns to the day you were on.
+
+Beside it are the order and the filters:
+
+- **Oldest first** turns into **Newest first** with a click, and this browser remembers it.
+- **Everyone**: only the lines of one person, who ran the command or wrote a note under it.
+- **Failed**: only the commands that failed.
+- **With notes**: only the commands with notes under them.
+- **All terminals**: one terminal's commands. It is there when the lines come from more than one terminal.
+
+With a filter on, the day says how many commands show, **2 of 8 commands**, and **Clear** turns the filters off. The filters work on what **Find in this log** found, too.
+
+[Search](../search/) looks in the logs of all your machines as well: start with `l:`.
+
+## Notes under a command
+
+Point at a line and press **Add a note**. In the terminal, a command's [block](../blocks/) has the same button, with the tip **Add a note after this command**. Either way, the note shows both under the line in the log and under the block in the terminal. **Enter** saves the note, **Shift+Enter** starts a new line, **Esc** cancels.
+
+A note stays in the log as written: it is not edited or deleted, it is answered. **Reply** under the notes writes the answer. Each note says who wrote it and when, and **⋯** next to it in the log has **Copy text**.
+
+## Redact a password or a token
+
+A password or a token that got into a command or a note can be erased. Only the project's owner or an admin can do it. For now every project has only you in it, and you are its owner.
+
+<Steps>
+
+1. In the log, press **⋯** on the line, or next to the note, and choose **Redact…**.
+
+2. In the window, write under **Why** what it was: a password, a token.
+
+3. Press **Redact**.
+
+</Steps>
+
+The words go for good from the log, the terminal's feed, search and the input line's history. With a command, what it printed goes too, and so does the same command wherever else it ran in the project. In their place, the log keeps who redacted them, when and why: **Redacted by You · 09:23 · a password**. The nightly backups of the database still hold them until those backups are deleted, within two weeks.
+
+## How long it is kept
+
+Lines are kept a year, and the notes under a line leave with it. What the commands printed is kept 30 days: after that, a line of yours says **output not kept** when you point at it. Once a machine is [removed](../../machines/remove/), its log no longer opens.
+
+The log stays with its machine. [Moved to another project](../projects/#move-a-machine), the machine takes all of it along, the lines from before the move too, and whoever is in that project reads them. Deleting the project it left takes none of it away.

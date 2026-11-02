@@ -1,0 +1,59 @@
+---
+title: Buluta taşı
+description: Mac için tTerm'deki Buluta taşı özelliği, ssh ile bağlandığın sunucuları hesabına taşır; böylece onları her tarayıcıdan ve telefonundan açabilirsin.
+---
+
+Mac'inden `ssh` ile bağlandığın sunucular tTerm Web'den, telefonundan ya da giriş yaptığın herhangi bir bilgisayardan da açılabilir. [Mac için tTerm](../mac/) uygulamasındaki **Buluta taşı** onları hesabına taşır; her birini, onun için seçtiğin yolla. **Taşı** düğmesine basana kadar hiçbir şey taşınmaz.
+
+## Nerede
+
+Mac için tTerm'de giriş yap, kenar çubuğunun altındaki hesap menüsünü aç ve **Çıkış yap** seçeneğinin hemen üstündeki **Buluta taşı** seçeneğini seç. **⌘K** ile de bulabilirsin.
+
+## Neleri bulur
+
+**Bu Mac'teki sunucular** şuralardan gelir: `~/.ssh/config`, `known_hosts` ve bu Mac'te tTerm'in terminallerinde çalıştırdığın `ssh` komutları. Her biri için `ssh -G`, ssh bağlanırken hangi adresi, portu, kullanıcıyı, anahtarları ve bastion sunucusunu kullanacaksa onları verir; `ssh root@host` ya da `-p 2222` gibi senin yazdığın kullanıcı ve port, config dosyasındakilerin yerine geçer. Mac bunun için sunuculardan hiçbirine bağlanmaz.
+
+Şunlar dışında tüm sunucular işaretlidir: github.com gibi bir git sunucusu (**Bir git sunucusu: açılacak terminal yok**), **Zaten tTerm'de** olan bir sunucu, yalnızca `known_hosts` dosyasının bildiği bir sunucu ve [şeritte](#ssh-komutundan-sonraki-şerit) **… için bir daha sorma** seçeneğini seçtiğin bir sunucu. Ardından tTerm Web, buluttan her sunucunun SSH portuna ya da bastion sunucusunun portuna erişip erişemediğini kontrol eder.
+
+Sunucuların altında **~/.ssh içindeki anahtarlar** bölümü özel anahtarlarını listeler. Yalnızca işaretlenenler kasana gider. İşaretli bir sunucu **Anahtarım** yoluyla bir anahtarla açılıyorsa o anahtar kendiliğinden işaretlenir.
+
+## Üç giriş yolu
+
+Her sunucu için ayrı bir seçim yapılır:
+
+- **Anahtarım** – anahtar bu Mac'te şifrelenip kasana gider, sunucu olduğu gibi kalır. tTerm Web buluttan giriş yapar, girişi de kasanın açık olduğu cihazlarından biri imzalar: kasayı açtığın bir tarayıcı ya da bu Mac. tTerm Web'in erişebildiği ve `~/.ssh` içindeki anahtarı taşınabilen bir sunucu için. Ayrıntılar [SSH anahtarlarının kasası](../../security/keys/) sayfasında.
+- **tTerm'in giriş izni** – bu Mac sunucuya bir kez giriş yapar ve hangi kullanıcıyla girdiyse onun `~/.ssh/authorized_keys` dosyasına tTerm'in kendi satırını ekler; anahtarın burada kalır. Bundan sonra tTerm, [tek komutla bağlanan bir sunucuda](../../machines/servers/) olduğu gibi o kullanıcı olarak iki dakikalık bir sertifikayla giriş yapar ve kasaya ihtiyaç duymaz. `ssh` komutundan sonraki şeritte bu yolun adı **tTerm'i içeri al**.
+- **Bu Mac üzerinden** – hiçbir şey taşınmaz: Mac açık olduğu sürece tTerm, bu Mac'ten sunucuya `ssh` ile bağlanmasını ister. tTerm Web'in erişemediği, VPN arkasındaki ya da özel bir ağdaki bir sunucu ve anahtarı bu Mac'ten çıkamayan bir sunucu için. Terminali klasik modda çalışır: her tuş doğrudan Mac'teki ssh komutuna gider; blok yoktur, tehlikeli bir komuttan önce soru da sorulmaz.
+
+tTerm her sunucu için kendisi seçer: anahtarı taşınabiliyorsa **Anahtarım**, tTerm Web sunucuya erişemiyorsa ya da anahtarı Mac'ten çıkamıyorsa **Bu Mac üzerinden**, diğer durumlarda **tTerm'in giriş izni**. tTerm Web'in erişemediği bir sunucu için yalnızca **Bu Mac üzerinden** vardır. Bulutun erişebildiği bir bastion sunucusunun arkasındaki sunucu, o bastion sunucusu üzerinden açılır.
+
+:::note[Mac üzerinden açılan sunucular için Mac çevrimiçi olmalı]
+Mac için tTerm'de **Ayarlar** → **Bu bilgisayar** → **tTerm Web'den ve telefonundan erişime izin ver** ayarını aç. tTerm o zaman penceresi kapalıyken menü çubuğunda kalır ve oturum açtığında başlar.
+:::
+
+## Taşı düğmesine bastığında
+
+Düğme işaretli sunucuları sayar: **3 sunucuyu taşı**.
+
+- **Anahtarım** için kasan gerekir. İlk seferde **Kasamı Touch ID ile oluştur** düğmesine bas ve [kurtarma kodunu](../../security/keys/#kurtarma-kodu) sakla. Kilitli bir kasa Touch ID ya da Mac'inin parolasını ister; kasanın kilidi henüz olmayan bir Mac'te ise bir kez kurtarma kodunu ister.
+- Anahtarın parolası varsa tTerm onu bir kez sorar. Parola bu Mac'te kalır.
+- **Anahtarım** seçiliyse bu Mac önce sunucuya yalnızca o anahtarla giriş yapar; anahtar ancak ondan sonra, tüm sunucuları için bir kez kasana gider. **tTerm'in giriş izni** seçiliyse bu Mac satırı eklemek için giriş yapar, tTerm de satırı denetlemek için kendi sertifikasıyla bir kez giriş yapar.
+- **Anahtarım** ve **tTerm'in giriş izni** için sunucunun host anahtarı `known_hosts` dosyasında olmalı: yeni bir sunucuya önce bu Mac'ten bir kez bağlan.
+
+Taşınamayan bir sunucu için hiçbir şey kaydedilmez. Kasaya yalnızca taşınamayan sunucular için giden bir anahtar kasadan yeniden çıkar; tTerm'in böyle bir sunucuya eklediği satır da kaldırılır.
+
+## Taşımadan sonra
+
+Sonuç, artık kaç sunucunun tTerm'de olduğunu söyler; hepsi Personal projesindedir: **3 sunucudan 2 tanesi tTerm'de**. Her satırda sunucunun nasıl açıldığı yazar: **Anahtarınla açılır**, **tTerm'in giriş izniyle açılır** ya da **Bu Mac üzerinden, açık olduğu sürece**. Yanındaki **Terminal aç** orada bir terminal açar. Taşınamayan bir sunucunun satırında nedeni yazar, yanında da **Yeniden dene** ve **Değiştir** bulunur: **Değiştir** seni yalnızca o sunucunun işaretli olduğu listeye geri götürür. En altta: artık kasanda olan anahtarlar ya da **Hiçbir anahtar taşınmadı: anahtarların bu Mac'te kalıyor.**
+
+Kenar çubuğunda, anahtarınla açılan bir sunucunun adından sonra bir anahtar simgesi bulunur; Mac'in üzerinden açılan bir sunucunun yanında ise **Mac üzerinden** yazar.
+
+## ssh komutundan sonraki şerit
+
+Bu Mac'in bir terminalinde `ssh` hatasız sona erdiğinde, bloğunun altında bir şerit çıkabilir: adres ve anahtarınla birlikte **droplet: her yerden aç**.
+
+- **Anahtarımı kaydet** – anahtar taşınabiliyorsa **Anahtarım** ile aynı.
+- **tTerm'i içeri al** – **tTerm'in giriş izni** ile aynı.
+- **Şimdi değil** ya da **droplet için bir daha sorma**.
+
+tTerm Web'in erişemediği bir sunucu için şerit bunların yerine **Bu Mac üzerinden aç** seçeneğini sunar. Şerit her sunucu için bir kez çıkar; git sunucuları ve zaten tTerm'de olan sunucular için hiç çıkmaz. Şeritten kaydedilen bir sunucu da Personal projesine gider.

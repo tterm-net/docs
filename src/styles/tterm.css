@@ -610,6 +610,21 @@ site-search mark {
 
 /* ------------------------------------------------------ table of contents */
 
+/* The contents on the right are as wide as the sidebar on the left, whatever
+   the window: Starlight gives that column half of all the spare width, so on
+   a wide screen five short lines took a third of the window (owner, 02.11).
+   The text, as wide as before, stands between the two. */
+@media (min-width: 72rem) {
+	.right-sidebar-container {
+		width: var(--sl-sidebar-width);
+	}
+	[data-has-sidebar][data-has-toc] .main-pane {
+		--sl-content-margin-inline: auto;
+		width: calc(100% - var(--sl-sidebar-width));
+	}
+}
+
+
 .right-sidebar-panel h2 {
 	font: 700 11.5px/1.2 var(--__sl-font);
 	letter-spacing: 0.1em;

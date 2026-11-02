@@ -1,0 +1,64 @@
+---
+title: Progetti e colori
+description: Personal e i tuoi progetti – nome, codice e colore, la pagina del progetto, lo spostamento di una macchina in un altro progetto e l'eliminazione di un progetto.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Un progetto mette insieme macchine e note: i suoi server e computer, con i loro terminali in esecuzione, e le sue note nelle cartelle. Tutti hanno il progetto Personal, e accanto puoi crearne di tuoi, per esempio uno per ogni cliente.
+
+## Personal
+
+Personal nasce insieme al tuo account, ha il codice P ed è il primo dell'elenco nella barra laterale. Come ogni progetto, puoi rinominarlo e dargli un altro codice e un altro colore, ma non eliminarlo.
+
+## Un progetto tuo
+
+<Steps>
+
+1. Nella barra laterale, premi **Nuovo progetto** sotto l'elenco dei progetti.
+
+2. Dagli un **Nome**, fino a 80 caratteri.
+
+3. Il **Codice breve** viene ricavato dal nome, Client X → CX, e puoi cambiarlo: da 1 a 4 lettere o cifre, diverso dal codice degli altri tuoi progetti. Contrassegna il progetto nella barra laterale e nelle schede: CX/web-01 è un terminale sulla sua macchina web-01.
+
+4. Scegli un **Colore**, uno fra otto. Un nuovo progetto ne riceve uno che nessuno dei tuoi altri progetti ha, e **Anteprima** mostra come apparirà.
+
+5. Premi **Crea progetto**. Il progetto è tuo, e si apre la sua pagina: lì aggiungi un [server](../../machines/servers/) o un [computer](../../machines/computers/), oppure ci sposti una macchina da un altro progetto.
+
+</Steps>
+
+Per rinominare un progetto in seguito, anche Personal, o cambiarne il codice o il colore, premi la matita accanto al suo nome nella sua pagina (**Modifica nome, codice e colore**), cambia quello che ti serve e premi **Salva**.
+
+## Colori
+
+Il colore di un progetto riempie il badge del suo codice: nella barra laterale, nella pagina del progetto, nella ricerca. In **Impostazioni** → **Aspetto** → **Colori dei progetti**, scegli **Intero progetto** invece di **Badge del codice**, e nella barra laterale anche l'intero blocco di ogni progetto prende il suo colore. **Impostazioni** si trova nel menu del tuo account in fondo alla barra laterale, e la scelta viene salvata nel tuo account.
+
+## La pagina del progetto
+
+Un clic sul nome di un progetto nella barra laterale apre la sua pagina in una scheda. In alto ci sono il nome, il codice e la matita, e una riga che dice quante macchine e quanti terminali aperti ha. Poi:
+
+- **Macchine** – un riquadro per ciascuna, con indirizzo e sistema, **Nuovo terminale** e i terminali in esecuzione su di essa: **Apri** porta a un terminale, un doppio clic sul suo nome lo rinomina. **⋯** sul riquadro offre **Sposta in un altro progetto** e **Rimuovi macchina**. Un progetto senza macchine offre **Server** e **Computer** per aggiungere la prima.
+- **Note** – le cartelle e le loro note, vedi [Note](../notes/).
+- Proprio in fondo, **Elimina progetto**.
+
+## Spostare una macchina
+
+<Steps>
+
+1. Nella pagina del progetto, premi **⋯** sul riquadro della macchina e scegli **Sposta in un altro progetto**.
+
+2. Scegli il progetto. La finestra dice cosa diventa la macchina in quel progetto, CX/web-01; se lì il suo nome è già preso, riceve un numero: web-01-2.
+
+3. Premi **Sposta in Client X**.
+
+</Steps>
+
+I suoi terminali restano in esecuzione, il suo [log](../log/) la segue, e sulla macchina stessa non cambia nulla. Una macchina si sposta solo tra progetti di tua proprietà: la voce compare quando hai un secondo progetto.
+
+## Eliminare un progetto
+
+**Elimina progetto**, in fondo alla pagina di un progetto, lo elimina insieme alle sue cartelle e note; Personal non ha questo pulsante. Un progetto con delle macchine non viene eliminato: la finestra le elenca, e prima le sposti o le [rimuovi](../../machines/remove/), con **⋯** sui loro riquadri. Un progetto senza macchine ti chiede di digitarne il nome, poi di premere **Elimina Client X**. Questa azione non può essere annullata.
+
+## Chi fa parte di un progetto
+
+Per ora in ogni progetto ci sei solo tu, e ne sei il proprietario: la barra laterale dice **Proprietario** accanto al nome di ogni progetto, e la riga in cima alla sua pagina finisce con **solo tu**. Non è ancora possibile aggiungere persone a un progetto.

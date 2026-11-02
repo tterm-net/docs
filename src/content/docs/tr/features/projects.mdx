@@ -1,0 +1,64 @@
+---
+title: Projeler ve renkler
+description: Personal ve kendi projelerin – adları, kodları ve renkleri, proje sayfası, bir makineyi başka bir projeye taşıma ve proje silme.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Bir proje makineleri ve notları bir arada tutar: sunucularını ve bilgisayarlarını, üzerlerinde çalışan terminallerle birlikte, bir de klasörlerdeki notlarını. Herkesin bir Personal projesi vardır; yanına kendi projelerini de oluşturabilirsin, örneğin her müşteri için bir tane.
+
+## Personal
+
+Personal, hesabınla birlikte P koduyla gelir ve kenar çubuğundaki listenin başında durur. Her proje gibi onun da adı, kodu ve rengi değiştirilebilir, ama silinemez.
+
+## Kendi projen
+
+<Steps>
+
+1. Kenar çubuğunda, proje listesinin altındaki **Yeni proje** düğmesine bas.
+
+2. Projeye bir **Ad** ver, en fazla 80 karakter.
+
+3. **Kısa kod** addan üretilir, Client X → CX, istersen değiştirebilirsin: 1 ila 4 harf ya da rakam, ama diğer projelerinden birinin kodu olamaz. Kod, projeyi kenar çubuğunda ve sekmelerde işaretler: CX/web-01, projenin web-01 makinesindeki bir terminaldir.
+
+4. Sekiz seçenekten bir **Renk** seç. Yeni projeye, diğer projelerinin hiçbirinde olmayan bir renk verilir; **Önizleme** nasıl görüneceğini gösterir.
+
+5. **Proje oluştur** düğmesine bas. Projenin sahibi sensin ve sayfası açılır: oraya bir [sunucu](../../machines/servers/) ya da [bilgisayar](../../machines/computers/) ekle veya başka bir projeden bir makine taşı.
+
+</Steps>
+
+Bir projeyi, Personal dahil, sonradan yeniden adlandırmak ya da kodunu veya rengini değiştirmek için sayfasında adının yanındaki kaleme bas (**Adı, kodu ve rengi düzenle**), gerekeni değiştir ve **Kaydet** düğmesine bas.
+
+## Renkler
+
+Projenin rengi kod rozetini doldurur: kenar çubuğunda, proje sayfasında, aramada. **Ayarlar** → **Görünüm** → **Proje renkleri** bölümünde **Kod rozeti** yerine **Tüm proje** seçeneğini seçersen kenar çubuğu her projenin bloğunu da bütünüyle kendi rengine boyar. **Ayarlar**, kenar çubuğunun en altındaki hesap menünde bulunur; seçimin hesabına kaydedilir.
+
+## Proje sayfası
+
+Kenar çubuğunda bir projenin adına tıklamak, sayfasını bir sekmede açar. En üstte adı, kodu ve kalemi, bir de kaç makinesi ve kaç açık terminali olduğunu gösteren bir satır yer alır. Ardından:
+
+- **Makineler** – her makine için adresi ve sistemiyle bir kart; kartta **Yeni terminal** ve makinede çalışan terminaller bulunur: **Aç** bir terminale geçer, adına çift tıklamak onu yeniden adlandırır. Karttaki **⋯** menüsünde **Başka bir projeye taşı** ve **Makineyi kaldır** bulunur. Makinesi olmayan bir proje, ilk makineyi eklemek için **Sunucu** ve **Bilgisayar** seçeneklerini sunar.
+- **Notlar** – klasörler ve içlerindeki notlar, ayrıntılar [Notlar](../notes/) sayfasında.
+- En sonda **Projeyi sil**.
+
+## Makineyi taşıma
+
+<Steps>
+
+1. Proje sayfasında makinenin kartındaki **⋯** düğmesine bas ve **Başka bir projeye taşı** seçeneğini seç.
+
+2. Projeyi seç. Pencere makinenin orada ne olacağını gösterir, CX/web-01; adı orada kullanılıyorsa sonuna bir sayı eklenir: web-01-2.
+
+3. **Client X projesine taşı** düğmesine bas.
+
+</Steps>
+
+Makinenin terminalleri çalışmaya devam eder, [logu](../log/) da onunla birlikte gider; makinenin kendisinde hiçbir şey değişmez. Bir makine yalnızca sahibi olduğun projeler arasında taşınır: bu seçenek ikinci bir projen olduğunda görünür.
+
+## Projeyi silme
+
+Proje sayfasının sonundaki **Projeyi sil**, projeyi klasörleri ve notlarıyla birlikte siler; Personal projesinde böyle bir düğme yoktur. İçinde makine olan bir proje silinmez: pencere bu makinelerin adlarını verir, sen de onları önce kartlarındaki **⋯** ile taşır ya da [kaldırırsın](../../machines/remove/). Makinesi olmayan bir proje senden adını yazmanı, ardından **Client X projesini sil** düğmesine basmanı ister. Bu işlem geri alınamaz.
+
+## Projede kimler var
+
+Şimdilik her projede yalnızca sen varsın ve projenin sahibi sensin: kenar çubuğunda her projenin adının yanında **Sahip** yazar, sayfasının en üstündeki satır da **yalnızca sen** ile biter. Bir projeye başka kişiler eklemek henüz mümkün değil.

@@ -1,0 +1,59 @@
+---
+title: Cihazlar ve giriş
+description: E-postayla gelen kodla giriş, güvendiğin bir cihazda hızlı kod, oturumun ne zaman sona erdiği ve Ayarlar'da unutabileceğin cihazlar.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+tTerm Web'e e-postayla gelen bir kodla giriş yaparsın. Güvendiğin bir cihazda yeniden girmek için dört haneli bir hızlı kod yeter.
+
+## Kodla giriş yapma
+
+<Steps>
+
+1. [app.tterm.net](https://app.tterm.net) adresini aç, e-posta adresini gir ve **Kod al** düğmesine bas. E-postana altı haneli bir kod gelir.
+
+2. Kodu aynı tarayıcıda gir: kod yalnızca orada, 10 dakika boyunca geçerlidir ve beş deneme hakkın vardır. Bir dakika sonra **Yeni kod gönder** düğmesine basabilirsin; o zaman önceki kod geçersiz olur.
+
+3. İlk seferde sayfa **Adın** alanını ve tek bir onay işaretini ister: **Hizmet Şartları'nı ve Gizlilik Politikası'nı kabul ediyorum**. **Hesap oluştur** hesabı oluşturur; ilk projesi Personal da onunla birlikte gelir.
+
+</Steps>
+
+Biri hesabına e-postayla gelen bir kodla her giriş yaptığında tTerm sana **New sign-in to tTerm** e-postasını gönderir; içinde tarayıcı, IP adresi ve saat yazar. tTerm'in e-postaları şimdilik İngilizce geliyor. Giriş yapan sen değilsen Ayarlar'da **Tüm cihazları unut** düğmesine bas (e-postadaki **Open Settings** seni oraya götürür) ve e-posta hesabının parolasını değiştir: giriş yapan kişi e-postalarını okuyabiliyor olabilir.
+
+## Hızlı kod
+
+Koddan hemen sonra sayfa **Bu cihaz için bir hızlı kod oluştur** önerisini gösterir: önce dört rakam, sonra aynı dört rakam bir kez daha. Hepsi aynı ya da ardışık rakamlar kabul edilmez. Bir dahaki sefere bu tarayıcı yalnızca hızlı kodu sorar.
+
+Hızlı kod yalnızca bu tarayıcının sakladığı uzun, rastgele bir anahtarla birlikte çalışır, bu yüzden başka hiçbir cihazda işe yaramaz. Beş yanlış denemeden sonra cihaz unutulur ve yeniden e-postayla gelen kod gerekir. **Kodu mu unuttun?** hemen e-postana bir kod gönderir; ardından sayfa yeni bir hızlı kod önerir.
+
+**Şimdi değil** hızlı kod oluşturmadan devam eder: bir dahaki sefere bu tarayıcı e-postayla gelen bir kod ister ve hızlı kodu yeniden önerir.
+
+8 saat boyunca hiçbir işlem yapılmazsa oturum sona erer ve sayfa yeniden giriş yapmanı ister: **Oturumun sona erdi. Yeniden giriş yap: terminallerin çalışmaya devam etti.** Hızlı kodu olan bir cihazda hızlı kod yeterlidir.
+
+## Çıkış yapma
+
+Kenar çubuğunun altındaki hesabına tıklayınca bir menü açılır: **Ayarlar**, **Dil**, **Hesap** ve **Çıkış yap**. **Çıkış yap** oturumu sonlandırır ve bu tarayıcı seni unutur: bir dahaki sefere hızlı kodu değil, e-postayla gelen bir kodu ister. Burada yazılıp henüz kaydedilmemiş notlar da unutulur. Terminallerin çalışmaya devam eder.
+
+Başka bir hesaba geçmek için çıkış yap ve diğer e-posta adresinle giriş yap. Hızlı kod ekranındaki **Hesap değiştir** de bir e-posta adresi sorar.
+
+## Cihazların
+
+**Ayarlar** → **Cihazlar**, hızlı kodla giriş yaptığın tarayıcıları ve tarayıcıyla giriş yapmış her Mac için tTerm uygulamasını listeler; adları tTerm'in onları gördüğü gibidir: Chrome on macOS, tTerm for Mac on MacBook-Pro. Her birinde ne zaman eklendiği ya da giriş yaptığı ve en son ne zaman kullanıldığı yazar; **Bu cihaz**, şu an kullandığın cihazı işaretler.
+
+- Bir tarayıcının yanındaki **Unut** düğmesine basarsan orada yeniden e-postayla gelen bir kod gerekir. Mac için tTerm'i unutursan oradan çıkış yapılır: giriş yapmadan önceki gibi yalnızca o Mac ile çalışır. Şu an kullandığın cihazı unutursan burada çıkış yapmış olursun.
+- **Tüm cihazları unut…**, ardından **Tüm cihazları unut**: tüm cihazlar unutulur ve bu dahil tüm oturumlar sona erer. Ardından her tarayıcı e-postayla gelen bir kod ister. Terminallerin çalışmaya devam eder.
+
+Bir tarayıcı hızlı kodunu, onu oluşturduğun günden itibaren 90 gün saklar: sonrasında yeniden e-postayla gelen bir kod ister ve yeni bir hızlı kod önerir. 90 gün boyunca giriş yapmamış bir cihaz kendiliğinden unutulur ve listeden çıkar.
+
+## Mac için tTerm
+
+[Mac için tTerm](../../local/mac/) tarayıcın üzerinden giriş yapar. Uygulamada ilk ekrandaki **Tarayıcınla giriş yap** düğmesine ya da kenar çubuğunun altındaki menüde **Giriş yap** seçeneğine bas: uygulama app.tterm.net adresini açar ve bir kod gösterir. Tarayıcıda, henüz giriş yapmadıysan giriş yap, sayfanın aynı kodu gösterdiğini kontrol et ve **İzin ver** düğmesine bas. Bu tarayıcıda giriş yapmanın üzerinden çeyrek saatten fazla geçtiyse sayfa önce, hızlı kodla ya da e-postayla gelen bir kodla senin olduğunu doğrulamanı ister.
+
+Mac, Personal projesinde bir makine olur, uygulama **Cihazlar** bölümünde görünür ve tTerm, bir tarayıcıda olduğu gibi, yeni giriş hakkında sana e-posta gönderir.
+
+Uygulamanın, bu tarayıcıda açık olan hesaptan başka bir hesaba girmesi için **Vazgeç** düğmesinin altındaki **Sen değil misin? Başka bir hesap kullan** bağlantısına bas. Tarayıcıdaki oturum sona erer, hızlı kodu kalır ve sayfa önce diğer e-posta adresini sorar.
+
+## E-postan ve hesabın
+
+E-posta adresin aynı menüdeki **Hesap** sayfasında yazar. Değiştirmek için [support@tterm.net](mailto:support@tterm.net) adresine yaz. Hesabını silmek için giriş yaptığın adresten aynı adrese yaz.

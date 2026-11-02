@@ -1,0 +1,46 @@
+---
+title: Computer con macOS o Linux
+description: L'agente per un computer – si installa con un solo comando, si collega dall'interno, si aggiorna da solo e si rimuove con un solo comando.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+A un computer basta un piccolo agente. Si collega al cloud da solo e mantiene quell'unica connessione, quindi non servono porte in ingresso: il computer funziona anche dietro NAT.
+
+:::tip[Su un Mac, l'app è più semplice]
+[Il terminale locale per Mac](../../local/mac/) mantiene la connessione al cloud finché è in esecuzione, e su quel Mac l'agente non serve.
+:::
+
+## Collegamento
+
+In tTerm Web apri **Aggiungi una macchina** e scegli **Computer**. Esegui il comando in un terminale su quel computer, con il tuo utente, non con sudo:
+
+```sh title="Sul computer"
+curl -fsSL https://connect.tterm.net/c/<token> | sh
+```
+
+Il computer compare nel progetto pochi secondi dopo la fine del comando. Il comando funziona una sola volta, entro 10 minuti.
+
+## Cosa fa il comando
+
+- Mette l'agente in `~/.tterm-web`: un solo file per questo sistema, preso dalle nostre release e verificato con il checksum dello script del comando prima di essere eseguito.
+- Crea per questo computer una chiave tutta sua e la conserva lì, leggibile solo da te. Il token nel comando serve solo per collegarlo, una sola volta.
+- Avvia l'agente a ogni tuo login. L'agente gira con il tuo utente, mai come root, e non apre porte.
+- L'agente si aggiorna da solo, soltanto a versioni firmate dalla nostra build di release e soltanto quando sul computer non c'è nessun terminale aperto.
+
+<Tabs syncKey="os">
+	<TabItem label="macOS">
+		L'agente lo avvia launchd. La prima volta macOS potrebbe chiederti se `tterm-agent` può aprire le tue cartelle Scrivania e Documenti: consentilo se vuoi lavorarci dal terminale.
+	</TabItem>
+	<TabItem label="Linux">
+		L'agente lo avvia systemd, con il tuo utente. Lo stesso vale per un server senza SSH dall'esterno: l'agente si collega da solo verso l'esterno.
+	</TabItem>
+</Tabs>
+
+## Rimozione
+
+Rimuovi il computer nella pagina del progetto: l'agente lo viene a sapere e si ferma ([dettagli](../remove/#un-computer)). Per togliere dal computer anche l'agente stesso, esegui:
+
+```sh title="Sul computer"
+~/.tterm-web/uninstall.sh
+```

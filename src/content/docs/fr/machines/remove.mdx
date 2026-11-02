@@ -1,0 +1,71 @@
+---
+title: Retirer une machine
+description: Qui peut retirer une machine et où, ce que deviennent alors ses terminaux et son historique, et comment l’accès de tTerm et son agent quittent la machine.
+---
+
+Retirer une machine la fait sortir de tTerm Web, et l’accès de tTerm à cette machine part avec elle. Le propriétaire et les administrateurs de son projet peuvent le faire.
+
+## La retirer
+
+Cela se fait à deux endroits :
+
+- Sur la page **Machines**, qu’ouvre le logo tTerm en haut de la barre latérale, appuyez sur **Retirer** sur la carte de la machine.
+- Sur la page du projet, qu’ouvre le nom du projet dans la barre latérale, appuyez sur **⋯** à côté de la machine et choisissez **Retirer la machine**.
+
+tTerm demande d’abord confirmation et dit ce qui va se passer : **Retirer web-01 ?** Le bouton rouge **Retirer web-01** la retire, **Annuler** laisse tout comme avant.
+
+## Ce qui se passe
+
+- Les terminaux de la machine prennent fin, et chacun dit pourquoi : **Ce terminal a pris fin**, **web-01 a été retirée de tTerm Web.**
+- La machine disparaît de la barre latérale, de la page **Machines** et de la page du projet, et son journal quitte le dossier **Journaux** du projet.
+- Les commandes tapées sur la machine restent dans votre historique : la [recherche](../../features/search/) les trouve toujours et indique que la machine a été retirée. Le journal du projet garde une trace du retrait.
+
+## Un serveur
+
+Le cloud cesse de se connecter au serveur et retire sa propre ligne de `~tterm/.ssh/authorized_keys` sur le serveur lui-même. La page indique alors : **web-01 n’est plus dans tTerm Web, et tTerm Web a retiré son accès au serveur.**
+
+Si le serveur ne répond pas, la ligne y reste, même si le cloud ne s’y connecte plus. Une fenêtre donne alors la commande qui retire cette ligne. Copiez-la avant de fermer la fenêtre, et lancez-la sur le serveur :
+
+```sh title="Sur le serveur"
+sudo sed -i '/^cert-authority,principals="m-…" /d' ~tterm/.ssh/authorized_keys
+```
+
+La commande de la fenêtre désigne la ligne propre à ce serveur, avec son `principals="m-…"`, et laisse toutes les autres lignes du fichier intactes. Le même serveur dans un autre projet y est une machine à part, avec sa propre ligne, et continue de fonctionner.
+
+L’utilisateur `tterm` et sa règle sudo, `/etc/sudoers.d/tterm`, restent après un retrait : le bot tTerm peut s’en servir. La commande qui les supprime eux aussi figure en tête du script d’installation, ainsi que dans la fenêtre d’un serveur qui n’a pas répondu :
+
+```sh title="Sur le serveur"
+sudo userdel -r tterm && sudo rm -f /etc/sudoers.d/tterm
+```
+
+Avec eux disparaît l’accès du bot tTerm, ainsi que celui de ce serveur dans vos autres projets.
+
+### Un serveur transféré depuis un Mac
+
+Sur un serveur transféré depuis [tTerm pour Mac](../../local/move-to-cloud/) avec **Ma clé** ou **Via ce Mac**, tTerm n’a rien ajouté, donc il n’y a rien à retirer. Avec **Laissez-passer tTerm**, la ligne de tTerm se trouve dans `~/.ssh/authorized_keys` de l’utilisateur sous lequel le Mac se connectait, et le cloud la retire de la même façon. Si un tel serveur ne répond pas, retirez vous-même la ligne sur place : elle commence par `cert-authority,principals="m-…"`.
+
+## Un ordinateur
+
+Son agent apprend aussitôt que l’ordinateur a été retiré, oublie sa clé et s’arrête. Cette clé ne fonctionnera plus jamais : une clé qui a fuité ne vaut plus rien dès que son ordinateur est retiré. Un ordinateur en veille ou hors ligne l’apprend à la prochaine connexion de son agent.
+
+Pour connecter de nouveau l’ordinateur : **Ajouter une machine**, puis **Ordinateur**. L’installateur lui crée une nouvelle clé, et il revient comme une nouvelle machine.
+
+L’agent lui-même reste sur l’ordinateur jusqu’à ce que vous le retiriez :
+
+```sh title="Sur l’ordinateur"
+~/.tterm-web/uninstall.sh
+```
+
+Le script supprime le démarrage automatique de l’agent et tout le dossier `~/.tterm-web`, clé de l’ordinateur comprise, ainsi que les scripts shell que les terminaux de tTerm ont placés dans `~/.tterm`. L’agent du bot tTerm, qui vit lui aussi dans `~/.tterm`, reste en place. À lui seul, le script ne retire pas l’ordinateur de tTerm Web : il y reste dans la liste jusqu’à ce que vous le retiriez.
+
+## Un Mac avec tTerm pour Mac
+
+Une fois connecté, [tTerm pour Mac](../../local/mac/) assure lui-même le lien du Mac avec tTerm Web, à la place de l’agent. Dans **Paramètres** → **Cet ordinateur**, il a pour cela une option, **Ouvrir à tTerm Web et à votre téléphone**. Activée, tTerm Web et votre téléphone ouvrent des terminaux sur ce Mac tant que tTerm y tourne. Désactivée, le Mac est hors ligne dans tTerm Web, et dans l’application tout fonctionne comme avant ; les terminaux ouverts dessus depuis tTerm Web prennent fin, après confirmation.
+
+Un Mac se retire de tTerm Web comme n’importe quel ordinateur. **Cet ordinateur** indique alors : **Ce Mac a été retiré de tTerm Web : il n’y est donc plus ouvert. Activez cette option pour l’ajouter de nouveau.**
+
+L’application est aussi l’un de vos appareils : **Oublier**, dans **Paramètres** → **Appareils**, la déconnecte, et elle ne fonctionne plus qu’avec ce Mac. Voir [Appareils et connexion](../../account/devices/).
+
+:::note[Mettre fin à un terminal, ce n’est pas retirer la machine]
+Quand vous mettez fin à un terminal, depuis la barre latérale ou depuis la recherche, seul ce shell prend fin, après confirmation. La machine reste, tout comme ses autres terminaux.
+:::

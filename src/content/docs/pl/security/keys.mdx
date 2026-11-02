@@ -1,0 +1,77 @@
+---
+title: Twój sejf na klucze SSH
+description: Twoje własne klucze SSH, szyfrowane na twoich urządzeniach, zanim trafią do tTerma – jak powstaje sejf, jak otworzyć go w innej przeglądarce i kiedy znów się blokuje.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Sejf przechowuje twoje własne klucze SSH do serwerów, na które się nimi logujesz. Klucz jest szyfrowany na twoim urządzeniu, zanim je opuści, a sejf otwierają tylko twoje urządzenia, tak jak same się odblokowują. tTerm przechowuje zaszyfrowane klucze oraz publiczną część i odcisk palca każdego z nich: nie może otworzyć sejfu ani odczytać klucza. Sejf znajdziesz w sekcji **Ustawienia** → **Klucze**.
+
+## Jak serwer otwiera się twoim kluczem
+
+Serwer otwiera się twoim kluczem, gdy przeniesiesz go z [tTerm dla Maca](../../local/mac/) sposobem **Mój klucz** albo przyciskiem **Zapisz mój klucz** na pasku po `ssh`: zobacz [Przenieś do chmury](../../local/move-to-cloud/). Gdy otwierasz na nim terminal, tTerm prosi twoje urządzenie z otwartym sejfem – przeglądarkę albo tTerm dla Maca – o podpisanie logowania. Urządzenie podpisuje tym kluczem logowanie SSH i nic poza tym, a klucz nigdy go nie opuszcza. Zanim tTerm użyje podpisu, sprawdza go publiczną częścią klucza.
+
+## Tworzenie sejfu
+
+<Tabs>
+	<TabItem label="W przeglądarce">
+
+W sekcji **Ustawienia** → **Klucze** naciśnij **Dodaj klucz z pliku** i wybierz swój klucz prywatny, czyli plik bez `.pub`. Jeśli klucz ma hasło, wpisz je i naciśnij **Otwórz klucz**: hasło otwiera klucz w tej przeglądarce i nigdzie nie trafia. Nazwij klucz i naciśnij **Dalej**.
+
+W oknie **Zapisz swój klucz w sejfie** naciśnij **Utwórz sejf za pomocą Touch ID** na Macu, **Utwórz sejf za pomocą Windows Hello** w systemie Windows albo **Utwórz sejf z kluczem dostępu** na innych urządzeniach. Przeglądarka, która nie może zapisać klucza dostępu do sejfu, pokazuje **Utwórz sejf**: w niej sejf otwiera się kodem odzyskiwania albo po zatwierdzeniu na twoim Macu, za każdym razem na jedną sesję.
+
+	</TabItem>
+	<TabItem label="W tTerm dla Maca">
+
+Sejf powstaje, gdy po raz pierwszy zapisujesz klucz: przez opcję Przenieś do chmury albo przyciskiem **Zapisz mój klucz** na pasku po `ssh`. W oknie **Zapisz swój klucz w sejfie** naciśnij **Utwórz sejf za pomocą Touch ID** i potwierdź za pomocą Touch ID albo hasła do Maca.
+
+	</TabItem>
+</Tabs>
+
+### Kod odzyskiwania
+
+Zaraz potem tTerm pokazuje twój kod odzyskiwania: 24 litery i cyfry w sześciu grupach po cztery. Widzisz go tylko raz. Naciśnij **Kopiuj** albo **Zapisz jako plik** i przechowuj kod w bezpiecznym miejscu, z dala od urządzeń, które otwierają twój sejf. Jeśli kiedyś stracisz je wszystkie, ten kod będzie jedyną drogą do twoich kluczy: tTerm nie odzyska ich za ciebie. **Gotowe** zadziała, gdy zaznaczysz, że kod jest w bezpiecznym miejscu.
+
+## Otwieranie w innej przeglądarce
+
+Przeglądarka, której twój sejf jeszcze nie zna, otwiera go w oknie **Otwórz swoje klucze w tej przeglądarce**. To okno pojawia się, gdy naciśniesz **Otwórz** w sekcji **Ustawienia** → **Klucze** albo otworzysz serwer, który otwiera się twoim kluczem.
+
+- **Zatwierdź w tTerm dla Maca.** Jeśli twój sejf otwiera się w tTerm dla Maca, okno proponuje tego Maca: naciśnij **Poproś go o otwarcie sejfu tutaj**. Na Macu pojawi się okno z informacją, która przeglądarka prosi, kiedy się zalogowała i z jakiego adresu. Oba ekrany pokazują te same sześć cyfr: naciśnij **Zezwól za pomocą Touch ID** tylko wtedy, gdy są takie same. **To nie ja** wylogowuje tamtą przeglądarkę, a sekcja **Ustawienia** → **Urządzenia** pokaże, co jeszcze sprawdzić. Prośba jest ważna przez pięć minut.
+- **Użyj kodu odzyskiwania.** Wpisz go w polu **Kod odzyskiwania** i naciśnij **Otwórz**.
+
+W przeglądarce, która może zapisać klucz dostępu, tTerm zapyta potem, czy go zapisać, żeby następnym razem sejf otwierał się tak, jak odblokowuje się ten komputer: **Zapisz za pomocą Touch ID** (albo Windows Hello, albo klucza dostępu) lub, na cudzym komputerze, **Tylko tym razem**.
+
+Sejf utworzony w przeglądarce za pierwszym razem otwiera się w tTerm dla Maca kodem odzyskiwania: **Otwórz kodem odzyskiwania** w sekcji **Ustawienia** → **Klucze**. Potem otwiera go tam Touch ID albo hasło do Maca.
+
+## Kiedy sejf znów się blokuje
+
+- **W przeglądarce** – po 8 godzinach bez żadnej aktywności, gdy zamkniesz albo odświeżysz tTerm Web, gdy się wylogujesz i gdy naciśniesz **Zablokuj** w sekcji **Ustawienia** → **Klucze**.
+- **W tTerm dla Maca** – sejf jest otwarty przez cały czas działania tTerma, dopóki nie naciśniesz **Zablokuj** albo się nie wylogujesz. Po wylogowaniu Mac traci też swój dostęp do sejfu: gdy znów się zalogujesz, otworzy go raz kodem odzyskiwania.
+
+## Ustawienia → Klucze
+
+U góry strona pokazuje, czy sejf jest tu otwarty, jak go otwarto i kiedy znów się zablokuje. W wierszu każdego klucza są: nazwa, rodzaj i skrócony odcisk palca; serwery, które **Otwiera**, albo **Nie otwiera jeszcze żadnego serwera**; kiedy zapisano go z Maca albo dodano z pliku; i kiedy był ostatnio używany, albo **jeszcze nieużywany**.
+
+- **Usuń**, po pytaniu o potwierdzenie, wyjmuje klucz z sejfu, a tTerm usuwa jego zaszyfrowaną kopię. Serwery, które się nim otwierały, zostają w tTermie, ale już się nie otwierają. Sam klucz zostaje tam, skąd pochodzi: na twoim Macu albo w swoim pliku.
+- **Wygeneruj nowy kod odzyskiwania** pokazuje jeden raz nowy kod, a dotychczasowy przestaje działać. Twoje klucze i urządzenia zostają bez zmian. Poprosi o Touch ID albo o klucz dostępu zapisany w tej przeglądarce; przeglądarka bez klucza dostępu do twojego sejfu poprosi o obecny kod. Nie masz go już? Wygeneruj nowy w tTerm dla Maca.
+- **Dodaj klucz z pliku** jest dostępne w przeglądarce. W tTerm dla Maca klucze trafiają do sejfu przez opcję Przenieś do chmury i pasek po `ssh`.
+
+Pod kluczami strona pokazuje, gdzie otwiera się sejf: każdy Mac i każda przeglądarka, które mają do niego dostęp, albo **Otwiera się tylko kodem odzyskiwania.**
+
+### Jakie klucze przechowuje sejf
+
+Ed25519, ECDSA P-256 i P-384 oraz RSA. Nie przechowuje kluczy DSA ani ECDSA P-521, ani kluczy na kluczu bezpieczeństwa (`sk-…`), które nie mogą go opuścić: ich serwery otwierają się [przez twojego Maca](../../local/move-to-cloud/#trzy-sposoby-dostępu).
+
+Przeglądarka odczytuje klucz we własnym formacie OpenSSH, także z hasłem, albo w formacie PEM bez hasła (PKCS#8, PKCS#1), po jednym kluczu w pliku. Plik PEM z hasłem najpierw przekonwertuj do formatu OpenSSH poleceniem `ssh-keygen -p -f` ze ścieżką do pliku. tTerm dla Maca odczytuje klucze w formacie OpenSSH.
+
+Niektóre przeglądarki nie potrafią podpisywać kluczami Ed25519. W takiej przeglądarce informuje o tym sekcja **Ustawienia** → **Klucze**, a serwery z takim kluczem otworzysz w nowszej przeglądarce albo w tTerm dla Maca.
+
+## Serwer czeka na sejf
+
+Dopóki sejf nie jest otwarty na żadnym z twoich urządzeń, terminal na serwerze z twoim kluczem czeka, ile trzeba, i pokazuje **web-01 otwiera się twoim kluczem**.
+
+- W przeglądarce z zapisanym kluczem dostępu naciśnij **Otwórz za pomocą Touch ID**, **Otwórz za pomocą Windows Hello** albo **Otwórz kluczem dostępu**.
+- W innej przeglądarce naciśnij **Zatwierdź na** z nazwą twojego Maca albo **Użyj kodu odzyskiwania**.
+- W tTerm dla Maca naciśnij **Otwórz za pomocą Touch ID**; na Macu, który nie ma jeszcze dostępu do twojego sejfu, **Użyj kodu odzyskiwania**.
+
+Gdy sejf się otworzy, terminal pokaże **Logowanie na web-01 twoim kluczem…** i otworzy się sam.

@@ -1,0 +1,71 @@
+---
+title: Usuwanie maszyny
+description: Kto i gdzie może usunąć maszynę, co dzieje się potem z jej terminalami i historią oraz jak dostęp tTerma i jego agent znikają z maszyny.
+---
+
+Usunięta maszyna znika z tTerm Web, a razem z nią dostęp tTerma do niej. Usunąć ją mogą właściciel i administratorzy jej projektu.
+
+## Jak ją usunąć
+
+Można to zrobić w dwóch miejscach:
+
+- Na stronie **Maszyny**, którą otwiera logo tTerma u góry panelu bocznego, naciśnij **Usuń** na kafelku maszyny.
+- Na stronie projektu, którą otwiera nazwa projektu w panelu bocznym, naciśnij **⋯** obok maszyny i wybierz **Usuń maszynę**.
+
+tTerm najpierw pyta i mówi, co się stanie: **Usunąć web-01?** Czerwony przycisk **Usuń web-01** usuwa maszynę, a **Anuluj** zostawia wszystko tak, jak było.
+
+## Co się dzieje
+
+- Terminale maszyny zostają zakończone, a każdy z nich mówi dlaczego: **Ten terminal został zakończony**, **Maszyna web-01 została usunięta z tTerm Web.**
+- Maszyna znika z panelu bocznego, ze strony **Maszyny** i ze strony projektu, a jej log – z folderu **Logi** w projekcie.
+- Wpisane tam polecenia zostają w twojej historii: [wyszukiwanie](../../features/search/) nadal je znajduje i zaznacza, że maszyna została usunięta. W dzienniku projektu zostaje wpis o usunięciu.
+
+## Serwer
+
+Chmura przestaje logować się na serwer i usuwa swój wiersz z `~tterm/.ssh/authorized_keys` bezpośrednio na nim. Strona pokazuje wtedy: **Usunięto web-01 z tTerm Web, a dostęp tTerm Web do serwera został odebrany.**
+
+Jeśli serwer nie odpowiada, wiersz zostaje na miejscu, choć chmura już się na nim nie loguje. Wtedy okno podaje polecenie, które usuwa ten wiersz. Skopiuj je, zanim zamkniesz okno, i uruchom na serwerze:
+
+```sh title="Na serwerze"
+sudo sed -i '/^cert-authority,principals="m-…" /d' ~tterm/.ssh/authorized_keys
+```
+
+Polecenie z okna wskazuje wiersz właśnie tego serwera, z jego `principals="m-…"`, a pozostałe wiersze pliku zostawia bez zmian. Ten sam serwer w innym projekcie jest tam osobną maszyną, z własnym wierszem, i działa dalej.
+
+Użytkownik `tterm` i jego reguła sudo, `/etc/sudoers.d/tterm`, zostają po usunięciu: może z nich korzystać bot tTerma. Polecenie, które usuwa także je, jest na początku skryptu instalacyjnego i w oknie serwera, który nie odpowiedział:
+
+```sh title="Na serwerze"
+sudo userdel -r tterm && sudo rm -f /etc/sudoers.d/tterm
+```
+
+Razem z nimi znika dostęp bota tTerma oraz dostęp do tego serwera w twoich pozostałych projektach.
+
+### Serwer przeniesiony z Maca
+
+Jeśli serwer przeniesiono z [tTerm dla Maca](../../local/move-to-cloud/) z opcją **Mój klucz** albo **Przez tego Maca**, tTerm niczego na nim nie dodał, więc nie ma czego usuwać. Przy opcji **Przepustka tTerma** wiersz tTerma jest w `~/.ssh/authorized_keys` użytkownika, na którego konto logował się Mac, i chmura usuwa ten wiersz tak samo. Jeśli taki serwer nie odpowiada, usuń ten wiersz samodzielnie: zaczyna się od `cert-authority,principals="m-…"`.
+
+## Komputer
+
+Agent od razu dowiaduje się, że komputer został usunięty, zapomina swój klucz i się zatrzymuje. Ten klucz już nigdy nie zadziała, więc klucz, który wyciekł, staje się bezużyteczny, gdy tylko jego komputer zostanie usunięty. Komputer, który był uśpiony albo offline, dowie się o tym, gdy jego agent następnym razem się połączy.
+
+Aby ponownie podłączyć komputer, wybierz **Dodaj maszynę**, a potem **Komputer**. Instalator utworzy dla niego nowy klucz, a komputer wróci jako nowa maszyna.
+
+Sam agent zostaje na komputerze, dopóki go nie odinstalujesz:
+
+```sh title="Na komputerze"
+~/.tterm-web/uninstall.sh
+```
+
+Skrypt usuwa autostart agenta i cały katalog `~/.tterm-web`, łącznie z kluczem komputera, a także skrypty powłoki, które terminale tTerma umieściły w `~/.tterm`. Agent bota tTerma, który też znajduje się w `~/.tterm`, zostaje. Skrypt nie usuwa jednak komputera z tTerm Web: komputer zostaje tam na liście, dopóki go nie usuniesz.
+
+## Mac z tTerm dla Maca
+
+Po zalogowaniu [tTerm dla Maca](../../local/mac/) sam, zamiast agenta, utrzymuje połączenie Maca z tTerm Web. Na stronie **Ustawienia** → **Ten komputer** jest do tego przełącznik **Dostęp z tTerm Web i z telefonu**. Gdy jest włączony, tTerm Web i twój telefon otwierają terminale na tym Macu, dopóki działa na nim tTerm. Gdy jest wyłączony, Mac jest w tTerm Web offline, a w aplikacji wszystko działa jak dotąd; terminale otwarte na nim z tTerm Web zostaną zakończone, gdy to potwierdzisz.
+
+Maca usuwa się w tTerm Web tak samo jak każdy komputer. Sekcja **Ten komputer** pokazuje wtedy: **Ten Mac został usunięty z tTerm Web, więc nie jest tam udostępniony. Włącz tę opcję, aby dodać go ponownie.**
+
+Aplikacja jest też jednym z twoich urządzeń: **Zapomnij** na stronie **Ustawienia** → **Urządzenia** ją wylogowuje i zostają w niej tylko terminale tego Maca. Zobacz [Urządzenia i logowanie](../../account/devices/).
+
+:::note[Zakończenie terminala to nie usunięcie maszyny]
+Zakończenie terminala z panelu bocznego albo z wyszukiwania zamyka tylko tę jedną powłokę, gdy to potwierdzisz. Maszyna zostaje, a razem z nią jej pozostałe terminale.
+:::

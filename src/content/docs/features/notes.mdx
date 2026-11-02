@@ -1,0 +1,63 @@
+---
+title: Notes
+description: Notes in a project's folders – Markdown as you type, checklists that say who ticked, code with Copy, and saving that merges what two devices wrote.
+---
+
+Notes live in a project's folders, the way terminals live on its machines: runbooks, access, checklists, next to the machines they are about. A note is a title and blocks, written in place, and it saves itself.
+
+## Folders
+
+In the sidebar every project has **Notes** under its machines. **+** next to **Notes** makes a folder: name it and press **Create folder**. **+** next to a folder starts a note in it, in a tab of its own; a click on the folder itself only folds or unfolds it. The project's page has the same as buttons: **New folder**, and **New note** on each folder.
+
+**⋯** next to a folder on the project's page has **Rename folder** and **Delete folder**. A folder is deleted with the notes in it: the window lists them, so first move out any note you want to keep.
+
+For now every project has only you in it, so only you see its notes, and you write, move and delete every note and folder there. Under a note's title the page says so: **only you see it**.
+
+## Writing
+
+A new note opens with the caret in its title, and **Enter** goes on to the text. The text is blocks: text, headings, list items, checklist items, code and dividers. **Enter** starts a new block, and on an empty item it ends the list.
+
+Markdown typed at the start of a block turns it into what it means:
+
+| Type at the start of a block | It becomes |
+| --- | --- |
+| `#` and a space | a heading |
+| `-` and a space, or `1.` and a space | a list item |
+| `- [ ]` and a space | a checklist item, with `- [x]` a ticked one |
+| `` ``` `` | code |
+| `---` | a divider |
+
+Anywhere else in a block, Markdown stays as typed. In an empty line, **/** offers the same from a list: **Checklist**, **Heading**, **List**, **Code**, **Divider**, **Text**. Letters typed after it narrow the list, the arrows move through it, **Enter** picks. Text pasted with several lines becomes blocks, its Markdown read the same way.
+
+## Code and checklists
+
+A code block keeps its lines: **Enter** starts a new line in it, **Tab** puts two spaces, and **⌘Enter** on a Mac (**Ctrl+Enter** elsewhere) leaves it for a new block below. Text pasted into it stays as it is. **Copy** in its corner copies the code and says **Copied** for a moment.
+
+A checklist item is ticked with its box. The tick is saved at once, and beside the item the note says who ticked it and when: **You · 10:02** for today, the date for an earlier day. The sidebar shows how far a checklist got, 2/5, and the project's page says **2 of 5 done**.
+
+## Saving
+
+A note saves itself a moment after you stop typing. On the right of the tabs the page says how it goes: **Saving…**, **Saved**, or **Not saved: no connection**.
+
+Write in the same note on two devices at once, and both keep their changes: each save is merged with what was saved since, block by block. Only when the same block, or the title, changed both ways does the note ask what to keep there, **Keep mine** or **Keep the other version**; everything else stays from both. For the merging, tTerm keeps each note's last 50 versions.
+
+Without a connection, what you type stays in this browser until it is saved, and the page keeps trying. Close the tab or reload the page, and it comes back when you open the note again: **What was typed in this note and not saved is back.**
+
+:::caution[Sign out forgets it]
+After **Sign out**, this browser forgets what was typed in notes and not saved yet.
+:::
+
+## Move, copy or delete
+
+**⋯** next to a note, on the project's page or at the top of the note's tab, has the rest:
+
+- **Folder** – the project's folders, the note's own checked: a click on another moves the note there. It shows once the project has two folders.
+- **Move to another project…** – the window lists your other projects with their folders: pick a folder and press **Move to Runbooks**, say. A project with no folders offers a new folder, named as the note's own. The note's title, text and history go with it, and so do the ticks with who made them.
+- **Copy as Markdown** – the whole note, its title as the top heading.
+- **Delete note** – asks first. A deleted note is gone for good.
+
+Search finds notes too: start with `n:`, see [Search](../search/).
+
+## Logs
+
+**Logs** comes first among a project's folders in the sidebar, marked **by tTerm**. It holds a log for each machine of the project: every command run on it through tTerm, a day at a time, with the notes added under the commands. tTerm writes it, and nobody can change it. Lines are kept a year, what the commands printed 30 days. More on [A machine's log](../log/).

@@ -1,0 +1,27 @@
+---
+title: tTerm ドキュメント
+description: サーバーとコンピューターを接続し、ターミナルで作業し、アクセスを手元で管理する方法。
+template: splash
+hero:
+  title: tTerm ドキュメント
+  tagline: サーバーとコンピューターを接続し、ターミナルで作業し、アクセスを手元で管理する方法。
+  actions:
+    - text: クイックスタート
+      link: start/quick-start/
+      icon: right-arrow
+    - text: tTerm Web を開く
+      link: https://app.tterm.net
+      icon: external
+      variant: minimal
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<CardGrid>
+	<LinkCard title="はじめに" description="tTerm とは何か、そして 5 分で最初のコマンドまで。" href="start/what-is-tterm/" />
+	<LinkCard title="マシン" description="サーバーは SSH でコマンド 1 つ、コンピューターは小さなエージェントで。" href="machines/servers/" />
+	<LinkCard title="機能" description="ブロックと入力行、⌘K での検索、ノート、マシンのログ、プロジェクト。" href="features/blocks/" />
+	<LinkCard title="ローカルターミナル" description="Mac 版のインストール、初回の起動、サーバーのクラウドへの移行。Windows と Linux は開発中です。" href="local/mac/" />
+	<LinkCard title="セキュリティ" description="有効期間 2 分の証明書、署名の分離、あなたのデバイスでしか開けない鍵の保管庫。" href="security/access/" />
+	<LinkCard title="アカウント" description="プランと上限、デバイス、サインイン。" href="account/plan/" />
+</CardGrid>

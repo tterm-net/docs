@@ -3,6 +3,9 @@
  * The site's footer: the name and one line on what tTerm is, three columns
  * of links (Product, Resources, Legal), the year, the version and the
  * language, as on tterm.net. Resources also lead to the docs themselves.
+ * The version is the docs' own, so the line names the docs ("2026 ·
+ * Документация tTerm · v0.2.0"): the site's footer says tTerm and the
+ * site's version, which is another number (owner, 02.11).
  */
 import shell from '../shell.json';
 import pkg from '../../package.json';
@@ -53,7 +56,7 @@ const site = `https://tterm.net${base}`;
 			</nav>
 		</div>
 		<div class="foot-bottom">
-			<p class="foot-note">2026 · tTerm · v{pkg.version}</p>
+			<p class="foot-note">2026 · {route.siteTitle} · v{pkg.version}</p>
 			<LangMenu up />
 		</div>
 	</div>

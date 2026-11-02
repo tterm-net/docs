@@ -1,0 +1,68 @@
+---
+title: La bitácora de una máquina
+description: Lo que se ejecutó en una máquina a través de tTerm, línea por línea – cómo leer la bitácora, buscar en ella hasta un año atrás, escribir notas debajo de los comandos y censurar una contraseña.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Cada comando que se ejecuta en una máquina a través de tTerm se convierte en una línea de la bitácora de esa máquina: quién lo ejecutó, cuándo, cómo terminó, cuánto tardó y dónde. La bitácora la escribe tTerm, y nadie puede cambiarla. Debajo de un comando puedes dejar una nota.
+
+## Abrir la bitácora
+
+En la barra lateral, dentro de las **Notas** de un proyecto, la primera carpeta es **Bitácoras**, con la etiqueta **por tTerm**. Contiene una bitácora por cada máquina del proyecto, con cuántos comandos se ejecutaron hoy en ella: **12 hoy**. Haz clic en una máquina y su bitácora se abre en una pestaña, **web-01: bitácora**.
+
+La bitácora muestra un día a la vez y se abre en el de hoy. Las flechas, **Día anterior** y **Día siguiente**, llevan al día más cercano que tenga líneas. **Hoy** te devuelve al día actual, y **Elegir un día** abre un calendario. Mientras la bitácora muestra el día de hoy, las líneas nuevas van llegando a medida que terminan los comandos.
+
+En la parte superior de la bitácora, **⋯** tiene **Copiar como Markdown**: el día que se muestra, sus líneas y las notas que tienen debajo.
+
+## Qué dice una línea
+
+Cada comando es una línea: la hora, quién lo ejecutó, el comando, recortado si es largo, y cuántas notas tiene debajo. A la derecha aparecen cuánto tardó, la carpeta, la rama de git y la terminal. Un comando que falló lleva una cruz y su código de salida, **código 1**. Entre los comandos, la bitácora también indica cuándo se abrió una terminal y cuándo finalizó, y cuándo la máquina pasó a otro proyecto: **Moviste esta máquina de Personal a Client X**.
+
+Un clic en una línea la abre: el comando completo, lo que imprimió y las notas que tiene debajo. Otro clic la cierra. De una salida larga se ven las primeras líneas: **Ver las 27 líneas** muestra el resto, y **Copiar salida** la copia.
+
+Pasa el puntero sobre una línea, o ábrela, y aparece en ella **⋯**: **Copiar comando** y **Copiar enlace a esta línea**. El enlace abre la bitácora en el día de esa línea, con la línea abierta.
+
+## Buscar y filtrar
+
+En la fila debajo del día, **Buscar en esta bitácora** recorre toda la bitácora, hasta un año atrás: los comandos que contienen todas las palabras que escribes y los comandos con una nota que las contiene todas. **/** te lleva ahí. Lo que encuentra se agrupa por día: un clic en una línea la abre, y **Abrir el día** va a su día. La búsqueda se mantiene hasta que la borras, y **Volver al día** regresa al día en el que estabas.
+
+A su lado están el orden y los filtros:
+
+- **Antiguas primero** cambia a **Recientes primero** con un clic, y este navegador lo recuerda.
+- **Todos**: solo las líneas de una persona, la que ejecutó el comando o escribió una nota debajo.
+- **Fallidos**: solo los comandos que fallaron.
+- **Con notas**: solo los comandos que tienen notas debajo.
+- **Todas las terminales**: los comandos de una sola terminal. Aparece cuando las líneas vienen de más de una terminal.
+
+Con un filtro activo, el día indica cuántos comandos se muestran, **2 de 8 comandos**, y **Quitar filtros** los desactiva. Los filtros también se aplican a lo que encontró **Buscar en esta bitácora**.
+
+[La búsqueda](../search/) también revisa las bitácoras de todas tus máquinas: escribe `l:` al principio.
+
+## Notas debajo de un comando
+
+Pasa el puntero sobre una línea y presiona **Añadir una nota**. En la terminal, el [bloque](../blocks/) de un comando tiene el mismo botón, con el texto de ayuda **Añadir una nota sobre este comando**. De una forma u otra, la nota aparece tanto debajo de la línea en la bitácora como debajo del bloque en la terminal. **Enter** guarda la nota, **Shift+Enter** empieza una línea nueva y **Esc** cancela.
+
+Una nota queda en la bitácora tal cual se escribió: no se edita ni se elimina, se responde. Con **Responder**, debajo de las notas, escribes la respuesta. Cada nota indica quién la escribió y cuándo, y el **⋯** que tiene al lado en la bitácora incluye **Copiar texto**.
+
+## Censurar una contraseña o un token
+
+Una contraseña o un token que se haya colado en un comando o en una nota se puede borrar. Solo el propietario del proyecto o un administrador pueden hacerlo. Por ahora, en cada proyecto estás solo tú, y tú eres su propietario.
+
+<Steps>
+
+1. En la bitácora, presiona **⋯** en la línea, o junto a la nota, y elige **Censurar…**.
+
+2. En la ventana, escribe en **Por qué** qué era: una contraseña, un token.
+
+3. Presiona **Censurar**.
+
+</Steps>
+
+Las palabras desaparecen para siempre de la bitácora, de los bloques de la terminal, de la búsqueda y del historial de la línea de entrada. Si es un comando, también desaparece lo que imprimió, y lo mismo ocurre con ese comando en cualquier otro lugar del proyecto donde se haya ejecutado. En su lugar, la bitácora guarda quién las censuró, cuándo y por qué: **Texto censurado por ti · 09:23 · una contraseña**. Las copias de seguridad nocturnas de la base de datos aún las conservan hasta que esas copias se eliminan, en un plazo de dos semanas.
+
+## Cuánto tiempo se guarda
+
+Las líneas se guardan un año, y las notas de una línea se van con ella. Lo que imprimieron los comandos se guarda 30 días: después, una línea tuya dice **salida no conservada** cuando pasas el puntero sobre ella. Una vez que se [quita](../../machines/remove/) una máquina, su bitácora ya no se abre.
+
+La bitácora se queda con su máquina. Si la máquina se [mueve a otro proyecto](../projects/#mover-una-máquina), se lleva la bitácora entera, también las líneas de antes del cambio, y cualquiera que esté en ese proyecto puede leerlas. Eliminar el proyecto del que salió no borra nada de ella.

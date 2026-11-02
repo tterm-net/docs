@@ -1,0 +1,59 @@
+---
+title: Przenieś do chmury
+description: W tTerm dla Maca opcja Przenieś do chmury przenosi na twoje konto serwery, z którymi łączysz się przez ssh, żeby otwierały się z każdej przeglądarki i z telefonu.
+---
+
+Serwery, z którymi łączysz się z Maca przez `ssh`, mogą otwierać się z tTerm Web, z telefonu albo z dowolnego komputera, na którym się zalogujesz. **Przenieś do chmury** w [tTerm dla Maca](../mac/) przenosi je na twoje konto, każdy w sposób, który dla niego wybierzesz. Nic nie zostanie przeniesione, dopóki nie naciśniesz **Przenieś**.
+
+## Gdzie to znaleźć
+
+Zaloguj się w tTerm dla Maca, kliknij swoje konto na dole panelu bocznego i wybierz **Przenieś do chmury**, tuż nad **Wyloguj się**. Znajdziesz tę opcję także przez **⌘K**.
+
+## Co znajduje
+
+**Serwery na tym Macu** pochodzą z `~/.ssh/config`, `known_hosts` i z poleceń `ssh` uruchomionych w terminalach tTerma na tym Macu. Dla każdego z nich `ssh -G` podaje adres, port, użytkownika, klucze i bastion, których użyłby sam ssh; użytkownik i port podane w poleceniu, jak w `ssh root@host` albo `-p 2222`, zastępują te z konfiguracji. Mac nie łączy się przy tym z żadnym serwerem.
+
+Zaznaczone są wszystkie serwery oprócz hosta Gita, takiego jak github.com (**Host Gita: brak terminala do otwarcia**), serwera, który **Już jest w tTermie**, serwera znanego tylko z `known_hosts` i serwera, dla którego wybrano **Nie pytaj więcej o …** na [pasku](#pasek-po-ssh). Potem tTerm Web sprawdza z chmury, czy może połączyć się z portem SSH każdego serwera albo jego bastionu.
+
+Pod serwerami, w sekcji **Klucze w ~/.ssh**, są twoje klucze prywatne. Do sejfu trafiają tylko zaznaczone. Klucz zaznacza się sam, gdy otwiera się nim zaznaczony serwer ze sposobem **Mój klucz**.
+
+## Trzy sposoby dostępu
+
+Dla każdego serwera wybierasz osobno:
+
+- **Mój klucz** – klucz trafia do twojego sejfu, zaszyfrowany na tym Macu, a serwer zostaje bez zmian. tTerm Web loguje się na serwer z chmury, a twoje urządzenie z otwartym sejfem podpisuje to logowanie: przeglądarka, w której sejf jest otwarty, albo ten Mac. Pasuje do serwera, do którego dociera tTerm Web i którego klucz w `~/.ssh` można przenieść. Więcej: [Twój sejf na klucze SSH](../../security/keys/).
+- **Przepustka tTerma** – ten Mac raz loguje się na serwer i dodaje własny wiersz tTerma do `~/.ssh/authorized_keys` użytkownika, na którego konto się loguje; twój klucz zostaje tutaj. Od tej pory tTerm loguje się jako ten użytkownik certyfikatem ważnym dwie minuty, tak jak na [serwerze podłączonym jednym poleceniem](../../machines/servers/), i nie potrzebuje sejfu. Na pasku po `ssh` ten sposób nazywa się **Wpuść tTerm**.
+- **Przez tego Maca** – nic nie jest przenoszone: tTerm prosi tego Maca, żeby połączył się z serwerem przez `ssh`, gdy Mac jest włączony. Pasuje do serwera za VPN-em albo w sieci prywatnej, do którego tTerm Web nie dociera, i do serwera, którego klucz nie może opuścić tego Maca. Jego terminal działa w trybie klasycznym: każdy klawisz trafia prosto do ssh na Macu, bez bloków i bez pytania przed niebezpiecznym poleceniem.
+
+tTerm sam wybiera dla każdego serwera: **Mój klucz**, gdy jego klucz można przenieść, **Przez tego Maca**, gdy tTerm Web nie dociera do serwera albo klucz nie może opuścić Maca, a w pozostałych przypadkach **Przepustka tTerma**. Serwer, do którego tTerm Web nie dociera, ma tylko **Przez tego Maca**. Serwer za bastionem, do którego dociera chmura, otwiera się przez ten bastion.
+
+:::note[Przez tego Maca – tylko gdy Mac jest online]
+W tTerm dla Maca, w sekcji **Ustawienia** → **Ten komputer**, włącz **Dostęp z tTerm Web i z telefonu**. Wtedy po zamknięciu okna tTerm zostaje na pasku menu i uruchamia się, gdy logujesz się do systemu.
+:::
+
+## Gdy naciśniesz Przenieś
+
+Przycisk podaje liczbę zaznaczonych serwerów: **Przenieś 3 serwery**.
+
+- **Mój klucz** wymaga sejfu. Za pierwszym razem naciśnij **Utwórz sejf za pomocą Touch ID** i zachowaj [kod odzyskiwania](../../security/keys/#kod-odzyskiwania). Zablokowany sejf poprosi o Touch ID albo hasło do Maca, a na Macu, który nie ma jeszcze do niego dostępu, jeden raz o kod odzyskiwania.
+- Jeśli klucz ma hasło, tTerm zapyta o nie raz. Hasło zostaje na tym Macu.
+- Przy sposobie **Mój klucz** ten Mac najpierw loguje się na serwer samym tym kluczem i dopiero potem klucz trafia do sejfu, raz dla wszystkich swoich serwerów. Przy sposobie **Przepustka tTerma** ten Mac loguje się, żeby dodać wiersz, a tTerm loguje się raz swoim certyfikatem, żeby go sprawdzić.
+- **Mój klucz** i **Przepustka tTerma** wymagają klucza hosta serwera w `known_hosts`: z nowym serwerem najpierw połącz się raz z tego Maca.
+
+Dla serwera, którego nie udało się przenieść, nic nie jest zapisywane. Klucz, który trafił do sejfu tylko dla takich serwerów, zostaje z niego usunięty, a wiersz, który tTerm dodał na takim serwerze, znika.
+
+## Po przeniesieniu
+
+Podsumowanie mówi, ile serwerów jest teraz w tTermie, wszystkie w projekcie Personal: **Dodano do tTerma 2 z 3 serwerów**. W wierszu każdego serwera widać, jak się otwiera: **Otwiera się twoim kluczem**, **Otwiera się przepustką tTerma** albo **Przez tego Maca, gdy jest włączony**. Przycisk **Otwórz terminal** obok otwiera na nim terminal. Przy serwerze, którego nie udało się przenieść, widać powód oraz **Spróbuj ponownie** i **Zmień**: **Zmień** wraca do listy, na której zaznaczony jest tylko ten serwer. Na dole: klucze, które są teraz w sejfie, albo **Nie przeniesiono żadnego klucza: twoje klucze zostają na tym Macu.**
+
+W panelu bocznym serwer, który otwiera się twoim kluczem, ma po nazwie ikonę klucza, a serwer otwierany przez twojego Maca ma dopisek **przez Maca**.
+
+## Pasek po ssh
+
+Gdy `ssh` zakończy się bez błędu w terminalu tego Maca, pod jego blokiem może pojawić się pasek **droplet: otwieraj go z dowolnego miejsca** z adresem i twoim kluczem.
+
+- **Zapisz mój klucz** – to samo co **Mój klucz**, gdy klucz można przenieść.
+- **Wpuść tTerm** – to samo co **Przepustka tTerma**.
+- **Nie teraz** albo **Nie pytaj więcej o droplet**.
+
+Dla serwera, do którego tTerm Web nie dociera, pasek proponuje zamiast tego **Otwórz przez tego Maca**. Pasek pojawia się raz dla każdego serwera i nigdy dla hosta Gita ani serwera, który już jest w tTermie. Serwer zapisany z paska też trafia do projektu Personal.

@@ -1,0 +1,68 @@
+---
+title: Das Log einer Maschine
+description: Was über tTerm auf einer Maschine ausgeführt wurde, Zeile für Zeile – wie du das Log liest, ein Jahr zurück durchsuchst, Notizen unter Befehle schreibst und ein Passwort schwärzt.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Jeder Befehl, den jemand über tTerm auf einer Maschine ausführt, wird zu einer Zeile im Log dieser Maschine: wer ihn ausgeführt hat, wann, wie er ausgegangen ist, wie lange er gedauert hat und wo. tTerm schreibt das Log, und niemand kann es ändern. Unter einem Befehl kannst du eine Notiz hinterlassen.
+
+## Das Log öffnen
+
+In der Seitenleiste ist im Bereich **Notizen** eines Projekts der erste Ordner **Logs**, markiert mit **von tTerm**. Darin liegt für jede Maschine des Projekts ein Log, und daneben steht, wie viele Befehle dort heute gelaufen sind: **12 heute**. Klick auf eine Maschine, und ihr Log öffnet sich in einem Tab: **web-01-Log**.
+
+Das Log zeigt jeweils einen Tag und öffnet sich mit dem heutigen. Die Pfeile **Vorheriger Tag** und **Nächster Tag** springen zum nächstgelegenen Tag mit Zeilen. **Heute** bringt dich zurück, und **Tag wählen** öffnet einen Kalender. Solange das Log den heutigen Tag zeigt, kommen neue Zeilen dazu, sobald Befehle enden.
+
+Oben im Log findest du unter **⋯** den Punkt **Als Markdown kopieren**: Er kopiert den angezeigten Tag, seine Zeilen und die Notizen darunter.
+
+## Was in einer Zeile steht
+
+Jeder Befehl ist eine Zeile: die Uhrzeit, wer ihn ausgeführt hat, der Befehl, gekürzt, wenn er lang ist, und wie viele Notizen darunter stehen. Rechts stehen, wie lange er gedauert hat, das Verzeichnis, der git-Branch und das Terminal. Ein fehlgeschlagener Befehl hat ein Kreuz und seinen Exit-Code, **exit 1**. Zwischen den Befehlen vermerkt das Log außerdem, wann ein Terminal geöffnet und wann es beendet wurde, und auch, wann die Maschine in ein anderes Projekt verschoben wurde: **Du hast diese Maschine von Personal nach Client X verschoben**.
+
+Ein Klick auf eine Zeile öffnet sie: der ganze Befehl, seine Ausgabe und die Notizen darunter. Ein zweiter Klick schließt sie wieder. Von einer langen Ausgabe siehst du die ersten Zeilen: **Alle 27 Zeilen zeigen** zeigt den Rest, und **Ausgabe kopieren** kopiert sie.
+
+Zeig mit der Maus auf eine Zeile oder öffne sie, und auf der Zeile erscheint **⋯**: **Befehl kopieren** und **Link zu dieser Zeile kopieren**. Der Link öffnet das Log am Tag dieser Zeile, und die Zeile ist gleich geöffnet.
+
+## Suchen und filtern
+
+Unter dem Tag steht das Feld **In diesem Log suchen**: Es durchsucht das ganze Log, ein Jahr zurück, nach Befehlen mit allen Wörtern, die du eingibst, und nach Befehlen mit einer Notiz, die alle diese Wörter enthält. Mit **/** springst du hinein. Die Treffer sind nach Tagen gruppiert: Ein Klick auf eine Zeile öffnet sie, und **Tag öffnen** springt zu ihrem Tag. Die Suche bleibt, bis du sie leerst, und **Zurück zum Tag** bringt dich zu dem Tag zurück, auf dem du warst.
+
+Daneben stehen die Reihenfolge und die Filter:
+
+- **Älteste zuerst** wird mit einem Klick zu **Neueste zuerst**, und dieser Browser merkt sich das.
+- **Alle**: nur die Zeilen einer Person, die den Befehl ausgeführt oder eine Notiz darunter geschrieben hat.
+- **Fehlgeschlagen**: nur die Befehle, die fehlgeschlagen sind.
+- **Mit Notizen**: nur die Befehle, unter denen Notizen stehen.
+- **Alle Terminals**: die Befehle eines einzelnen Terminals. Diesen Filter gibt es, wenn die Zeilen aus mehr als einem Terminal stammen.
+
+Ist ein Filter aktiv, steht beim Tag, wie viele Befehle zu sehen sind, **2 von 8 Befehlen**, und **Zurücksetzen** schaltet die Filter aus. Die Filter wirken auch auf das, was **In diesem Log suchen** gefunden hat.
+
+Auch die [Suche](../search/) durchsucht die Logs all deiner Maschinen: Fang mit `l:` an.
+
+## Notizen unter einem Befehl
+
+Zeig mit der Maus auf eine Zeile und drück auf **Notiz hinzufügen**. Im Terminal hat der [Block](../blocks/) eines Befehls denselben Button, mit dem Tooltip **Eine Notiz zu diesem Befehl hinzufügen**. So oder so erscheint die Notiz sowohl unter der Zeile im Log als auch unter dem Block im Terminal. **Enter** speichert die Notiz, **Shift+Enter** beginnt eine neue Zeile, **Esc** bricht ab.
+
+Eine Notiz bleibt im Log, wie sie geschrieben wurde: Sie wird nicht bearbeitet oder gelöscht, sondern beantwortet. Mit **Antworten** unter den Notizen schreibst du die Antwort. Jede Notiz zeigt, wer sie wann geschrieben hat, und unter **⋯** daneben findest du im Log **Text kopieren**.
+
+## Ein Passwort oder ein Token schwärzen
+
+Ist ein Passwort oder ein Token in einen Befehl oder eine Notiz geraten, lässt es sich löschen. Das kann nur der Eigentümer des Projekts oder ein Admin. Vorerst bist du in jedem Projekt allein, und du bist sein Eigentümer.
+
+<Steps>
+
+1. Drück im Log auf **⋯** an der Zeile oder neben der Notiz und wähl **Schwärzen …**.
+
+2. Schreib im Fenster unter **Warum**, was es war: ein Passwort, ein Token.
+
+3. Drück auf **Schwärzen**.
+
+</Steps>
+
+Der Text verschwindet endgültig aus dem Log, aus dem Feed des Terminals, aus der Suche und aus dem Verlauf der Eingabezeile. Bei einem Befehl verschwindet auch seine Ausgabe, ebenso derselbe Befehl überall sonst, wo er im Projekt gelaufen ist. An seiner Stelle hält das Log fest, wer ihn geschwärzt hat, wann und warum: **Geschwärzt von dir · 09:23 · ein Passwort**. In den nächtlichen Backups der Datenbank steht er noch, bis diese Backups gelöscht werden, spätestens nach zwei Wochen.
+
+## Wie lange das Log aufbewahrt wird
+
+Zeilen werden ein Jahr aufbewahrt, und die Notizen unter einer Zeile verschwinden mit ihr. Die Ausgabe der Befehle wird 30 Tage aufbewahrt: Danach zeigt eine deiner Zeilen **Ausgabe nicht aufbewahrt**, wenn du mit der Maus darauf zeigst. Sobald eine Maschine [entfernt](../../machines/remove/) ist, lässt sich ihr Log nicht mehr öffnen.
+
+Das Log bleibt bei seiner Maschine. Wird die Maschine [in ein anderes Projekt verschoben](../projects/#eine-maschine-verschieben), nimmt sie das ganze Log mit, auch die Zeilen aus der Zeit davor, und alle in diesem Projekt können sie lesen. Löschst du das Projekt, aus dem sie kam, geht vom Log nichts verloren.

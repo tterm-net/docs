@@ -1,0 +1,77 @@
+---
+title: Dein Tresor für SSH-Schlüssel
+description: Deine eigenen SSH-Schlüssel, auf deinen Geräten verschlüsselt, bevor sie tTerm erreichen – wie der Tresor entsteht, wie du ihn in einem anderen Browser öffnest und wann er wieder gesperrt wird.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Der Tresor bewahrt deine eigenen SSH-Schlüssel auf, für die Server, die du mit ihnen erreichst. Ein Schlüssel wird auf deinem Gerät verschlüsselt, bevor er es verlässt, und nur deine Geräte öffnen den Tresor, so wie du sie entsperrst. tTerm bewahrt die verschlüsselten Schlüssel auf, mit dem öffentlichen Teil und dem Fingerabdruck jedes Schlüssels: Den Tresor öffnen oder einen Schlüssel lesen kann tTerm nicht. Der Tresor liegt unter **Einstellungen** → **Schlüssel**.
+
+## Wie sich ein Server mit deinem Schlüssel öffnet
+
+Ein Server öffnet sich mit deinem Schlüssel, wenn du ihn aus [tTerm für Mac](../../local/mac/) mit **Mein Schlüssel** umziehst oder auf der Leiste nach `ssh` mit **Schlüssel speichern** übernimmst: siehe [Umzug in die Cloud](../../local/move-to-cloud/). Wenn du darauf ein Terminal öffnest, bittet tTerm ein Gerät von dir, auf dem der Tresor geöffnet ist, einen Browser oder tTerm für Mac, die Anmeldung zu signieren. Das Gerät signiert mit diesem Schlüssel eine SSH-Anmeldung und sonst nichts, und der Schlüssel verlässt es nie. tTerm prüft die Signatur gegen den öffentlichen Teil des Schlüssels, bevor es sie verwendet.
+
+## Deinen Tresor erstellen
+
+<Tabs>
+	<TabItem label="Im Browser">
+
+Drück unter **Einstellungen** → **Schlüssel** auf **Schlüssel aus Datei hinzufügen** und wähl deinen privaten Schlüssel, die Datei ohne `.pub`. Hat der Schlüssel eine Passphrase, gib sie ein und drück auf **Schlüssel öffnen**: Die Passphrase öffnet den Schlüssel in diesem Browser und geht nirgendwohin. Gib dem Schlüssel einen Namen und drück auf **Weiter**.
+
+Drück im Fenster **Schlüssel in deinem Tresor speichern** auf einem Mac auf **Tresor mit Touch ID erstellen**, unter Windows auf **Tresor mit Windows Hello erstellen** und anderswo auf **Tresor mit einem Passkey erstellen**. Ein Browser, der keinen Passkey für den Tresor speichern kann, zeigt **Tresor erstellen**: Dort öffnet sich der Tresor mit dem Wiederherstellungscode oder mit der Freigabe deines Macs, jeweils für eine Sitzung.
+
+	</TabItem>
+	<TabItem label="In tTerm für Mac">
+
+Der Tresor entsteht, wenn du zum ersten Mal einen Schlüssel speicherst: beim Umzug in die Cloud oder mit **Schlüssel speichern** auf der Leiste nach `ssh`. Drück im Fenster **Schlüssel in deinem Tresor speichern** auf **Tresor mit Touch ID erstellen** und bestätige mit Touch ID oder dem Passwort deines Macs.
+
+	</TabItem>
+</Tabs>
+
+### Der Wiederherstellungscode
+
+Gleich danach zeigt tTerm deinen Wiederherstellungscode: 24 Buchstaben und Ziffern in sechs Vierergruppen. Du siehst ihn nur einmal. Wähl **Kopieren** oder **Als Datei speichern** und bewahre ihn an einem sicheren Ort auf, getrennt von den Geräten, die deinen Tresor öffnen. Verlierst du sie jemals alle, ist dieser Code der einzige Weg zurück zu deinen Schlüsseln: tTerm kann sie nicht für dich wiederherstellen. **Fertig** funktioniert erst, wenn du angehakt hast, dass du ihn aufbewahrt hast.
+
+## Den Tresor in einem anderen Browser öffnen
+
+Ein Browser, der für deinen Tresor neu ist, öffnet ihn im Fenster **Deine Schlüssel in diesem Browser öffnen**. Das Fenster erscheint, wenn du unter **Einstellungen** → **Schlüssel** auf **Öffnen** drückst oder einen Server öffnest, der sich mit deinem Schlüssel öffnet.
+
+- **In tTerm für Mac freigeben.** Wo tTerm für Mac deinen Tresor öffnet, bietet das Fenster diesen Mac an: Drück auf **Freigabe für diesen Browser anfordern**. Auf dem Mac zeigt ein Fenster, welcher Browser fragt, wann er sich angemeldet hat und von welcher Adresse aus. Beide Bildschirme zeigen dieselben sechs Ziffern: Drück nur dann auf **Mit Touch ID zulassen**, wenn sie übereinstimmen. **Das bin ich nicht** beendet die Anmeldung dieses Browsers, und unter **Einstellungen** → **Geräte** siehst du, was du sonst noch prüfen solltest. Eine Anfrage gilt fünf Minuten.
+- **Wiederherstellungscode verwenden.** Gib ihn im Feld **Wiederherstellungscode** ein und drück auf **Öffnen**.
+
+In einem Browser, der einen Passkey speichern kann, fragt tTerm danach, ob du einen speichern willst, damit sich der Tresor beim nächsten Mal so öffnet, wie du diesen Computer entsperrst: **Mit Touch ID speichern** (oder mit Windows Hello oder einem Passkey) oder, auf einem Computer, der nicht dir gehört, **Nur dieses Mal**.
+
+Einen Tresor, der in einem Browser erstellt wurde, öffnest du in tTerm für Mac einmal mit dem Wiederherstellungscode: **Mit Wiederherstellungscode öffnen** unter **Einstellungen** → **Schlüssel**. Danach öffnen ihn dort Touch ID oder das Passwort deines Macs.
+
+## Wann der Tresor wieder gesperrt wird
+
+- **Im Browser** – nach 8 Stunden ohne Aktivität, wenn du tTerm Web schließt oder neu lädst, wenn du dich abmeldest und wenn du unter **Einstellungen** → **Schlüssel** auf **Sperren** drückst.
+- **In tTerm für Mac** – der Tresor bleibt geöffnet, solange tTerm läuft, bis du auf **Sperren** drückst oder dich abmeldest. Beim Abmelden verliert der Mac außerdem die Möglichkeit, den Tresor selbst zu öffnen: Nach der nächsten Anmeldung öffnet er ihn einmal mit deinem Wiederherstellungscode.
+
+## Einstellungen → Schlüssel
+
+Oben zeigt die Seite, ob der Tresor hier geöffnet ist, wie er geöffnet wurde und wann er wieder gesperrt wird. Jeder Schlüssel hat eine Zeile: Name, Typ und kurzer Fingerabdruck; nach **Öffnet** die Server, die sich mit ihm öffnen, oder **Öffnet noch keinen Server**; wann er von einem Mac gespeichert oder aus einer Datei hinzugefügt wurde; und wann er zuletzt genutzt wurde, oder **noch nicht genutzt**.
+
+- **Entfernen** nimmt den Schlüssel nach einer Rückfrage aus deinem Tresor, und tTerm löscht seine verschlüsselte Kopie. Die Server, die sich mit ihm öffnen, bleiben in tTerm, öffnen sich aber nicht mehr. Der Schlüssel selbst bleibt, wo er herkam: auf deinem Mac oder in seiner Datei.
+- **Neuen Wiederherstellungscode erstellen** zeigt einmal einen neuen Code, und der bisherige funktioniert nicht mehr. Deine Schlüssel und Geräte bleiben, wie sie sind. Dafür fragt tTerm nach Touch ID oder dem Passkey dieses Browsers; ein Browser ohne Passkey für deinen Tresor fragt nach deinem aktuellen Code. Du hast ihn verloren? Dann erstelle den neuen in tTerm für Mac.
+- **Schlüssel aus Datei hinzufügen** gibt es im Browser. In tTerm für Mac kommen Schlüssel aus dem Umzug in die Cloud und von der Leiste nach `ssh`.
+
+Unter den Schlüsseln zeigt die Seite, wo sich der Tresor öffnet: jeder Mac und jeder Browser, der ihn selbst öffnen kann, oder **Dein Tresor öffnet sich nur mit deinem Wiederherstellungscode.**
+
+### Welche Schlüssel der Tresor aufnimmt
+
+Ed25519, ECDSA P-256 und P-384 sowie RSA. Keine Schlüssel vom Typ DSA oder ECDSA P-521 und keine Schlüssel auf einem Sicherheitsschlüssel (`sk-…`), die ihn nicht verlassen können: Deren Server öffnen sich [über deinen Mac](../../local/move-to-cloud/#drei-wege-auf-den-server).
+
+Ein Browser liest einen Schlüssel im eigenen Format von OpenSSH, auch mit Passphrase, oder in PEM ohne Passphrase (PKCS#8, PKCS#1), ein Schlüssel pro Datei. Eine PEM-Datei mit Passphrase wandelst du zuerst mit `ssh-keygen -p -f` und der Datei in das Format von OpenSSH um. tTerm für Mac liest Schlüssel im Format von OpenSSH.
+
+Manche Browser können nicht mit Ed25519-Schlüsseln signieren. **Einstellungen** → **Schlüssel** zeigt das dort an, und Server mit einem solchen Schlüssel öffnen sich in einem neueren Browser oder in tTerm für Mac.
+
+## Ein Server wartet auf deinen Tresor
+
+Solange keines deiner Geräte den Tresor geöffnet hat, wartet ein Terminal auf einem Server mit deinem Schlüssel, so lange es dauert, und zeigt **web-01 öffnet sich mit deinem Schlüssel**.
+
+- Drück in einem Browser mit gespeichertem Passkey auf **Mit Touch ID öffnen**, **Mit Windows Hello öffnen** oder **Mit einem Passkey öffnen**.
+- Wähl in einem anderen Browser **Auf … freigeben** mit dem Namen deines Macs oder **Wiederherstellungscode verwenden**.
+- Drück in tTerm für Mac auf **Mit Touch ID öffnen**; auf einem Mac, der deinen Tresor noch nicht selbst öffnen kann, auf **Wiederherstellungscode verwenden**.
+
+Sobald der Tresor geöffnet ist, zeigt das Terminal **Anmeldung bei web-01 mit deinem Schlüssel …** und öffnet sich von selbst.

@@ -1,0 +1,71 @@
+---
+title: Makineyi kaldırma
+description: Bir makineyi kimin ve nereden kaldırabileceği, ardından terminallerine ve geçmişine ne olduğu, tTerm'in erişiminin ve ajanının makineden nasıl çıktığı.
+---
+
+Kaldırılan makine tTerm Web'den çıkar, tTerm'in ona erişimi de onunla birlikte gider. Bunu, makinenin bulunduğu projenin sahibi ve yöneticileri yapabilir.
+
+## Nasıl kaldırılır
+
+Bunu iki yerden yapabilirsin:
+
+- Kenar çubuğunun en üstündeki tTerm logosunun açtığı **Makineler** sayfasında, makinenin kartındaki **Kaldır** düğmesine bas.
+- Kenar çubuğundaki proje adının açtığı proje sayfasında, makinenin yanındaki **⋯** düğmesine bas ve **Makineyi kaldır** seçeneğini seç.
+
+tTerm önce sorar ve ne olacağını söyler: **web-01 makinesi kaldırılsın mı?** Kırmızı **web-01 makinesini kaldır** düğmesi makineyi kaldırır, **Vazgeç** her şeyi olduğu gibi bırakır.
+
+## Sonra ne olur
+
+- Makinenin terminalleri sonlanır ve her biri nedenini söyler: **Bu terminal sonlandı**, **web-01, tTerm Web’den kaldırıldı.**
+- Makine kenar çubuğundan, **Makineler** sayfasından ve proje sayfasından kalkar, logu da projenin **Loglar** klasöründen çıkar.
+- Orada yazılan komutlar geçmişinde kalır: [arama](../../features/search/) onları yine bulur ve makinenin kaldırıldığını belirtir. Projenin günlüğünde de kaldırmayla ilgili bir satır kalır.
+
+## Sunucu
+
+Bulut sunucuya giriş yapmayı bırakır ve sunucunun kendisindeki `~tterm/.ssh/authorized_keys` dosyasından kendi satırını çıkarır. Ardından sayfada şu yazar: **web-01 tTerm Web'den kaldırıldı ve tTerm Web'in sunucudaki erişimi geri alındı.**
+
+Sunucu yanıt vermezse, bulut artık giriş yapmasa da satır orada kalır. O zaman bir pencere, satırı çıkaran komutu gösterir. Pencereyi kapatmadan önce komutu kopyala ve sunucuda çalıştır:
+
+```sh title="Sunucuda"
+sudo sed -i '/^cert-authority,principals="m-…" /d' ~tterm/.ssh/authorized_keys
+```
+
+Penceredeki komut, `principals="m-…"` değeriyle yalnızca bu sunucunun kendi satırını seçer; dosyanın diğer satırları olduğu gibi kalır. Aynı sunucu başka bir projede de varsa, orada kendi satırı olan ayrı bir makinedir ve çalışmaya devam eder.
+
+`tterm` kullanıcısı ve onun sudo kuralı `/etc/sudoers.d/tterm`, kaldırmadan sonra da yerinde kalır: tTerm botu onları kullanıyor olabilir. Bunları da kaldıran komut kurulum betiğinin en başında, ayrıca yanıt vermeyen bir sunucunun penceresinde yer alır:
+
+```sh title="Sunucuda"
+sudo userdel -r tterm && sudo rm -f /etc/sudoers.d/tterm
+```
+
+Onlarla birlikte tTerm botunun erişimi de gider, diğer projelerinde bu sunucuya olan erişim de.
+
+### Mac'ten taşınan sunucu
+
+[Mac için tTerm](../../local/move-to-cloud/) uygulamasından **Anahtarım** ya da **Bu Mac üzerinden** seçeneğiyle taşınan bir sunucuda tTerm'e ait hiçbir şey yoktur, bu yüzden kaldırılacak bir şey de yoktur. **tTerm'in giriş izni** seçeneğinde tTerm'in satırı, Mac'in sunucuya giriş yaptığı kullanıcının `~/.ssh/authorized_keys` dosyasındadır ve bulut onu aynı şekilde çıkarır. Böyle bir sunucu yanıt vermezse satırı orada kendin çıkar: satır `cert-authority,principals="m-…"` ile başlar.
+
+## Bilgisayar
+
+Ajan, bilgisayarın kaldırıldığını hemen öğrenir, anahtarını unutur ve durur. O anahtar bir daha hiç çalışmaz: sızmış bir anahtar da bilgisayarı kaldırıldığı anda geçersiz olur. Uykuda ya da çevrimdışı olan bir bilgisayar bunu, ajanı bir sonraki bağlanışında öğrenir.
+
+Bilgisayarı yeniden bağlamak için: **Makine ekle**, ardından **Bilgisayar**. Kurulum betiği bilgisayar için yeni bir anahtar oluşturur ve bilgisayar yeni bir makine olarak geri gelir.
+
+Ajanın kendisi ise sen kaldırana kadar bilgisayarda kalır:
+
+```sh title="Bilgisayarda"
+~/.tterm-web/uninstall.sh
+```
+
+Betik, ajanın otomatik başlatma ayarını ve bilgisayarın anahtarı dahil `~/.tterm-web` dizininin tamamını kaldırır, tTerm terminallerinin `~/.tterm` içine koyduğu kabuk betiklerini de. tTerm botunun ajanı da `~/.tterm` içinde durur, ama o yerinde kalır. Betik tek başına bilgisayarı tTerm Web'den kaldırmaz: sen kaldırana kadar bilgisayar orada listede kalır.
+
+## Mac için tTerm kurulu Mac
+
+Giriş yaptığında [Mac için tTerm](../../local/mac/), Mac'in tTerm Web ile bağlantısını ajanın yerine kendisi tutar. Bunun için **Ayarlar** → **Bu bilgisayar** bölümünde bir ayar vardır: **tTerm Web'den ve telefonundan erişime izin ver**. Ayar açıkken tTerm Web ve telefonun, tTerm çalıştığı sürece bu Mac'te terminal açabilir. Ayar kapalıyken Mac tTerm Web'de çevrimdışı görünür, uygulamada ise her şey eskisi gibi çalışır; tTerm Web'den bu Mac'te açılmış terminaller sonlanır, ama tTerm önce sorar.
+
+Mac, tTerm Web'de her bilgisayar gibi kaldırılır. Ardından **Bu bilgisayar** bölümünde şu yazar: **Bu Mac tTerm Web'den kaldırıldı, bu yüzden ona oradan erişilemiyor. Yeniden eklemek için bu ayarı aç.**
+
+Uygulama aynı zamanda cihazlarından biridir: **Ayarlar** → **Cihazlar** bölümündeki **Unut** uygulamadaki oturumu kapatır, ardından uygulama yalnızca bu Mac'le çalışır. Ayrıntılar [Cihazlar ve giriş](../../account/devices/) sayfasında.
+
+:::note[Terminali sonlandırmak, makineyi kaldırmak değildir]
+Kenar çubuğundan ya da aramadan bir terminali sonlandırdığında tTerm önce sorar, sonra yalnızca o kabuğu sonlandırır. Makine kalır, diğer terminalleri de.
+:::

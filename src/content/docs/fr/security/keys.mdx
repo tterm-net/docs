@@ -1,0 +1,77 @@
+---
+title: Votre coffre de clés SSH
+description: Vos propres clés SSH, chiffrées sur vos appareils avant d’arriver chez tTerm – comment le coffre est créé, ouvert dans un autre navigateur et verrouillé de nouveau.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Le coffre conserve vos propres clés SSH, pour les serveurs que vous joignez avec elles. Une clé est chiffrée sur votre appareil avant de le quitter, et seuls vos appareils ouvrent le coffre, comme vous les déverrouillez. tTerm conserve les clés chiffrées, avec la partie publique et l’empreinte de chaque clé : il ne peut ni ouvrir le coffre ni lire une clé. Le coffre se trouve dans **Paramètres** → **Clés**.
+
+## Comment un serveur s’ouvre avec votre clé
+
+Un serveur s’ouvre avec votre clé quand vous le transférez depuis [tTerm pour Mac](../../local/mac/) avec **Ma clé**, ou avec **Enregistrer ma clé** sur le bandeau après `ssh` : voir [Passer au cloud](../../local/move-to-cloud/). Quand vous ouvrez un terminal sur ce serveur, tTerm demande à l’un de vos appareils où le coffre est ouvert, un navigateur ou tTerm pour Mac, de signer la connexion. L’appareil signe avec cette clé une connexion SSH et rien d’autre, et la clé ne le quitte jamais. tTerm vérifie la signature avec la partie publique de la clé avant de l’utiliser.
+
+## Créer votre coffre
+
+<Tabs>
+	<TabItem label="Dans un navigateur">
+
+Dans **Paramètres** → **Clés**, appuyez sur **Ajouter une clé depuis un fichier** et choisissez votre clé privée, le fichier sans `.pub`. Si la clé a une phrase secrète, saisissez-la et appuyez sur **Ouvrir la clé** : la phrase secrète ouvre la clé dans ce navigateur et n’est envoyée nulle part. Nommez la clé et appuyez sur **Suivant**.
+
+Dans **Enregistrer votre clé dans votre coffre**, appuyez sur **Créer mon coffre avec Touch ID** sur un Mac, **Créer mon coffre avec Windows Hello** sous Windows, ou **Créer mon coffre avec une clé d’accès** ailleurs. Un navigateur qui ne peut pas enregistrer de clé d’accès pour le coffre affiche **Créer mon coffre** : le coffre s’y ouvre alors avec le code de récupération ou l’approbation de votre Mac, une session à la fois.
+
+	</TabItem>
+	<TabItem label="Dans tTerm pour Mac">
+
+Le coffre est créé la première fois que vous enregistrez une clé : avec Passer au cloud, ou avec **Enregistrer ma clé** sur le bandeau après `ssh`. Dans **Enregistrer votre clé dans votre coffre**, appuyez sur **Créer mon coffre avec Touch ID** et confirmez avec Touch ID ou le mot de passe de votre Mac.
+
+	</TabItem>
+</Tabs>
+
+### Le code de récupération
+
+Juste après, tTerm affiche votre code de récupération : 24 lettres et chiffres en six groupes de quatre. Vous ne le voyez qu’une fois. Appuyez sur **Copier** ou sur **Enregistrer dans un fichier**, et conservez-le en lieu sûr, à l’écart des appareils qui ouvrent votre coffre. Si vous les perdez tous un jour, ce code est le seul moyen de retrouver vos clés : tTerm ne peut pas les récupérer pour vous. **Terminé** fonctionne une fois que vous avez coché la case indiquant que vous l’avez conservé.
+
+## L’ouvrir dans un autre navigateur
+
+Un navigateur que votre coffre ne connaît pas encore l’ouvre dans **Ouvrir vos clés dans ce navigateur**. La fenêtre apparaît quand vous appuyez sur **Ouvrir** dans **Paramètres** → **Clés**, ou quand vous ouvrez un serveur qui s’ouvre avec votre clé.
+
+- **Approuver dans tTerm pour Mac.** Si tTerm pour Mac ouvre votre coffre, la fenêtre propose ce Mac : appuyez sur **Lui demander d’ouvrir votre coffre ici**. Sur le Mac, une fenêtre indique quel navigateur fait la demande, quand il s’est connecté et depuis quelle adresse. Les deux écrans affichent les mêmes six chiffres : n’appuyez sur **Autoriser avec Touch ID** que s’ils correspondent. **Ce n’est pas moi** met fin à la connexion de ce navigateur, et **Paramètres** → **Appareils** indique ce qu’il reste à vérifier. Une demande reste valable cinq minutes.
+- **Utiliser le code de récupération.** Saisissez-le dans **Code de récupération** et appuyez sur **Ouvrir**.
+
+Dans un navigateur qui peut enregistrer une clé d’accès, tTerm demande ensuite s’il faut en enregistrer une, pour que la prochaine fois le coffre s’ouvre comme vous déverrouillez cet ordinateur : **Enregistrer avec Touch ID** (ou Windows Hello, ou une clé d’accès), ou **Cette fois seulement** sur un ordinateur qui n’est pas le vôtre.
+
+Un coffre créé dans un navigateur s’ouvre une première fois dans tTerm pour Mac avec le code de récupération : **Ouvrir avec le code de récupération** dans **Paramètres** → **Clés**. Ensuite, Touch ID ou le mot de passe de votre Mac suffit pour l’y ouvrir.
+
+## Quand il se verrouille de nouveau
+
+- **Dans un navigateur** – après 8 heures d’inactivité, quand vous fermez ou rechargez tTerm Web, quand vous vous déconnectez et quand vous appuyez sur **Verrouiller** dans **Paramètres** → **Clés**.
+- **Dans tTerm pour Mac** – il reste ouvert tant que tTerm tourne, jusqu’à ce que vous appuyiez sur **Verrouiller** ou que vous vous déconnectiez. La déconnexion fait aussi oublier au Mac son verrou : après votre nouvelle connexion, il ouvre le coffre une fois avec votre code de récupération.
+
+## Paramètres → Clés
+
+En haut, la page indique si le coffre est ouvert ici, comment il a été ouvert et quand il se verrouillera de nouveau. Chaque clé a sa ligne : son nom, son type et son empreinte courte ; les serveurs qu’elle **Ouvre**, ou **Aucun serveur ne s’ouvre encore avec elle** ; quand elle a été enregistrée depuis un Mac ou ajoutée depuis un fichier ; et quand elle a servi pour la dernière fois, ou **pas encore utilisée**.
+
+- **Retirer** sort la clé de votre coffre, après confirmation, et tTerm supprime sa copie chiffrée. Les serveurs qui s’ouvrent avec elle restent dans tTerm mais ne s’ouvrent plus. La clé elle-même reste là d’où elle vient : sur votre Mac, ou dans son fichier.
+- **Générer un nouveau code de récupération** affiche un nouveau code une seule fois, et l’ancien cesse de fonctionner. Vos clés et vos appareils restent tels quels. Il faut confirmer avec Touch ID ou la clé d’accès de ce navigateur ; un navigateur sans clé d’accès pour votre coffre demande votre code actuel. Vous l’avez perdu ? Générez le nouveau dans tTerm pour Mac.
+- **Ajouter une clé depuis un fichier** est disponible dans un navigateur. Dans tTerm pour Mac, les clés viennent de Passer au cloud et du bandeau après `ssh`.
+
+Sous les clés, la page indique où le coffre s’ouvre : chaque Mac et chaque navigateur qui en garde un verrou, ou **S’ouvre uniquement avec votre code de récupération.**
+
+### Les clés qu’il conserve
+
+Ed25519, ECDSA P-256 et P-384, et RSA. Pas les clés DSA ni ECDSA P-521, ni les clés sur une clé de sécurité (`sk-…`), qui ne peuvent pas en sortir : leurs serveurs s’ouvrent [via votre Mac](../../local/move-to-cloud/#trois-façons-dentrer).
+
+Un navigateur lit une clé au format propre à OpenSSH, y compris avec une phrase secrète, ou au format PEM sans phrase secrète (PKCS#8, PKCS#1), une clé par fichier. Un fichier PEM avec une phrase secrète se convertit d’abord au format OpenSSH avec `ssh-keygen -p -f` suivi du fichier. tTerm pour Mac lit les clés au format OpenSSH.
+
+Certains navigateurs ne peuvent pas signer avec des clés Ed25519. **Paramètres** → **Clés** l’indique dans ce cas, et les serveurs qui utilisent une telle clé s’ouvrent dans un navigateur plus récent ou dans tTerm pour Mac.
+
+## Un serveur qui attend votre coffre
+
+Tant qu’aucun de vos appareils n’a le coffre ouvert, un terminal sur un serveur qui s’ouvre avec votre clé attend, aussi longtemps qu’il le faut, et affiche **web-01 s’ouvre avec votre clé**.
+
+- Dans un navigateur qui a enregistré une clé d’accès, appuyez sur **Ouvrir avec Touch ID**, **Ouvrir avec Windows Hello** ou **Ouvrir avec une clé d’accès**.
+- Dans un autre navigateur, appuyez sur **Approuver sur** suivi du nom de votre Mac, ou sur **Utiliser le code de récupération**.
+- Dans tTerm pour Mac, appuyez sur **Ouvrir avec Touch ID** ; sur un Mac qui n’a pas encore de verrou de votre coffre, sur **Utiliser le code de récupération**.
+
+Une fois le coffre ouvert, le terminal affiche **Connexion à web-01 avec votre clé…** et s’ouvre de lui-même.

@@ -1,0 +1,59 @@
+---
+title: Devices and signing in
+description: Signing in with a code from email, the quick code on a device you trust, when a session ends, and the devices you can forget in Settings.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+You sign in to tTerm Web with a code from email. On a device you trust, a four-digit quick code brings you back.
+
+## Sign in with a code
+
+<Steps>
+
+1. Open [app.tterm.net](https://app.tterm.net), enter your email and press **Get a code**. Six digits come by email.
+
+2. Enter them in the same browser: the code works only there, for 10 minutes, with five tries. A minute later you can press **Send a new code**, and the code before it stops working.
+
+3. The first time, the page asks for **Your name** and one tick, **I agree to the Terms of Service and Privacy Policy**. **Create account** makes the account, with its first project, Personal.
+
+</Steps>
+
+Every time someone signs in to your account with a code from email, tTerm writes to you: **New sign-in to tTerm**, with the browser, its IP address and the time. If it was not you, press **Forget all devices** in Settings (the email's **Open Settings** leads there), and change the password of your email: whoever signed in could read it.
+
+## The quick code
+
+Right after the code, the page offers **Create a quick code for this device**: four digits, then the same four once more. Digits all the same or in a row are refused. Next time, this browser asks only for the quick code.
+
+It works only together with a long random key this browser keeps, so it is no use on any other device. Five wrong tries forget the device, and it is a code from email again. **Forgot the code?** sends one at once, and after it the page offers a new quick code.
+
+**Not now** goes on without one: next time this browser asks for a code from email, and offers the quick code again.
+
+After 8 hours without anything done, the session ends, and the page asks you to sign in again: **Your session ended. Sign in again: your terminals kept running.** On a device with a quick code, the quick code is enough.
+
+## Sign out
+
+The account at the bottom of the sidebar opens a menu with **Settings**, **Language**, **Account** and **Sign out**. **Sign out** ends the session and makes this browser forget you: next time it asks for a code from email, not the quick code. Notes typed here and not saved yet are forgotten too. Your terminals keep running.
+
+To switch to another account, sign out and sign in with the other email. **Switch account**, on the quick code screen, also asks for an email.
+
+## Your devices
+
+**Settings** → **Devices** lists the browsers where you sign in with a quick code, and each tTerm for Mac signed in with the browser, named as tTerm sees them: Chrome on macOS, tTerm for Mac on MacBook-Pro. Each says when it was trusted or signed in and when it was last used; **This device** marks the one you are on.
+
+- **Forget** a browser, and there it takes a code from email again. Forget tTerm for Mac, and it is signed out: it works with that Mac only, as before signing in. Forget the device you are on, and you are signed out here.
+- **Forget all devices…**, then **Forget all devices**: every device is forgotten and every session ends, this one too. Each browser then asks for a code from email. Your terminals keep running.
+
+A browser keeps its quick code for 90 days from the day you made it: after that it asks for a code from email again, and offers a new quick code. A device that has not signed in for 90 days is forgotten by itself and leaves the list.
+
+## tTerm for Mac
+
+[tTerm for Mac](../../local/mac/) signs in with your browser. In the app, press **Sign in with your browser** on its first screen, or **Sign in** in the menu at the bottom of the sidebar: it opens app.tterm.net and shows a code. In the browser, sign in if you have not, check that the page shows the same code, and press **Allow**. If you signed in to this browser more than a quarter of an hour ago, the page first asks you to confirm it is you, with the quick code or a code from email.
+
+The Mac becomes a machine in Personal, the app appears under **Devices**, and tTerm writes to you about the new sign-in, as for a browser.
+
+To let the app into another account than the one this browser is signed in to, press **Not you? Use another account** under **Cancel**. The browser's session ends, its quick code stays, and the page asks for the other email first.
+
+## Your email and your account
+
+Your email is on the **Account** page, in the same menu. To change it, write to [support@tterm.net](mailto:support@tterm.net). To delete your account, write there from the address you sign in with.

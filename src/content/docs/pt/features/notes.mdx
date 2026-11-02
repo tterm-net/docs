@@ -1,0 +1,63 @@
+---
+title: Notas
+description: Notas nas pastas de um projeto – Markdown enquanto você digita, checklists que mostram quem marcou, código com Copiar e um salvamento que mescla o que dois dispositivos escreveram.
+---
+
+As notas ficam nas pastas de um projeto, assim como os terminais ficam nas máquinas dele: runbooks, acessos, checklists, perto das máquinas de que tratam. Uma nota é um título e blocos, escritos ali mesmo, e ela se salva sozinha.
+
+## Pastas
+
+Na barra lateral, cada projeto tem **Notas** embaixo das máquinas. O **+** ao lado de **Notas** cria uma pasta: dê um nome a ela e clique em **Criar pasta**. O **+** ao lado de uma pasta começa uma nota nela, numa aba própria; um clique na própria pasta só a recolhe ou expande. A página do projeto tem o mesmo em forma de botões: **Nova pasta**, e **Nova nota** em cada pasta.
+
+O **⋯** ao lado de uma pasta, na página do projeto, tem **Renomear pasta** e **Excluir pasta**. Uma pasta é excluída junto com as notas que estão nela: a janela mostra quais são, então mova antes as notas que você quiser manter.
+
+Por enquanto, só você está em cada projeto, então só você vê as notas dele, e é você quem escreve, move e exclui todas as notas e pastas ali. Embaixo do título de uma nota, a página diz isso: **só você vê**.
+
+## Escrever
+
+Uma nota nova abre com o cursor no título, e **Enter** passa para o texto. O texto é feito de blocos: texto, títulos, itens de lista, itens de checklist, código e divisores. **Enter** começa um novo bloco e, num item vazio, encerra a lista.
+
+O Markdown digitado no começo de um bloco o transforma no que ele quer dizer:
+
+| Digite no começo de um bloco | Ele vira |
+| --- | --- |
+| `#` e um espaço | um título |
+| `-` e um espaço, ou `1.` e um espaço | um item de lista |
+| `- [ ]` e um espaço | um item de checklist; com `- [x]`, um item já marcado |
+| `` ``` `` | código |
+| `---` | um divisor |
+
+Em qualquer outro ponto de um bloco, o Markdown fica como foi digitado. Numa linha vazia, **/** oferece o mesmo numa lista: **Checklist**, **Título**, **Lista**, **Código**, **Divisor**, **Texto**. As letras digitadas em seguida filtram a lista, as setas percorrem as opções e **Enter** escolhe. Um texto colado com várias linhas vira blocos, e o Markdown dele é lido do mesmo jeito.
+
+## Código e checklists
+
+Um bloco de código mantém as linhas: **Enter** começa uma nova linha dentro dele, **Tab** insere dois espaços, e **⌘Enter** no Mac (**Ctrl+Enter** nos outros sistemas) sai dele para um novo bloco abaixo. Um texto colado nele fica como está. **Copiar**, no canto do bloco, copia o código e mostra **Copiado** por um instante.
+
+Um item de checklist é marcado na caixinha dele. A marcação é salva na hora, e ao lado do item a nota mostra quem marcou e quando: **Você · 10:02**, se foi hoje, ou a data, se foi em outro dia. A barra lateral mostra quanto de um checklist já foi feito, 2/5, e a página do projeto diz **2 de 5 concluídos**.
+
+## Salvamento
+
+Uma nota se salva sozinha um instante depois que você para de digitar. À direita das abas, a página mostra como está indo: **Salvando…**, **Salvo** ou **Não salvo: sem conexão**.
+
+Escreva na mesma nota em dois dispositivos ao mesmo tempo, e os dois mantêm as suas alterações: cada salvamento é mesclado com o que foi salvo desde então, bloco por bloco. Só quando o mesmo bloco, ou o título, foi alterado dos dois lados é que a nota pergunta o que manter ali, **Manter a minha** ou **Manter a outra versão**; todo o resto fica com as alterações dos dois. Para mesclar, o tTerm guarda as últimas 50 versões de cada nota.
+
+Sem conexão, o que você digita fica guardado neste navegador até ser salvo, e a página continua tentando. Se você fechar a aba ou recarregar a página, o texto volta quando você abrir a nota de novo: **O que foi digitado nesta nota e não foi salvo está de volta.**
+
+:::caution[Sair da conta apaga o que não foi salvo]
+Depois de **Sair**, este navegador esquece o que foi digitado nas notas e ainda não foi salvo.
+:::
+
+## Mover, copiar ou excluir
+
+O **⋯** ao lado de uma nota, na página do projeto ou no topo da aba da nota, tem o resto:
+
+- **Pasta** – as pastas do projeto, com a da nota marcada: um clique em outra move a nota para lá. Aparece quando o projeto tem duas pastas.
+- **Mover para outro projeto…** – a janela lista os seus outros projetos com as pastas deles: escolha uma pasta e clique, por exemplo, em **Mover para Runbooks**. Um projeto sem pastas oferece uma pasta nova, com o mesmo nome da pasta da nota. O título, o texto e o histórico da nota vão junto, e também as marcações, com quem as fez.
+- **Copiar como Markdown** – a nota inteira, com o título como título principal.
+- **Excluir nota** – pergunta antes. Uma nota excluída não volta mais.
+
+A busca também encontra notas: comece com `n:`, veja [Busca](../search/).
+
+## Logs
+
+**Logs** vem primeiro entre as pastas de um projeto na barra lateral, com a marca **pelo tTerm**. Ali fica um log para cada máquina do projeto: cada comando rodado nela pelo tTerm, dia a dia, com as notas adicionadas embaixo dos comandos. Quem escreve os logs é o tTerm, e ninguém pode alterá-los. As linhas ficam guardadas por um ano, e o que os comandos imprimiram, por 30 dias. Mais detalhes na página [O log de uma máquina](../log/).

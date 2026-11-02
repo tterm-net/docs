@@ -1,0 +1,51 @@
+---
+title: Versão para Mac
+sidebar:
+  label: Versão Mac
+description: O terminal local para Mac – como instalar, abrir pela primeira vez e como ele se atualiza.
+---
+
+import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+O terminal local é um app para Mac: os shells deste computador em blocos e a nuvem inteira na mesma janela. Grátis, macOS 11 ou posterior, Apple Silicon e Intel num só arquivo. As versões para [Windows](../windows/) e [Linux](../linux/) estão em desenvolvimento.
+
+<LinkButton href="https://tterm.net/pt/download/">Baixar para Mac</LinkButton>
+
+## Instalar
+
+<Steps>
+
+1. Abra o `tTerm.dmg` baixado e arraste o tTerm para a pasta Aplicativos. Se você abrir o app direto da imagem de disco, ele se oferece para ir para lá: só consegue se atualizar a partir da pasta Aplicativos.
+
+2. Abra o app. Na primeira vez, o macOS pede que você confirme a abertura, [veja como](#a-primeira-abertura-só-uma-vez). Depois disso, os terminais deste Mac funcionam na hora, sem conta e sem configuração.
+
+3. Entre quando quiser. Ao entrar, o navegador abre: confirme lá, e os seus servidores e notas aparecem na janela.
+
+</Steps>
+
+## A primeira abertura, só uma vez
+
+O app é assinado com o nosso próprio certificado, e não com um Apple Developer ID, então, na primeira vez, o macOS pede que você confirme a abertura.
+
+<Tabs syncKey="macos">
+	<TabItem label="macOS 15 ou posterior">
+		Abra o tTerm e clique em **OK**. Depois, vá até **Ajustes do Sistema** → **Privacidade e Segurança**: lá embaixo, ao lado da linha sobre o tTerm, clique em **Abrir Mesmo Assim** (o botão aparece por cerca de uma hora depois da tentativa) e confirme com a senha do seu Mac.
+	</TabItem>
+	<TabItem label="macOS 11–14">
+		No Finder, abra a pasta Aplicativos, faça Controle + clique no tTerm, escolha **Abrir** e clique em **Abrir** mais uma vez.
+	</TabItem>
+</Tabs>
+
+Depois disso, o app abre normalmente e instala as novas versões sozinho, sem que o macOS pergunte nada sobre elas.
+
+## Atualizações
+
+A cada seis horas, o app verifica se há uma nova versão, baixa e instala quando isso não atrapalha ninguém: quando você o encerra ou quando nada está rodando nos terminais dele. Em **Configurações** → **Atualizações**, você pode fazer com que ele pergunte antes.
+
+:::note[A senha das chaves depois de uma atualização]
+Depois de uma atualização, o macOS pode pedir uma vez a senha das chaves: digite-a e clique em **Permitir Sempre**. Vai ser assim até o app ser assinado com um Apple Developer ID.
+:::
+
+## Remover
+
+Encerre o app pelo ícone dele na barra de menus e arraste o tTerm da pasta Aplicativos para o Lixo. Se você entrou numa conta, o Mac continua sendo uma máquina no Personal, e o app, um dos seus dispositivos: [remova a máquina](../../machines/remove/#mac-com-o-tterm-para-mac) e esqueça o app em **Configurações** → **Dispositivos**.

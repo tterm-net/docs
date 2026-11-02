@@ -1,0 +1,63 @@
+---
+title: Notas
+description: Notas en las carpetas de un proyecto – Markdown mientras escribes, listas de verificación que dicen quién marcó cada punto, código con botón para copiar y un guardado que combina lo que escribieron dos dispositivos.
+---
+
+Las notas viven en las carpetas de un proyecto, igual que las terminales viven en sus máquinas: runbooks, accesos, listas de verificación, junto a las máquinas a las que se refieren. Una nota es un título y bloques que se escriben ahí mismo, y se guarda sola.
+
+## Carpetas
+
+En la barra lateral, cada proyecto tiene **Notas** debajo de sus máquinas. **+** junto a **Notas** crea una carpeta: ponle un nombre y presiona **Crear carpeta**. **+** junto a una carpeta crea una nota en ella, en su propia pestaña; un clic en la carpeta en sí solo la pliega o la despliega. La página del proyecto tiene lo mismo en forma de botones: **Nueva carpeta**, y **Nueva nota** en cada carpeta.
+
+**⋯** junto a una carpeta, en la página del proyecto, tiene **Renombrar carpeta** y **Eliminar carpeta**. Una carpeta se elimina con las notas que contiene: la ventana las enumera, así que antes saca de ella las notas que quieras conservar.
+
+Por ahora, en cada proyecto solo estás tú, así que solo tú ves sus notas, y eres tú quien escribe, mueve y elimina todas las notas y carpetas que contiene. Debajo del título de una nota, la página lo indica: **solo tú la ves**.
+
+## Escribir
+
+Una nota nueva se abre con el cursor en el título, y **Enter** pasa al texto. El texto está hecho de bloques: texto, encabezados, elementos de lista, elementos de lista de verificación, código y separadores. **Enter** empieza un bloque nuevo, y en un elemento vacío termina la lista.
+
+El Markdown que escribes al principio de un bloque lo convierte en lo que indica:
+
+| Escribe al principio de un bloque | Se convierte en |
+| --- | --- |
+| `#` y un espacio | un encabezado |
+| `-` y un espacio, o `1.` y un espacio | un elemento de lista |
+| `- [ ]` y un espacio | un elemento de lista de verificación; con `- [x]`, uno ya marcado |
+| `` ``` `` | código |
+| `---` | un separador |
+
+En cualquier otro lugar del bloque, el Markdown se queda tal como lo escribiste. En una línea vacía, **/** ofrece lo mismo en una lista: **Lista de verificación**, **Encabezado**, **Lista**, **Código**, **Separador**, **Texto**. Las letras que escribas después acotan la lista, las flechas la recorren y **Enter** elige. El texto de varias líneas que pegues se convierte en bloques, y su Markdown se interpreta de la misma manera.
+
+## Código y listas de verificación
+
+Un bloque de código conserva sus líneas: **Enter** empieza una línea nueva dentro de él, **Tab** inserta dos espacios, y **⌘Enter** en una Mac (**Ctrl+Enter** en otros sistemas) sale de él a un bloque nuevo debajo. El texto que pegues en él se queda tal cual. **Copiar**, en su esquina, copia el código y muestra **Copiado** por un momento.
+
+Un elemento de una lista de verificación se marca con su casilla. La marca se guarda al instante, y junto al elemento la nota dice quién lo marcó y cuándo: **Tú · 10:02** si fue hoy, o la fecha si fue otro día. La barra lateral muestra cuánto avanzó una lista de verificación, 2/5, y la página del proyecto dice **2 de 5 completados**.
+
+## Guardado
+
+Una nota se guarda sola un momento después de que dejas de escribir. A la derecha de las pestañas, la página indica cómo va: **Guardando…**, **Guardado** o **Sin guardar: no hay conexión**.
+
+Escribe en la misma nota desde dos dispositivos a la vez, y los dos conservan sus cambios: cada guardado se combina, bloque por bloque, con lo que se guardó mientras tanto. Solo si el mismo bloque, o el título, cambió en los dos lados, la nota pregunta qué conservar ahí: **Conservar la mía** o **Conservar la otra versión**; todo lo demás se conserva de ambos. Para combinar los cambios, tTerm guarda las últimas 50 versiones de cada nota.
+
+Sin conexión, lo que escribes se queda en este navegador hasta que se guarda, y la página lo sigue intentando. Si cierras la pestaña o recargas la página, lo escrito vuelve cuando abres la nota de nuevo: **Se recuperó lo que escribiste en esta nota y no se había guardado.**
+
+:::caution[Cerrar sesión olvida lo no guardado]
+Después de **Cerrar sesión**, este navegador olvida lo que se escribió en las notas y aún no se guardó.
+:::
+
+## Mover, copiar o eliminar
+
+**⋯** junto a una nota, en la página del proyecto o arriba en la pestaña de la nota, tiene lo demás:
+
+- **Carpeta** – las carpetas del proyecto, con la de la nota marcada: un clic en otra mueve la nota allí. Aparece cuando el proyecto ya tiene dos carpetas.
+- **Mover a otro proyecto…** – la ventana muestra tus otros proyectos con sus carpetas: elige una carpeta y presiona, por ejemplo, **Mover a Runbooks**. Un proyecto sin carpetas ofrece una carpeta nueva, con el mismo nombre que la de la nota. El título, el texto y el historial de la nota van con ella, y también las marcas, con quién las puso.
+- **Copiar como Markdown** – toda la nota, con su título como encabezado principal.
+- **Eliminar nota** – pregunta antes. Una nota eliminada desaparece para siempre.
+
+La búsqueda también encuentra notas: empieza con `n:` (consulta [Búsqueda](../search/)).
+
+## Bitácoras
+
+**Bitácoras** aparece primero entre las carpetas de un proyecto en la barra lateral, con la marca **por tTerm**. Contiene una bitácora para cada máquina del proyecto: cada comando que se ejecutó en ella a través de tTerm, día por día, con las notas añadidas debajo de los comandos. La escribe tTerm, y nadie puede cambiarla. Las líneas se guardan un año; lo que imprimieron los comandos, 30 días. Más información en [La bitácora de una máquina](../log/).

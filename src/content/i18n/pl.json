@@ -1,0 +1,14 @@
+{
+	"pagefind.clear_search": "Wyczyść",
+	"pagefind.load_more": "Pokaż więcej wyników",
+	"pagefind.search_label": "Szukaj w dokumentacji",
+	"pagefind.filters_label": "Filtry",
+	"pagefind.zero_results": "Brak wyników dla [SEARCH_TERM]",
+	"pagefind.many_results": "Wyniki dla [SEARCH_TERM]: [COUNT]",
+	"pagefind.one_result": "Wyniki dla [SEARCH_TERM]: [COUNT]",
+	"pagefind.alt_search": "Brak wyników dla [SEARCH_TERM]. Oto wyniki dla [DIFFERENT_TERM]",
+	"pagefind.search_suggestion": "Brak wyników dla [SEARCH_TERM]. Spróbuj tak:",
+	"pagefind.searching": "Szukam [SEARCH_TERM]…",
+	"expressiveCode.copyButtonTooltip": "Skopiuj do schowka",
+	"expressiveCode.copyButtonCopied": "Skopiowane!"
+}

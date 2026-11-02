@@ -1,0 +1,71 @@
+---
+title: Remove a machine
+description: Who can remove a machine and where, what then happens to its terminals and history, and how tTerm's access and its agent leave the machine.
+---
+
+Removing a machine takes it out of tTerm Web, along with tTerm's access to it. The owner and admins of its project can do it.
+
+## Remove it
+
+There are two places for it:
+
+- On the **Machines** page, which the tTerm logo at the top of the sidebar opens, press **Remove** on the machine's card.
+- On the project's page, which the project's name in the sidebar opens, press **⋯** next to the machine and choose **Remove machine**.
+
+tTerm asks first and says what will happen: **Remove web-01?** The red **Remove web-01** removes it, **Cancel** leaves everything as it was.
+
+## What happens
+
+- The machine's terminals end, and each says why: **This terminal has ended**, **web-01 was removed from tTerm Web.**
+- The machine leaves the sidebar, the **Machines** page and the project's page, and its log leaves the project's **Logs**.
+- The commands typed there stay in your history: [search](../../features/search/) still finds them and says the machine was removed. The project's journal keeps a line about the removal.
+
+## A server
+
+The cloud stops signing in to the server and takes its own line out of `~tterm/.ssh/authorized_keys` on the server itself. The page then says: **web-01 is removed from tTerm Web, and tTerm Web's access on the server is taken back.**
+
+If the server does not answer, the line stays there, though the cloud no longer signs in. A window then gives the command that takes the line out. Copy it before you close the window, and run it on the server:
+
+```sh title="On the server"
+sudo sed -i '/^cert-authority,principals="m-…" /d' ~tterm/.ssh/authorized_keys
+```
+
+The command in the window names this server's own line, with its `principals="m-…"`, and leaves every other line of the file as it is. The same server in another project is a machine of its own there, with a line of its own, and goes on working.
+
+The user `tterm` and its sudo rule, `/etc/sudoers.d/tterm`, stay after a removal: the tTerm bot may use them. The command that removes them too is at the top of the installer script, and in the window of a server that did not answer:
+
+```sh title="On the server"
+sudo userdel -r tterm && sudo rm -f /etc/sudoers.d/tterm
+```
+
+With them goes the access of the tTerm bot, and of this server in your other projects.
+
+### A server moved from a Mac
+
+A server moved from [tTerm for Mac](../../local/move-to-cloud/) with **My key** or **Through this Mac** has nothing of tTerm's on it, so nothing comes off. With **tTerm's pass**, tTerm's line is in `~/.ssh/authorized_keys` of the user the Mac signed in as, and the cloud takes it out the same way. If such a server does not answer, take the line out there yourself: it starts with `cert-authority,principals="m-…"`.
+
+## A computer
+
+Its agent hears at once that the computer was removed, forgets its key and stops. That key never works again, so a key that leaked is dead once its computer is removed. A computer that was asleep or offline hears it the next time its agent connects.
+
+To connect the computer again: **Add a machine**, then **Computer**. The installer makes it a new key, and it comes back as a new machine.
+
+The agent itself stays on the computer until you take it off:
+
+```sh title="On the computer"
+~/.tterm-web/uninstall.sh
+```
+
+It removes the agent's autostart and the whole of `~/.tterm-web`, the computer's key included, and the shell scripts tTerm's terminals put in `~/.tterm`. The tTerm bot's agent, which also lives in `~/.tterm`, stays. The script alone does not remove the computer from tTerm Web: it stays listed there until you remove it.
+
+## A Mac with tTerm for Mac
+
+Signed in, [tTerm for Mac](../../local/mac/) keeps the Mac's link to tTerm Web itself, in the agent's place. In **Settings** → **This computer** it has a switch for that, **Open from tTerm Web and your phone**. On, tTerm Web and your phone open terminals on this Mac while tTerm runs there. Off, the Mac is offline in tTerm Web, and in the app everything works as before; terminals opened on it from tTerm Web end, after a question.
+
+A Mac is removed in tTerm Web as any computer is. **This computer** then says: **This Mac was removed from tTerm Web, so it is not opened from there. Turn this on to add it again.**
+
+The app is also one of your devices: **Forget** in **Settings** → **Devices** signs it out, and it works with this Mac only. See [Devices and signing in](../../account/devices/).
+
+:::note[Ending a terminal is not removing]
+Ending a terminal, from the sidebar or from search, ends that one shell, after a question. The machine stays, and so do its other terminals.
+:::

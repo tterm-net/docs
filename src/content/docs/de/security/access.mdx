@@ -1,0 +1,42 @@
+---
+title: Wie der Zugriff funktioniert
+description: Zertifikate für zwei Minuten, CA-Schlüssel in einem separaten Prozess, Verbindungen nur von innen. Wie sich die Cloud an deinen Maschinen anmeldet und wie du ihr den Zugriff wieder nimmst.
+---
+
+Zugriff auf deine Maschinen ist leicht gegeben und genauso leicht zurückgenommen. Deine Schlüssel brauchen wir nicht, und Ports öffnen wir keine.
+
+## Ein Zertifikat für zwei Minuten
+
+Für jede Verbindung signieren wir ein eigenes SSH-Zertifikat mit deinem Namen darin, gültig nur für diesen einen Server. Deshalb steht im Log des Servers bei jeder Anmeldung der Name dessen, der sich angemeldet hat:
+
+```text title="/var/log/auth.log"
+Accepted publickey for tterm from 203.0.113.24 port 41522 ssh2: ED25519-CERT SHA256:… ID Anna via tTerm Web (…) to web-01 (serial 1042) CA ED25519 SHA256:…
+```
+
+## Signieren strikt getrennt
+
+Die CA-Schlüssel liegen in einem separaten Prozess ohne Netzwerk. Der Kern kann sie nicht lesen, nur um eine Signatur bitten, und jede Signatur wird in ein Log geschrieben.
+
+## sshd_config bleibt unangetastet
+
+Das Vertrauen ist eine einzige Zeile in der `authorized_keys` eines Benutzers, `tterm`. Neu gestartet wird nichts, du kannst dich also nicht selbst aussperren.
+
+## Vom Mac umgezogene Server
+
+Ein Server, der aus tTerm für Mac umgezogen ist, kann sich noch auf zwei weiteren Wegen öffnen. Bei **Mein Schlüssel** meldet dich dein eigener Schlüssel aus deinem [Tresor](../keys/) an: Ein Gerät von dir, auf dem der Tresor geöffnet ist, signiert die Anmeldung, und auf dem Server kommt nichts hinzu. Bei **Über diesen Mac** verbindet sich dein Mac per `ssh` mit dem Server, und die Cloud muss ihn gar nicht erreichen. Der dritte Weg, **tTerm-Zugang**, ist dasselbe Zertifikat für zwei Minuten, nur steht die Zeile von tTerm in der `authorized_keys` deines eigenen Benutzers statt bei `tterm`. Mehr dazu unter [Umzug in die Cloud](../../local/move-to-cloud/#drei-wege-auf-den-server).
+
+## Verbindungen nur von innen
+
+Der Agent auf einem Computer baut die Verbindung selbst nach außen auf, eingehende Ports sind nicht nötig. Ein Befehl entfernt ihn.
+
+## Keine Mittelsmänner
+
+Die Seite von tTerm Web und die Terminals verbinden sich direkt mit unserem Server in der EU. Cloudflare ist bei uns nur für DNS zuständig und sieht deine Befehle nie.
+
+## Offener Quellcode
+
+Der Code der Cloud und des Agenten ist offen unter AGPL v3: [github.com/tterm-net](https://github.com/tterm-net). Das Installationsskript ist kurz: Lies es, bevor du es ausführst.
+
+## Den Zugriff zurücknehmen
+
+[Entferne einen Server](../../machines/remove/), und die Cloud nimmt ihren Zugriff auf dem Server selbst zurück. Antwortet der Server nicht, erscheint ein Befehl, der das dort erledigt. Den Agenten nimmt ein einziger Befehl vom Computer, `~/.tterm-web/uninstall.sh`. Einen deiner Schlüssel nimmst du mit **Entfernen** unter **Einstellungen** → **Schlüssel** aus deinem Tresor.

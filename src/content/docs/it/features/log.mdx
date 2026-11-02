@@ -1,0 +1,68 @@
+---
+title: Il log di una macchina
+description: Cosa è stato eseguito su una macchina tramite tTerm, riga per riga – come leggere il log, cercare al suo interno fino a un anno indietro, scrivere note sotto i comandi e oscurare una password.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Ogni comando eseguito su una macchina tramite tTerm diventa una riga nel log di quella macchina: chi l'ha eseguito, quando, com'è finito, quanto è durato e dove. Il log lo scrive tTerm, e nessuno può modificarlo. Sotto un comando puoi lasciare una nota.
+
+## Aprire il log
+
+Nella barra laterale, tra le **Note** di un progetto, la prima cartella è **Log**, con accanto la scritta **da tTerm**. Dentro c'è un log per ogni macchina del progetto, con il numero di comandi eseguiti lì oggi: **12 oggi**. Fai clic su una macchina e il suo log si apre in una scheda, **web-01: log**.
+
+Il log mostra un giorno alla volta e si apre sul giorno di oggi. Le frecce, **Giorno precedente** e **Giorno successivo**, portano al giorno più vicino che ha delle righe. **Oggi** ti riporta al giorno di oggi, e **Scegli un giorno** apre un calendario. Mentre il log mostra oggi, le nuove righe compaiono man mano che i comandi finiscono.
+
+In cima al log, nel menu **⋯** c'è **Copia come Markdown**: il giorno mostrato, le sue righe e le note che hanno sotto.
+
+## Cosa dice una riga
+
+Ogni comando è una riga: l'ora, chi l'ha eseguito, il comando, accorciato se è lungo, e quante note ha sotto. A destra ci sono la durata, la cartella, il branch git e il terminale. Un comando non riuscito ha una croce e il suo codice di uscita, **uscita 1**. Tra un comando e l'altro, il log dice anche quando un terminale è stato aperto e quando è terminato, e quando la macchina è passata a un altro progetto: **Hai spostato questa macchina da Personal a Client X**.
+
+Un clic su una riga la apre: il comando per intero, il suo output e le note sotto. Un altro clic la chiude. Di un output lungo si vedono le prime righe: **Mostra tutte le 27 righe** mostra il resto, e **Copia output** lo copia.
+
+Passa il puntatore su una riga, o aprila, e su di essa compare **⋯**: **Copia comando** e **Copia il link a questa riga**. Il link apre il log sul giorno di quella riga, con la riga aperta.
+
+## Cercare e filtrare
+
+Nella fila sotto il giorno, **Cerca in questo log** guarda in tutto il log, fino a un anno indietro: i comandi che contengono tutte le parole che digiti, e i comandi con una nota che le contiene tutte. Ci arrivi con **/**. I risultati sono raggruppati per giorno: un clic su una riga la apre, e **Apri il giorno** va al giorno di quella riga. La ricerca resta finché non la cancelli, e **Torna al giorno** ti riporta al giorno in cui eri.
+
+Accanto ci sono l'ordine e i filtri:
+
+- **Prima le più vecchie** diventa **Prima le più recenti** con un clic, e questo browser se lo ricorda.
+- **Tutti**: solo le righe di una persona, quella che ha eseguito il comando o ha scritto una nota sotto.
+- **Non riusciti**: solo i comandi non riusciti.
+- **Con note**: solo i comandi che hanno delle note sotto.
+- **Tutti i terminali**: i comandi di un solo terminale. Compare quando le righe vengono da più di un terminale.
+
+Con un filtro attivo, il giorno indica quanti comandi sono mostrati, **2 di 8 comandi**, e **Azzera** disattiva i filtri. I filtri valgono anche per i risultati di **Cerca in questo log**.
+
+[La ricerca](../search/) guarda anche nei log di tutte le tue macchine: inizia con `l:`.
+
+## Note sotto un comando
+
+Passa il puntatore su una riga e premi **Aggiungi una nota**. Nel terminale, il [blocco](../blocks/) di un comando ha lo stesso pulsante, con il suggerimento **Aggiungi una nota su questo comando**. In entrambi i casi la nota compare sia sotto la riga nel log sia sotto il blocco nel terminale. **Enter** salva la nota, **Shift+Enter** va a capo, **Esc** annulla.
+
+Una nota resta nel log così come è stata scritta: non si modifica né si elimina, le si risponde. Con **Rispondi**, sotto le note, scrivi la risposta. Ogni nota indica chi l'ha scritta e quando, e nel log il menu **⋯** accanto alla nota ha **Copia testo**.
+
+## Oscurare una password o un token
+
+Una password o un token finiti in un comando o in una nota si possono cancellare. Può farlo solo il proprietario del progetto o un amministratore. Per ora in ogni progetto ci sei solo tu, e ne sei il proprietario.
+
+<Steps>
+
+1. Nel log, premi **⋯** sulla riga, o accanto alla nota, e scegli **Oscura…**.
+
+2. Nella finestra, scrivi in **Perché** di cosa si trattava: una password, un token.
+
+3. Premi **Oscura**.
+
+</Steps>
+
+Le parole spariscono per sempre dal log, dai blocchi del terminale, dalla ricerca e dalla cronologia della riga di input. Con un comando se ne va anche il suo output, e sparisce anche lo stesso comando, ovunque sia stato eseguito altrove nel progetto. Al loro posto, il log conserva chi le ha oscurate, quando e perché: **Testo oscurato da te · 09:23 · una password**. I backup notturni del database le contengono ancora finché quei backup non vengono eliminati, entro due settimane.
+
+## Per quanto tempo si conserva
+
+Le righe si conservano per un anno, e le note sotto una riga se ne vanno insieme a lei. L'output dei comandi si conserva per 30 giorni: dopo, quando passi il puntatore su una tua riga, compare **output non conservato**. Una volta [rimossa](../../machines/remove/) una macchina, il suo log non si apre più.
+
+Il log resta con la sua macchina. Se la macchina viene [spostata in un altro progetto](../projects/#spostare-una-macchina), si porta dietro tutto il log, anche le righe di prima dello spostamento, e le legge chiunque faccia parte di quel progetto. Eliminare il progetto che ha lasciato non ne toglie nulla.

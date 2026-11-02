@@ -1,0 +1,46 @@
+---
+title: Computer mit macOS oder Linux
+description: Der Agent für einen Computer – mit einem Befehl installiert, von innen verbunden, aktualisiert sich selbst, mit einem Befehl entfernt.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Einem Computer genügt ein kleiner Agent. Er verbindet sich selbst mit der Cloud und hält diese eine Verbindung, deshalb sind keine eingehenden Ports nötig: Der Computer funktioniert auch hinter NAT.
+
+:::tip[Auf einem Mac ist die App bequemer]
+[Das lokale Terminal für Mac](../../local/mac/) hält die Verbindung zur Cloud, solange es läuft, und dieser Mac braucht keinen Agenten.
+:::
+
+## Verbinden
+
+Öffne in tTerm Web **Maschine hinzufügen** und wähl **Computer**. Führ den Befehl in einem Terminal auf diesem Computer aus, als dein eigener Benutzer, nicht mit sudo:
+
+```sh title="Auf dem Computer"
+curl -fsSL https://connect.tterm.net/c/<token> | sh
+```
+
+Der Computer erscheint ein paar Sekunden nach dem Befehl im Projekt. Der Befehl funktioniert einmal, in den nächsten 10 Minuten.
+
+## Was der Befehl macht
+
+- Legt den Agenten in `~/.tterm-web` ab: eine Datei für dieses System aus unseren Releases, die vor dem Start gegen die Prüfsumme im Skript des Befehls geprüft wird.
+- Erzeugt für diesen Computer einen eigenen Schlüssel und bewahrt ihn dort auf, lesbar nur für dich. Das Token im Befehl dient allein dem Beitritt, ein einziges Mal.
+- Startet den Agenten bei jeder Anmeldung. Der Agent läuft als du, nie als root, und öffnet keine Ports.
+- Der Agent aktualisiert sich selbst, nur auf Versionen, die unser Release-Build signiert hat, und nur solange auf dem Computer kein Terminal offen ist.
+
+<Tabs syncKey="os">
+	<TabItem label="macOS">
+		launchd startet den Agenten. Beim ersten Mal fragt macOS vielleicht, ob `tterm-agent` deine Ordner „Schreibtisch“ und „Dokumente“ öffnen darf: Erlaub es, wenn du aus dem Terminal mit ihnen arbeiten willst.
+	</TabItem>
+	<TabItem label="Linux">
+		systemd startet den Agenten, als dein Benutzer. Ein Server ohne SSH von außen verbindet sich genauso: Der Agent baut die Verbindung selbst nach außen auf.
+	</TabItem>
+</Tabs>
+
+## Entfernen
+
+Entferne den Computer auf der Seite des Projekts: Der Agent erfährt davon und stoppt ([mehr](../remove/#ein-computer)). Um den Agenten selbst vom Computer zu nehmen, führ aus:
+
+```sh title="Auf dem Computer"
+~/.tterm-web/uninstall.sh
+```

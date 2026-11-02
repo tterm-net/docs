@@ -1,0 +1,46 @@
+---
+title: macOS veya Linux bilgisayar
+description: Bilgisayar için ajan – tek komutla kurulur, içeriden bağlanır, kendini günceller, tek komutla kaldırılır.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Bilgisayara yalnızca küçük bir ajan gerekir. Ajan buluta kendisi bağlanır ve bu tek bağlantıyı açık tutar, bu yüzden gelen bağlantılar için port gerekmez: bilgisayar NAT arkasında da çalışır.
+
+:::tip[Mac'te uygulama daha kolay]
+[Mac için yerel terminal](../../local/mac/) çalıştığı sürece buluta bağlı kalır ve o Mac'te ajana gerek kalmaz.
+:::
+
+## Bilgisayarı bağlama
+
+tTerm Web'de **Makine ekle** penceresini aç ve **Bilgisayar** seçeneğini seç. Komutu o bilgisayardaki bir terminalde, sudo ile değil, kendi kullanıcınla çalıştır:
+
+```sh title="Bilgisayarda"
+curl -fsSL https://connect.tterm.net/c/<token> | sh
+```
+
+Bilgisayar, komut bittikten birkaç saniye sonra projede görünür. Komut önümüzdeki 10 dakika içinde bir kez çalışır.
+
+## Komut ne yapar
+
+- Ajanı `~/.tterm-web` içine koyar: bu, yayımladığımız sürümlerden bu sisteme uygun tek bir dosyadır ve çalışmadan önce komutun betiğindeki sağlama toplamıyla doğrulanır.
+- Bu bilgisayar için kendine ait bir anahtar oluşturur ve onu yalnızca senin okuyabileceğin şekilde orada saklar. Komuttaki token yalnızca katılmasını sağlar, o da bir kez.
+- Ajanı her oturum açtığında başlatır. Ajan asla root olarak değil, senin kullanıcınla çalışır ve hiçbir port açmaz.
+- Ajan kendini günceller: yalnızca sürüm derlememizin imzaladığı sürümlere ve yalnızca bilgisayarda açık terminal yokken.
+
+<Tabs syncKey="os">
+	<TabItem label="macOS">
+		Ajanı launchd başlatır. İlk seferde macOS, `tterm-agent` Masaüstü ve Belgeler klasörlerine erişebilir mi diye sorabilir: bu klasörlerle terminalden çalışmak istiyorsan izin ver.
+	</TabItem>
+	<TabItem label="Linux">
+		Ajanı systemd, senin kullanıcınla başlatır. Dışarıdan SSH erişimi olmayan bir sunucu da aynı şekilde bağlanır: ajan dışarıya kendisi bağlanır.
+	</TabItem>
+</Tabs>
+
+## Bilgisayarı kaldırma
+
+Bilgisayarı proje sayfasından kaldır: ajan bunu öğrenir ve durur ([ayrıntılar](../remove/#bilgisayar)). Ajanın kendisini de bilgisayardan kaldırmak için şunu çalıştır:
+
+```sh title="Bilgisayarda"
+~/.tterm-web/uninstall.sh
+```

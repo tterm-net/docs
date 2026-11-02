@@ -1,0 +1,49 @@
+---
+title: Mac 版
+description: Mac 上的本地终端：如何安装、第一次打开，以及它如何更新。
+---
+
+import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+本地终端是一款 Mac 应用：这台电脑的 shell 以块呈现，整个云端也在同一个窗口里。免费，适用于 macOS 11 或更高版本，Apple 芯片和 Intel 共用一个文件。[Windows](../windows/) 版和 [Linux](../linux/) 版正在开发中。
+
+<LinkButton href="https://tterm.net/zh/download/">下载 Mac 版</LinkButton>
+
+## 安装
+
+<Steps>
+
+1. 打开下载的 `tTerm.dmg`，把 tTerm 拖到“应用程序”文件夹。如果直接从磁盘映像打开应用，它会提出把自己移到那里：只有在“应用程序”文件夹中，它才能自行更新。
+
+2. 打开应用。首次启动时，macOS 会要求你确认，[查看方法](#首次启动仅需一次)。之后，这台 Mac 的终端立即可用，无需账号，也无需设置。
+
+3. 随时登录。登录会打开浏览器：在那里确认之后，你的服务器和笔记就会出现在窗口中。
+
+</Steps>
+
+## 首次启动，仅需一次
+
+应用使用我们自己的证书签名，而不是 Apple Developer ID，所以首次启动时，macOS 会要求你确认。
+
+<Tabs syncKey="macos">
+	<TabItem label="macOS 15 或更高版本">
+		打开 tTerm，点按**完成**。然后前往**系统设置** → **隐私与安全性**：在底部有关 tTerm 的那一行旁边，点按**仍要打开**（尝试打开后，这个按钮会显示大约一小时），再输入 Mac 的密码进行确认。
+	</TabItem>
+	<TabItem label="macOS 11–14">
+		在“访达”中打开“应用程序”文件夹，按住 Control 键点按 tTerm，选取**打开**，然后再点按一次**打开**。
+	</TabItem>
+</Tabs>
+
+此后，应用会照常打开，新版本也由它自行安装，macOS 不会再为此询问。
+
+## 更新
+
+应用每六小时检查一次有没有新版本，下载后在不打扰你的时候安装：在你退出应用时，或它的终端里没有任何程序在运行时。在**设置** → **更新**中，可以设置为安装前先询问你。
+
+:::note[更新后的钥匙串密码]
+更新后，macOS 可能会询问一次你的钥匙串密码：输入密码，然后点按**始终允许**。在应用使用 Apple Developer ID 签名之前，都会是这样。
+:::
+
+## 卸载
+
+通过菜单栏中的图标退出应用，然后把 tTerm 从“应用程序”文件夹拖到“废纸篓”。如果登录过，这台 Mac 仍是 Personal 中的一台机器，应用也仍是你的设备之一：[移除这台机器](../../machines/remove/#装有-tterm-mac-版的-mac)，并在**设置** → **设备**中移除这个应用。

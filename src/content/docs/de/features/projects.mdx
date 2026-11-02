@@ -1,0 +1,64 @@
+---
+title: Projekte und Farben
+description: Personal und eigene Projekte – Name, Code und Farbe, die Seite des Projekts, eine Maschine in ein anderes Projekt verschieben und ein Projekt löschen.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Ein Projekt fasst Maschinen und Notizen zusammen: seine Server und Computer mit den Terminals, die darauf laufen, und seine Notizen in Ordnern. Das Projekt Personal hat jeder, und daneben kannst du eigene Projekte anlegen, zum Beispiel eines für jeden Kunden.
+
+## Personal
+
+Personal kommt mit deinem Konto, mit dem Code P, und steht in der Seitenleiste ganz oben. Wie jedes Projekt lässt es sich umbenennen und mit einem anderen Code und einer anderen Farbe versehen, aber nicht löschen.
+
+## Ein eigenes Projekt
+
+<Steps>
+
+1. Drück in der Seitenleiste unter der Liste der Projekte auf **Neues Projekt**.
+
+2. Gib unter **Name** einen Namen ein, bis zu 80 Zeichen.
+
+3. Der **Kurzcode** wird aus dem Namen gebildet, Client X → CX, und du kannst ihn ändern: 1 bis 4 Buchstaben oder Ziffern, nicht der Code eines anderen deiner Projekte. Er kennzeichnet das Projekt in der Seitenleiste und in Tabs: CX/web-01 ist ein Terminal auf seiner Maschine web-01.
+
+4. Wähl unter **Farbe** eine von acht. Ein neues Projekt bekommt eine, die keines deiner anderen Projekte hat, und **Vorschau** zeigt, wie es aussehen wird.
+
+5. Drück auf **Projekt erstellen**. Das Projekt gehört dir, und seine Seite öffnet sich: Füg dort einen [Server](../../machines/servers/) oder einen [Computer](../../machines/computers/) hinzu, oder verschieb eine Maschine aus einem anderen Projekt hierher.
+
+</Steps>
+
+Um ein Projekt später umzubenennen, auch Personal, oder seinen Code oder seine Farbe zu ändern, drück auf seiner Seite auf den Stift neben dem Namen (**Name, Code und Farbe bearbeiten**), ändere, was du brauchst, und drück auf **Speichern**.
+
+## Farben
+
+Die Farbe eines Projekts füllt sein Code-Badge: in der Seitenleiste, auf der Seite des Projekts, in der Suche. Wähl unter **Einstellungen** → **Darstellung** → **Projektfarben** die Option **Ganzes Projekt** statt **Code-Badge**, und die Seitenleiste färbt auch den ganzen Block jedes Projekts in seiner Farbe ein. **Einstellungen** findest du im Menü deines Kontos unten in der Seitenleiste, und die Wahl wird in deinem Konto gespeichert.
+
+## Die Seite des Projekts
+
+Ein Klick auf den Namen eines Projekts in der Seitenleiste öffnet seine Seite in einem Tab. Oben stehen sein Name, sein Code und der Stift und eine Zeile mit der Zahl seiner Maschinen und offenen Terminals. Darunter:
+
+- **Maschinen** – eine Karte für jede, mit Adresse und System, **Neues Terminal** und den Terminals, die darauf laufen: **Öffnen** wechselt zu einem, ein Doppelklick auf seinen Namen benennt es um. **⋯** auf der Karte bietet **In anderes Projekt verschieben** und **Maschine entfernen**. Ein Projekt ohne Maschinen bietet **Server** und **Computer** an, um die erste hinzuzufügen.
+- **Notizen** – die Ordner und ihre Notizen, siehe [Notizen](../notes/).
+- Ganz am Ende **Projekt löschen**.
+
+## Eine Maschine verschieben
+
+<Steps>
+
+1. Drück auf der Seite des Projekts auf der Karte der Maschine auf **⋯** und wähl **In anderes Projekt verschieben**.
+
+2. Wähl das Projekt. Das Fenster sagt, was die Maschine dort wird, CX/web-01; ist ihr Name dort vergeben, bekommt sie eine Nummer: web-01-2.
+
+3. Drück auf **Nach Client X verschieben**.
+
+</Steps>
+
+Ihre Terminals laufen weiter, ihr [Log](../log/) zieht mit um, und auf der Maschine selbst ändert sich nichts. Eine Maschine lässt sich nur zwischen Projekten verschieben, die dir gehören: Der Menüpunkt erscheint, sobald du ein zweites Projekt hast.
+
+## Ein Projekt löschen
+
+**Projekt löschen** am Ende der Seite eines Projekts löscht es mit seinen Ordnern und Notizen; Personal hat diesen Button nicht. Ein Projekt mit Maschinen wird nicht gelöscht: Das Fenster nennt sie, und du verschiebst oder [entfernst](../../machines/remove/) sie zuerst, über **⋯** auf ihren Karten. Ein Projekt ohne Maschinen bittet dich, seinen Namen einzugeben und dann auf **Client X löschen** zu drücken. Das lässt sich nicht rückgängig machen.
+
+## Wer in einem Projekt ist
+
+Vorerst bist du in jedem Projekt allein, und du bist sein Eigentümer: Die Seitenleiste zeigt **Eigentümer** neben dem Namen jedes Projekts, und die Zeile oben auf seiner Seite endet mit **nur du**. Andere Personen zu einem Projekt hinzuzufügen, ist noch nicht möglich.

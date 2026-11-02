@@ -1,0 +1,46 @@
+---
+title: Computadora con macOS o Linux
+description: El agente para una computadora – se instala con un solo comando, se conecta desde dentro, se actualiza solo y se quita con un solo comando.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Una computadora solo necesita un pequeño agente. El agente se conecta a la nube por sí mismo y mantiene esa única conexión, así que no hacen falta puertos entrantes: la computadora funciona también detrás de NAT.
+
+:::tip[En una Mac, la aplicación es más sencilla]
+[La terminal local para Mac](../../local/mac/) mantiene la conexión con la nube mientras se ejecuta, y esa Mac no necesita agente.
+:::
+
+## Conectarla
+
+En tTerm Web, abre **Añadir una máquina** y elige **Computadora**. Ejecuta el comando en una terminal de esa computadora, con tu usuario, sin sudo:
+
+```sh title="En la computadora"
+curl -fsSL https://connect.tterm.net/c/<token> | sh
+```
+
+La computadora aparece en el proyecto unos segundos después de que termine el comando. El comando funciona una sola vez, durante los próximos 10 minutos.
+
+## Qué hace el comando
+
+- Coloca el agente en `~/.tterm-web`: un solo archivo para este sistema, de nuestras versiones publicadas, que se comprueba con la suma de verificación del script del comando antes de ejecutarse.
+- Crea una clave propia para esta computadora y la guarda en ella, legible solo por ti. El token del comando solo sirve para unirse, y una sola vez.
+- Pone en marcha el agente cada vez que inicias sesión. El agente se ejecuta con tu usuario, nunca como root, y no abre puertos.
+- El agente se actualiza solo, únicamente a versiones firmadas por nuestra compilación oficial y solo mientras no haya ninguna terminal abierta en la computadora.
+
+<Tabs syncKey="os">
+	<TabItem label="macOS">
+		launchd pone en marcha el agente. La primera vez, macOS puede pedir permiso para que `tterm-agent` abra tus carpetas Escritorio y Documentos: concédelo si quieres trabajar con ellas desde la terminal.
+	</TabItem>
+	<TabItem label="Linux">
+		systemd pone en marcha el agente, con tu usuario. Un servidor sin SSH desde fuera se conecta de la misma manera: el agente inicia la conexión por sí mismo.
+	</TabItem>
+</Tabs>
+
+## Quitarla
+
+Quita la computadora en la página del proyecto: el agente se entera y se detiene ([más detalles](../remove/#una-computadora)). Para quitar también el propio agente de la computadora, ejecuta:
+
+```sh title="En la computadora"
+~/.tterm-web/uninstall.sh
+```

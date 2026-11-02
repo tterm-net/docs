@@ -1,0 +1,77 @@
+---
+title: Your vault of SSH keys
+description: Your own SSH keys, encrypted on your devices before they reach tTerm – how the vault is made, opened in another browser and locked again.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+The vault keeps your own SSH keys, for the servers you reach with them. A key is encrypted on your device before it leaves it, and only your devices open the vault, the way they unlock. tTerm keeps the encrypted keys, with each key's public half and fingerprint: it cannot open the vault or read a key. The vault is in **Settings** → **Keys**.
+
+## How a server opens with your key
+
+A server opens with your key when you move it from [tTerm for Mac](../../local/mac/) with **My key**, or with **Save my key** on the strip after `ssh`: see [Move to cloud](../../local/move-to-cloud/). When you open a terminal on it, tTerm asks a device of yours where the vault is open, a browser or tTerm for Mac, to sign the login. The device signs an SSH login with that key and nothing else, and the key never leaves it. tTerm checks the signature against the key's public half before it uses it.
+
+## Make your vault
+
+<Tabs>
+	<TabItem label="In a browser">
+
+In **Settings** → **Keys**, press **Add a key from a file** and choose your private key, the file without `.pub`. If the key has a passphrase, type it and press **Open the key**: the passphrase opens the key in this browser and goes nowhere. Name the key and press **Next**.
+
+In **Save your key to your vault**, press **Make my vault with Touch ID** on a Mac, **Make my vault with Windows Hello** on Windows, or **Make my vault with a passkey** elsewhere. A browser that cannot keep the vault with a passkey shows **Make my vault**: there the vault opens with the recovery code or your Mac's approval, one session at a time.
+
+	</TabItem>
+	<TabItem label="In tTerm for Mac">
+
+The vault is made the first time you save a key: with Move to cloud, or with **Save my key** on the strip after `ssh`. In **Save your key to your vault**, press **Make my vault with Touch ID** and confirm with Touch ID or your Mac's password.
+
+	</TabItem>
+</Tabs>
+
+### The recovery code
+
+Right after, tTerm shows your recovery code: 24 letters and digits in six groups of four. You see it once. **Copy** it or **Save as a file**, and keep it somewhere safe, away from the devices that open your vault. If you ever lose them all, this code is the only way back to your keys: tTerm cannot recover them for you. **Done** works once you tick that you have kept it.
+
+## Open it in another browser
+
+A browser new to your vault opens it in **Open your keys on this browser**. The window comes up when you press **Open** in **Settings** → **Keys**, or open a server that opens with your key.
+
+- **Approve it in tTerm for Mac.** Where tTerm for Mac opens your vault, the window offers that Mac: press **Ask it to open your vault here**. On the Mac, a window says which browser asks, when it signed in and from which address. Both screens show the same six digits: press **Allow with Touch ID** only if they match. **It's not me** ends that browser's sign-in, and **Settings** → **Devices** shows what else to check. A request lasts five minutes.
+- **Use the recovery code.** Type it in **Recovery code** and press **Open**.
+
+In a browser that can keep a passkey, tTerm then asks whether to keep one, so that next time the vault opens the way this computer unlocks: **Keep with Touch ID** (or Windows Hello, or a passkey), or **Only this time** on a computer that is not yours.
+
+A vault made in a browser opens in tTerm for Mac once with the recovery code: **Open with the recovery code** in **Settings** → **Keys**. After that, Touch ID or your Mac's password opens it there.
+
+## When it locks again
+
+- **In a browser** – after 8 hours without anything done, when you close or reload tTerm Web, when you sign out, and when you press **Lock** in **Settings** → **Keys**.
+- **In tTerm for Mac** – it stays open while tTerm runs, until you press **Lock** or sign out. Signing out also makes the Mac forget its lock: after you sign in again, it opens the vault once with your recovery code.
+
+## Settings → Keys
+
+At the top, the page says whether the vault is open here, how it opened and when it locks again. Each key has a line: its name, kind and short fingerprint; the servers it **Opens**, or **No server opens with it yet**; when it was saved from a Mac or added from a file; and when it was last used, or **not used yet**.
+
+- **Remove** takes the key out of your vault, after a question, and tTerm deletes its encrypted copy. The servers that open with it stay in tTerm but no longer open. The key itself stays where it came from: on your Mac, or in its file.
+- **Make a new recovery code** shows a new code once, and the one you had stops working. Your keys and devices stay as they are. It asks for Touch ID or this browser's passkey; a browser without a passkey of your vault asks for the code you have now. Lost it? Make the new one in tTerm for Mac.
+- **Add a key from a file** is there in a browser. In tTerm for Mac, keys come from Move to cloud and the strip after `ssh`.
+
+Under the keys, the page says where the vault opens: each Mac and each browser that keeps a lock of it, or **Opens with your recovery code only.**
+
+### The keys it keeps
+
+Ed25519, ECDSA P-256 and P-384, and RSA. Not DSA or ECDSA P-521 keys, and not keys on a security key (`sk-…`), which cannot leave it: their servers open [through your Mac](../../local/move-to-cloud/#three-ways-in).
+
+A browser reads a key in OpenSSH's own format, also with a passphrase, or in PEM without one (PKCS#8, PKCS#1), one key a file. A PEM file with a passphrase is first turned into OpenSSH's format with `ssh-keygen -p -f` and the file. tTerm for Mac reads keys in OpenSSH's format.
+
+Some browsers cannot sign with Ed25519 keys. **Settings** → **Keys** says so there, and servers with such a key open in a newer browser or in tTerm for Mac.
+
+## A server that waits for your vault
+
+While none of your devices has the vault open, a terminal on a server with your key waits, as long as it takes, and says **web-01 opens with your key**.
+
+- In a browser that keeps a passkey, press **Open with Touch ID**, **Open with Windows Hello** or **Open with a passkey**.
+- In another browser, press **Approve on** followed by your Mac's name, or **Use the recovery code**.
+- In tTerm for Mac, press **Open with Touch ID**; on a Mac with no lock of your vault yet, **Use the recovery code**.
+
+Once the vault is open, the terminal says **Signing web-01 in with your key…** and opens by itself.

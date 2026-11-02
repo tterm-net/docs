@@ -1,0 +1,30 @@
+---
+title: Szybki start
+description: Zaloguj się do tTerm Web, dodaj pierwszą maszynę i uruchom pierwsze polecenie w pięć minut.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Pięć minut: logowanie, pierwsza maszyna i pierwsze polecenie. Potrzebujesz przeglądarki i serwera z Linuksem albo komputera, na którym możesz uruchomić polecenie w terminalu.
+
+<Steps>
+
+1. **Zaloguj się.** Otwórz [app.tterm.net](https://app.tterm.net) i wpisz swój adres e-mail: przyjdzie na niego kod. Za pierwszym razem zapytamy, jak się nazywasz, i poprosimy o szybki czterocyfrowy kod dla tej przeglądarki.
+
+2. **Dodaj maszynę.** W panelu bocznym naciśnij **+** obok sekcji **Maszyny** i wybierz **Serwer** albo **Komputer**. Pojawi się polecenie:
+
+   ```sh title="Na serwerze, jako root lub użytkownik z sudo"
+   curl -sSL https://connect.tterm.net/s/<token> | sudo sh
+   ```
+
+   Działa jednorazowo przez najbliższe 10 minut. Serwer pojawi się w projekcie, gdy tylko skrypt się zakończy, zwykle w ciągu minuty.
+
+3. **Otwórz terminal.** Naciśnij **+** obok maszyny w panelu bocznym. Terminal otworzy się w karcie: twoja powłoka, twoje programy, sudo.
+
+4. **Wpisz polecenie.** Na przykład `uptime`. Polecenie wróci jako blok: wynik, kod wyjścia, czas, katalog i gałąź. Kartę możesz zamknąć: terminal działa dalej.
+
+</Steps>
+
+:::note[Komputer zamiast serwera]
+Komputer ma własne polecenie, które uruchamiasz bez sudo: zobacz stronę [Komputer](../../machines/computers/).
+:::

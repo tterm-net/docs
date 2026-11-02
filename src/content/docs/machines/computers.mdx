@@ -24,7 +24,7 @@ The computer appears in the project a few seconds after the command finishes. Th
 ## What the command does
 
 - Puts the agent in `~/.tterm-web`: one file for this system from our releases, checked against the checksum in the command's script before it runs.
-- Makes this computer a key of its own and keeps it there, readable by you only. The token in the command only lets it join, once.
+- Makes a key of its own for this computer and keeps it there, readable by you only. The token in the command only lets it join, once.
 - Starts the agent whenever you log in. The agent runs as you, never as root, and opens no ports.
 - The agent updates itself, only to versions signed by our release build, and only while no terminal is open on the computer.
 
@@ -39,7 +39,7 @@ The computer appears in the project a few seconds after the command finishes. Th
 
 ## Remove it
 
-Remove the computer on the project's page: the agent hears that and stops. To take the agent itself off the computer, run:
+Remove the computer on the project's page: the agent hears that and stops ([more](../remove/#a-computer)). To take the agent itself off the computer, run:
 
 ```sh title="On the computer"
 ~/.tterm-web/uninstall.sh

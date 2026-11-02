@@ -1,0 +1,59 @@
+---
+title: Dispositivos e inicio de sesión
+description: Iniciar sesión con un código por correo, el código rápido en un dispositivo de confianza, cuándo termina una sesión y los dispositivos que puedes olvidar en Configuración.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Inicias sesión en tTerm Web con un código que te llega por correo. En un dispositivo de confianza, un código rápido de cuatro dígitos te permite volver a entrar.
+
+## Iniciar sesión con un código
+
+<Steps>
+
+1. Abre [app.tterm.net](https://app.tterm.net), escribe tu correo electrónico y presiona **Recibir un código**. Te llegan seis dígitos por correo.
+
+2. Escríbelos en el mismo navegador: el código solo funciona ahí, durante 10 minutos y con cinco intentos. Un minuto después puedes presionar **Enviar un código nuevo**, y el anterior deja de funcionar.
+
+3. La primera vez, la página te pide **Tu nombre** y que marques una casilla, **Acepto las Condiciones del servicio y la Política de privacidad**. **Crear cuenta** crea la cuenta, con su primer proyecto, Personal.
+
+</Steps>
+
+Cada vez que alguien inicia sesión en tu cuenta con un código por correo, tTerm te escribe: **New sign-in to tTerm**, con el navegador, su dirección IP y la hora. Por ahora, los correos de tTerm llegan en inglés. Si no fuiste tú, presiona **Olvidar todos los dispositivos** en Configuración (en el correo, **Open Settings** te lleva ahí) y cambia la contraseña de tu correo: quien inició sesión podía leerlo.
+
+## El código rápido
+
+Justo después del código, la página te ofrece **Crea un código rápido para este dispositivo**: cuatro dígitos y luego los mismos cuatro otra vez. No se aceptan dígitos todos iguales ni consecutivos. La próxima vez, este navegador solo te pide el código rápido.
+
+Solo funciona junto con una clave larga y aleatoria que guarda este navegador, así que no sirve en ningún otro dispositivo. Con cinco intentos fallidos, el dispositivo se olvida y vuelve a hacer falta un código por correo. **¿Olvidaste el código?** te envía uno al momento, y después la página te ofrece un código rápido nuevo.
+
+**Ahora no** sigue sin código rápido: la próxima vez, este navegador te pide un código por correo y vuelve a ofrecerte el código rápido.
+
+Tras 8 horas sin actividad, la sesión termina y la página te pide que vuelvas a iniciar sesión: **Tu sesión terminó. Vuelve a iniciar sesión: tus terminales siguen en marcha.** En un dispositivo con código rápido, basta con el código rápido.
+
+## Cerrar sesión
+
+La cuenta al pie de la barra lateral abre un menú con **Configuración**, **Idioma**, **Cuenta** y **Cerrar sesión**. **Cerrar sesión** termina la sesión y hace que este navegador te olvide: la próxima vez te pide un código por correo, no el código rápido. Las notas escritas aquí que aún no se guardaron también se pierden. Tus terminales siguen en marcha.
+
+Para cambiar a otra cuenta, cierra sesión e inicia sesión con el otro correo. **Cambiar de cuenta**, en la pantalla del código rápido, también te pide un correo.
+
+## Tus dispositivos
+
+**Configuración** → **Dispositivos** muestra los navegadores en los que inicias sesión con un código rápido, y cada tTerm para Mac que inició sesión con el navegador, con el nombre con el que los ve tTerm: Chrome on macOS, tTerm for Mac on MacBook-Pro. Cada uno indica desde cuándo es de confianza o cuándo inició sesión, y cuándo se usó por última vez; **Este dispositivo** marca el que estás usando.
+
+- **Olvidar** un navegador hace que ahí vuelva a hacer falta un código por correo. Olvidar tTerm para Mac cierra su sesión: funciona solo con esa Mac, como antes de iniciar sesión. Olvidar el dispositivo que estás usando cierra tu sesión aquí.
+- **Olvidar todos los dispositivos…** y luego **Olvidar todos los dispositivos**: se olvidan todos los dispositivos y se cierran todas las sesiones, también esta. Después, cada navegador pide un código por correo. Tus terminales siguen en marcha.
+
+Un navegador conserva su código rápido durante 90 días desde el día en que lo creaste: después vuelve a pedir un código por correo y te ofrece un código rápido nuevo. Un dispositivo que no ha iniciado sesión en 90 días se olvida solo y desaparece de la lista.
+
+## tTerm para Mac
+
+[tTerm para Mac](../../local/mac/) inicia sesión con tu navegador. En la aplicación, presiona **Iniciar sesión con el navegador** en su primera pantalla, o **Iniciar sesión** en el menú al pie de la barra lateral: la aplicación abre app.tterm.net y muestra un código. En el navegador, inicia sesión si no lo has hecho, comprueba que la página muestre el mismo código y presiona **Autorizar**. Si iniciaste sesión en ese navegador hace más de un cuarto de hora, la página primero te pide que confirmes que eres tú, con el código rápido o con un código por correo.
+
+La Mac pasa a ser una máquina en Personal, la aplicación aparece en **Dispositivos**, y tTerm te escribe sobre el nuevo inicio de sesión, igual que con un navegador.
+
+Para que la aplicación entre en una cuenta distinta de la que está abierta en este navegador, presiona **¿No eres tú? Usa otra cuenta** debajo de **Cancelar**. La sesión del navegador termina, su código rápido se mantiene y la página te pide primero el otro correo.
+
+## Tu correo y tu cuenta
+
+Tu correo aparece en la página **Cuenta**, en el mismo menú. Para cambiarlo, escribe a [support@tterm.net](mailto:support@tterm.net). Para eliminar tu cuenta, escribe ahí desde la dirección con la que inicias sesión.

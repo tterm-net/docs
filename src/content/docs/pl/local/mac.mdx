@@ -1,0 +1,49 @@
+---
+title: Wersja na Maca
+description: Terminal lokalny na Maca – jak go zainstalować, otworzyć za pierwszym razem i jak się uaktualnia.
+---
+
+import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Terminal lokalny to aplikacja na Maca: powłoki tego komputera w blokach, a w tym samym oknie cała chmura. Za darmo, macOS 11 lub nowszy, Apple Silicon i Intel w jednym pliku. Wersje na [Windows](../windows/) i [Linuksa](../linux/) są w przygotowaniu.
+
+<LinkButton href="https://tterm.net/pl/download/">Pobierz na Maca</LinkButton>
+
+## Instalacja
+
+<Steps>
+
+1. Otwórz pobrany plik `tTerm.dmg` i przeciągnij tTerm do folderu „Aplikacje”. Jeśli uruchomisz aplikację prosto z obrazu dysku, sama zaproponuje, że się tam przeniesie: uaktualniać może się tylko z folderu „Aplikacje”.
+
+2. Uruchom aplikację. Za pierwszym razem macOS poprosi o potwierdzenie, [zobacz, jak to zrobić](#pierwsze-uruchomienie-tylko-raz). Potem terminale tego Maca działają od razu, bez konta i bez konfiguracji.
+
+3. Zaloguj się, kiedy zechcesz. Logowanie otworzy przeglądarkę: potwierdź je tam, a w oknie pojawią się twoje serwery i notatki.
+
+</Steps>
+
+## Pierwsze uruchomienie, tylko raz
+
+Aplikacja jest podpisana naszym własnym certyfikatem, a nie certyfikatem Apple Developer ID, dlatego za pierwszym razem macOS prosi o potwierdzenie.
+
+<Tabs syncKey="macos">
+	<TabItem label="macOS 15 lub nowszy">
+		Otwórz tTerm i naciśnij **Gotowe**. Następnie otwórz **Ustawienia systemowe** → **Prywatność i ochrona**: na dole, obok wiersza o tTermie, naciśnij **Otwórz mimo to** (przycisk jest widoczny przez około godzinę od próby) i potwierdź hasłem do Maca.
+	</TabItem>
+	<TabItem label="macOS 11–14">
+		W Finderze otwórz folder „Aplikacje”, kliknij tTerm, trzymając naciśnięty klawisz Control, wybierz **Otwórz**, a potem jeszcze raz **Otwórz**.
+	</TabItem>
+</Tabs>
+
+Od tej pory aplikacja otwiera się jak zwykle i sama instaluje nowe wersje, bez żadnych pytań ze strony macOS.
+
+## Uaktualnienia
+
+Co sześć godzin aplikacja sprawdza, czy jest nowa wersja, pobiera ją i instaluje, kiedy nikomu to nie przeszkadza: gdy ją zamykasz albo gdy w jej terminalach nic nie działa. W sekcji **Ustawienia** → **Uaktualnienia** możesz ustawić, żeby najpierw pytała.
+
+:::note[Hasło pęku kluczy po uaktualnieniu]
+Po uaktualnieniu macOS może raz zapytać o hasło pęku kluczy: wpisz je i naciśnij **Zawsze pozwalaj**. Tak będzie, dopóki aplikacja nie zostanie podpisana certyfikatem Apple Developer ID.
+:::
+
+## Usuwanie
+
+Zakończ aplikację przez jej ikonę na pasku menu i przeciągnij tTerm z folderu „Aplikacje” do Kosza. Jeśli Mac był połączony z kontem, zostaje maszyną w projekcie Personal, a aplikacja – jednym z twoich urządzeń: [usuń maszynę](../../machines/remove/#mac-z-tterm-dla-maca) i zapomnij aplikację w sekcji **Ustawienia** → **Urządzenia**.

@@ -1,0 +1,48 @@
+---
+title: Wyszukiwanie, ⌘K
+description: Jedno pole na uruchomione polecenia i to, co wypisały, logi twoich maszyn, notatki, terminale, maszyny, projekty i akcje.
+---
+
+Wyszukiwanie znajduje wszystko w jednym polu: polecenia ze wszystkich twoich terminali i to, co wypisały, logi twoich maszyn, notatki, terminale, maszyny, projekty i akcje.
+
+## Jak otworzyć
+
+Naciśnij **⌘K** na Macu lub **Ctrl+Shift+K** na innych systemach albo kliknij **Szukaj** na prawo od kart. Ctrl bez Shift zostaje dla terminala. **Esc** zamyka wyszukiwanie.
+
+Zanim cokolwiek wpiszesz, wyszukiwanie pokazuje to, co ostatnio było otwarte, polecenia, które najczęściej uruchamiasz na maszynie bieżącego terminala, i kilka akcji.
+
+## Co znajduje
+
+- **Polecenia** – każde polecenie z każdego twojego terminala, także z zakończonych, tak długo, jak projekt je przechowuje: 30 dni. Polecenie uruchomione kilka razy na jednej maszynie to jeden wiersz z liczbą uruchomień, na przykład **3 uruchomienia**.
+- **Wynik** – to, co te polecenia wypisały. Z długiego wyniku wyszukiwanie czyta początek i koniec.
+- **Logi** – logi maszyn w twoich projektach: polecenia uruchomione na nich przez tTerm i notatki pod nimi, rok wstecz.
+- **Notatki** – notatki twoich projektów, ich tytuły i treść.
+- **Terminale**, **Maszyny** i **Projekty** – tak, jak wymienia je panel boczny, a także działający terminal bez karty.
+- **Akcje** – czynności do wykonania, takie jak **Nowy projekt**, **Ustawienia** albo zmiana motywu.
+
+Każde wpisane słowo musi się znaleźć, w dowolnej kolejności i wielkości liter, a słowo może być częścią dłuższego: `cert` znajdzie `certbot`.
+
+## Jeden rodzaj wyników
+
+Przyciski nad listą zawężają wyniki do jednego rodzaju: **Wszystko**, **Polecenia**, **Wynik**, **Logi**, **Notatki**, **Terminale**, **Maszyny**, **Projekty** i **Akcje**. **Tab** przechodzi do następnego. To samo robi słowo na początku zapytania: `c:` polecenia, `o:` wynik, `l:` logi, `n:` notatki, `t:` terminale, `m:` maszyny, `p:` projekty, `>` akcje. Na przykład:
+
+- `c: nginx` – polecenia, w których jest *nginx*;
+- `o: timed out` – polecenia, w których wyniku jest i *timed*, i *out*;
+- `> theme` – **Przełącz na ciemny motyw** albo na jasny.
+
+W widoku **Wszystko** każdy rodzaj pokazuje swoje pierwsze trzy wyniki, a **Wszystkie 12** obok nagłówka rodzaju pokazuje resztę.
+
+## Otwieranie wyników
+
+**↑** i **↓** przesuwają wybór po liście. Obok widać, czym jest wybrany wiersz: przy poleceniu to jego maszyna, katalog i gałąź, to, jak się zakończyło, kiedy, jego terminal i pierwsze wiersze wyniku.
+
+**Enter** albo kliknięcie otwiera wybrany wynik:
+
+- polecenie albo wiersz wyniku – w jego terminalu, na jego [bloku](../blocks/), oznaczonym **Znaleziono**, z podświetlonymi słowami. Blok pokaże się, nawet jeśli był zwinięty albo schowany z widoku, a terminal w trybie klasycznym pokaże go w trybie **Blokowy**;
+- wiersz logu – [log maszyny](../log/) na tym wierszu;
+- notatkę – w miejscu, gdzie są te słowa;
+- terminal – jego kartę; maszynę – nowy terminal na niej; projekt – jego stronę. Akcja zostaje wykonana.
+
+**⌘Enter** na Macu, a **Ctrl+Enter** na innych systemach, wstawia polecenie do pola wprowadzania bieżącego terminala, ale go nie uruchamia, nawet jeśli ten terminal jest na innej maszynie. Pod polem widać wtedy **Z wyszukiwania, jeszcze nieuruchomione**: **Enter** uruchamia je tam, **Esc** czyści pole. W trybie klasycznym polecenie tak samo czeka przy znaku zachęty powłoki. Jeśli w bieżącym terminalu działa polecenie, jego pole jest zajęte: wyszukiwanie o tym powie, a ty spróbujesz ponownie, gdy polecenie się zakończy. Gdy nie ma bieżącego terminala, polecenie trafia do twojego terminala na jego maszynie albo do nowego terminala na niej.
+
+Przyciski pod podglądem, **Otwórz w jego terminalu** i **Wstaw do pola**, robią to samo co **Enter** i **⌘Enter**.

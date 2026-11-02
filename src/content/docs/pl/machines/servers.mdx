@@ -1,0 +1,51 @@
+---
+title: Serwer z systemem Linux
+description: Jak podłączyć serwer jednym poleceniem, co robi instalator i jak odebrać dostęp.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Serwer podłącza się przez zwykłe SSH jednym poleceniem. Nie przechowujemy kluczy: dla każdego połączenia podpisujemy osobny certyfikat, który jest ważny przez dwie minuty i tylko dla tego serwera.
+
+## Podłączanie
+
+<Steps>
+
+1. W tTerm Web otwórz **Dodaj maszynę** i wybierz **Serwer**.
+
+2. Skopiuj polecenie i uruchom je na serwerze jako root lub jako dowolny użytkownik z sudo:
+
+   ```sh title="Na serwerze"
+   curl -sSL https://connect.tterm.net/s/<token> | sudo sh
+   ```
+
+3. Serwer pojawi się w projekcie, gdy tylko skrypt się zakończy, zwykle w ciągu minuty. Chmura sama się na nim zaloguje, sprawdzi go i odczyta dane maszyny: system, adres i powłokę.
+
+</Steps>
+
+:::caution[Polecenie działa tylko raz]
+Działa jednorazowo przez najbliższe 10 minut. Za późno? Naciśnij **Wygeneruj nowe polecenie**.
+:::
+
+## Co robi skrypt
+
+- Tworzy użytkownika `tterm`, bez hasła. Jeśli utworzył go już nasz bot na Telegramie, zostanie użyty ponownie.
+- Pozwala chmurze logować się jako `tterm` za pomocą certyfikatów, które są ważne dwie minuty i wystawiane tylko dla tego serwera. Na serwerze nie zostają żadne klucze.
+- Nadaje użytkownikowi `tterm` uprawnienia sudo, żeby można było zarządzać serwerem. Jedno polecenie je odbiera.
+- Nigdy nie zmienia `sshd_config` i nie otwiera portów. Można go bezpiecznie uruchomić dwa razy.
+
+Zaufanie to jeden wiersz w `authorized_keys` użytkownika `tterm`, a każdy serwer ma własny:
+
+```text title="~tterm/.ssh/authorized_keys"
+cert-authority,principals="m-…" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5… tterm-web ca-…
+```
+
+:::tip[Serwer za NAT-em albo bez SSH z zewnątrz]
+Chmura loguje się na serwer przez SSH, więc jego port SSH musi być dostępny z zewnątrz. Jeśli nie jest, zainstaluj na serwerze agenta, tak jak na [komputerze](../computers/): wtedy połączenie wychodzi od wewnątrz.
+:::
+
+## Usuwanie serwera
+
+Na stronie projektu naciśnij ⋯ obok serwera i wybierz **Usuń maszynę**. Chmura przestanie się na nim logować i odbierze swój dostęp na samym serwerze. Jeśli serwer nie odpowie, w następnym kroku pojawi się polecenie, które to zrobi. Więcej na stronie [Usuwanie maszyny](../remove/).
+
+Jak usunąć wszystko inne, co dodał instalator, opisano na początku samego skryptu.

@@ -1,0 +1,48 @@
+---
+title: Suche, ⌘K
+description: Ein Feld für die Befehle, die du ausgeführt hast, und was sie ausgegeben haben, die Logs deiner Maschinen, Notizen, Terminals, Maschinen, Projekte und Aktionen.
+---
+
+Die Suche findet alles in einem Feld: die Befehle aus jedem deiner Terminals und was sie ausgegeben haben, die Logs deiner Maschinen, Notizen, Terminals, Maschinen, Projekte und Aktionen.
+
+## Öffnen
+
+Drück **⌘K** auf einem Mac oder **Ctrl+Shift+K** auf anderen Systemen, oder klick rechts neben den Tabs auf **Suchen**. Ctrl ohne Shift bleibt beim Terminal. **Esc** schließt die Suche.
+
+Bevor du etwas tippst, zeigt die Suche, was du zuletzt offen hattest, die Befehle, die du auf der Maschine des Terminals im Vordergrund am häufigsten ausführst, und ein paar Aktionen.
+
+## Was sie findet
+
+- **Befehle** – jeder Befehl aus jedem deiner Terminals, auch aus beendeten, solange das Projekt sie aufbewahrt: 30 Tage. Ein Befehl, der auf einer Maschine mehrmals lief, ist eine einzige Zeile, die sagt, wie oft er lief, **3-mal ausgeführt**.
+- **Ausgabe** – was diese Befehle ausgegeben haben. Bei einer langen Ausgabe liest die Suche den Anfang und das Ende.
+- **Logs** – die Logs der Maschinen in deinen Projekten: die Befehle, die über tTerm auf ihnen liefen, und die Notizen darunter, ein Jahr zurück.
+- **Notizen** – die Notizen deiner Projekte, ihre Titel und ihr Text.
+- **Terminals**, **Maschinen** und **Projekte**, wie die Seitenleiste sie auflistet, und auch ein laufendes Terminal ohne Tab.
+- **Aktionen** – was sich tun lässt, etwa **Neues Projekt**, **Einstellungen** oder das Design wechseln.
+
+Jedes Wort, das du tippst, muss vorkommen, in beliebiger Reihenfolge, egal ob groß oder klein geschrieben, und ein Wort kann Teil eines längeren sein: `cert` findet `certbot`.
+
+## Auf eine Kategorie beschränken
+
+Die Buttons über der Liste beschränken die Suche auf eine Kategorie: **Alle**, **Befehle**, **Ausgabe**, **Logs**, **Notizen**, **Terminals**, **Maschinen**, **Projekte** und **Aktionen**. **Tab** springt zur nächsten. Ein Präfix am Anfang tut dasselbe: `c:` Befehle, `o:` Ausgabe, `l:` Logs, `n:` Notizen, `t:` Terminals, `m:` Maschinen, `p:` Projekte, `>` Aktionen. Zum Beispiel:
+
+- `c: nginx` – die Befehle, in denen *nginx* vorkommt;
+- `o: timed out` – die Befehle, in deren Ausgabe sowohl *timed* als auch *out* vorkommt;
+- `> theme` – **Zum dunklen Design wechseln** oder zum hellen.
+
+Unter **Alle** zeigt jede Kategorie ihre ersten drei Treffer, und **Alle 12** neben der Überschrift einer Kategorie zeigt den Rest.
+
+## Gefundenes öffnen
+
+**↑** und **↓** bewegen dich durch die Liste. Daneben steht, was die gewählte Zeile ist: bei einem Befehl seine Maschine, sein Verzeichnis und sein Branch, wie er ausging, wann, sein Terminal und die ersten Zeilen seiner Ausgabe.
+
+**Enter** oder ein Klick öffnet, was du gewählt hast:
+
+- einen Befehl oder eine Zeile der Ausgabe – in seinem Terminal, an seinem [Block](../blocks/), markiert mit **Gefunden** und mit hervorgehobenen Wörtern. Der Block erscheint auch, wenn er eingeklappt oder ausgeblendet war, und ein Terminal im klassischen Modus zeigt ihn im Modus **Zeile**;
+- eine Zeile eines Logs – das [Log der Maschine](../log/), an dieser Zeile;
+- eine Notiz – an der Stelle mit den Wörtern;
+- ein Terminal – seinen Tab; eine Maschine – ein neues Terminal darauf; ein Projekt – seine Seite. Eine Aktion wird ausgeführt.
+
+**⌘Enter** auf einem Mac, **Ctrl+Enter** auf anderen Systemen, setzt einen Befehl in die Eingabezeile des Terminals im Vordergrund, ohne ihn auszuführen, auch wenn dieses Terminal auf einer anderen Maschine läuft. Unter der Zeile steht dann **Aus der Suche, noch nicht ausgeführt**: **Enter** führt ihn dort aus, **Esc** leert die Zeile. Im klassischen Modus wartet der Befehl genauso am Prompt der Shell. Läuft im Terminal im Vordergrund gerade ein Befehl, ist seine Zeile nicht frei: Die Suche sagt das, und du versuchst es noch einmal, wenn er fertig ist. Ist kein Terminal im Vordergrund, kommt der Befehl in ein Terminal von dir auf seiner Maschine oder in ein neues dort.
+
+Die Buttons unter der Vorschau, **Im Terminal öffnen** und **In die Eingabezeile**, tun dasselbe wie **Enter** und **⌘Enter**.

@@ -1,0 +1,63 @@
+---
+title: Notatki
+description: Notatki w folderach projektu – Markdown w trakcie pisania, checklisty z informacją, kto zaznaczył punkt, kod z przyciskiem Kopiuj i zapisywanie, które scala to, co napisano na dwóch urządzeniach.
+---
+
+Notatki leżą w folderach projektu, tak jak terminale działają na jego maszynach: runbooki, dostępy, checklisty, tuż obok maszyn, których dotyczą. Notatka to tytuł i bloki pisane od razu na miejscu, a zapisuje się sama.
+
+## Foldery
+
+W panelu bocznym każdy projekt ma pod swoimi maszynami sekcję **Notatki**. **+** obok nagłówka **Notatki** tworzy folder: nadaj mu nazwę i naciśnij **Utwórz folder**. **+** obok folderu zaczyna w nim notatkę, w osobnej karcie; kliknięcie samego folderu tylko go zwija albo rozwija. Na stronie projektu to samo robią przyciski: **Nowy folder** oraz **Nowa notatka** przy każdym folderze.
+
+Menu **⋯** obok folderu na stronie projektu ma pozycje **Zmień nazwę folderu** i **Usuń folder**. Folder usuwa się razem z notatkami, które w nim są: okno je wymienia, więc najpierw przenieś z niego notatki, które chcesz zachować.
+
+Na razie w każdym projekcie jesteś tylko ty, więc tylko ty widzisz jego notatki i to ty piszesz, przenosisz i usuwasz w nim wszystkie notatki i foldery. Pod tytułem notatki strona mówi właśnie to: **widzisz ją tylko ty**.
+
+## Pisanie
+
+Nowa notatka otwiera się z kursorem w tytule, a **Enter** przechodzi do treści. Treść to bloki: tekst, nagłówki, elementy listy, punkty checklisty, kod i separatory. **Enter** zaczyna nowy blok, a na pustym elemencie kończy listę.
+
+Markdown wpisany na początku bloku zamienia go w to, co oznacza:
+
+| Wpisz na początku bloku | Powstanie |
+| --- | --- |
+| `#` i spacja | nagłówek |
+| `-` i spacja albo `1.` i spacja | element listy |
+| `- [ ]` i spacja | punkt checklisty, a z `- [x]` – już zaznaczony |
+| `` ``` `` | kod |
+| `---` | separator |
+
+W innych miejscach bloku Markdown zostaje taki, jak go wpisano. W pustym wierszu **/** podsuwa to samo z listy: **Checklista**, **Nagłówek**, **Lista**, **Kod**, **Separator**, **Tekst**. Litery wpisane po nim zawężają listę, strzałki przesuwają wybór, a **Enter** go zatwierdza. Wklejony tekst z kilkoma wierszami zamienia się w bloki, a jego Markdown jest odczytywany tak samo.
+
+## Kod i checklisty
+
+Blok kodu zachowuje swoje wiersze: **Enter** zaczyna w nim nowy wiersz, **Tab** wstawia dwie spacje, a **⌘Enter** na Macu (**Ctrl+Enter** na innych systemach) wychodzi z niego do nowego bloku poniżej. Wklejony do niego tekst zostaje bez zmian. **Kopiuj** w jego rogu kopiuje kod i na chwilę pokazuje **Skopiowano**.
+
+Punkt checklisty zaznacza się w jego polu wyboru. Zaznaczenie zapisuje się od razu, a obok punktu notatka pokazuje, kto go zaznaczył i kiedy: **Ty · 10:02**, jeśli dzisiaj, albo datę, jeśli wcześniej. Panel boczny pokazuje postęp checklisty, 2/5, a strona projektu – **Zrobione: 2 z 5**.
+
+## Zapisywanie
+
+Notatka zapisuje się sama chwilę po tym, jak przestajesz pisać. Na prawo od kart strona pokazuje, jak idzie zapis: **Zapisywanie…**, **Zapisano** albo **Nie zapisano: brak połączenia**.
+
+Pisz w tej samej notatce na dwóch urządzeniach naraz, a oba zachowają swoje zmiany: każdy zapis jest scalany blok po bloku z tym, co zapisano w międzyczasie. Dopiero gdy ten sam blok albo tytuł zmienił się po obu stronach, notatka pyta, co w tym miejscu zostawić: **Zachowaj moją** czy **Zachowaj drugą wersję**; cała reszta zostaje z obu wersji. Do scalania tTerm przechowuje 50 ostatnich wersji każdej notatki.
+
+Bez połączenia to, co wpisujesz, zostaje w tej przeglądarce, dopóki się nie zapisze, a strona ponawia próby. Zamknij kartę albo przeładuj stronę, a tekst wróci, gdy znowu otworzysz notatkę: **Przywrócono niezapisany tekst tej notatki.**
+
+:::caution[Po wylogowaniu niezapisany tekst przepada]
+Gdy klikniesz **Wyloguj się**, ta przeglądarka zapomni to, co wpisano w notatkach i jeszcze nie zapisano.
+:::
+
+## Przenoszenie, kopiowanie i usuwanie
+
+Menu **⋯** obok notatki, na stronie projektu albo u góry karty notatki, zawiera resztę:
+
+- **Folder** – foldery projektu, z zaznaczonym folderem notatki: kliknięcie innego przenosi tam notatkę. Ta pozycja pojawia się, gdy projekt ma już dwa foldery.
+- **Przenieś do innego projektu…** – okno wymienia twoje pozostałe projekty z ich folderami: wybierz folder i naciśnij na przykład **Przenieś do folderu Runbooki**. Projekt bez folderów proponuje nowy folder o takiej samej nazwie jak folder notatki. Razem z notatką przenoszą się jej tytuł, treść i historia, a także zaznaczenia punktów z informacją, kto ich dokonał.
+- **Kopiuj jako Markdown** – cała notatka, z tytułem jako głównym nagłówkiem.
+- **Usuń notatkę** – najpierw pyta. Usunięta notatka znika na zawsze.
+
+Notatki znajduje też wyszukiwanie: zacznij od `n:`, zobacz [Wyszukiwanie](../search/).
+
+## Logi
+
+Folder **Logi** jest w panelu bocznym pierwszy wśród folderów projektu, z dopiskiem **prowadzi tTerm**. Jest w nim log każdej maszyny projektu: każde polecenie uruchomione na niej przez tTerm, dzień po dniu, z notatkami dodanymi pod poleceniami. Logi prowadzi tTerm i nikt nie może ich zmienić. Wiersze są przechowywane przez rok, a to, co wypisały polecenia – przez 30 dni. Więcej na stronie [Log maszyny](../log/).

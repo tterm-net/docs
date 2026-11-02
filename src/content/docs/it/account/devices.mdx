@@ -1,0 +1,59 @@
+---
+title: Dispositivi e accesso
+description: Accedere con un codice via email, il codice rapido su un dispositivo di cui ti fidi, quando termina una sessione e i dispositivi che puoi dimenticare in Impostazioni.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Accedi a tTerm Web con un codice via email. Su un dispositivo di cui ti fidi, per rientrare basta un codice rapido di quattro cifre.
+
+## Accedere con un codice
+
+<Steps>
+
+1. Apri [app.tterm.net](https://app.tterm.net), inserisci la tua email e premi **Ricevi un codice**. Ti arrivano sei cifre via email.
+
+2. Inseriscile nello stesso browser: il codice funziona solo lì, per 10 minuti, con cinque tentativi. Dopo un minuto puoi premere **Invia un nuovo codice**, e quello precedente smette di funzionare.
+
+3. La prima volta, la pagina chiede **Il tuo nome** e una spunta, **Accetto i Termini di servizio e l'Informativa sulla privacy**. **Crea account** crea l'account, con il suo primo progetto, Personal.
+
+</Steps>
+
+Ogni volta che qualcuno accede al tuo account con un codice via email, tTerm ti invia un'email, **New sign-in to tTerm**, con il browser, il suo indirizzo IP e l'ora. Per ora le email di tTerm arrivano in inglese. Se non eri tu, premi **Dimentica tutti i dispositivi** in Impostazioni (ci porta il pulsante **Open Settings** dell'email), e cambia la password della tua email: chi ha effettuato l'accesso poteva leggerla.
+
+## Il codice rapido
+
+Subito dopo il codice, la pagina propone **Crea un codice rapido per questo dispositivo**: quattro cifre, poi le stesse quattro un'altra volta. Cifre tutte uguali o in sequenza non vengono accettate. La volta successiva, questo browser chiede solo il codice rapido.
+
+Funziona solo insieme a una lunga chiave casuale che questo browser conserva, quindi su un altro dispositivo non serve a nulla. Dopo cinque tentativi sbagliati il dispositivo viene dimenticato, e serve di nuovo un codice via email. **Hai dimenticato il codice?** ne invia subito uno, e dopo la pagina propone un nuovo codice rapido.
+
+**Non ora** prosegue senza: la volta successiva questo browser chiede un codice via email e propone di nuovo il codice rapido.
+
+Dopo 8 ore di inattività la sessione termina, e la pagina ti chiede di accedere di nuovo: **La tua sessione è terminata. Accedi di nuovo: i tuoi terminali sono rimasti in esecuzione.** Su un dispositivo con il codice rapido, basta il codice rapido.
+
+## Uscire dall'account
+
+L'account in fondo alla barra laterale apre un menu con **Impostazioni**, **Lingua**, **Account** ed **Esci**. **Esci** chiude la sessione e fa dimenticare a questo browser chi sei: la volta successiva chiede un codice via email, non il codice rapido. Anche le note scritte qui e non ancora salvate vanno perse. I tuoi terminali restano in esecuzione.
+
+Per passare a un altro account, esci e accedi con l'altra email. Anche **Cambia account**, nella schermata del codice rapido, chiede un'email.
+
+## I tuoi dispositivi
+
+**Impostazioni** → **Dispositivi** elenca i browser in cui accedi con un codice rapido, e ogni tTerm per Mac che ha effettuato l'accesso tramite il browser, con i nomi con cui li vede tTerm: Chrome on macOS, tTerm for Mac on MacBook-Pro. Per ciascuno è indicato quando è stato memorizzato o ha effettuato l'accesso e quando è stato usato l'ultima volta; **Questo dispositivo** indica quello che stai usando.
+
+- **Dimentica** un browser, e lì servirà di nuovo un codice via email. Dimentica tTerm per Mac, e verrà disconnesso: funziona solo con quel Mac, come prima dell'accesso. Dimentica il dispositivo che stai usando, e verrai disconnesso qui.
+- **Dimentica tutti i dispositivi…**, poi **Dimentica tutti i dispositivi**: tutti i dispositivi vengono dimenticati e tutte le sessioni terminano, anche questa. Poi ogni browser chiede un codice via email. I tuoi terminali restano in esecuzione.
+
+Un browser conserva il suo codice rapido per 90 giorni dal giorno in cui l'hai creato: dopo chiede di nuovo un codice via email e propone un nuovo codice rapido. Un dispositivo che non accede da 90 giorni viene dimenticato da solo e sparisce dall'elenco.
+
+## tTerm per Mac
+
+[tTerm per Mac](../../local/mac/) accede tramite il browser. Nell'app, premi **Accedi con il browser** nella sua prima schermata, oppure **Accedi** nel menu in fondo alla barra laterale: l'app apre app.tterm.net e mostra un codice. Nel browser, accedi se non l'hai ancora fatto, controlla che la pagina mostri lo stesso codice e premi **Consenti**. Se hai effettuato l'accesso in questo browser più di un quarto d'ora fa, la pagina ti chiede prima di confermare che sei tu, con il codice rapido o con un codice via email.
+
+Il Mac diventa una macchina in Personal, l'app compare in **Dispositivi**, e tTerm ti scrive del nuovo accesso, come per un browser.
+
+Per far entrare l'app in un account diverso da quello con cui è collegato questo browser, premi **Non sei tu? Usa un altro account** sotto **Annulla**. La sessione del browser termina, il suo codice rapido resta, e la pagina chiede prima l'altra email.
+
+## La tua email e il tuo account
+
+La tua email è nella pagina **Account**, nello stesso menu. Per cambiarla, scrivi a [support@tterm.net](mailto:support@tterm.net). Per eliminare il tuo account, scrivi lì dall'indirizzo con cui accedi.

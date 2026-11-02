@@ -1,0 +1,33 @@
+---
+title: tTerm 是什么
+description: 面向服务器和电脑的云终端。机器仍然归你所有，终端、历史记录和笔记则都在云端。
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+tTerm 是面向你的服务器和电脑的云终端。机器仍然归你所有，终端、命令历史和笔记则都在云端。构建跑到一半时合上笔记本，再打开手机，构建还在继续。设备上不需要密钥，也不需要开放端口。
+
+## 在哪里工作
+
+- **云终端 tTerm Web**：在浏览器中使用，地址是 [app.tterm.net](https://app.tterm.net)。在笔记本、平板或手机上，都能用到你所有的机器、终端和笔记。
+- **本地终端**：一款 Mac 应用，这台电脑的 shell 和整个云端都在同一个窗口里。没有账号也能使用，详见 [Mac 版](../../local/mac/)。Windows 版和 Linux 版正在开发中。
+- **Telegram 机器人**：聊天里的终端，[@tTermNetBot](https://t.me/tTermNetBot)。目前它和网页版是分开的。
+
+## 基本概念
+
+- **项目**：机器和笔记放在一起。每个人都有 Personal 项目，你还可以另建自己的项目，各有自己的代号和颜色。
+- **机器**：通过 SSH 连接的 Linux 服务器，或者装有小型代理的 macOS 或 Linux 电脑。
+- **终端**：机器上真正的 shell，bash 或 zsh，取决于那里的设置。它在云端，而不在标签页里：关掉标签页，终端照样运行。
+- **块**：一条命令及其输出、退出码、时间、目录和 git 分支。块很容易复制、重新运行，也能通过搜索找到。
+- **笔记**：项目文件夹中的 Markdown 文本，把检查清单、命令和操作说明放在相关的机器旁边。
+
+:::tip[公测期间免费]
+现有的全部功能，免费使用：最多 50 台机器，最多同时打开 24 个终端。付费方案以后才会推出，我们会提前告诉你。
+:::
+
+## 接下来
+
+<CardGrid>
+	<LinkCard title="快速入门" description="登录、第一台机器和第一条命令。" href="../quick-start/" />
+	<LinkCard title="访问的工作原理" description="为什么我们不需要你的密钥。" href="../../security/access/" />
+</CardGrid>

@@ -1,0 +1,72 @@
+---
+title: Bloklar ve komut satırı
+description: tTerm'de bir terminal nasıl çalışır – her komut bir blok, tTerm'in kendi giriş satırı ve klasik mod.
+---
+
+tTerm'de terminal, bloklardan oluşan bir akıştır: çalıştırdığın her komut, çıktısıyla birlikte bir blok olur. Komutlarını akışın altındaki, tTerm'in kendi giriş satırına yazarsın. Bloklar sonradan [arama](../search/) ile yeniden bulunabilir.
+
+## Blok
+
+Blok, komutu ve komutun nasıl bittiğini gösterir: yeşil bir nokta ya da çıkış koduyla birlikte kırmızı bir çarpı, örneğin **çıkış 1**. Yanlarında komutun ne kadar sürdüğü, hangi dizinde çalıştığı, git dalı ve başladığı saat yer alır. Altlarında çıktı bulunur. Uzun bir çıktının son 400 satırı görünür; bunların üstündeki **Önceki 120 satırı göster** ya da **Çıktının tamamını göster** düğmesi gerisini getirir.
+
+Şu anda çalışan komut, her terminalde olduğu gibi canlı çizilir: renkler, ilerleme çubukları ve parola istemleri çalışır, yazdıkların da komuta gider. Tam ekran bir program, örneğin vim ya da htop, çalıştığı sürece pencerenin tamamını kaplar, kapandığında akış geri gelir. Komut bittiğinde ekranı metne dönüşür: onu seçebilir, içinde arama yapabilir ve kopyalayabilirsin.
+
+Çalışan bir komutu durdurmak için bloğundaki **Durdur** düğmesine ya da **Ctrl+C** tuşlarına bas. Kabuk açık kalmış bir tırnaktan ya da bir heredoc'tan sonra komutun devamını bekliyorsa blokta **başlamadı** yazar: devamını bloğa yaz ya da **Durdur** düğmesine bas.
+
+## Bloğun düğmeleri
+
+Bitmiş bir bloğun üzerine gelince düğmeleri belirir. İpuçlarında adları şöyle geçer:
+
+- **Komutu ve çıktısını kopyala** ve **Yalnızca çıktıyı kopyala**. Düğmede beliren onay işareti kopyalandığını gösterir.
+- **Yeniden çalıştır** komutu bu terminalde bir kez daha çalıştırır. Yeni blok başlarken kehribar rengi bir çerçeveyle çevrilir.
+- **Bu bloğun bağlantısını kopyala**, akışı bu blokta açan ve bloğu vurgulayan bir bağlantı kopyalar. Bağlantı giriş yaptığın her yerde çalışır, ama yalnızca senin için.
+- **Bu komuta not ekle** komutun altında bir alan açar, **Enter** notu kaydeder. Notlar [makinenin loguna](../log/) da düşer, yazıldıkları gibi kalır ve **Yanıtla** ile yanıtlanır.
+- **Bloğu daralt** çıktıyı gizler. Daraltılmış blok ne kadarını gizlediğini yazar, örneğin **12 satır gizli**; bir tıklama onu yeniden açar.
+
+## Giriş satırı
+
+Giriş satırı kabuğa değil, tTerm'e aittir. Yazdıkların, **Enter** komutun tamamını kabuğa verene kadar satırda kalır.
+
+- **Shift+Enter** yeni bir satır başlatır: bir komut birkaç satırdan oluşabilir.
+- **↑** ve **↓**, kullandığın tüm cihazlardan gelen geçmişinde gezinir: önce bu makinede çalıştırdığın komutlar, sonra projenin geri kalanındakiler. Bir komutun başını yazarsan yalnızca öyle başlayanlar gelir. **Ctrl+R** geçmişi bir arama alanıyla birlikte listeler, seçtiğin komut satıra gelir.
+- Sen yazarken geçmişindeki bir komutun devamı gri renkte görünür. **Tab** ya da **→** öneriyi kabul eder.
+- Öneri yoksa **Tab** makineye sözcüğün ne olabileceğini sorar: bir komut, bir dosya, bir dizin ya da bir git dalı. Tek bir yanıt doğrudan satıra yazılır, birden fazlası bir liste açar. Bu soru terminali atlayarak gider, bu yüzden ne terminalde ne de kabuğun geçmişinde görünür.
+- **Ctrl+L**, `clear` gibi akışı temizler.
+
+Satırın solunda bulunduğun dizin ve varsa git dalı yer alır; ikisi de birer düğmedir. Dizin, buradaki dizinleri listeler, bir üst dizin için `..` de vardır; yazdığın bir yolu da kabul eder. Dal, dalları listeler; dallar **geçerli** ve **uzak** olarak işaretlidir. Seçtiğin şey sıradan bir `cd` ya da `git switch` olarak çalışır ve akışa bir blok olarak gelir.
+
+Bir komut çalışırken satırda şu yazar: **Tuşlar çalışan komuta gidiyor. Sonrakini yazmak için buraya tıkla.** Sonraki komutu oraya yazabilirsin, ama **Enter** ancak bu komut bittiğinde çalışır; ondan önce şunu söyler: **Bir komut hâlâ çalışıyor. Bitmesini bekle ya da bloğunda Ctrl+C ile durdur.** Satırın kendisinde **Ctrl+C** yazdıklarını siler, boş bir satırda ise kabuğa gider.
+
+## Tehlikeli komutlar
+
+Bazı komutlar bir şeyi kalıcı olarak yok eder. tTerm böyle bir komutu bekletir ve önce satırın üstündeki bir şeritte sorar: komut ne yapacak, hangi makinede ve geri gelmeyecek olan ne. “Bu komut **web-01** üzerinde şunu yapacak: **bir dizini ve içindeki her şeyi silmek**. Geri almanın yolu yok, bakabileceğin bir çöp kutusu da yok.” **Çalıştır** komutu çalıştırır, **Vazgeç** onu satıra geri koyar.
+
+Şu komutlardan önce sorar:
+
+- `-r` ve `-f` ile `rm` – bir dizini ve içindeki her şeyi silmek;
+- `mkfs`, `fdisk`, `parted`, `wipefs` – bir diskin dosya sistemini yeniden oluşturmak;
+- `of=/dev/…` ile `dd` – doğrudan bir aygıtın üzerine yazmak;
+- `DROP DATABASE`, `DROP TABLE`, `TRUNCATE TABLE` – bir veritabanını ya da tabloyu silmek;
+- `shutdown`, `poweroff`, `halt`, `init 0` – makineyi kapatmak;
+- `reboot`, `init 6` – makineyi yeniden başlatmak;
+- `ssh` ya da `sshd` için `systemctl stop`, `disable` ya da `mask` – SSH servisini durdurmak;
+- `ufw deny`, `ufw reject`, `DROP` ile `iptables` – güvenlik duvarı ayarlarını değiştirmek;
+- `userdel`, `deluser` – bir kullanıcı hesabını silmek.
+
+`/` ya da `~` dizinini hedefleyen bir `rm -rf` için şu da eklenir: **Bu komut makinenin tamamını hedefliyor. Makinedeki hiçbir şey kurtulmaz.** Komutu kendin yazmış, geçmişten almış ya da **Yeniden çalıştır** düğmesine basmış olsan da tTerm aynı şekilde sorar.
+
+## Klasik mod
+
+Klasik modda terminal sıradan bir terminaldir. Her tuş doğrudan kabuğa gider, Tab ve geçmiş kabuğun kendisine aittir; komut istemi dahil her şeyi kabuk çizer. Blok yoktur ve hiçbir şey denetlenmez; terminalin altında da şu yazar: **Bu modda tehlikeli komutlar için onay istenmez.**
+
+Giriş satırının sağındaki **Satır** ve **Klasik** düğmeleri modu değiştirir; klasik modda bu düğmeler terminalin altındadır. Kabuk olduğu gibi çalışmaya devam eder, bu tarayıcı da seçtiğin modu tüm terminallerin için hatırlar.
+
+Bir komutun nerede başladığını işaretleyemeyen bir kabuk, örneğin 4.4'ten eski bash, yalnızca klasik modda çalışır. Orada **Satır** soluk görünür, düğmenin ipucu da nedenini söyler.
+
+## Temizleme ve daraltma
+
+`clear` (ya da `reset`) ve **Ctrl+L** akışı silmez, yalnızca görünümden kaldırır: en üstteki **3 blok görünümden kaldırıldı: göster** onu geri getirir. Daraltılmış bloklar ve temizlenmiş akış bu tarayıcıda öyle kalır: sayfa yenilendikten sonra da, klasik moda geçip dönüldükten sonra da. En üstteki **Önceki komutları göster** daha eski blokları getirir; bloklar 30 gün saklanır.
+
+## Terminale ad verme
+
+Terminalin sekmesine ya da kenar çubuğunda veya proje sayfasında terminalin kendisine çift tıkla ve bir ad yaz: en fazla 40 karakter, yalnızca bir sayı olamaz. **Enter** kaydeder, **Esc** iptal eder. Ad kenar çubuğunda, sekmelerde ve proje sayfasında görünür.

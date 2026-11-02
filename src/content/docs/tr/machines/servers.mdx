@@ -1,0 +1,51 @@
+---
+title: Linux sunucu
+description: Bir sunucu tek komutla nasıl bağlanır, kurulum betiği ne yapar ve erişim nasıl geri alınır.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Sunucu, standart SSH üzerinden tek bir komutla bağlanır. Anahtar saklamayız: her bağlantı için ayrı bir sertifika imzalarız; bu sertifika iki dakika geçerlidir ve yalnızca bu sunucuda işe yarar.
+
+## Sunucuyu bağlama
+
+<Steps>
+
+1. tTerm Web'de **Makine ekle** penceresini aç ve **Sunucu** seçeneğini seç.
+
+2. Komutu kopyala ve sunucuda root olarak ya da sudo yetkisi olan herhangi bir kullanıcıyla çalıştır:
+
+   ```sh title="Sunucuda"
+   curl -sSL https://connect.tterm.net/s/<token> | sudo sh
+   ```
+
+3. Sunucu, betik biter bitmez projede görünür, genellikle bir dakika içinde. Bulut sunucuya kendisi giriş yapar, onu doğrular ve makinenin bilgilerini okur: sistemini, adresini ve kabuğunu.
+
+</Steps>
+
+:::caution[Komut bir kez çalışır]
+Önümüzdeki 10 dakika içinde bir kez çalışır. Geç mi kaldın? **Yeni komut al** düğmesine bas.
+:::
+
+## Betik ne yapar
+
+- Parolasız `tterm` kullanıcısını oluşturur. Telegram botumuz onu daha önce oluşturduysa aynı kullanıcı kullanılır.
+- Bulutun, iki dakika geçerli olan ve yalnızca bu sunucu için üretilen sertifikalarla `tterm` olarak giriş yapmasını sağlar. Sunucuda hiçbir anahtar kalmaz.
+- Sunucuyu yönetebilmen için `tterm` kullanıcısına sudo yetkisi verir. Tek bir komut bunu geri alır.
+- `sshd_config` dosyasına asla dokunmaz ve hiçbir port açmaz. İki kez çalıştırmak güvenlidir.
+
+Güven için `tterm` kullanıcısının `authorized_keys` dosyasına tek bir satır eklenir; her sunucunun satırı ayrıdır:
+
+```text title="~tterm/.ssh/authorized_keys"
+cert-authority,principals="m-…" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5… tterm-web ca-…
+```
+
+:::tip[NAT arkasındaki ya da dışarıdan SSH erişimi olmayan sunucu]
+Bulut sunucuya SSH üzerinden giriş yapar, bu yüzden sunucunun SSH portuna dışarıdan erişilebilmesi gerekir. Erişilemiyorsa ajanı, bir [bilgisayarda](../computers/) olduğu gibi sunucuya kur: bağlantı o zaman içeriden kurulur.
+:::
+
+## Sunucuyu kaldırma
+
+Proje sayfasında sunucunun yanındaki ⋯ düğmesine bas ve **Makineyi kaldır** seçeneğini seç. Bulut sunucuya giriş yapmayı bırakır ve sunucudaki erişimini kendisi geri alır. Sunucu yanıt vermezse bunu sunucuda yapacak komut ardından gösterilir. Ayrıntılar [Makineyi kaldırma](../remove/) sayfasında.
+
+Kurulum betiğinin kurduğu diğer her şeyin nasıl kaldırılacağı betiğin en başında yazıyor.

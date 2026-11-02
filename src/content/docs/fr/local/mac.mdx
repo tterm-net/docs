@@ -1,0 +1,49 @@
+---
+title: Version Mac
+description: Le terminal local pour Mac – comment l’installer, l’ouvrir la première fois et comment il se met à jour.
+---
+
+import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Le terminal local est une application pour le Mac : les shells de cet ordinateur sous forme de blocs, et tout le cloud dans la même fenêtre. Gratuit, macOS 11 ou version ultérieure, Apple Silicon et Intel dans un seul fichier. Les versions pour [Windows](../windows/) et [Linux](../linux/) sont en préparation.
+
+<LinkButton href="https://tterm.net/fr/download/">Télécharger pour Mac</LinkButton>
+
+## L’installer
+
+<Steps>
+
+1. Ouvrez le fichier `tTerm.dmg` téléchargé et faites glisser tTerm dans le dossier Applications. Si vous ouvrez l’application directement depuis l’image disque, elle propose de s’y déplacer elle-même : elle ne peut se mettre à jour que depuis Applications.
+
+2. Ouvrez l’application. La première fois, macOS vous demande de confirmer l’ouverture, [voici comment faire](#le-premier-lancement-une-seule-fois). Ensuite, les terminaux de ce Mac fonctionnent tout de suite, sans compte ni configuration.
+
+3. Connectez-vous quand vous voulez. La connexion ouvre votre navigateur : confirmez-la, et vos serveurs et vos notes apparaissent dans la fenêtre.
+
+</Steps>
+
+## Le premier lancement, une seule fois
+
+L’application est signée avec notre propre certificat, et non avec un Apple Developer ID, donc la première fois, macOS vous demande de confirmer l’ouverture.
+
+<Tabs syncKey="macos">
+	<TabItem label="macOS 15 ou version ultérieure">
+		Ouvrez tTerm et appuyez sur **OK**. Allez ensuite dans **Réglages Système** → **Confidentialité et sécurité** : en bas, à côté de la ligne concernant tTerm, appuyez sur **Ouvrir quand même** (le bouton reste affiché environ une heure après la tentative) et confirmez avec le mot de passe de votre Mac.
+	</TabItem>
+	<TabItem label="macOS 11–14">
+		Dans le Finder, ouvrez le dossier Applications, cliquez sur tTerm en maintenant la touche Contrôle enfoncée, choisissez **Ouvrir**, puis **Ouvrir** de nouveau.
+	</TabItem>
+</Tabs>
+
+Ensuite, l’application s’ouvre normalement, installe elle-même les nouvelles versions, et macOS ne pose aucune question à leur sujet.
+
+## Mises à jour
+
+Toutes les six heures, l’application vérifie s’il existe une nouvelle version, la télécharge et l’installe quand cela ne gêne personne : quand vous quittez l’application ou quand rien ne tourne dans ses terminaux. Dans **Paramètres** → **Mises à jour**, vous pouvez lui demander de vous consulter d’abord.
+
+:::note[Le mot de passe du trousseau après une mise à jour]
+Après une mise à jour, macOS peut demander une fois le mot de passe de votre trousseau : saisissez-le et appuyez sur **Toujours autoriser**. Il en sera ainsi tant que l’application n’est pas signée avec un Apple Developer ID.
+:::
+
+## Le retirer
+
+Quittez l’application depuis son icône dans la barre des menus et faites glisser tTerm du dossier Applications vers la Corbeille. Si vous vous êtes connecté, le Mac reste une machine dans Personal, et l’application, l’un de vos appareils : [retirez la machine](../../machines/remove/#un-mac-avec-tterm-pour-mac) et oubliez l’application dans **Paramètres** → **Appareils**.

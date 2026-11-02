@@ -21,8 +21,18 @@ const locales = Object.fromEntries(
 const title = Object.fromEntries(
 	Object.values(shell).map((l) => [l.lang, `tTerm ${l.words.docs}`]),
 );
-// "Документация tTerm" reads better in Russian than "tTerm Документация".
-title.ru = 'Документация tTerm';
+// Where the language puts the name after the word, or joins them, the title
+// says it the language's way: "Документация tTerm", not "tTerm Документация".
+Object.assign(title, {
+	ru: 'Документация tTerm',
+	de: 'tTerm-Dokumentation',
+	es: 'Documentación de tTerm',
+	fr: 'Documentation de tTerm',
+	it: 'Documentazione di tTerm',
+	pl: 'Dokumentacja tTerm',
+	'pt-BR': 'Documentação do tTerm',
+	tr: 'tTerm Belgeleri',
+});
 
 /** "Soon" in every language, as the site says it for Windows and Linux. */
 const soon = {
@@ -34,12 +44,28 @@ const soon = {
  * A page still to be written: in the sidebar, so the plan is visible, but
  * not a link yet (tterm.css), and Previous and Next skip it (routeData.ts).
  */
-const planned = (label, ru, link) => ({
+const planned = (label, translations, link) => ({
 	label,
-	translations: { ru },
+	translations,
 	link,
 	attrs: { 'data-planned': '', 'aria-disabled': 'true', tabindex: '-1' },
 });
+
+/**
+ * The names of the sidebar's groups in every language: the same words as the
+ * cards of each language's start page, and for What's new and What we keep
+ * the words of its translators (02.11).
+ */
+const group = {
+	start: { ru: 'Начало работы', de: 'Hier anfangen', es: 'Primeros pasos', fr: 'Pour commencer', it: 'Inizia da qui', pl: 'Pierwsze kroki', 'pt-BR': 'Comece aqui', tr: 'Başlarken', ja: 'はじめに', ko: '시작하기', 'zh-CN': '从这里开始' },
+	machines: { ru: 'Машины', de: 'Maschinen', es: 'Máquinas', fr: 'Machines', it: 'Macchine', pl: 'Maszyny', 'pt-BR': 'Máquinas', tr: 'Makineler', ja: 'マシン', ko: '머신', 'zh-CN': '机器' },
+	features: { ru: 'Возможности', de: 'Funktionen', es: 'Funciones', fr: 'Fonctionnalités', it: 'Funzionalità', pl: 'Funkcje', 'pt-BR': 'Funcionalidades', tr: 'Özellikler', ja: '機能', ko: '기능', 'zh-CN': '功能' },
+	local: { ru: 'Локальный терминал', de: 'Lokales Terminal', es: 'Terminal local', fr: 'Terminal local', it: 'Terminale locale', pl: 'Terminal lokalny', 'pt-BR': 'Terminal local', tr: 'Yerel terminal', ja: 'ローカルターミナル', ko: '로컬 터미널', 'zh-CN': '本地终端' },
+	security: { ru: 'Безопасность', de: 'Sicherheit', es: 'Seguridad', fr: 'Sécurité', it: 'Sicurezza', pl: 'Bezpieczeństwo', 'pt-BR': 'Segurança', tr: 'Güvenlik', ja: 'セキュリティ', ko: '보안', 'zh-CN': '安全' },
+	account: { ru: 'Аккаунт', de: 'Konto', es: 'Cuenta', fr: 'Compte', it: 'Account', pl: 'Konto', 'pt-BR': 'Conta', tr: 'Hesap', ja: 'アカウント', ko: '계정', 'zh-CN': '账号' },
+	news: { ru: 'Что нового', de: 'Neuigkeiten', es: 'Novedades', fr: 'Nouveautés', it: 'Novità', pl: 'Co nowego', 'pt-BR': 'Novidades', tr: 'Yenilikler', ja: '最新情報', ko: '새 소식', 'zh-CN': '更新内容' },
+	keep: { ru: 'Что мы храним', de: 'Was wir speichern', es: 'Qué datos guardamos', fr: 'Ce que nous conservons', it: 'Cosa conserviamo', pl: 'Co przechowujemy', 'pt-BR': 'O que guardamos', tr: 'Neleri saklıyoruz', ja: '保存するデータ', ko: '저희가 보관하는 데이터', 'zh-CN': '我们保存的数据' },
+};
 
 export default defineConfig({
 	site: 'https://docs.tterm.net',
@@ -96,52 +122,58 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Start here',
-					translations: { ru: 'Начало работы' },
+					translations: group.start,
 					items: ['start/what-is-tterm', 'start/quick-start'],
 				},
 				{
 					label: 'Machines',
-					translations: { ru: 'Машины' },
-					items: [
-						'machines/servers',
-						'machines/computers',
-						planned('Remove a machine', 'Убрать машину', '/machines/remove/'),
-					],
+					translations: group.machines,
+					items: ['machines/servers', 'machines/computers', 'machines/remove'],
 				},
 				{
 					label: 'Features',
-					translations: { ru: 'Возможности' },
+					translations: group.features,
 					items: [
-						planned('Blocks and the command line', 'Блоки и строка ввода', '/features/blocks/'),
-						planned('Search, ⌘K', 'Поиск, ⌘K', '/features/search/'),
-						planned('Notes', 'Заметки', '/features/notes/'),
-						planned('Projects and colors', 'Проекты и цвета', '/features/projects/'),
+						'features/blocks',
+						'features/search',
+						'features/notes',
+						'features/log',
+						'features/projects',
 					],
 				},
 				{
 					label: 'Local terminal',
-					translations: { ru: 'Локальный терминал' },
+					translations: group.local,
 					items: [
 						'local/mac',
+						'local/move-to-cloud',
 						{ slug: 'local/windows', badge: soon },
 						{ slug: 'local/linux', badge: soon },
 					],
 				},
 				{
 					label: 'Security',
-					translations: { ru: 'Безопасность' },
+					translations: group.security,
 					items: [
 						'security/access',
-						planned('What we keep', 'Что мы храним', '/security/data/'),
+						'security/keys',
+						// Written, but waits for the Privacy Policy to say the same
+						// (owner, 02.11): the policy predates notes, the vault and the
+						// machine's log.
+						planned('What we keep', group.keep, '/security/data/'),
 					],
 				},
 				{
 					label: 'Account',
-					translations: { ru: 'Аккаунт' },
-					items: [
-						planned('Plan and limits', 'Тариф и пределы', '/account/plan/'),
-						planned('Devices and signing in', 'Устройства и вход', '/account/devices/'),
-					],
+					translations: group.account,
+					items: ['account/plan', 'account/devices'],
+				},
+				{
+					// Its pages are in English and Russian only, for now (owner,
+					// 02.11): other languages show the English with a notice.
+					label: "What's new",
+					translations: group.news,
+					items: ['whats-new/web', 'whats-new/mac'],
 				},
 			],
 		}),

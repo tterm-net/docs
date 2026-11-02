@@ -1,0 +1,51 @@
+---
+title: Servidor Linux
+description: Cómo conectar un servidor con un solo comando, qué hace el instalador y cómo retirar el acceso.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Un servidor se conecta por SSH normal con un solo comando. No guardamos claves: para cada conexión firmamos un certificado propio, que dura dos minutos y es válido solo para este servidor.
+
+## Conectarlo
+
+<Steps>
+
+1. En tTerm Web, abre **Añadir una máquina** y elige **Servidor**.
+
+2. Copia el comando y ejecútalo en el servidor, como root o como cualquier usuario con sudo:
+
+   ```sh title="En el servidor"
+   curl -sSL https://connect.tterm.net/s/<token> | sudo sh
+   ```
+
+3. El servidor aparece en el proyecto en cuanto termina el script, normalmente en menos de un minuto. La nube inicia sesión en él por sí sola, lo comprueba y averigua qué máquina es: su sistema, su dirección y su shell.
+
+</Steps>
+
+:::caution[El comando funciona una sola vez]
+Funciona una sola vez, durante los próximos 10 minutos. ¿Ya expiró? Presiona **Obtener un comando nuevo**.
+:::
+
+## Qué hace el script
+
+- Crea el usuario `tterm`, sin contraseña. Si nuestro bot de Telegram ya lo creó, lo reutiliza.
+- Permite que la nube inicie sesión como `tterm` con certificados que duran dos minutos y se emiten solo para este servidor. No queda ninguna clave en el servidor.
+- Da sudo a `tterm`, para que puedas administrar el servidor. Un solo comando lo retira.
+- Nunca toca `sshd_config` ni abre puertos. Se puede ejecutar dos veces sin problema.
+
+La confianza es una línea en el `authorized_keys` del usuario `tterm`, y cada servidor tiene la suya:
+
+```text title="~tterm/.ssh/authorized_keys"
+cert-authority,principals="m-…" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5… tterm-web ca-…
+```
+
+:::tip[Un servidor detrás de NAT o sin SSH desde fuera]
+La nube inicia sesión en el servidor por SSH, así que su puerto SSH tiene que ser accesible desde fuera. Si no lo es, instala el agente en el servidor, como en una [computadora](../computers/): así la conexión sale desde dentro.
+:::
+
+## Quitar un servidor
+
+En la página del proyecto, presiona ⋯ junto al servidor y elige **Quitar máquina**. La nube deja de iniciar sesión en él y retira su acceso en el propio servidor. Si el servidor no responde, a continuación aparece el comando para hacerlo allí. Más detalles en [Quitar una máquina](../remove/).
+
+Cómo quitar todo lo demás que puso el instalador viene explicado al principio del propio script.

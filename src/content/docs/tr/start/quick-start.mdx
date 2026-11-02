@@ -1,0 +1,30 @@
+---
+title: Hızlı başlangıç
+description: tTerm Web'e giriş yap, ilk makineni ekle ve ilk komutunu beş dakikada çalıştır.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Beş dakika: giriş, ilk makinen ve ilk komutun. Bunun için bir tarayıcı ve bir Linux sunucu ya da terminalde komut çalıştırabildiğin bir bilgisayar gerekir.
+
+<Steps>
+
+1. **Giriş yap.** [app.tterm.net](https://app.tterm.net) adresini aç ve e-posta adresini gir: e-postana bir kod gelir. İlk seferde adını soruyor ve bu tarayıcı için dört haneli bir hızlı kod oluşturmanı istiyoruz.
+
+2. **Makine ekle.** Kenar çubuğunda **Makineler** başlığının yanındaki **+** düğmesine bas ve **Sunucu** ya da **Bilgisayar** seçeneğini seç. Bir komut belirir:
+
+   ```sh title="Sunucuda, root olarak ya da sudo yetkisi olan bir kullanıcıyla"
+   curl -sSL https://connect.tterm.net/s/<token> | sudo sh
+   ```
+
+   Önümüzdeki 10 dakika içinde bir kez çalışır. Sunucu, betik biter bitmez projede görünür, genellikle bir dakika içinde.
+
+3. **Terminal aç.** Kenar çubuğunda makinenin yanındaki **+** düğmesine bas. Terminal bir sekmede açılır: kendi kabuğun, kendi programların, sudo.
+
+4. **Komut yaz.** Örneğin `uptime`. Komut bir blok halinde gelir: çıktı, çıkış kodu, saat, dizin ve dal. Sekmeyi kapatabilirsin: terminal çalışmaya devam eder.
+
+</Steps>
+
+:::note[Sunucu yerine bilgisayar]
+Bilgisayarın kendine ait bir komutu var ve onu sudo olmadan çalıştırırsın: [Bilgisayar](../../machines/computers/) sayfasına bak.
+:::

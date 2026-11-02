@@ -1,0 +1,33 @@
+---
+title: tTerm nedir
+description: Sunucular ve bilgisayarlar için bulut terminali. Makinelerin sende kalır; terminaller, geçmiş ve notlar ise bulutta bulunur.
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+tTerm, sunucuların ve bilgisayarların için bulut terminali. Makineler sende kalır; terminaller, komut geçmişi ve notlar ise bulutta bulunur. Derlemenin ortasında dizüstünü kapat, telefonunu aç: derleme hâlâ sürüyor. Cihazda anahtar da açık port da gerekmez.
+
+## Nerede çalışılır
+
+- **Bulut terminali, tTerm Web** – tarayıcında, [app.tterm.net](https://app.tterm.net) adresinde. Tüm makinelerin, terminallerin ve notların dizüstü bilgisayardan, tabletten ya da telefondan açılır.
+- **Yerel terminal** – Mac için bir uygulama: bu bilgisayarın kabukları ve bulutun tamamı tek pencerede. Hesap olmadan da çalışır: [Mac sürümü](../../local/mac/). Windows ve Linux sürümleri hazırlanıyor.
+- **Telegram botu** – doğrudan sohbetin içinde bir terminal, [@tTermNetBot](https://t.me/tTermNetBot). Şimdilik web uygulamasından ayrı çalışıyor.
+
+## Temel kavramlar
+
+- **Proje** – makineler ve notlar bir arada. Herkesin bir Personal projesi vardır; yanına kendi projelerini de oluşturabilirsin, her birinin kendi kodu ve rengi olur.
+- **Makine** – SSH üzerinden bağlanan bir Linux sunucu ya da küçük bir ajanla bağlanan bir macOS veya Linux bilgisayar.
+- **Terminal** – makinedeki gerçek bir kabuk: orada hangisi ayarlıysa, bash ya da zsh. Sekmede değil, bulutta yaşar: sekmeyi kapatsan da terminal çalışmaya devam eder.
+- **Blok** – çıktısı, çıkış kodu, saati, dizini ve git dalıyla birlikte tek bir komut. Bir bloğu kopyalamak, yeniden çalıştırmak ve aramayla bulmak kolaydır.
+- **Not** – projenin klasörlerinde Markdown metni: kontrol listeleri, komutlar ve talimatlar, ilgili oldukları makinelerin yanında.
+
+:::tip[Beta boyunca ücretsiz]
+Bugün var olan her şey ücretsiz: en fazla 50 makine ve 24 açık terminal. Ücretli planlar daha sonra gelecek ve onlar hakkında önceden yazacağız.
+:::
+
+## Sırada ne var
+
+<CardGrid>
+	<LinkCard title="Hızlı başlangıç" description="Giriş, ilk makinen ve ilk komutun." href="../quick-start/" />
+	<LinkCard title="Erişim nasıl işler" description="Anahtarlarına neden ihtiyacımız yok." href="../../security/access/" />
+</CardGrid>

@@ -1,0 +1,72 @@
+---
+title: Blocks and the command line
+description: How a terminal in tTerm works – every command a block, tTerm's own input line, and the classic mode.
+---
+
+A terminal in tTerm is a feed of blocks: every command you run becomes one, with its output. You type into tTerm's own input line under the feed. Blocks can be found again with [search](../search/).
+
+## A block
+
+A block shows the command and how it ended: a green dot, or a red cross with the exit code, **exit 1** say. Beside them are how long it took, the folder it ran in, the git branch and the time it started. Under them is the output. Of a long one the last 400 lines show, and the button above them, **Show 120 earlier lines** or **Show the whole output**, brings back the rest.
+
+The command running now is drawn live, as in any terminal: colours, progress bars and password prompts work, and what you type goes to it. A full-screen program such as vim or htop gets the whole window while it runs, and the feed comes back when it quits. When a command ends, its screen becomes text you can select, search and copy.
+
+To stop a running command, press **Stop** on its block, or **Ctrl+C**. If the shell is waiting for the rest of a command, after an open quote or a heredoc, the block says **not started**: type the rest into the block, or press **Stop**.
+
+## A block's buttons
+
+Point at a finished block, and its buttons show. Their tips name them:
+
+- **Copy the command and its output**, and **Copy output only**. A check on the button says it is copied.
+- **Run again** runs the command once more in this terminal. The new block is ringed in amber as it starts.
+- **Copy link to this block** copies a link that opens the feed at this block and lights it up. It works wherever you are signed in, and only for you.
+- **Add a note after this command** opens a field under it, and **Enter** saves the note. Notes go into the [machine's log](../log/) too, stay as written, and are answered with **Reply**.
+- **Collapse block** folds the output away. A folded block says how much it hides, **12 lines hidden**, and a click unfolds it.
+
+## The input line
+
+The input line is tTerm's own, not the shell's. What you type stays in it until **Enter**, which hands the whole command to the shell.
+
+- **Shift+Enter** starts a new line: a command can have several.
+- **↑** and **↓** go through your history, from every device you use: first the commands you ran on this machine, then those from the rest of its project. Type the start of a command, and only those that begin so come up. **Ctrl+R** lists the history with a search field, and the command you pick goes into the line.
+- As you type, the rest of a command from your history shows in grey. **Tab** or **→** takes it.
+- Otherwise **Tab** asks the machine what the word can be: a command, a file, a folder or a git branch. One answer goes straight in, several open a list. The question goes around the terminal, so nothing of it shows there or in the shell's history.
+- **Ctrl+L** clears the feed, as `clear` does.
+
+Left of the line are the folder you are in and the git branch, when there is one, and both are buttons. The folder lists the folders here, with `..` for one level up, and takes a path you type. The branch lists the branches, marked **current** and **remote**. What you pick runs as an ordinary `cd` or `git switch` and comes into the feed as a block.
+
+While a command runs, the line says **Keys go to the running command. Click here to type the next one.** You can type the next command there, but **Enter** works only once this one has ended; before that, it says **A command is still running. Wait for it, or stop it with Ctrl+C in its block.** In the line itself **Ctrl+C** clears what you typed, and on an empty line it goes to the shell.
+
+## Dangerous commands
+
+A few commands destroy something for good. tTerm holds such a command back and asks first, in a bar above the line: what the command would do, on which machine, and what does not come back. "This would **delete a directory and everything inside it** on **web-01**. There is no undo and no bin to look in." **Run it** runs the command, **Cancel** puts it back into the line.
+
+It asks before:
+
+- `rm` with `-r` and `-f` – delete a directory and everything inside it;
+- `mkfs`, `fdisk`, `parted`, `wipefs` – rewrite a disk's filesystem;
+- `dd` with `of=/dev/…` – write directly onto a device;
+- `DROP DATABASE`, `DROP TABLE`, `TRUNCATE TABLE` – drop a database or a table;
+- `shutdown`, `poweroff`, `halt`, `init 0` – turn the machine off;
+- `reboot`, `init 6` – reboot the machine;
+- `systemctl stop`, `disable` or `mask` for `ssh` or `sshd` – stop the SSH service;
+- `ufw deny`, `ufw reject`, `iptables` with `DROP` – change the firewall;
+- `userdel`, `deluser` – delete a user account.
+
+An `rm -rf` aimed at `/` or `~` adds **This points at the whole machine. Nothing on it would survive.** tTerm asks the same whether you typed the command, took it from history or pressed **Run again**.
+
+## The classic mode
+
+In the classic mode the terminal is a plain one. Every key goes straight to the shell, with its own Tab and history, and the shell draws everything, its prompt too. There are no blocks, and nothing is checked: under the terminal it says **No confirmation for dangerous commands in this mode.**
+
+**Line** and **Classic**, to the right of the input line, switch the mode; in Classic the switch is under the terminal. The shell goes on as it was, and this browser keeps the mode for all your terminals.
+
+A shell that cannot mark where a command starts, such as bash older than 4.4, works in the classic mode only. There **Line** is greyed out, and the switch's tip says why.
+
+## Clearing and folding
+
+`clear` (or `reset`) and **Ctrl+L** take the feed out of view, not away: **3 blocks cleared from view: show** at the top brings it back. Folded blocks and a cleared feed stay so in this browser, after a reload and after Classic and back. **Show earlier commands** at the top brings older blocks; they are kept 30 days.
+
+## Name a terminal
+
+Double-click a terminal's tab, or the terminal in the sidebar or on the project's page, and type a name: up to 40 characters, not a number alone. **Enter** saves, **Esc** cancels. The name shows in the sidebar, in tabs and on the project's page.

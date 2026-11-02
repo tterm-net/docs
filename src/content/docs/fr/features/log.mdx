@@ -1,0 +1,68 @@
+---
+title: Le journal d’une machine
+description: Ce qui a été exécuté sur une machine via tTerm, ligne par ligne – comment lire le journal, y chercher jusqu’à un an en arrière, écrire des notes sous les commandes et biffer un mot de passe.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Chaque commande exécutée sur une machine via tTerm devient une ligne dans le journal de cette machine : qui l’a lancée, quand, comment elle s’est terminée, combien de temps elle a duré et où. C’est tTerm qui tient le journal, et personne ne peut le modifier. Sous une commande, vous pouvez laisser une note.
+
+## L’ouvrir
+
+Dans la barre latérale, sous les **Notes** d’un projet, le premier dossier est **Journaux**, marqué **par tTerm**. Il contient un journal pour chaque machine du projet, avec le nombre de commandes qui y ont été lancées aujourd’hui : **12 aujourd’hui**. Cliquez sur une machine, et son journal s’ouvre dans un onglet, **web-01 : journal**.
+
+Le journal affiche un jour à la fois et s’ouvre sur aujourd’hui. Les flèches, **Jour précédent** et **Jour suivant**, mènent au jour le plus proche qui a des lignes. **Aujourd’hui** vous y ramène, et **Choisir un jour** ouvre un calendrier. Tant que le journal affiche aujourd’hui, les nouvelles lignes arrivent à mesure que les commandes se terminent.
+
+En haut du journal, **⋯** propose **Copier en Markdown** : le jour affiché, ses lignes et leurs notes.
+
+## Ce que dit une ligne
+
+Chaque commande tient sur une ligne : l’heure, qui l’a lancée, la commande, raccourcie si elle est longue, et le nombre de notes en dessous. À droite figurent la durée, le répertoire, la branche git et le terminal. Une commande qui a échoué porte une croix et son code de retour, **code 1**. Entre les commandes, le journal indique aussi quand un terminal a été ouvert et quand il a pris fin, ainsi que le passage de la machine dans un autre projet : **Vous avez déplacé cette machine de Personal vers Client X**.
+
+Un clic sur une ligne l’ouvre : la commande en entier, sa sortie et les notes en dessous. Un autre clic la referme. Pour une longue sortie, seules les premières lignes s’affichent : **Tout voir (27 lignes)** affiche le reste, et **Copier la sortie** la copie.
+
+Survolez une ligne ou ouvrez-la, et **⋯** y apparaît : **Copier la commande** et **Copier le lien vers cette ligne**. Le lien ouvre le journal au jour de cette ligne, avec la ligne ouverte.
+
+## Chercher et filtrer
+
+Dans la rangée sous le jour, **Chercher dans ce journal** parcourt tout le journal, sur un an : les commandes qui contiennent tous les mots que vous tapez, et celles dont une note contient tous ces mots. **/** vous y amène. Les résultats sont groupés par jour : un clic sur une ligne l’ouvre, et **Ouvrir le jour** mène à son jour. La recherche reste en place jusqu’à ce que vous l’effaciez, et **Retour au jour** vous ramène au jour où vous étiez.
+
+À côté se trouvent l’ordre et les filtres :
+
+- **Plus anciennes d’abord** devient **Plus récentes d’abord** d’un clic, et ce navigateur s’en souvient.
+- **Tout le monde** : seulement les lignes d’une personne, celle qui a lancé la commande ou écrit une note dessous.
+- **En échec** : seulement les commandes qui ont échoué.
+- **Avec notes** : seulement les commandes qui ont des notes.
+- **Tous les terminaux** : les commandes d’un seul terminal. Ce filtre n’apparaît que si les lignes viennent de plusieurs terminaux.
+
+Quand un filtre est actif, le jour indique combien de commandes s’affichent, **2 sur 8 commandes**, et **Tout afficher** désactive les filtres. Les filtres s’appliquent aussi à ce qu’a trouvé **Chercher dans ce journal**.
+
+[La recherche](../search/) cherche aussi dans les journaux de toutes vos machines : commencez par `l:`.
+
+## Notes sous une commande
+
+Survolez une ligne et appuyez sur **Ajouter une note**. Dans le terminal, le [bloc](../blocks/) d’une commande a le même bouton, avec l’info-bulle **Ajouter une note sur cette commande**. Dans les deux cas, la note s’affiche à la fois sous la ligne du journal et sous le bloc dans le terminal. **Enter** enregistre la note, **Shift+Enter** commence une nouvelle ligne, **Esc** annule.
+
+Une note reste dans le journal telle qu’elle a été écrite : on ne la modifie pas, on ne la supprime pas, on y répond. **Répondre**, sous les notes, sert à écrire la réponse. Chaque note indique qui l’a écrite et quand, et **⋯** à côté d’elle dans le journal propose **Copier le texte**.
+
+## Biffer un mot de passe ou un jeton
+
+Un mot de passe ou un jeton qui s’est glissé dans une commande ou une note peut être effacé. Seul le propriétaire du projet ou un administrateur peut le faire. Pour l’instant, chaque projet ne compte que vous, et vous en êtes le propriétaire.
+
+<Steps>
+
+1. Dans le journal, appuyez sur **⋯** sur la ligne ou à côté de la note, puis choisissez **Biffer…**.
+
+2. Dans la fenêtre, sous **Pourquoi**, indiquez ce que c’était : un mot de passe, un jeton.
+
+3. Appuyez sur **Biffer**.
+
+</Steps>
+
+Les mots disparaissent définitivement du journal, des blocs du terminal, de la recherche et de l’historique de la ligne de saisie. Pour une commande, sa sortie disparaît aussi, tout comme cette même commande partout où elle a été lancée ailleurs dans le projet. À leur place, le journal garde qui les a biffés, quand et pourquoi : **Texte biffé par vous · 09:23 · un mot de passe**. Les sauvegardes nocturnes de la base de données les contiennent encore jusqu’à leur suppression, sous deux semaines.
+
+## Durée de conservation
+
+Les lignes sont conservées un an, et les notes d’une ligne partent avec elle. La sortie des commandes est conservée 30 jours : ensuite, une de vos lignes affiche **sortie non conservée** quand vous la survolez. Une fois la machine [retirée](../../machines/remove/), son journal ne s’ouvre plus.
+
+Le journal reste attaché à sa machine. [Déplacée vers un autre projet](../projects/#déplacer-une-machine), la machine l’emporte en entier, lignes d’avant le déplacement comprises, et tous les membres de ce projet peuvent les lire. Supprimer le projet qu’elle a quitté n’en retire rien.

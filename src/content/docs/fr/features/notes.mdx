@@ -1,0 +1,63 @@
+---
+title: Notes
+description: Les notes dans les dossiers d’un projet – du Markdown pendant la saisie, des check-lists qui disent qui a coché, du code avec un bouton Copier, et un enregistrement qui fusionne ce que deux appareils ont écrit.
+---
+
+Les notes vivent dans les dossiers d’un projet, comme les terminaux vivent sur ses machines : runbooks, accès, check-lists, à côté des machines qu’elles concernent. Une note, c’est un titre et des blocs, écrits sur place, et elle s’enregistre toute seule.
+
+## Dossiers
+
+Dans la barre latérale, chaque projet a **Notes** sous ses machines. **+** à côté de **Notes** crée un dossier : nommez-le et appuyez sur **Créer le dossier**. **+** à côté d’un dossier y commence une note, dans un onglet à part ; un clic sur le dossier lui-même ne fait que le replier ou le déplier. La page du projet propose la même chose sous forme de boutons : **Nouveau dossier**, et **Nouvelle note** sur chaque dossier.
+
+**⋯** à côté d’un dossier, sur la page du projet, propose **Renommer le dossier** et **Supprimer le dossier**. Un dossier est supprimé avec les notes qu’il contient : la fenêtre les liste, alors déplacez d’abord toute note que vous voulez garder.
+
+Pour l’instant, chaque projet ne compte que vous : vous seul voyez ses notes, et c’est vous qui écrivez, déplacez et supprimez chaque note et chaque dossier. Sous le titre d’une note, la page l’indique : **visible par vous seulement**.
+
+## Écrire
+
+Une nouvelle note s’ouvre avec le curseur dans son titre, et **Enter** passe au texte. Le texte est fait de blocs : texte, titres, éléments de liste, éléments de check-list, code et séparateurs. **Enter** commence un nouveau bloc, et sur un élément vide, il termine la liste.
+
+Le Markdown tapé au début d’un bloc le transforme en ce qu’il signifie :
+
+| Tapez au début d’un bloc | Il devient |
+| --- | --- |
+| `#` et un espace | un titre |
+| `-` et un espace, ou `1.` et un espace | un élément de liste |
+| `- [ ]` et un espace | un élément de check-list, déjà coché avec `- [x]` |
+| `` ``` `` | du code |
+| `---` | un séparateur |
+
+Ailleurs dans un bloc, le Markdown reste tel que vous l’avez tapé. Sur une ligne vide, **/** propose la même chose dans une liste : **Check-list**, **Titre**, **Liste**, **Code**, **Séparateur**, **Texte**. Les lettres tapées ensuite filtrent la liste, les flèches s’y déplacent, **Enter** choisit. Un texte collé sur plusieurs lignes devient des blocs, et son Markdown est lu de la même façon.
+
+## Code et check-lists
+
+Un bloc de code garde ses lignes : **Enter** y commence une nouvelle ligne, **Tab** insère deux espaces, et **⌘Enter** sur un Mac (**Ctrl+Enter** sur les autres systèmes) en sort vers un nouveau bloc en dessous. Le texte qu’on y colle reste tel quel. **Copier**, dans son coin, copie le code et affiche **Copié** un instant.
+
+Un élément de check-list se coche avec sa case. La coche est enregistrée aussitôt, et à côté de l’élément, la note indique qui l’a coché et quand : **Vous · 10:02** pour aujourd’hui, la date pour un jour antérieur. La barre latérale montre où en est une check-list, 2/5, et la page du projet affiche **2 sur 5 cochés**.
+
+## Enregistrement
+
+Une note s’enregistre toute seule, un instant après que vous avez cessé de taper. À droite des onglets, la page indique où en est l’enregistrement : **Enregistrement…**, **Enregistré** ou **Non enregistré : pas de connexion**.
+
+Écrivez dans la même note sur deux appareils à la fois, et les deux gardent leurs modifications : chaque enregistrement est fusionné, bloc par bloc, avec ce qui a été enregistré entre-temps. C’est seulement quand le même bloc, ou le titre, a changé des deux côtés que la note demande quoi garder à cet endroit, **Garder la mienne** ou **Garder l’autre version** ; tout le reste est conservé des deux côtés. Pour la fusion, tTerm conserve les 50 dernières versions de chaque note.
+
+Sans connexion, ce que vous tapez reste dans ce navigateur jusqu’à son enregistrement, et la page continue d’essayer. Si vous fermez l’onglet ou rechargez la page, le texte revient quand vous rouvrez la note : **Le texte tapé dans cette note et non enregistré est de retour.**
+
+:::caution[La déconnexion efface le texte non enregistré]
+Après **Se déconnecter**, ce navigateur oublie ce qui a été tapé dans les notes et n’est pas encore enregistré.
+:::
+
+## Déplacer, copier ou supprimer
+
+**⋯** à côté d’une note, sur la page du projet ou en haut de l’onglet de la note, propose le reste :
+
+- **Dossier** – les dossiers du projet, celui de la note coché : un clic sur un autre y déplace la note. Cet élément apparaît dès que le projet a deux dossiers.
+- **Déplacer vers un autre projet…** – la fenêtre liste vos autres projets avec leurs dossiers : choisissez un dossier et appuyez sur **Déplacer vers Runbooks**, par exemple. Un projet sans dossier propose un nouveau dossier, du même nom que celui de la note. Son titre, son texte et son historique suivent la note, ainsi que les éléments cochés et qui les a cochés.
+- **Copier en Markdown** – toute la note, avec son titre comme titre principal.
+- **Supprimer la note** – demande d’abord confirmation. Une note supprimée est perdue pour de bon.
+
+La recherche trouve aussi les notes : commencez par `n:`, voir [Recherche](../search/).
+
+## Journaux
+
+**Journaux** arrive en premier parmi les dossiers d’un projet dans la barre latérale, marqué **par tTerm**. Il contient un journal pour chaque machine du projet : chaque commande lancée dessus via tTerm, jour par jour, avec les notes ajoutées sous les commandes. tTerm tient ce journal, et personne ne peut le modifier. Les lignes sont conservées un an, la sortie des commandes 30 jours. Pour en savoir plus, voir [Le journal d’une machine](../log/).

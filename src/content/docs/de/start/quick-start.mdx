@@ -1,0 +1,30 @@
+---
+title: Schnellstart
+description: Melde dich bei tTerm Web an, füge deine erste Maschine hinzu und führe deinen ersten Befehl aus, in fünf Minuten.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Fünf Minuten: anmelden, erste Maschine, erster Befehl. Du brauchst einen Browser und einen Linux-Server oder einen Computer, auf dem du einen Befehl im Terminal ausführen kannst.
+
+<Steps>
+
+1. **Melde dich an.** Öffne [app.tterm.net](https://app.tterm.net) und gib deine E-Mail-Adresse ein: Der Code kommt per Mail. Beim ersten Mal fragen wir nach deinem Namen und nach einem schnellen Code aus vier Ziffern für diesen Browser.
+
+2. **Füge eine Maschine hinzu.** Drück in der Seitenleiste auf **+** neben **Maschinen** und wähl **Server** oder **Computer**. Ein Befehl erscheint:
+
+   ```sh title="Auf dem Server, als root oder als Benutzer mit sudo"
+   curl -sSL https://connect.tterm.net/s/<token> | sudo sh
+   ```
+
+   Er funktioniert einmal, in den nächsten 10 Minuten. Der Server erscheint im Projekt, sobald das Skript fertig ist, meist innerhalb einer Minute.
+
+3. **Öffne ein Terminal.** Drück in der Seitenleiste auf **+** neben der Maschine. Das Terminal öffnet sich in einem Tab: deine Shell, deine Programme, sudo.
+
+4. **Tipp einen Befehl.** `uptime` zum Beispiel. Er kommt als Block zurück: die Ausgabe, der Exit-Code, die Zeit, der Ordner und der Branch. Du kannst den Tab schließen: Das Terminal läuft weiter.
+
+</Steps>
+
+:::note[Ein Computer statt eines Servers]
+Für einen Computer gibt es einen eigenen Befehl, und den führst du ohne sudo aus: siehe [Computer](../../machines/computers/).
+:::

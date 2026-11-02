@@ -1,0 +1,30 @@
+---
+title: Démarrage rapide
+description: Connectez-vous à tTerm Web, ajoutez votre première machine et lancez votre première commande en cinq minutes.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Cinq minutes : la connexion, votre première machine et votre première commande. Il vous faut un navigateur et un serveur Linux, ou un ordinateur sur lequel vous pouvez lancer une commande dans un terminal.
+
+<Steps>
+
+1. **Connectez-vous.** Ouvrez [app.tterm.net](https://app.tterm.net) et saisissez votre adresse e-mail : vous recevez un code par e-mail. La première fois, nous demandons votre nom et un code court à quatre chiffres pour ce navigateur.
+
+2. **Ajoutez une machine.** Dans la barre latérale, appuyez sur **+** à côté de **Machines** et choisissez **Serveur** ou **Ordinateur**. Une commande apparaît :
+
+   ```sh title="Sur le serveur, en root ou avec un utilisateur ayant sudo"
+   curl -sSL https://connect.tterm.net/s/<token> | sudo sh
+   ```
+
+   Elle fonctionne une seule fois, dans les 10 minutes. Le serveur apparaît dans le projet dès que le script se termine, en général en moins d’une minute.
+
+3. **Ouvrez un terminal.** Appuyez sur **+** à côté de la machine dans la barre latérale. Le terminal s’ouvre dans un onglet : votre shell, vos programmes, sudo.
+
+4. **Tapez une commande.** `uptime`, par exemple. Elle revient sous forme de bloc : la sortie, le code de retour, l’heure, le répertoire et la branche. Vous pouvez fermer l’onglet : le terminal continue de tourner.
+
+</Steps>
+
+:::note[Un ordinateur au lieu d’un serveur]
+Un ordinateur a sa propre commande, et vous la lancez sans sudo : voir [Ordinateur](../../machines/computers/).
+:::

@@ -1,0 +1,51 @@
+---
+title: Linux-Server
+description: Wie du einen Server mit einem Befehl verbindest, was der Installer macht und wie du den Zugriff zurücknimmst.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Ein Server verbindet sich mit einem Befehl über ganz normales SSH. Schlüssel bewahren wir nicht auf: Für jede Verbindung signieren wir ein eigenes Zertifikat, das zwei Minuten lebt und nur für diesen einen Server gilt.
+
+## Verbinden
+
+<Steps>
+
+1. Öffne in tTerm Web **Maschine hinzufügen** und wähl **Server**.
+
+2. Kopier den Befehl und führ ihn auf dem Server aus, als root oder als beliebiger Benutzer mit sudo:
+
+   ```sh title="Auf dem Server"
+   curl -sSL https://connect.tterm.net/s/<token> | sudo sh
+   ```
+
+3. Der Server erscheint im Projekt, sobald das Skript fertig ist, meist innerhalb einer Minute. Die Cloud meldet sich selbst dort an, prüft ihn und liest aus, was für eine Maschine das ist: System, Adresse und Shell.
+
+</Steps>
+
+:::caution[Der Befehl funktioniert einmal]
+Er funktioniert einmal, in den nächsten 10 Minuten. Zu spät? Drück auf **Neuen Befehl anfordern**.
+:::
+
+## Was das Skript macht
+
+- Legt den Benutzer `tterm` an, ohne Passwort. Hat unser Telegram-Bot ihn schon angelegt, wird er weiterverwendet.
+- Erlaubt der Cloud, sich als `tterm` anzumelden, mit Zertifikaten, die zwei Minuten leben und nur für diesen einen Server ausgestellt werden. Auf dem Server bleiben keine Schlüssel.
+- Gibt `tterm` sudo, damit du den Server verwalten kannst. Ein Befehl nimmt es zurück.
+- Fasst `sshd_config` nie an und öffnet keine Ports. Ein zweiter Lauf ist unbedenklich.
+
+Das Vertrauen ist eine einzige Zeile in der `authorized_keys` des Benutzers `tterm`, und jeder Server hat seine eigene Zeile:
+
+```text title="~tterm/.ssh/authorized_keys"
+cert-authority,principals="m-…" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5… tterm-web ca-…
+```
+
+:::tip[Ein Server hinter NAT oder ohne SSH von außen]
+Die Cloud meldet sich über SSH am Server an, sein SSH-Port muss also von außen erreichbar sein. Ist er das nicht, setz den Agenten auf den Server, wie auf einem [Computer](../computers/): Die Verbindung geht dann von innen.
+:::
+
+## Server entfernen
+
+Drück auf der Seite des Projekts auf ⋯ neben dem Server und wähl **Maschine entfernen**. Die Cloud meldet sich nicht mehr an und nimmt ihren Zugriff auf dem Server selbst zurück. Antwortet der Server nicht, kommt danach der Befehl, der das dort erledigt. Mehr dazu unter [Eine Maschine entfernen](../remove/).
+
+Wie du alles andere entfernst, was der Installer eingerichtet hat, steht ganz oben im Skript selbst.

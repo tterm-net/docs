@@ -1,0 +1,48 @@
+---
+title: Search, ⌘K
+description: One field for the commands you ran and what they printed, the logs of your machines, notes, terminals, machines, projects and things to do.
+---
+
+Search finds it all in one field: the commands of every terminal of yours and what they printed, the logs of your machines, notes, terminals, machines, projects and things to do.
+
+## Open it
+
+Press **⌘K** on a Mac or **Ctrl+Shift+K** elsewhere, or click **Search** to the right of the tabs. Ctrl without Shift stays the terminal's. **Esc** closes search.
+
+Before you type, search shows what you had open last, the commands you run most on the machine of the terminal in front, and a few things to do.
+
+## What it finds
+
+- **Commands** – every command of every terminal of yours, ended ones too, for as long as the project keeps them: 30 days. A command run several times on one machine is one line that says how many runs, **3 runs**.
+- **Output** – what those commands printed. Of a long output, search reads the start and the end.
+- **Logs** – the logs of the machines in your projects: the commands run on them through tTerm, and the notes under them, a year back.
+- **Notes** – the notes of your projects, their titles and text.
+- **Terminals**, **Machines** and **Projects**, as the sidebar lists them, and a running terminal with no tab too.
+- **Actions** – things to do, such as **New project**, **Settings** or switching the theme.
+
+Every word you type has to be there, in any order and any case, and a word can be part of a longer one: `cert` finds `certbot`.
+
+## Keep to one kind
+
+The buttons above the list keep to one kind: **All**, **Commands**, **Output**, **Logs**, **Notes**, **Terminals**, **Machines**, **Projects** and **Actions**. **Tab** goes to the next one. A word in front does the same: `c:` commands, `o:` output, `l:` logs, `n:` notes, `t:` terminals, `m:` machines, `p:` projects, `>` things to do. For example:
+
+- `c: nginx` – the commands with *nginx* in them;
+- `o: timed out` – the commands whose output has both *timed* and *out*;
+- `> theme` – **Switch to the dark theme**, or to the light one.
+
+In **All** each kind shows its first three, and **All 12** next to a kind's heading shows the rest.
+
+## Open what you found
+
+**↑** and **↓** move through the list. Beside it is what the chosen line is: for a command, its machine, folder and branch, how it ended, when, its terminal and the first lines of its output.
+
+**Enter**, or a click, opens it:
+
+- a command or a line of output – in its terminal, at its [block](../blocks/), marked **Found**, with the words lit. The block shows even if it was folded or cleared from view, and a terminal in Classic shows it in **Line**;
+- a line of a log – the [machine's log](../log/), at that line;
+- a note – at the place with the words;
+- a terminal – its tab; a machine – a new terminal on it; a project – its page. An action is done.
+
+**⌘Enter** on a Mac, **Ctrl+Enter** elsewhere, puts a command into the input line of the terminal in front without running it, even when that terminal is on another machine. Under the line it says **From search, not run yet**: **Enter** runs it there, **Esc** clears the line. In the classic mode the command waits at the shell's prompt the same way. If a command is running in the terminal in front, its line is not free: search says so, and you try again when it ends. With no terminal in front, the command goes to a terminal of yours on its machine, or to a new one there.
+
+The buttons under the preview, **Open in its terminal** and **Into the line**, do what **Enter** and **⌘Enter** do.

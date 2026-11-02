@@ -1,0 +1,48 @@
+---
+title: Búsqueda, ⌘K
+description: Un solo campo para los comandos que ejecutaste y lo que imprimieron, las bitácoras de tus máquinas, las notas, las terminales, las máquinas, los proyectos y las acciones.
+---
+
+La búsqueda lo encuentra todo en un solo campo: los comandos de todas tus terminales y lo que imprimieron, las bitácoras de tus máquinas, las notas, las terminales, las máquinas, los proyectos y las acciones.
+
+## Cómo abrirla
+
+Presiona **⌘K** en una Mac o **Ctrl+Shift+K** en otros sistemas, o haz clic en **Buscar**, a la derecha de las pestañas. Ctrl sin Shift se queda para la terminal. **Esc** cierra la búsqueda.
+
+Antes de que escribas nada, la búsqueda muestra lo último que tenías abierto, los comandos que más ejecutas en la máquina de la terminal que tienes delante y algunas acciones.
+
+## Qué encuentra
+
+- **Comandos** – cada comando de todas tus terminales, también de las que ya finalizaron, mientras el proyecto los conserve: 30 días. Un comando que se ejecutó varias veces en una misma máquina es una sola línea que dice cuántas veces, **3 ejecuciones**.
+- **Salida** – lo que imprimieron esos comandos. De una salida larga, la búsqueda lee el principio y el final.
+- **Bitácoras** – las bitácoras de las máquinas de tus proyectos: los comandos que se ejecutaron en ellas a través de tTerm y las notas que tienen debajo, hasta un año atrás.
+- **Notas** – las notas de tus proyectos, sus títulos y su texto.
+- **Terminales**, **Máquinas** y **Proyectos**, tal como aparecen en la barra lateral, y también una terminal en marcha sin pestaña.
+- **Acciones** – cosas que hacer, como **Nuevo proyecto**, **Configuración** o cambiar el tema.
+
+Tienen que aparecer todas las palabras que escribas, en cualquier orden y sin importar mayúsculas o minúsculas, y una palabra puede ser parte de otra más larga: `cert` encuentra `certbot`.
+
+## Limitar a un tipo
+
+Los botones de encima de la lista limitan la búsqueda a un tipo: **Todo**, **Comandos**, **Salida**, **Bitácoras**, **Notas**, **Terminales**, **Máquinas**, **Proyectos** y **Acciones**. **Tab** pasa al siguiente. Un prefijo al principio hace lo mismo: `c:` comandos, `o:` salida, `l:` bitácoras, `n:` notas, `t:` terminales, `m:` máquinas, `p:` proyectos, `>` acciones. Por ejemplo:
+
+- `c: nginx` – los comandos que contienen *nginx*;
+- `o: timed out` – los comandos cuya salida contiene *timed* y *out*;
+- `> theme` – **Cambiar al tema oscuro**, o al claro.
+
+En **Todo**, cada tipo muestra sus tres primeros resultados, y **Ver todo (12)**, junto al título de un tipo, muestra el resto.
+
+## Abrir lo que encontraste
+
+**↑** y **↓** recorren la lista. Al lado se ve qué es la línea elegida: para un comando, su máquina, su directorio y su rama, cómo terminó, cuándo, su terminal y las primeras líneas de su salida.
+
+**Enter**, o un clic, la abre:
+
+- un comando o una línea de salida – en su terminal, en su [bloque](../blocks/), marcado como **Encontrado** y con las palabras resaltadas. El bloque aparece aunque estuviera contraído u oculto, y una terminal en modo clásico lo muestra en modo **Línea**;
+- una línea de una bitácora – la [bitácora de la máquina](../log/), en esa línea;
+- una nota – en el lugar donde están las palabras;
+- una terminal – su pestaña; una máquina – una terminal nueva en ella; un proyecto – su página. Una acción se ejecuta.
+
+**⌘Enter** en una Mac, **Ctrl+Enter** en otros sistemas, pone un comando en la línea de entrada de la terminal que tienes delante sin ejecutarlo, aunque esa terminal esté en otra máquina. Debajo de la línea aparece **De la búsqueda, aún sin ejecutar**: **Enter** lo ejecuta ahí, **Esc** borra la línea. En el modo clásico, el comando espera de la misma manera en el prompt del shell. Si en la terminal que tienes delante se está ejecutando un comando, su línea no está libre: la búsqueda te lo indica, y puedes volver a intentarlo cuando termine. Si no tienes ninguna terminal delante, el comando va a una terminal tuya en su máquina, o a una nueva allí.
+
+Los botones de debajo de la vista previa, **Abrir en su terminal** y **Poner en la línea**, hacen lo mismo que **Enter** y **⌘Enter**.

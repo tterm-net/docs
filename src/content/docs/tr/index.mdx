@@ -1,0 +1,27 @@
+---
+title: tTerm Belgeleri
+description: Sunucular ve bilgisayarlar nasıl bağlanır, terminallerde nasıl çalışılır ve erişim nasıl kontrol altında tutulur.
+template: splash
+hero:
+  title: tTerm Belgeleri
+  tagline: Sunucular ve bilgisayarlar nasıl bağlanır, terminallerde nasıl çalışılır ve erişim nasıl kontrol altında tutulur.
+  actions:
+    - text: Hızlı başlangıç
+      link: start/quick-start/
+      icon: right-arrow
+    - text: tTerm Web'i aç
+      link: https://app.tterm.net
+      icon: external
+      variant: minimal
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<CardGrid>
+	<LinkCard title="Başlarken" description="tTerm'in ne olduğu ve beş dakikada ilk komutun." href="start/what-is-tterm/" />
+	<LinkCard title="Makineler" description="Tek komutla SSH üzerinden bir sunucu, küçük bir ajanla bir bilgisayar." href="machines/servers/" />
+	<LinkCard title="Özellikler" description="Bloklar ve komut satırı, ⌘K ile arama, notlar, makinenin logu, projeler." href="features/blocks/" />
+	<LinkCard title="Yerel terminal" description="Mac sürümü: kurulum, ilk açılış, sunucuları buluta taşıma. Windows ve Linux sürümleri hazırlanıyor." href="local/mac/" />
+	<LinkCard title="Güvenlik" description="İki dakikalık sertifikalar, ayrı tutulan imzalama ve anahtarların için yalnızca cihazlarının açabildiği bir kasa." href="security/access/" />
+	<LinkCard title="Hesap" description="Planın ve sınırları, cihazlar ve giriş." href="account/plan/" />
+</CardGrid>

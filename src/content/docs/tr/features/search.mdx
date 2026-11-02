@@ -1,0 +1,48 @@
+---
+title: Arama, ⌘K
+description: Çalıştırdığın komutlar ve çıktıları, makinelerinin logları, notlar, terminaller, makineler, projeler ve yapılabilecek işler için tek bir alan.
+---
+
+Arama her şeyi tek bir alanda bulur: tüm terminallerindeki komutları ve çıktılarını, makinelerinin loglarını, notları, terminalleri, makineleri, projeleri ve yapılabilecek işleri.
+
+## Nasıl açılır
+
+Mac'te **⌘K**, diğer sistemlerde **Ctrl+Shift+K** tuşlarına bas ya da sekmelerin sağındaki **Ara** düğmesine tıkla. Shift olmadan Ctrl ise terminale kalır. **Esc** aramayı kapatır.
+
+Henüz bir şey yazmadıysan arama son açtıklarını, ön plandaki terminalin makinesinde en çok çalıştırdığın komutları ve yapılabilecek birkaç işi gösterir.
+
+## Neleri bulur
+
+- **Komutlar** – sonlanmış terminaller dahil tüm terminallerindeki her komut, proje onları sakladığı sürece: 30 gün. Bir makinede birkaç kez çalıştırılan bir komut, kaç kez çalıştığını söyleyen tek bir satırdır, örneğin **3 kez çalıştı**.
+- **Çıktı** – bu komutların çıktısı. Arama, uzun bir çıktının başını ve sonunu okur.
+- **Loglar** – projelerindeki makinelerin logları: bu makinelerde tTerm üzerinden çalıştırılan komutlar ve altlarındaki notlar, bir yıl geriye kadar.
+- **Notlar** – projelerindeki notlar, başlıkları ve metinleri.
+- **Terminaller**, **Makineler** ve **Projeler**, kenar çubuğunda listelendikleri gibi; sekmesi olmayan, çalışan bir terminal de.
+- **Eylemler** – yapılabilecek işler, örneğin **Yeni proje**, **Ayarlar** ya da temayı değiştirmek.
+
+Yazdığın sözcüklerin hepsi bulunmalıdır; sıra da büyük-küçük harf de fark etmez, bir sözcük daha uzun bir sözcüğün parçası da olabilir: `cert` yazınca `certbot` da bulunur.
+
+## Tek türle sınırlama
+
+Listenin üstündeki düğmeler aramayı tek bir türle sınırlar: **Tümü**, **Komutlar**, **Çıktı**, **Loglar**, **Notlar**, **Terminaller**, **Makineler**, **Projeler** ve **Eylemler**. **Tab** bir sonrakine geçer. Başa yazılan bir önek de aynı işi görür: `c:` komutlar, `o:` çıktı, `l:` loglar, `n:` notlar, `t:` terminaller, `m:` makineler, `p:` projeler, `>` yapılabilecek işler. Örneğin:
+
+- `c: nginx` – içinde *nginx* geçen komutlar;
+- `o: timed out` – çıktısında hem *timed* hem *out* geçen komutlar;
+- `> theme` – **Koyu temaya geç** ya da açık temaya.
+
+**Tümü** seçiliyken her türün ilk üçü görünür; bir türün başlığının yanındaki **Tümü (12)** gerisini gösterir.
+
+## Bulunanı açma
+
+**↑** ve **↓** listede gezinir. Listenin yanında seçili satırın ne olduğu görünür: bir komut için makinesi, dizini ve dalı, nasıl bittiği, ne zaman çalıştığı, terminali ve çıktısının ilk satırları.
+
+**Enter** ya da bir tıklama seçileni açar:
+
+- bir komut ya da çıktı satırı – kendi terminalinde, kendi [bloğunda](../blocks/), **Bulundu** işaretiyle ve sözcükler vurgulanmış olarak. Blok daraltılmış ya da görünümden kaldırılmış olsa bile görünür; klasik moddaki bir terminal onu **Satır** modunda gösterir;
+- bir log satırı – [makinenin logunda](../log/), o satırda;
+- bir not – sözcüklerin geçtiği yerde;
+- bir terminal – sekmesinde; bir makine – üzerinde açılan yeni bir terminalde; bir proje – sayfasında. Bir eylem ise uygulanır.
+
+Mac'te **⌘Enter**, diğer sistemlerde **Ctrl+Enter** bir komutu çalıştırmadan ön plandaki terminalin giriş satırına koyar, o terminal başka bir makinede olsa bile. Satırın altında **Aramadan geldi, henüz çalıştırılmadı** yazar: **Enter** komutu orada çalıştırır, **Esc** satırı temizler. Klasik modda komut aynı şekilde kabuğun komut isteminde bekler. Ön plandaki terminalde bir komut çalışıyorsa satırı boş değildir: arama bunu söyler, sen de komut bitince yeniden denersin. Ön planda hiç terminal yoksa komut, kendi makinesindeki terminallerinden birine ya da orada açılan yeni bir terminale gider.
+
+Önizlemenin altındaki **Terminalinde aç** ve **Satıra aktar** düğmeleri, **Enter** ve **⌘Enter** ile aynı işi yapar.

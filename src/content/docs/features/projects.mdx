@@ -1,0 +1,64 @@
+---
+title: Projects and colors
+description: Personal and projects of your own – their name, code and color, the project's page, moving a machine to another project and deleting a project.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+A project is machines and notes together: its servers and computers, with the terminals running on them, and its notes in folders. Everyone has the Personal project, and beside it you can make projects of your own, one for each client, say.
+
+## Personal
+
+Personal comes with your account, with the code P, and leads the list in the sidebar. Like any project, it can be renamed and given another code and color, but it cannot be deleted.
+
+## A project of your own
+
+<Steps>
+
+1. In the sidebar, press **New project** under the list of projects.
+
+2. Give it a **Name**, up to 80 characters.
+
+3. The **Short code** is made from the name, Client X → CX, and you can change it: 1 to 4 letters or digits, not the code of another project of yours. It marks the project in the sidebar and in tabs: CX/web-01 is a terminal on its machine web-01.
+
+4. Pick a **Color**, one of eight. A new project gets one none of your other projects has, and **Preview** shows how it will look.
+
+5. Press **Create project**. You own it, and its page opens: add a [server](../../machines/servers/) or a [computer](../../machines/computers/) there, or move a machine in from another project.
+
+</Steps>
+
+To rename a project later, Personal too, or change its code or color, press the pencil next to its name on its page (**Edit name, code and color**), change what you need and press **Save**.
+
+## Colors
+
+A project's color fills its code badge: in the sidebar, on the project's page, in search. In **Settings** → **Appearance** → **Project colors**, choose **Whole project** instead of **Code badge**, and the sidebar tints each project's whole block in its color too. **Settings** is in the menu of your account at the bottom of the sidebar, and the choice is saved to your account.
+
+## The project's page
+
+A click on a project's name in the sidebar opens its page in a tab. On top are its name, code and pencil, and a line with how many machines and open terminals it has. Then:
+
+- **Machines** – a card for each, with its address and system, **New terminal**, and the terminals running on it: **Open** goes to one, a double click on its name renames it. **⋯** on the card has **Move to another project** and **Remove machine**. A project with no machines offers **Server** and **Computer** to add the first one.
+- **Notes** – the folders and their notes, see [Notes](../notes/).
+- At the very end, **Delete project**.
+
+## Move a machine
+
+<Steps>
+
+1. On the project's page, press **⋯** on the machine's card and choose **Move to another project**.
+
+2. Pick the project. The window says what the machine becomes in it, CX/web-01; if its name is taken there, it gets a number: web-01-2.
+
+3. Press **Move to Client X**.
+
+</Steps>
+
+Its terminals keep running, its [log](../log/) goes with it, and nothing changes on the machine itself. A machine moves only between projects you own: the item is there once you have a second project.
+
+## Delete a project
+
+**Delete project**, at the end of a project's page, deletes it with its folders and notes; Personal has no such button. A project with machines is not deleted: the window names them, and you move or [remove](../../machines/remove/) them first, with **⋯** on their cards. A project without machines asks you to type its name, then **Delete Client X**. This can't be undone.
+
+## Who is in a project
+
+For now every project has only you in it, and you are its owner: the sidebar says **Owner** next to each project's name, and the line on top of its page ends with **only you**. Adding people to a project is not possible yet.

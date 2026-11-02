@@ -1,0 +1,51 @@
+---
+title: Serveur Linux
+description: Comment connecter un serveur avec une seule commande, ce que fait l’installateur et comment reprendre l’accès.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Un serveur se connecte en SSH ordinaire avec une seule commande. Nous ne gardons aucune clé : pour chaque connexion, nous signons un certificat qui lui est propre, valable deux minutes et bon pour ce seul serveur.
+
+## Le connecter
+
+<Steps>
+
+1. Dans tTerm Web, ouvrez **Ajouter une machine** et choisissez **Serveur**.
+
+2. Copiez la commande et lancez-la sur le serveur, en root ou avec n’importe quel utilisateur ayant sudo :
+
+   ```sh title="Sur le serveur"
+   curl -sSL https://connect.tterm.net/s/<token> | sudo sh
+   ```
+
+3. Le serveur apparaît dans le projet dès que le script se termine, en général en moins d’une minute. Le cloud s’y connecte tout seul, le vérifie et lit ce qu’est la machine : son système, son adresse et son shell.
+
+</Steps>
+
+:::caution[La commande ne sert qu’une fois]
+Elle fonctionne une seule fois, dans les 10 minutes. Trop tard ? Appuyez sur **Nouvelle commande**.
+:::
+
+## Ce que fait le script
+
+- Crée l’utilisateur `tterm`, sans mot de passe. Si notre bot Telegram l’a déjà créé, il est réutilisé.
+- Autorise le cloud à ouvrir une session en tant que `tterm` avec des certificats valables deux minutes et émis pour ce seul serveur. Aucune clé ne reste sur le serveur.
+- Donne sudo à `tterm`, pour que vous puissiez administrer le serveur. Une seule commande le reprend.
+- Ne touche jamais à `sshd_config` et n’ouvre aucun port. Le relancer est sans danger.
+
+La confiance tient en une ligne dans le fichier `authorized_keys` de l’utilisateur `tterm`, et chaque serveur a sa propre ligne :
+
+```text title="~tterm/.ssh/authorized_keys"
+cert-authority,principals="m-…" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5… tterm-web ca-…
+```
+
+:::tip[Un serveur derrière un NAT, ou sans SSH depuis l’extérieur]
+Le cloud ouvre une session sur le serveur en SSH, son port SSH doit donc être joignable depuis l’extérieur. Si ce n’est pas le cas, installez l’agent sur le serveur, comme sur un [ordinateur](../computers/) : la connexion part alors de l’intérieur.
+:::
+
+## Supprimer un serveur
+
+Sur la page du projet, appuyez sur ⋯ à côté du serveur et choisissez **Retirer la machine**. Le cloud cesse de s’y connecter et retire son accès sur le serveur lui-même. Si le serveur ne répond pas, la commande à lancer sur place apparaît ensuite. Pour en savoir plus, voir [Retirer une machine](../remove/).
+
+La marche à suivre pour retirer tout le reste de ce que l’installateur a mis en place figure en tête du script lui-même.

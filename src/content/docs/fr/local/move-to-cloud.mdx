@@ -1,0 +1,59 @@
+---
+title: Passer au cloud
+description: Dans tTerm pour Mac, Passer au cloud transfère vers votre compte les serveurs que vous joignez en ssh, pour qu’ils s’ouvrent depuis n’importe quel navigateur et votre téléphone.
+---
+
+Les serveurs que vous joignez depuis votre Mac avec `ssh` peuvent s’ouvrir depuis tTerm Web, votre téléphone ou n’importe quel ordinateur où vous vous connectez. **Passer au cloud**, dans [tTerm pour Mac](../mac/), les transfère vers votre compte, chacun de la façon que vous choisissez pour lui. Rien n’est transféré tant que vous n’appuyez pas sur **Transférer**.
+
+## Où le trouver
+
+Connectez-vous à tTerm pour Mac, ouvrez le compte en bas de la barre latérale et choisissez **Passer au cloud**, juste au-dessus de **Se déconnecter**. **⌘K** le trouve aussi.
+
+## Ce qu’il trouve
+
+Sous **Serveurs de ce Mac** figurent les serveurs trouvés dans `~/.ssh/config`, dans `known_hosts` et dans les commandes `ssh` que vous avez lancées dans les terminaux de tTerm sur ce Mac. Pour chacun, `ssh -G` donne l’adresse, le port, l’utilisateur, les clés et le bastion que ssh utiliserait lui-même ; l’utilisateur et le port que vous avez tapés, comme dans `ssh root@host` ou `-p 2222`, remplacent ceux de la configuration. Pour cela, le Mac ne se connecte à aucun des serveurs.
+
+Tous les serveurs sont cochés, sauf un hébergeur git comme github.com (**Un hébergeur git : aucun terminal à ouvrir**), un serveur **Déjà dans tTerm**, un serveur que seul `known_hosts` connaît, et un serveur pour lequel vous avez choisi **Ne plus demander pour …** sur le [bandeau](#le-bandeau-après-ssh). Ensuite, tTerm Web vérifie depuis le cloud s’il peut se connecter au port SSH de chaque serveur, ou à celui de son bastion.
+
+Sous les serveurs, **Clés dans ~/.ssh** liste vos clés privées. Seules les clés cochées vont dans votre coffre. Une clé se coche d’elle-même quand un serveur coché s’ouvre avec elle par **Ma clé**.
+
+## Trois façons d’entrer
+
+Le choix se fait serveur par serveur :
+
+- **Ma clé** – la clé va dans votre coffre, chiffrée sur ce Mac, et le serveur reste tel quel. tTerm Web se connecte depuis le cloud, et un de vos appareils où le coffre est ouvert signe la connexion : un navigateur où vous avez ouvert le coffre, ou ce Mac. Pour un serveur que tTerm Web peut joindre, avec une clé de `~/.ssh` qui peut être transférée. Plus de détails dans [Votre coffre de clés SSH](../../security/keys/).
+- **Laissez-passer tTerm** – ce Mac se connecte une fois et ajoute la ligne propre à tTerm dans `~/.ssh/authorized_keys` de l’utilisateur sous lequel il se connecte ; votre clé reste ici. Ensuite, tTerm se connecte sous cet utilisateur avec un certificat valable deux minutes, comme sur un [serveur connecté avec une seule commande](../../machines/servers/), et n’a besoin d’aucun coffre. Sur le bandeau après `ssh`, cette façon s’appelle **Laisser entrer tTerm**.
+- **Via ce Mac** – rien n’est transféré : tTerm demande à ce Mac de lancer `ssh` vers le serveur, tant que le Mac est allumé. Pour un serveur derrière un VPN ou sur un réseau privé, que tTerm Web ne peut pas joindre, et pour un serveur dont la clé ne peut pas quitter ce Mac. Son terminal fonctionne en mode classique : chaque touche va directement à ssh sur le Mac, sans blocs et sans confirmation avant une commande dangereuse.
+
+tTerm choisit pour chaque serveur : **Ma clé** si sa clé peut être transférée, **Via ce Mac** si tTerm Web ne joint pas le serveur ou si sa clé ne peut pas quitter ce Mac, sinon **Laissez-passer tTerm**. Un serveur que tTerm Web ne joint pas n’a que **Via ce Mac**. Un serveur derrière un bastion que le cloud peut joindre s’ouvre via ce bastion.
+
+:::note[Via ce Mac : le Mac doit être en ligne]
+Dans tTerm pour Mac, activez **Paramètres** → **Cet ordinateur** → **Ouvrir à tTerm Web et à votre téléphone**. tTerm reste alors dans la barre des menus, fenêtre fermée, et démarre à l’ouverture de votre session.
+:::
+
+## Quand vous appuyez sur Transférer
+
+Le bouton compte les serveurs cochés : **Transférer 3 serveurs**.
+
+- **Ma clé** a besoin de votre coffre. La première fois, appuyez sur **Créer mon coffre avec Touch ID** et conservez le [code de récupération](../../security/keys/#le-code-de-récupération). Un coffre verrouillé demande Touch ID ou le mot de passe de votre Mac, ou, sur un Mac qui n’a pas encore de verrou de votre coffre, le code de récupération, une fois.
+- Pour une clé protégée par une phrase secrète, tTerm la demande une fois. La phrase secrète reste sur ce Mac.
+- Avec **Ma clé**, ce Mac se connecte d’abord au serveur avec cette seule clé ; ce n’est qu’ensuite que la clé va dans votre coffre, une seule fois pour tous ses serveurs. Avec **Laissez-passer tTerm**, ce Mac se connecte pour ajouter la ligne, puis tTerm se connecte une fois avec son certificat pour la vérifier.
+- **Ma clé** et **Laissez-passer tTerm** ont besoin de la clé d’hôte du serveur dans `known_hosts` : connectez-vous d’abord une fois à un nouveau serveur depuis ce Mac.
+
+Rien n’est enregistré pour un serveur dont le transfert échoue. Une clé partie dans le coffre uniquement pour des serveurs en échec en ressort, et une ligne que tTerm a ajoutée sur un tel serveur est retirée.
+
+## Après le transfert
+
+Le résultat indique combien de serveurs sont maintenant dans tTerm, tous dans Personal : **2 sur 3 serveurs dans tTerm**. Chaque ligne indique comment son serveur s’ouvre : **S’ouvre avec votre clé**, **S’ouvre avec le laissez-passer tTerm** ou **Via ce Mac, tant qu’il est allumé**. À côté, **Ouvrir un terminal** en ouvre un sur ce serveur. Pour un serveur en échec, la ligne dit pourquoi, avec **Réessayer** et **Modifier** : **Modifier** revient à la liste, avec seulement ce serveur coché. En bas : les clés désormais dans votre coffre, ou **Aucune clé transférée : vos clés restent sur ce Mac.**
+
+Dans la barre latérale, un serveur qui s’ouvre avec votre clé porte une icône de clé après son nom, et un serveur qui passe par votre Mac affiche **via Mac**.
+
+## Le bandeau après ssh
+
+Quand `ssh` se termine sans erreur dans un terminal de ce Mac, un bandeau peut apparaître sous son bloc : **Ouvrez droplet de partout**, avec l’adresse et votre clé.
+
+- **Enregistrer ma clé** – comme **Ma clé**, si la clé peut être transférée.
+- **Laisser entrer tTerm** – comme **Laissez-passer tTerm**.
+- **Pas maintenant**, ou **Ne plus demander pour droplet**.
+
+Pour un serveur que tTerm Web ne joint pas, le bandeau propose plutôt **L’ouvrir via ce Mac**. Il n’apparaît qu’une fois par serveur, et jamais pour un hébergeur git ou un serveur déjà dans tTerm. Un serveur enregistré depuis le bandeau va lui aussi dans Personal.
