@@ -3,7 +3,6 @@
 	"themeSelect.accessibleLabel": "Тема",
 	"languageSelect.accessibleLabel": "Язык",
 	"i18n.untranslatedContent": "Эта страница пока не переведена на русский: вот она по-английски.",
-	"page.editLink": "Править на GitHub",
 	"404.text": "Такой страницы нет. Проверь адрес или поищи.",
 	"search.devWarning": "Поиск работает только в собранном сайте.\nСобери его и открой превью, чтобы попробовать.",
 	"expressiveCode.copyButtonTooltip": "Скопировать",

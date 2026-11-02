@@ -51,7 +51,8 @@ export default defineConfig({
 			locales,
 			favicon: '/favicon.svg',
 			credits: false,
-			editLink: { baseUrl: 'https://github.com/tterm-net/docs/edit/main/' },
+			// No "Edit on GitHub" under the pages: the docs are written by us,
+			// not by their readers.
 			head: [
 				{ tag: 'meta', attrs: { name: 'version', content: version } },
 				// Until the docs are announced on tterm.net, search engines

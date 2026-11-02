@@ -1,13 +1,26 @@
 import { defineRouteMiddleware } from '@astrojs/starlight/route-data';
 
 /**
- * Previous and Next skip the pages still to be written: those stand in the
- * sidebar as the plan of the docs (data-planned), but have no page yet.
+ * Two changes to what Starlight makes of a page:
+ *
+ * - The start of the docs is titled as the docs themselves, "Документация
+ *   tTerm", not "Документация tTerm | Документация tTerm" (Starlight puts the
+ *   site's title after every page's).
+ * - Previous and Next skip the pages still to be written: those stand in the
+ *   sidebar as the plan of the docs (data-planned), but have no page yet.
  */
 type Entry = { type: string; entries?: Entry[]; attrs?: Record<string, unknown>; isCurrent?: boolean };
 
 export const onRequest = defineRouteMiddleware((context) => {
 	const route = context.locals.starlightRoute;
+	// The start of the docs in each language: / and /ru/, /de/... (not 404,
+	// which also has a hero).
+	const path = context.url.pathname.replace(/\/$/, '');
+	if (path === (route.locale ? `/${route.locale}` : '')) {
+		const title = route.head.find((tag) => tag.tag === 'title');
+		if (title) title.content = route.siteTitle;
+	}
+
 	const links: Entry[] = [];
 	const walk = (entries: Entry[]) =>
 		entries.forEach((e) => (e.type === 'group' ? walk(e.entries ?? []) : links.push(e)));

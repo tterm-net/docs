@@ -1,6 +1,6 @@
 # docs.tterm.net
 
-**Version 0.1.0.** The number lives in `package.json`; the build puts it in
+**Version 0.1.1.** The number lives in `package.json`; the build puts it in
 a `<meta name="version">` and the footer of every page, so you can tell what
 is deployed by viewing source.
 
@@ -53,7 +53,7 @@ with a dot (`data-planned`), so the plan is visible.
 
 The words around the text:
 
-- Starlight's own (search, "On this page", "Edit on GitHub") come translated
+- Starlight's own (search, "On this page", "Next") come translated
   with Starlight; where ours differ, they are in `src/content/i18n/<language>.json`.
 - The header and the footer are the site's, with the site's words: run
   `python3 scripts/shell_from_site.py <path to a checkout of tterm-net/site>`
