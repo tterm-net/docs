@@ -4,6 +4,7 @@ description: Ce qui a été exécuté sur une machine via tTerm, ligne par ligne
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Chaque commande exécutée sur une machine via tTerm devient une ligne dans le journal de cette machine : qui l’a lancée, quand, comment elle s’est terminée, combien de temps elle a duré et où. C’est tTerm qui tient le journal, et personne ne peut le modifier. Sous une commande, vous pouvez laisser une note.
 
@@ -20,6 +21,8 @@ En haut du journal, **⋯** propose **Copier en Markdown** : le jour affiché, 
 Chaque commande tient sur une ligne : l’heure, qui l’a lancée, la commande, raccourcie si elle est longue, et le nombre de notes en dessous. À droite figurent la durée, le répertoire, la branche git et le terminal. Une commande qui a échoué porte une croix et son code de retour, **code 1**. Entre les commandes, le journal indique aussi quand un terminal a été ouvert et quand il a pris fin – et pourquoi, s’il a pris fin de lui-même : **Terminal 1 a pris fin : tTerm Web est passé à la version 0.1.24.** Il indique également le passage de la machine dans un autre projet : **Vous avez déplacé cette machine de Personal vers Client X**.
 
 Un clic sur une ligne l’ouvre : la commande en entier, sa sortie et les notes en dessous. Un autre clic la referme. Pour une longue sortie, seules les premières lignes s’affichent : **Tout voir (27 lignes)** affiche le reste, et **Copier la sortie** la copie.
+
+<Screenshot name="log" alt="Le journal de web-01 pour aujourd’hui, dans l’ordre « Plus récentes d’abord » : chaque commande avec son heure, la personne qui l’a lancée, sa durée, le répertoire, la branche et le terminal, ainsi que les moments où le terminal deploy a été ouvert et a pris fin. La commande cat qui a échoué, « code 1 », est ouverte : sa sortie et la note écrite dessous." />
 
 Survolez une ligne ou ouvrez-la, et **⋯** y apparaît : **Copier la commande** et **Copier le lien vers cette ligne**. Le lien ouvre le journal au jour de cette ligne, avec la ligne ouverte.
 

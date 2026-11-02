@@ -4,6 +4,7 @@ description: How to connect a server with one command, what the installer does a
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../components/Screenshot.astro';
 
 A server connects over plain SSH with one command. We keep no keys: for each connection we sign a certificate of its own, which lives two minutes and is good for this server alone.
 
@@ -12,6 +13,8 @@ A server connects over plain SSH with one command. We keep no keys: for each con
 <Steps>
 
 1. In tTerm Web, open **Add a machine** and choose **Server**.
+
+   <Screenshot name="add-server" alt="The Add a machine window with Server chosen: the one-time command to run on the server, with Copy, and tTerm Web waiting for the server." />
 
 2. Copy the command and run it on the server, as root or as any user with sudo:
 

@@ -4,6 +4,7 @@ description: L'agente per un computer – si installa con un solo comando, si co
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 A un computer basta un piccolo agente. Si collega al cloud da solo e mantiene quell'unica connessione, quindi non servono porte in ingresso: il computer funziona anche dietro NAT.
 
@@ -20,6 +21,8 @@ curl -fsSL https://connect.tterm.net/c/<token> | sh
 ```
 
 Il computer compare nel progetto pochi secondi dopo la fine del comando. Il comando funziona una sola volta, entro 10 minuti.
+
+<Screenshot name="add-computer" alt="La finestra «Aggiungi una macchina» con «Computer» selezionato: il comando da eseguire sul computer con il tuo utente, il pulsante «Copia» e tTerm Web in attesa dell'agente." />
 
 ## Cosa fa il comando
 

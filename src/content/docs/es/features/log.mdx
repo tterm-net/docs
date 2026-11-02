@@ -4,6 +4,7 @@ description: Lo que se ejecutó en una máquina a través de tTerm, línea por l
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Cada comando que se ejecuta en una máquina a través de tTerm se convierte en una línea de la bitácora de esa máquina: quién lo ejecutó, cuándo, cómo terminó, cuánto tardó y dónde. La bitácora la escribe tTerm, y nadie puede cambiarla. Debajo de un comando puedes dejar una nota.
 
@@ -20,6 +21,8 @@ En la parte superior de la bitácora, **⋯** tiene **Copiar como Markdown**: el
 Cada comando es una línea: la hora, quién lo ejecutó, el comando, recortado si es largo, y cuántas notas tiene debajo. A la derecha aparecen cuánto tardó, la carpeta, la rama de git y la terminal. Un comando que falló lleva una cruz y su código de salida, **código 1**. Entre los comandos, la bitácora también indica cuándo se abrió una terminal y cuándo finalizó – y por qué, si finalizó por sí sola: **Terminal 1 finalizó: tTerm Web se actualizó a la versión 0.1.24.** También indica cuándo la máquina pasó a otro proyecto: **Moviste esta máquina de Personal a Client X**.
 
 Un clic en una línea la abre: el comando completo, lo que imprimió y las notas que tiene debajo. Otro clic la cierra. De una salida larga se ven las primeras líneas: **Ver las 27 líneas** muestra el resto, y **Copiar salida** la copia.
+
+<Screenshot name="log" alt="La bitácora de web-01 de hoy, con «Recientes primero»: cada comando con su hora, quién lo ejecutó, cuánto tardó, el directorio, la rama y la terminal, y entre ellos, cuándo se abrió y cuándo finalizó la terminal deploy. El cat que falló, con «código 1», está abierto: su salida y la nota que tiene debajo." />
 
 Pasa el puntero sobre una línea, o ábrela, y aparece en ella **⋯**: **Copiar comando** y **Copiar enlace a esta línea**. El enlace abre la bitácora en el día de esa línea, con la línea abierta.
 

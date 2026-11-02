@@ -3,7 +3,11 @@ title: Blöcke und die Befehlszeile
 description: Wie ein Terminal in tTerm funktioniert – jeder Befehl ein Block, die eigene Eingabezeile von tTerm und der klassische Modus.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 Ein Terminal in tTerm ist ein Feed aus Blöcken: Jeder Befehl, den du ausführst, wird zu einem Block, mit seiner Ausgabe. Du tippst in die eigene Eingabezeile von tTerm unter dem Feed. Blöcke findest du mit der [Suche](../search/) wieder.
+
+<Screenshot name="blocks-feed" alt="Ein Terminal in tTerm: fünf Befehle als Blöcke, jeder mit Dauer, Verzeichnis, Branch und Uhrzeit; der letzte ist mit Exit-Code 1 fehlgeschlagen. Darunter die Eingabezeile von tTerm." />
 
 ## Ein Block
 
@@ -26,6 +30,8 @@ Zeig mit der Maus auf einen fertigen Block, und seine Buttons erscheinen. Ihre T
 ## Die Eingabezeile
 
 Die Eingabezeile gehört tTerm, nicht der Shell. Was du tippst, bleibt darin, bis du **Enter** drückst: Dann geht der ganze Befehl an die Shell.
+
+<Screenshot name="blocks-input" alt="Die Eingabezeile: links Verzeichnis und Branch, in Grau der Rest eines Befehls aus deinem Verlauf." />
 
 - **Shift+Enter** beginnt eine neue Zeile: Ein Befehl kann mehrere haben.
 - **↑** und **↓** blättern durch deinen Verlauf, von allen Geräten, die du nutzt: zuerst die Befehle, die du auf dieser Maschine ausgeführt hast, dann die aus dem Rest ihres Projekts. Tipp den Anfang eines Befehls, und es erscheinen nur die, die so beginnen. **Ctrl+R** zeigt den Verlauf als Liste mit einem Suchfeld, und der Befehl, den du wählst, kommt in die Zeile.

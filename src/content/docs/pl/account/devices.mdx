@@ -4,6 +4,7 @@ description: Logowanie kodem z e-maila, szybki kod na zaufanym urządzeniu, kied
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Do tTerm Web logujesz się kodem z e-maila. Na zaufanym urządzeniu wracasz potem czterocyfrowym szybkim kodem.
 
@@ -40,6 +41,8 @@ Konto na dole panelu bocznego otwiera menu z pozycjami **Ustawienia**, **Język*
 ## Twoje urządzenia
 
 Sekcja **Ustawienia** → **Urządzenia** pokazuje przeglądarki, w których logujesz się szybkim kodem, i każdy tTerm dla Maca zalogowany przez przeglądarkę, nazwane tak, jak widzi je tTerm: Chrome on macOS, tTerm for Mac on MacBook-Pro. Przy każdym urządzeniu widać, kiedy zostało dodane do zaufanych albo zalogowane i kiedy ostatnio go używano; **To urządzenie** oznacza to, z którego teraz korzystasz.
+
+<Screenshot name="devices" alt="„Ustawienia” → „Urządzenia”: Chrome on macOS z oznaczeniem „To urządzenie”, Firefox on Windows i Safari on iPhone – przy każdym widać, kiedy zostało dodane do zaufanych i kiedy było ostatnie logowanie, oraz przycisk „Zapomnij”; pod nimi – „Zapomnij wszystkie urządzenia”." />
 
 - **Zapomnij** przeglądarkę, a znów będzie w niej potrzebny kod z e-maila. Zapomnij tTerm dla Maca, a zostanie wylogowany: będzie działać już tylko z tamtym komputerem, jak przed zalogowaniem. Zapomnij urządzenie, z którego korzystasz, a tTerm wyloguje cię tutaj.
 - **Zapomnij wszystkie urządzenia…**, a potem **Zapomnij wszystkie urządzenia**: wszystkie urządzenia zostają zapomniane, a wszystkie sesje się kończą, także ta. Każda przeglądarka poprosi wtedy o kod z e-maila. Twoje terminale działają dalej.

@@ -4,6 +4,7 @@ description: Twoje własne klucze SSH, szyfrowane na twoich urządzeniach, zanim
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Sejf przechowuje twoje własne klucze SSH do serwerów, na które się nimi logujesz. Klucz jest szyfrowany na twoim urządzeniu, zanim je opuści, a sejf otwierają tylko twoje urządzenia, tak jak same się odblokowują. tTerm przechowuje zaszyfrowane klucze oraz publiczną część i odcisk palca każdego z nich: nie może otworzyć sejfu ani odczytać klucza. Sejf znajdziesz w sekcji **Ustawienia** → **Klucze**.
 
@@ -51,6 +52,8 @@ Sejf utworzony w przeglądarce za pierwszym razem otwiera się w tTerm dla Maca 
 ## Ustawienia → Klucze
 
 U góry strona pokazuje, czy sejf jest tu otwarty, jak go otwarto i kiedy znów się zablokuje. W wierszu każdego klucza są: nazwa, rodzaj i skrócony odcisk palca; serwery, które **Otwiera**, albo **Nie otwiera jeszcze żadnego serwera**; kiedy zapisano go z Maca albo dodano z pliku; i kiedy był ostatnio używany, albo **jeszcze nieużywany**.
+
+<Screenshot name="keys" alt="„Ustawienia” → „Klucze”: sejf „Otwarty w tej przeglądarce” za pomocą Touch ID, z przyciskiem „Zablokuj”; dwa klucze, przy każdym rodzaj, skrócony odcisk palca i to, skąd pochodzi; „Dodaj klucz z pliku”, „Wygeneruj nowy kod odzyskiwania” i to, gdzie otwiera się sejf." />
 
 - **Usuń**, po pytaniu o potwierdzenie, wyjmuje klucz z sejfu, a tTerm usuwa jego zaszyfrowaną kopię. Serwery, które się nim otwierały, zostają w tTermie, ale już się nie otwierają. Sam klucz zostaje tam, skąd pochodzi: na twoim Macu albo w swoim pliku.
 - **Wygeneruj nowy kod odzyskiwania** pokazuje jeden raz nowy kod, a dotychczasowy przestaje działać. Twoje klucze i urządzenia zostają bez zmian. Poprosi o Touch ID albo o klucz dostępu zapisany w tej przeglądarce; przeglądarka bez klucza dostępu do twojego sejfu poprosi o obecny kod. Nie masz go już? Wygeneruj nowy w tTerm dla Maca.

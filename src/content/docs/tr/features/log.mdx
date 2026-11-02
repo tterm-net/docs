@@ -4,6 +4,7 @@ description: Bir makinede tTerm üzerinden çalıştırılanlar, satır satır �
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Bir makinede tTerm üzerinden çalıştırılan her komut, o makinenin logunda bir satır olur: komutu kimin, ne zaman çalıştırdığı, nasıl sonuçlandığı, ne kadar sürdüğü ve nerede çalıştığı. Logu tTerm yazar, kimse değiştiremez. Bir komutun altına not bırakabilirsin.
 
@@ -20,6 +21,8 @@ Logun en üstündeki **⋯** menüsünde **Markdown olarak kopyala** var: göste
 Her komut tek bir satırdır: saat, komutu kimin çalıştırdığı, uzunsa kısaltılmış haliyle komutun kendisi ve altında kaç not olduğu. Sağda komutun ne kadar sürdüğü, dizin, git dalı ve terminal yer alır. Başarısız olan bir komutta bir çarpı ve çıkış kodu görünür: **çıkış 1**. Log, komutların arasında bir terminalin ne zaman açıldığını ve ne zaman sonlandığını da yazar – kendiliğinden sonlandıysa nedenini de: **Terminal 1 sonlandı: tTerm Web, 0.1.24 sürümüne güncellendi.** Makinenin başka bir projeye ne zaman taşındığını da yazar: **Bu makineyi sen taşıdın: Personal projesinden Client X projesine**.
 
 Bir satıra tıklayınca satır açılır: komutun tamamı, çıktısı ve altındaki notlar. Bir kez daha tıklayınca kapanır. Uzun bir çıktının ilk satırları görünür: **27 satırın tümünü göster** kalanını açar, **Çıktıyı kopyala** ise çıktıyı kopyalar.
+
+<Screenshot name="log" alt="Bugünkü web-01 logu, “Önce en yeni” sıralamasıyla: her komutta saat, kimin çalıştırdığı, ne kadar sürdüğü, dizin, dal ve terminal; bir de deploy terminalinin ne zaman açıldığı ve sonlandığı. “çıkış 1” ile başarısız olan cat komutu açık: çıktısı ve altındaki not." />
 
 İmleci bir satırın üzerine getir ya da satırı aç, üzerinde **⋯** belirir: **Komutu kopyala** ve **Bu satırın bağlantısını kopyala**. Bağlantı, logu o satırın gününde açar; satır da açık gelir.
 

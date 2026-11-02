@@ -4,6 +4,7 @@ description: 五分钟内登录 tTerm Web，添加第一台机器，运行第一
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 只需五分钟：登录，添加第一台机器，运行第一条命令。你需要一个浏览器，以及一台 Linux 服务器，或者一台能在终端里运行命令的电脑。
 
@@ -18,6 +19,8 @@ import { Steps } from '@astrojs/starlight/components';
    ```
 
    命令只能使用一次，在接下来的 10 分钟内有效。脚本一完成，服务器就会出现在项目中，通常不超过一分钟。
+
+   <Screenshot name="add-server" alt="“添加机器”窗口，已选择“服务器”：要在服务器上运行的一次性命令，带有“复制”按钮，tTerm Web 正在等待服务器。" />
 
 3. **打开终端。** 点击侧边栏中机器旁边的 **+**。终端会在标签页中打开：你的 shell、你的程序、sudo。
 

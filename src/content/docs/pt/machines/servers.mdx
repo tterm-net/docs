@@ -4,6 +4,7 @@ description: Como conectar um servidor com um comando, o que o instalador faz e 
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Um servidor se conecta por SSH comum, com um comando. Não guardamos chaves: para cada conexão, assinamos um certificado próprio, que vive dois minutos e vale só para este servidor.
 
@@ -12,6 +13,8 @@ Um servidor se conecta por SSH comum, com um comando. Não guardamos chaves: par
 <Steps>
 
 1. No tTerm Web, abra **Adicionar uma máquina** e escolha **Servidor**.
+
+   <Screenshot name="add-server" alt="A janela “Adicionar uma máquina”, com “Servidor” selecionado: o comando de uso único para executar no servidor, o botão “Copiar” e o tTerm Web aguardando o servidor." />
 
 2. Copie o comando e execute-o no servidor, como root ou como qualquer usuário com sudo:
 

@@ -4,6 +4,7 @@ description: What was run on a machine through tTerm, line by line – how to re
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../components/Screenshot.astro';
 
 Every command run on a machine through tTerm becomes a line in that machine's log: who ran it, when, how it ended, how long it took and where. tTerm writes the log, and nobody can change it. Under a command, you can leave a note.
 
@@ -20,6 +21,8 @@ At the top of the log, **⋯** has **Copy as Markdown**: the day shown, its line
 Each command is one line: the time, who ran it, the command, cut short where it is long, and how many notes are under it. On the right are how long it took, the folder, the git branch and the terminal. A command that failed has a cross and its exit code, **exit 1**. Between the commands, the log also says when a terminal was opened and when it ended – and why, when it ended by itself: **Terminal 1 ended: tTerm Web was updated to 0.1.24.** It says, too, when the machine moved to another project: **You moved this machine from Personal to Client X**.
 
 A click on a line opens it: the command in full, what it printed and the notes under it. Another click closes it. A long output shows its first lines: **Show all 27 lines** shows the rest, and **Copy output** copies it.
+
+<Screenshot name="log" alt="web-01's log for today, newest first: each command with its time, who ran it, how long it took, the folder, branch and terminal, and when the terminal deploy was opened and ended. The failed cat, exit 1, is open: its output and the note under it." />
 
 Point at a line, or open it, and **⋯** appears on it: **Copy command** and **Copy link to this line**. The link opens the log on that line's day, with the line open.
 

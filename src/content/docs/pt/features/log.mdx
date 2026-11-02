@@ -4,6 +4,7 @@ description: O que foi executado numa máquina via tTerm, linha por linha – co
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Cada comando executado numa máquina via tTerm vira uma linha no log dessa máquina: quem o executou, quando, como terminou, quanto tempo levou e onde. Quem escreve o log é o tTerm, e ninguém pode alterá-lo. Abaixo de um comando, você pode deixar uma nota.
 
@@ -20,6 +21,8 @@ No alto do log, o **⋯** tem **Copiar como Markdown**: o dia que está na tela,
 Cada comando é uma linha: a hora, quem o executou, o comando, cortado quando é longo, e quantas notas há abaixo dele. À direita ficam quanto tempo ele levou, a pasta, a branch do git e o terminal. Um comando que falhou tem um X e o código de retorno, **retorno 1**. Entre os comandos, o log também mostra quando um terminal foi aberto e quando foi encerrado – e, se ele se encerrou sozinho, o motivo: **O terminal 1 foi encerrado: O tTerm Web foi atualizado para 0.1.24.** O log mostra ainda quando a máquina passou para outro projeto: **Você moveu esta máquina do projeto Personal para o projeto Client X**.
 
 Clique numa linha para abri-la: o comando completo, o que ele imprimiu e as notas abaixo dele. Outro clique a fecha. Uma saída longa mostra só as primeiras linhas: **Ver todas as 27 linhas** mostra o resto, e **Copiar saída** copia a saída inteira.
+
+<Screenshot name="log" alt="O log de web-01 de hoje, “Mais recentes primeiro”: cada comando com a hora, quem o executou, quanto tempo levou, a pasta, a branch e o terminal, e quando o terminal deploy foi aberto e encerrado. O cat que falhou, com “retorno 1”, está aberto: a saída dele e a nota abaixo." />
 
 Passe o mouse sobre uma linha ou abra-a, e o **⋯** aparece nela: **Copiar comando** e **Copiar link desta linha**. O link abre o log no dia dessa linha, com a linha aberta.
 

@@ -4,6 +4,7 @@ description: Bir sunucu tek komutla nasıl bağlanır, kurulum betiği ne yapar 
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Sunucu, standart SSH üzerinden tek bir komutla bağlanır. Anahtar saklamayız: her bağlantı için ayrı bir sertifika imzalarız; bu sertifika iki dakika geçerlidir ve yalnızca bu sunucuda işe yarar.
 
@@ -12,6 +13,8 @@ Sunucu, standart SSH üzerinden tek bir komutla bağlanır. Anahtar saklamayız:
 <Steps>
 
 1. tTerm Web'de **Makine ekle** penceresini aç ve **Sunucu** seçeneğini seç.
+
+   <Screenshot name="add-server" alt="“Makine ekle” penceresinde “Sunucu” seçili: sunucuda çalıştırılacak tek kullanımlık komut ve “Kopyala” düğmesi; tTerm Web sunucuyu bekliyor." />
 
 2. Komutu kopyala ve sunucuda root olarak ya da sudo yetkisi olan herhangi bir kullanıcıyla çalıştır:
 

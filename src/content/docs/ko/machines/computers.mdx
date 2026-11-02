@@ -4,6 +4,7 @@ description: 컴퓨터용 에이전트 – 명령 한 줄로 설치, 안쪽에�
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 컴퓨터에는 작은 에이전트 하나만 있으면 돼요. 에이전트가 스스로 클라우드에 연결해서 그 연결 하나를 유지하기 때문에 인바운드 포트가 필요 없어요. NAT 뒤에 있는 컴퓨터에서도 작동해요.
 
@@ -20,6 +21,8 @@ curl -fsSL https://connect.tterm.net/c/<token> | sh
 ```
 
 명령이 끝나고 몇 초 뒤에 컴퓨터가 프로젝트에 나타나요. 명령은 앞으로 10분 동안 한 번만 쓸 수 있어요.
+
+<Screenshot name="add-computer" alt="‘컴퓨터’를 고른 ‘머신 추가’ 창: 컴퓨터에서 내 계정으로 실행할 명령과 ‘복사’ 버튼이 있고, tTerm Web이 에이전트를 기다리고 있어요." />
 
 ## 명령이 하는 일
 

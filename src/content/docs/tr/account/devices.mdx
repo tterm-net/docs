@@ -4,6 +4,7 @@ description: E-postayla gelen kodla giriş, güvendiğin bir cihazda hızlı kod
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 tTerm Web'e e-postayla gelen bir kodla giriş yaparsın. Güvendiğin bir cihazda yeniden girmek için dört haneli bir hızlı kod yeter.
 
@@ -40,6 +41,8 @@ Başka bir hesaba geçmek için çıkış yap ve diğer e-posta adresinle giriş
 ## Cihazların
 
 **Ayarlar** → **Cihazlar**, hızlı kodla giriş yaptığın tarayıcıları ve tarayıcıyla giriş yapmış her Mac için tTerm uygulamasını listeler; adları tTerm'in onları gördüğü gibidir: Chrome on macOS, tTerm for Mac on MacBook-Pro. Her birinde ne zaman eklendiği ya da giriş yaptığı ve en son ne zaman kullanıldığı yazar; **Bu cihaz**, şu an kullandığın cihazı işaretler.
+
+<Screenshot name="devices" alt="“Ayarlar” → “Cihazlar”: “Bu cihaz” olarak işaretli Chrome on macOS, Firefox on Windows ve Safari on iPhone; her birinde ne zaman eklendiği, en son ne zaman giriş yapıldığı ve “Unut” düğmesi; altlarında “Tüm cihazları unut”." />
 
 - Bir tarayıcının yanındaki **Unut** düğmesine basarsan orada yeniden e-postayla gelen bir kod gerekir. Mac için tTerm'i unutursan oradan çıkış yapılır: giriş yapmadan önceki gibi yalnızca o Mac ile çalışır. Şu an kullandığın cihazı unutursan burada çıkış yapmış olursun.
 - **Tüm cihazları unut…**, ardından **Tüm cihazları unut**: tüm cihazlar unutulur ve bu dahil tüm oturumlar sona erer. Ardından her tarayıcı e-postayla gelen bir kod ister. Terminallerin çalışmaya devam eder.

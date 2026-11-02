@@ -4,6 +4,7 @@ description: Le tue chiavi SSH, cifrate sui tuoi dispositivi prima di arrivare a
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 La cassaforte custodisce le tue chiavi SSH, quelle con cui raggiungi i tuoi server. Una chiave viene cifrata sul tuo dispositivo prima di lasciarlo, e solo i tuoi dispositivi aprono la cassaforte, come quando li sblocchi. tTerm conserva le chiavi cifrate, con la parte pubblica e l'impronta di ciascuna: non può aprire la cassaforte né leggere una chiave. La cassaforte si trova in **Impostazioni** → **Chiavi**.
 
@@ -51,6 +52,8 @@ Una cassaforte creata in un browser si apre in tTerm per Mac una prima volta con
 ## Impostazioni → Chiavi
 
 In cima, la pagina dice se la cassaforte è aperta qui, come è stata aperta e quando si bloccherà di nuovo. Ogni chiave ha una riga: il nome, il tipo e l'impronta abbreviata; i server che **Apre**, oppure **Non apre ancora nessun server**; quando è stata salvata da un Mac o aggiunta da un file; e quando è stata usata l'ultima volta, oppure **non ancora usata**.
+
+<Screenshot name="keys" alt="«Impostazioni» → «Chiavi»: la cassaforte «Aperta in questo browser» con Touch ID, e accanto il pulsante «Blocca»; due chiavi con il tipo, l'impronta abbreviata e da dove vengono; «Aggiungi una chiave da un file», «Crea un nuovo codice di recupero» e dove si apre la cassaforte." />
 
 - **Rimuovi** toglie la chiave dalla tua cassaforte, dopo una conferma, e tTerm elimina la sua copia cifrata. I server che si aprono con questa chiave restano in tTerm, ma non si aprono più. La chiave in sé resta dov'era: sul tuo Mac o nel suo file.
 - **Crea un nuovo codice di recupero** mostra un nuovo codice una volta sola, e quello che avevi smette di funzionare. Le tue chiavi e i tuoi dispositivi restano come sono. Chiede Touch ID o la passkey di questo browser; un browser senza una passkey della tua cassaforte chiede il codice che hai ora. L'hai perso? Crea quello nuovo in tTerm per Mac.

@@ -4,6 +4,7 @@ description: Accedere con un codice via email, il codice rapido su un dispositiv
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Accedi a tTerm Web con un codice via email. Su un dispositivo di cui ti fidi, per rientrare basta un codice rapido di quattro cifre.
 
@@ -40,6 +41,8 @@ Per passare a un altro account, esci e accedi con l'altra email. Anche **Cambia 
 ## I tuoi dispositivi
 
 **Impostazioni** → **Dispositivi** elenca i browser in cui accedi con un codice rapido, e ogni tTerm per Mac che ha effettuato l'accesso tramite il browser, con i nomi con cui li vede tTerm: Chrome on macOS, tTerm for Mac on MacBook-Pro. Per ciascuno è indicato quando è stato memorizzato o ha effettuato l'accesso e quando è stato usato l'ultima volta; **Questo dispositivo** indica quello che stai usando.
+
+<Screenshot name="devices" alt="«Impostazioni» → «Dispositivi»: Chrome on macOS, con l'etichetta «Questo dispositivo», Firefox on Windows e Safari on iPhone – per ciascuno, quando è stato memorizzato e quando ha effettuato l'ultimo accesso, e il pulsante «Dimentica»; sotto, «Dimentica tutti i dispositivi»." />
 
 - **Dimentica** un browser, e lì servirà di nuovo un codice via email. Dimentica tTerm per Mac, e verrà disconnesso: funziona solo con quel Mac, come prima dell'accesso. Dimentica il dispositivo che stai usando, e verrai disconnesso qui.
 - **Dimentica tutti i dispositivi…**, poi **Dimentica tutti i dispositivi**: tutti i dispositivi vengono dimenticati e tutte le sessioni terminano, anche questa. Poi ogni browser chiede un codice via email. I tuoi terminali restano in esecuzione.

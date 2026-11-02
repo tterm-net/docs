@@ -4,6 +4,7 @@ description: Co uruchomiono na maszynie przez tTerm, wiersz po wierszu – jak c
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Każde polecenie uruchomione na maszynie przez tTerm staje się wierszem w logu tej maszyny: kto je uruchomił, kiedy, jak się zakończyło, ile trwało i gdzie. Log prowadzi tTerm i nikt nie może go zmienić. Pod poleceniem możesz zostawić notatkę.
 
@@ -20,6 +21,8 @@ U góry logu w menu **⋯** jest **Kopiuj jako Markdown**: kopiuje pokazany dzie
 Każde polecenie to jeden wiersz: godzina, kto je uruchomił, samo polecenie (skrócone, jeśli jest długie) i liczba notatek pod nim. Po prawej: czas trwania, katalog, gałąź git i terminal. Nieudane polecenie ma krzyżyk i kod, z jakim się zakończyło: **kod wyjścia 1**. Między poleceniami log odnotowuje też, kiedy otwarto terminal i kiedy się zakończył – a jeśli zakończył się sam, to także dlaczego: **Terminal 1 zakończył się: tTerm Web został uaktualniony do wersji 0.1.24.** Odnotowuje również przeniesienie maszyny do innego projektu: **Maszyna przeniesiona przez ciebie z projektu Personal do projektu Client X**.
 
 Kliknięcie wiersza go rozwija: całe polecenie, jego wynik i notatki pod nim. Drugie kliknięcie go zwija. Z długiego wyniku widać pierwsze wiersze: **Pokaż wszystkie 27 wierszy** pokazuje resztę, a **Kopiuj wynik** kopiuje cały wynik.
+
+<Screenshot name="log" alt="Dzisiejszy log web-01, „Najnowsze najpierw”: przy każdym poleceniu godzina, kto je uruchomił, ile trwało, katalog, gałąź i terminal, a między nimi – kiedy otwarto terminal deploy i kiedy się zakończył. Rozwinięte jest nieudane polecenie cat, „kod wyjścia 1”: jego wynik i notatka pod nim." />
 
 Najedź kursorem na wiersz albo go rozwiń, a pojawi się na nim **⋯**: **Kopiuj polecenie** i **Kopiuj link do tego wiersza**. Link otwiera log na dniu, z którego jest ten wiersz, i od razu go rozwija.
 

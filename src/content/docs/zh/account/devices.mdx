@@ -4,6 +4,7 @@ description: 用邮件验证码登录、在你信任的设备上使用快捷码�
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 你用邮件验证码登录 tTerm Web。在你信任的设备上，再次登录只需输入四位数的快捷码。
 
@@ -40,6 +41,8 @@ import { Steps } from '@astrojs/starlight/components';
 ## 你的设备
 
 **设置** → **设备**列出了你用快捷码登录的浏览器，以及每个通过浏览器登录的 tTerm Mac 版，名称按 tTerm 识别的结果显示：Chrome on macOS、tTerm for Mac on MacBook-Pro。每一项都会显示它何时被信任或何时登录，以及上次使用的时间；**当前设备**标出你正在使用的那一台。
+
+<Screenshot name="devices" alt="“设置”→“设备”：Chrome on macOS（标有“当前设备”）、Firefox on Windows 和 Safari on iPhone，每一项都显示信任时间和上次登录时间，并带有“移除”按钮；下方是“移除所有设备”。" />
 
 - **移除**一个浏览器后，在那个浏览器中就需要重新用邮件验证码登录。移除 tTerm Mac 版，它就会退出登录：只能用于那台 Mac 本身，和登录之前一样。移除你正在使用的设备，你在这里就会退出登录。
 - 点击**移除所有设备…**，再点击**移除所有设备**：所有设备都会被移除，所有会话都会结束，包括当前这个。之后每个浏览器都会要求输入邮件验证码。你的终端会继续运行。

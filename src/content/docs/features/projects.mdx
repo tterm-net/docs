@@ -4,6 +4,7 @@ description: Personal and projects of your own – their name, code and color, t
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../components/Screenshot.astro';
 
 A project is machines and notes together: its servers and computers, with the terminals running on them, and its notes in folders. Everyone has the Personal project, and beside it you can make projects of your own, one for each client, say.
 
@@ -40,6 +41,8 @@ A click on a project's name in the sidebar opens its page in a tab. On top are i
 - **Machines** – a card for each, with its address and system, **New terminal**, and the terminals running on it: **Open** goes to one, a double click on its name renames it. **⋯** on the card has **Move to another project** and **Remove machine**. A project with no machines offers **Server** and **Computer** to add the first one.
 - **Notes** – the folders and their notes, see [Notes](../notes/).
 - At the very end, **Delete project**.
+
+<Screenshot name="project-page" alt="Client X's page: its name, its code CX in the project's color and the pencil; the machine db-1 with its terminal backups; the folder Runbooks with two notes, the checklist 2 of 5 done." />
 
 ## Move a machine
 

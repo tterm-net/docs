@@ -3,7 +3,11 @@ title: Bloki i wiersz poleceń
 description: Jak działa terminal w tTermie – każde polecenie jako blok, własne pole wprowadzania tTerma i tryb klasyczny.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 Terminal w tTermie to lista bloków: każde polecenie, które uruchamiasz, staje się blokiem razem ze swoim wynikiem. Polecenia wpisujesz we własnym polu wprowadzania tTerma, pod listą bloków. Bloki można potem odnaleźć przez [wyszukiwanie](../search/).
+
+<Screenshot name="blocks-feed" alt="Terminal w tTerm: pięć poleceń jako bloki, przy każdym czas trwania, katalog, gałąź i godzina; ostatnie zakończyło się błędem z kodem wyjścia 1. Pod nimi pole wprowadzania tTerm." />
 
 ## Blok
 
@@ -26,6 +30,8 @@ Najedź kursorem na zakończony blok, a pojawią się jego przyciski. Podpowiedz
 ## Pole wprowadzania
 
 Pole wprowadzania należy do tTerma, nie do powłoki. To, co wpisujesz, zostaje w nim, dopóki nie naciśniesz **Enter**, a wtedy całe polecenie trafia do powłoki.
+
+<Screenshot name="blocks-input" alt="Pole wprowadzania: po lewej katalog i gałąź, na szaro reszta polecenia z twojej historii." />
 
 - **Shift+Enter** zaczyna nowy wiersz: polecenie może mieć ich kilka.
 - **↑** i **↓** przewijają twoją historię ze wszystkich urządzeń, których używasz: najpierw polecenia uruchomione na tej maszynie, potem te z pozostałych maszyn jej projektu. Wpisz początek polecenia, a pojawią się tylko te, które tak się zaczynają. **Ctrl+R** pokazuje historię jako listę z polem wyszukiwania, a wybrane polecenie trafia do pola wprowadzania.

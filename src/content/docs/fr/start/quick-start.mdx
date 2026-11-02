@@ -4,6 +4,7 @@ description: Connectez-vous à tTerm Web, ajoutez votre première machine et lan
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Cinq minutes : la connexion, votre première machine et votre première commande. Il vous faut un navigateur et un serveur Linux, ou un ordinateur sur lequel vous pouvez lancer une commande dans un terminal.
 
@@ -18,6 +19,8 @@ Cinq minutes : la connexion, votre première machine et votre première command
    ```
 
    Elle fonctionne une seule fois, dans les 10 minutes. Le serveur apparaît dans le projet dès que le script se termine, en général en moins d’une minute.
+
+   <Screenshot name="add-server" alt="La fenêtre « Ajouter une machine » où « Serveur » est sélectionné : la commande à usage unique à lancer sur le serveur, avec le bouton « Copier », et tTerm Web en attente du serveur." />
 
 3. **Ouvrez un terminal.** Appuyez sur **+** à côté de la machine dans la barre latérale. Le terminal s’ouvre dans un onglet : votre shell, vos programmes, sudo.
 

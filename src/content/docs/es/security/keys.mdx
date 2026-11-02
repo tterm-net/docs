@@ -4,6 +4,7 @@ description: Tus propias claves SSH, cifradas en tus dispositivos antes de llega
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 La bóveda guarda tus propias claves SSH, para los servidores a los que accedes con ellas. Una clave se cifra en tu dispositivo antes de salir de él, y solo tus dispositivos abren la bóveda, igual que se desbloquean. tTerm guarda las claves cifradas, con la parte pública y la huella de cada una: no puede abrir la bóveda ni leer una clave. La bóveda está en **Configuración** → **Claves**.
 
@@ -51,6 +52,8 @@ Una bóveda creada en un navegador se abre una vez en tTerm para Mac con el cód
 ## Configuración → Claves
 
 Arriba, la página indica si la bóveda está abierta aquí, cómo se abrió y cuándo vuelve a bloquearse. Cada clave tiene una línea: su nombre, su tipo y su huella corta; los servidores que **Abre**, o **Aún no abre ningún servidor**; cuándo se guardó desde una Mac o se añadió desde un archivo; y cuándo se usó por última vez, o **aún sin usar**.
+
+<Screenshot name="keys" alt="«Configuración» → «Claves»: la bóveda «Abierta en este navegador», que se abrió con Touch ID, y el botón «Bloquear»; dos claves con su tipo, su huella abreviada y de dónde vienen; «Añadir una clave desde un archivo», «Crear un código de recuperación nuevo» y dónde se abre la bóveda." />
 
 - **Quitar** saca la clave de tu bóveda, tras una pregunta, y tTerm elimina su copia cifrada. Los servidores que se abren con ella siguen en tTerm, pero ya no se abren. La propia clave sigue donde estaba: en tu Mac o en su archivo.
 - **Crear un código de recuperación nuevo** muestra un código nuevo una sola vez, y el que tenías deja de funcionar. Tus claves y tus dispositivos no cambian. Pide Touch ID o la llave de acceso de este navegador; un navegador sin una llave de acceso de tu bóveda pide el código que tienes ahora. ¿Lo perdiste? Crea el nuevo en tTerm para Mac.

@@ -4,6 +4,7 @@ description: Signing in with a code from email, the quick code on a device you t
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../components/Screenshot.astro';
 
 You sign in to tTerm Web with a code from email. On a device you trust, a four-digit quick code brings you back.
 
@@ -40,6 +41,8 @@ To switch to another account, sign out and sign in with the other email. **Switc
 ## Your devices
 
 **Settings** → **Devices** lists the browsers where you sign in with a quick code, and each tTerm for Mac signed in with the browser, named as tTerm sees them: Chrome on macOS, tTerm for Mac on MacBook-Pro. Each says when it was trusted or signed in and when it was last used; **This device** marks the one you are on.
+
+<Screenshot name="devices" alt="Settings → Devices: Chrome on macOS, marked This device, Firefox on Windows and Safari on iPhone, each with when it was trusted and last signed in, and Forget; below them, Forget all devices." />
 
 - **Forget** a browser, and there it takes a code from email again. Forget tTerm for Mac, and it is signed out: it works with that Mac only, as before signing in. Forget the device you are on, and you are signed out here.
 - **Forget all devices…**, then **Forget all devices**: every device is forgotten and every session ends, this one too. Each browser then asks for a code from email. Your terminals keep running.

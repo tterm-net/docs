@@ -3,7 +3,11 @@ title: Blocks and the command line
 description: How a terminal in tTerm works – every command a block, tTerm's own input line, and the classic mode.
 ---
 
+import Screenshot from '../../../components/Screenshot.astro';
+
 A terminal in tTerm is a feed of blocks: every command you run becomes one, with its output. You type into tTerm's own input line under the feed. Blocks can be found again with [search](../search/).
+
+<Screenshot name="blocks-feed" alt="A terminal in tTerm: five commands as blocks, each with how long it took, the folder, the branch and the time; the last one failed with exit 1. tTerm's input line is under them." />
 
 ## A block
 
@@ -26,6 +30,8 @@ Point at a finished block, and its buttons show. Their tips name them:
 ## The input line
 
 The input line is tTerm's own, not the shell's. What you type stays in it until **Enter**, which hands the whole command to the shell.
+
+<Screenshot name="blocks-input" alt="The input line: the folder and the branch on the left, and the rest of a command from your history in grey." />
 
 - **Shift+Enter** starts a new line: a command can have several.
 - **↑** and **↓** go through your history, from every device you use: first the commands you ran on this machine, then those from the rest of its project. Type the start of a command, and only those that begin so come up. **Ctrl+R** lists the history with a search field, and the command you pick goes into the line.

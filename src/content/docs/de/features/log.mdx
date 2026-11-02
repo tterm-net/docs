@@ -4,6 +4,7 @@ description: Was über tTerm auf einer Maschine ausgeführt wurde, Zeile für Ze
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Jeder Befehl, den jemand über tTerm auf einer Maschine ausführt, wird zu einer Zeile im Log dieser Maschine: wer ihn ausgeführt hat, wann, wie er ausgegangen ist, wie lange er gedauert hat und wo. tTerm schreibt das Log, und niemand kann es ändern. Unter einem Befehl kannst du eine Notiz hinterlassen.
 
@@ -20,6 +21,8 @@ Oben im Log findest du unter **⋯** den Punkt **Als Markdown kopieren**: Er kop
 Jeder Befehl ist eine Zeile: die Uhrzeit, wer ihn ausgeführt hat, der Befehl, gekürzt, wenn er lang ist, und wie viele Notizen darunter stehen. Rechts stehen, wie lange er gedauert hat, das Verzeichnis, der git-Branch und das Terminal. Ein fehlgeschlagener Befehl hat ein Kreuz und seinen Exit-Code, **exit 1**. Zwischen den Befehlen vermerkt das Log außerdem, wann ein Terminal geöffnet und wann es beendet wurde – und warum, wenn es von selbst endete: **Terminal 1 wurde beendet: tTerm Web wurde auf 0.1.24 aktualisiert.** Es vermerkt auch, wann die Maschine in ein anderes Projekt verschoben wurde: **Du hast diese Maschine von Personal nach Client X verschoben**.
 
 Ein Klick auf eine Zeile öffnet sie: der ganze Befehl, seine Ausgabe und die Notizen darunter. Ein zweiter Klick schließt sie wieder. Von einer langen Ausgabe siehst du die ersten Zeilen: **Alle 27 Zeilen zeigen** zeigt den Rest, und **Ausgabe kopieren** kopiert sie.
+
+<Screenshot name="log" alt="Das heutige Log von web-01, „Neueste zuerst“: zu jedem Befehl die Uhrzeit, wer ihn ausgeführt hat, wie lange er gedauert hat, Verzeichnis, Branch und Terminal, dazu, wann das Terminal deploy geöffnet und beendet wurde. Der fehlgeschlagene Befehl cat mit „exit 1“ ist geöffnet: seine Ausgabe und die Notiz darunter." />
 
 Zeig mit der Maus auf eine Zeile oder öffne sie, und auf der Zeile erscheint **⋯**: **Befehl kopieren** und **Link zu dieser Zeile kopieren**. Der Link öffnet das Log am Tag dieser Zeile, und die Zeile ist gleich geöffnet.
 

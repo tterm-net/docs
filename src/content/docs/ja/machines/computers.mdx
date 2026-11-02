@@ -4,6 +4,7 @@ description: コンピューター用のエージェント – コマンド 1 �
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 コンピューターには小さなエージェントがあれば十分です。エージェントは自分からクラウドへ接続し、その 1 本の接続を保ち続けるので、受信ポートは必要ありません。NAT の内側にあるコンピューターでも動きます。
 
@@ -20,6 +21,8 @@ curl -fsSL https://connect.tterm.net/c/<token> | sh
 ```
 
 コマンドが終わって数秒後に、コンピューターがプロジェクトに現れます。このコマンドは 1 回だけ、これから 10 分間だけ使えます。
+
+<Screenshot name="add-computer" alt="「マシンを追加」ウィンドウで「コンピューター」を選んだ状態：コンピューターで自分のユーザーとして実行するコマンドと「コピー」ボタンがあり、tTerm Web がエージェントを待っています。" />
 
 ## コマンドが行うこと
 

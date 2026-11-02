@@ -3,7 +3,11 @@ title: Blocchi e riga di comando
 description: Come funziona un terminale in tTerm – ogni comando un blocco, una riga di input tutta di tTerm e la modalità classica.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 Un terminale in tTerm è un flusso di blocchi: ogni comando che esegui diventa un blocco, con il suo output. Scrivi in una riga di input tutta di tTerm, sotto il flusso. I blocchi si ritrovano poi con la [ricerca](../search/).
+
+<Screenshot name="blocks-feed" alt="Un terminale in tTerm: cinque comandi come blocchi, ognuno con la durata, la directory, il branch e l'ora; l'ultimo è fallito con codice di uscita 1. Sotto c'è la riga di input di tTerm." />
 
 ## Un blocco
 
@@ -26,6 +30,8 @@ Porta il mouse su un blocco concluso, e compaiono i suoi pulsanti. I tooltip ne 
 ## La riga di input
 
 La riga di input è di tTerm, non della shell. Quello che scrivi resta lì fino a **Enter**, che passa l'intero comando alla shell.
+
+<Screenshot name="blocks-input" alt="La riga di input: a sinistra la directory e il branch, in grigio il resto di un comando dalla tua cronologia." />
 
 - **Shift+Enter** va a capo: un comando può avere più righe.
 - **↑** e **↓** scorrono la tua cronologia, da tutti i dispositivi che usi: prima i comandi che hai eseguito su questa macchina, poi quelli del resto del suo progetto. Scrivi l'inizio di un comando, e compaiono solo quelli che iniziano così. **Ctrl+R** mostra la cronologia in un elenco con un campo di ricerca, e il comando che scegli finisce nella riga.

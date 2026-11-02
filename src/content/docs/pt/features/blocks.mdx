@@ -3,7 +3,11 @@ title: Blocos e a linha de entrada
 description: Como funciona um terminal no tTerm – cada comando vira um bloco, a linha de entrada própria do tTerm e o modo clássico.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 Um terminal no tTerm é um feed de blocos: cada comando que você roda vira um bloco, com a saída dele. Você digita na linha de entrada do próprio tTerm, embaixo do feed. Dá para encontrar os blocos de novo com a [busca](../search/).
+
+<Screenshot name="blocks-feed" alt="Um terminal no tTerm: cinco comandos como blocos, cada um com quanto tempo levou, o diretório, a branch e a hora; o último falhou com código de saída 1. Embaixo fica a linha de entrada do tTerm." />
 
 ## O bloco
 
@@ -26,6 +30,8 @@ Passe o mouse sobre um bloco concluído, e os botões dele aparecem. As dicas mo
 ## A linha de entrada
 
 A linha de entrada é do próprio tTerm, não do shell. O que você digita fica nela até o **Enter**, que entrega o comando inteiro ao shell.
+
+<Screenshot name="blocks-input" alt="A linha de entrada: à esquerda, o diretório e a branch; em cinza, o resto de um comando do seu histórico." />
 
 - **Shift+Enter** começa uma nova linha: um comando pode ter várias.
 - **↑** e **↓** percorrem o seu histórico, de todos os dispositivos que você usa: primeiro os comandos que você rodou nesta máquina, depois os do resto do projeto dela. Digite o começo de um comando, e só aparecem os que começam assim. **Ctrl+R** mostra o histórico em lista, com um campo de busca, e o comando escolhido vai para a linha.

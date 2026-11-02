@@ -4,6 +4,7 @@ description: La connexion avec un code reçu par e-mail, le code court sur un ap
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Vous vous connectez à tTerm Web avec un code reçu par e-mail. Sur un appareil de confiance, un code court à quatre chiffres vous permet ensuite de revenir.
 
@@ -40,6 +41,8 @@ Pour changer de compte, déconnectez-vous et reconnectez-vous avec l’autre adr
 ## Vos appareils
 
 **Paramètres** → **Appareils** liste les navigateurs où vous vous connectez avec un code court, et chaque tTerm pour Mac connecté via le navigateur, nommés comme tTerm les voit : Chrome on macOS, tTerm for Mac on MacBook-Pro. Pour chacun, la liste indique quand il a été approuvé ou s’est connecté, et quand il a servi pour la dernière fois ; **Cet appareil** marque celui que vous utilisez.
+
+<Screenshot name="devices" alt="« Paramètres » → « Appareils » : Chrome on macOS, marqué « Cet appareil », Firefox on Windows et Safari on iPhone, chacun avec sa date d’approbation, sa dernière connexion et le bouton « Oublier » ; en dessous, « Oublier tous les appareils »." />
 
 - **Oublier** un navigateur : il faudra de nouveau un code reçu par e-mail pour s’y connecter. Oublier tTerm pour Mac : il est déconnecté et ne fonctionne plus qu’avec ce Mac, comme avant la connexion. Oublier l’appareil que vous utilisez : vous êtes déconnecté ici.
 - **Oublier tous les appareils…**, puis **Oublier tous les appareils** : tous les appareils sont oubliés et toutes les sessions prennent fin, celle-ci comprise. Chaque navigateur demande ensuite un code reçu par e-mail. Vos terminaux continuent de tourner.

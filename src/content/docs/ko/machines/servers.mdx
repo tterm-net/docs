@@ -4,6 +4,7 @@ description: 명령 한 줄로 서버를 연결하는 방법, 설치 스크립�
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 서버는 명령 한 줄이면 일반 SSH로 연결돼요. 키는 보관하지 않아요. 연결할 때마다 그 연결만을 위한 인증서에 서명하는데, 이 인증서는 2분 동안만 유효하고 이 서버에서만 쓸 수 있어요.
 
@@ -12,6 +13,8 @@ import { Steps } from '@astrojs/starlight/components';
 <Steps>
 
 1. tTerm Web에서 **머신 추가**를 열고 **서버**를 고르세요.
+
+   <Screenshot name="add-server" alt="‘서버’를 고른 ‘머신 추가’ 창: 서버에서 실행할 일회용 명령과 ‘복사’ 버튼이 있고, tTerm Web이 서버를 기다리고 있어요." />
 
 2. 명령을 복사해서 서버에서 root로, 또는 sudo 권한이 있는 아무 사용자로 실행하세요:
 

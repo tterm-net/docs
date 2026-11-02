@@ -4,6 +4,7 @@ description: Deine eigenen SSH-Schlüssel, auf deinen Geräten verschlüsselt, b
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Der Tresor bewahrt deine eigenen SSH-Schlüssel auf, für die Server, die du mit ihnen erreichst. Ein Schlüssel wird auf deinem Gerät verschlüsselt, bevor er es verlässt, und nur deine Geräte öffnen den Tresor, so wie du sie entsperrst. tTerm bewahrt die verschlüsselten Schlüssel auf, mit dem öffentlichen Teil und dem Fingerabdruck jedes Schlüssels: Den Tresor öffnen oder einen Schlüssel lesen kann tTerm nicht. Der Tresor liegt unter **Einstellungen** → **Schlüssel**.
 
@@ -51,6 +52,8 @@ Einen Tresor, der in einem Browser erstellt wurde, öffnest du in tTerm für Mac
 ## Einstellungen → Schlüssel
 
 Oben zeigt die Seite, ob der Tresor hier geöffnet ist, wie er geöffnet wurde und wann er wieder gesperrt wird. Jeder Schlüssel hat eine Zeile: Name, Typ und kurzer Fingerabdruck; nach **Öffnet** die Server, die sich mit ihm öffnen, oder **Öffnet noch keinen Server**; wann er von einem Mac gespeichert oder aus einer Datei hinzugefügt wurde; und wann er zuletzt genutzt wurde, oder **noch nicht genutzt**.
+
+<Screenshot name="keys" alt="„Einstellungen“ → „Schlüssel“: der Tresor, „In diesem Browser geöffnet“ mit Touch ID, daneben „Sperren“; zwei Schlüssel mit Typ, kurzem Fingerabdruck und Herkunft; „Schlüssel aus Datei hinzufügen“, „Neuen Wiederherstellungscode erstellen“ und wo sich der Tresor öffnet." />
 
 - **Entfernen** nimmt den Schlüssel nach einer Rückfrage aus deinem Tresor, und tTerm löscht seine verschlüsselte Kopie. Die Server, die sich mit ihm öffnen, bleiben in tTerm, öffnen sich aber nicht mehr. Der Schlüssel selbst bleibt, wo er herkam: auf deinem Mac oder in seiner Datei.
 - **Neuen Wiederherstellungscode erstellen** zeigt einmal einen neuen Code, und der bisherige funktioniert nicht mehr. Deine Schlüssel und Geräte bleiben, wie sie sind. Dafür fragt tTerm nach Touch ID oder dem Passkey dieses Browsers; ein Browser ohne Passkey für deinen Tresor fragt nach deinem aktuellen Code. Du hast ihn verloren? Dann erstelle den neuen in tTerm für Mac.

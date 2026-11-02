@@ -3,7 +3,11 @@ title: Bloklar ve komut satırı
 description: tTerm'de bir terminal nasıl çalışır – her komut bir blok, tTerm'in kendi giriş satırı ve klasik mod.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 tTerm'de terminal, bloklardan oluşan bir akıştır: çalıştırdığın her komut, çıktısıyla birlikte bir blok olur. Komutlarını akışın altındaki, tTerm'in kendi giriş satırına yazarsın. Bloklar sonradan [arama](../search/) ile yeniden bulunabilir.
+
+<Screenshot name="blocks-feed" alt="tTerm'de bir terminal: blok olarak beş komut; her birinde ne kadar sürdüğü, dizin, dal ve saat var. Sonuncusu çıkış kodu 1 ile başarısız oldu. Altında tTerm'in giriş satırı var." />
 
 ## Blok
 
@@ -26,6 +30,8 @@ Bitmiş bir bloğun üzerine gelince düğmeleri belirir. İpuçlarında adları
 ## Giriş satırı
 
 Giriş satırı kabuğa değil, tTerm'e aittir. Yazdıkların, **Enter** komutun tamamını kabuğa verene kadar satırda kalır.
+
+<Screenshot name="blocks-input" alt="Giriş satırı: solda dizin ve dal, gri renkte de geçmişindeki bir komutun devamı." />
 
 - **Shift+Enter** yeni bir satır başlatır: bir komut birkaç satırdan oluşabilir.
 - **↑** ve **↓**, kullandığın tüm cihazlardan gelen geçmişinde gezinir: önce bu makinede çalıştırdığın komutlar, sonra projenin geri kalanındakiler. Bir komutun başını yazarsan yalnızca öyle başlayanlar gelir. **Ctrl+R** geçmişi bir arama alanıyla birlikte listeler, seçtiğin komut satıra gelir.

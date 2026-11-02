@@ -4,6 +4,7 @@ description: tTerm Web にサインインし、最初のマシンを追加して
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 5 分でできること。サインイン、最初のマシン、最初のコマンドです。ブラウザーと、Linux サーバーか、ターミナルでコマンドを実行できるコンピューターが必要です。
 
@@ -18,6 +19,8 @@ import { Steps } from '@astrojs/starlight/components';
    ```
 
    このコマンドは 1 回だけ、これから 10 分間だけ使えます。スクリプトが終わればすぐにサーバーがプロジェクトに現れます。通常は 1 分ほどです。
+
+   <Screenshot name="add-server" alt="「マシンを追加」ウィンドウで「サーバー」を選んだ状態：サーバーで実行する 1 回限りのコマンドと「コピー」ボタンがあり、tTerm Web がサーバーを待っています。" />
 
 3. **ターミナルを開きます。** サイドバーでマシンの横の **+** を押します。ターミナルがタブで開きます。いつものシェル、いつものプログラム、そして sudo です。
 

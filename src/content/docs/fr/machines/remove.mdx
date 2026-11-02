@@ -3,6 +3,8 @@ title: Retirer une machine
 description: Qui peut retirer une machine et où, ce que deviennent alors ses terminaux et son historique, et comment l’accès de tTerm et son agent quittent la machine.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 Retirer une machine la fait sortir de tTerm Web, et l’accès de tTerm à cette machine part avec elle. Le propriétaire et les administrateurs de son projet peuvent le faire.
 
 ## La retirer
@@ -13,6 +15,8 @@ Cela se fait à deux endroits :
 - Sur la page du projet, qu’ouvre le nom du projet dans la barre latérale, appuyez sur **⋯** à côté de la machine et choisissez **Retirer la machine**.
 
 tTerm demande d’abord confirmation et dit ce qui va se passer : **Retirer web-01 ?** Le bouton rouge **Retirer web-01** la retire, **Annuler** laisse tout comme avant.
+
+<Screenshot name="remove-machine" alt="La question posée avant de retirer une machine, « Retirer web-01 ? » : ses terminaux prendront fin et son agent s’arrêtera. Le bouton rouge « Retirer web-01 » la retire, « Annuler » la garde." />
 
 ## Ce qui se passe
 

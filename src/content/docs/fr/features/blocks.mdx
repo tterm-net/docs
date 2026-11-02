@@ -3,7 +3,11 @@ title: Blocs et ligne de saisie
 description: Comment fonctionne un terminal dans tTerm – chaque commande sous forme de bloc, la ligne de saisie propre à tTerm, et le mode classique.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 Dans tTerm, un terminal est un fil de blocs : chaque commande que vous lancez en devient un, avec sa sortie. Vous tapez dans la ligne de saisie propre à tTerm, sous le fil. Les blocs se retrouvent ensuite avec la [recherche](../search/).
+
+<Screenshot name="blocks-feed" alt="Un terminal dans tTerm : cinq commandes en blocs, chacune avec sa durée, le répertoire, la branche et l’heure ; la dernière a échoué avec le code de sortie 1. En dessous, la ligne de saisie de tTerm." />
 
 ## Un bloc
 
@@ -26,6 +30,8 @@ Survolez un bloc terminé, et ses boutons apparaissent. Leurs infobulles les nom
 ## La ligne de saisie
 
 La ligne de saisie appartient à tTerm, pas au shell. Ce que vous tapez y reste jusqu’à **Enter**, qui transmet la commande entière au shell.
+
+<Screenshot name="blocks-input" alt="La ligne de saisie : à gauche, le répertoire et la branche ; en gris, la suite d’une commande de votre historique." />
 
 - **Shift+Enter** commence une nouvelle ligne : une commande peut en compter plusieurs.
 - **↑** et **↓** parcourent votre historique, qui réunit tous les appareils que vous utilisez : d’abord les commandes lancées sur cette machine, puis celles du reste de son projet. Tapez le début d’une commande, et seules celles qui commencent ainsi s’affichent. **Ctrl+R** affiche l’historique sous forme de liste, avec un champ de recherche, et la commande choisie va dans la ligne.

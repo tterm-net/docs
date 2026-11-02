@@ -3,7 +3,11 @@ title: Bloques y línea de comandos
 description: Cómo funciona una terminal en tTerm – un bloque por comando, la línea de entrada propia de tTerm y el modo clásico.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 En tTerm, una terminal es una serie de bloques: cada comando que ejecutas se convierte en uno, con su salida. Escribes en la línea de entrada propia de tTerm, debajo de los bloques. Cualquier bloque se puede volver a encontrar con la [búsqueda](../search/).
+
+<Screenshot name="blocks-feed" alt="Una terminal en tTerm: cinco comandos como bloques, cada uno con lo que tardó, el directorio, la rama y la hora; el último falló con el código de salida 1. Debajo está la línea de entrada de tTerm." />
 
 ## Un bloque
 
@@ -26,6 +30,8 @@ Pasa el puntero sobre un bloque terminado y aparecerán sus botones. Sus textos 
 ## La línea de entrada
 
 La línea de entrada es de tTerm, no del shell. Lo que escribes se queda en ella hasta que presionas **Enter**, que le pasa el comando completo al shell.
+
+<Screenshot name="blocks-input" alt="La línea de entrada: a la izquierda, el directorio y la rama; en gris, el resto de un comando de tu historial." />
 
 - **Shift+Enter** empieza una línea nueva: un comando puede tener varias.
 - **↑** y **↓** recorren tu historial, el de todos los dispositivos que usas: primero los comandos que ejecutaste en esta máquina y luego los del resto de su proyecto. Escribe el principio de un comando y solo aparecerán los que empiezan así. **Ctrl+R** muestra el historial en una lista con un campo de búsqueda, y el comando que elijas pasa a la línea.

@@ -3,6 +3,8 @@ title: Remover uma máquina
 description: Quem pode remover uma máquina e onde, o que acontece depois com os terminais e o histórico dela, e como o acesso do tTerm e o agente saem da máquina.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 Quando você remove uma máquina, ela sai do tTerm Web, e o acesso do tTerm a ela vai junto. Podem fazer isso o proprietário e os administradores do projeto dela.
 
 ## Como remover
@@ -13,6 +15,8 @@ Dá para fazer isso em dois lugares:
 - Na página do projeto, aberta pelo nome do projeto na barra lateral, clique em **⋯** ao lado da máquina e escolha **Remover máquina**.
 
 O tTerm pergunta antes e explica o que vai acontecer: **Remover web-01?** O botão vermelho **Remover web-01** remove a máquina, e **Cancelar** deixa tudo como estava.
+
+<Screenshot name="remove-machine" alt="A pergunta antes de remover uma máquina, “Remover web-01?”: os terminais dela são encerrados e o agente para de rodar. O botão vermelho “Remover web-01” remove a máquina, e “Cancelar” a mantém." />
 
 ## O que acontece
 

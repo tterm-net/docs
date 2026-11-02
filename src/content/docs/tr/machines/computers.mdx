@@ -4,6 +4,7 @@ description: Bilgisayar için ajan – tek komutla kurulur, içeriden bağlanır
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Bilgisayara yalnızca küçük bir ajan gerekir. Ajan buluta kendisi bağlanır ve bu tek bağlantıyı açık tutar, bu yüzden gelen bağlantılar için port gerekmez: bilgisayar NAT arkasında da çalışır.
 
@@ -20,6 +21,8 @@ curl -fsSL https://connect.tterm.net/c/<token> | sh
 ```
 
 Bilgisayar, komut bittikten birkaç saniye sonra projede görünür. Komut önümüzdeki 10 dakika içinde bir kez çalışır.
+
+<Screenshot name="add-computer" alt="“Makine ekle” penceresinde “Bilgisayar” seçili: bilgisayarda kendi kullanıcınla çalıştıracağın komut ve “Kopyala” düğmesi; tTerm Web ajanı bekliyor." />
 
 ## Komut ne yapar
 

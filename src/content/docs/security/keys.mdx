@@ -4,6 +4,7 @@ description: Your own SSH keys, encrypted on your devices before they reach tTer
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../components/Screenshot.astro';
 
 The vault keeps your own SSH keys, for the servers you reach with them. A key is encrypted on your device before it leaves it, and only your devices open the vault, the way they unlock. tTerm keeps the encrypted keys, with each key's public half and fingerprint: it cannot open the vault or read a key. The vault is in **Settings** → **Keys**.
 
@@ -51,6 +52,8 @@ A vault made in a browser opens in tTerm for Mac once with the recovery code: **
 ## Settings → Keys
 
 At the top, the page says whether the vault is open here, how it opened and when it locks again. Each key has a line: its name, kind and short fingerprint; the servers it **Opens**, or **No server opens with it yet**; when it was saved from a Mac or added from a file; and when it was last used, or **not used yet**.
+
+<Screenshot name="keys" alt="Settings → Keys: the vault open in this browser, opened with Touch ID, with Lock; two keys with their kind, short fingerprint and where they came from; Add a key from a file, Make a new recovery code, and where the vault opens." />
 
 - **Remove** takes the key out of your vault, after a question, and tTerm deletes its encrypted copy. The servers that open with it stay in tTerm but no longer open. The key itself stays where it came from: on your Mac, or in its file.
 - **Make a new recovery code** shows a new code once, and the one you had stops working. Your keys and devices stay as they are. It asks for Touch ID or this browser's passkey; a browser without a passkey of your vault asks for the code you have now. Lost it? Make the new one in tTerm for Mac.

@@ -4,6 +4,7 @@ description: Cómo conectar un servidor con un solo comando, qué hace el instal
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Un servidor se conecta por SSH normal con un solo comando. No guardamos claves: para cada conexión firmamos un certificado propio, que dura dos minutos y es válido solo para este servidor.
 
@@ -12,6 +13,8 @@ Un servidor se conecta por SSH normal con un solo comando. No guardamos claves: 
 <Steps>
 
 1. En tTerm Web, abre **Añadir una máquina** y elige **Servidor**.
+
+   <Screenshot name="add-server" alt="La ventana «Añadir una máquina» con «Servidor» seleccionado: el comando de un solo uso para ejecutar en el servidor, el botón «Copiar» y tTerm Web esperando al servidor." />
 
 2. Copia el comando y ejecútalo en el servidor, como root o como cualquier usuario con sudo:
 

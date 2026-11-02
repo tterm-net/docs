@@ -4,6 +4,7 @@ description: Anmeldung mit einem Code per E-Mail, der Schnellcode auf einem Ger�
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Bei tTerm Web meldest du dich mit einem Code per E-Mail an. Auf einem Gerät, dem du vertraust, bringt dich ein vierstelliger Schnellcode zurück.
 
@@ -40,6 +41,8 @@ Um zu einem anderen Konto zu wechseln, melde dich ab und mit der anderen E-Mail-
 ## Deine Geräte
 
 **Einstellungen** → **Geräte** listet die Browser auf, in denen du dich mit einem Schnellcode anmeldest, und jedes tTerm für Mac, das über den Browser angemeldet ist, jeweils so benannt, wie tTerm sie sieht: Chrome on macOS, tTerm for Mac on MacBook-Pro. Bei jedem steht, wann es gemerkt oder angemeldet wurde und wann es zuletzt genutzt wurde; **Dieses Gerät** markiert das, an dem du gerade bist.
+
+<Screenshot name="devices" alt="„Einstellungen“ → „Geräte“: Chrome on macOS, markiert als „Dieses Gerät“, Firefox on Windows und Safari on iPhone, jedes mit der Angabe, wann es gemerkt wurde und sich zuletzt angemeldet hat, und dem Button „Vergessen“; darunter „Alle Geräte vergessen“." />
 
 - Vergisst du mit **Vergessen** einen Browser, braucht es dort wieder einen Code per E-Mail. Vergisst du tTerm für Mac, wird es abgemeldet: Es arbeitet dann nur noch mit diesem Mac, wie vor der Anmeldung. Vergisst du das Gerät, an dem du gerade bist, wirst du hier abgemeldet.
 - **Alle Geräte vergessen …**, dann **Alle Geräte vergessen**: Alle Geräte werden vergessen und alle Sitzungen beendet, auch diese. Jeder Browser fragt danach nach einem Code per E-Mail. Deine Terminals laufen weiter.

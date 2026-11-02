@@ -4,6 +4,7 @@ description: Vos propres clés SSH, chiffrées sur vos appareils avant d’arriv
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Le coffre conserve vos propres clés SSH, pour les serveurs que vous joignez avec elles. Une clé est chiffrée sur votre appareil avant de le quitter, et seuls vos appareils ouvrent le coffre, comme vous les déverrouillez. tTerm conserve les clés chiffrées, avec la partie publique et l’empreinte de chaque clé : il ne peut ni ouvrir le coffre ni lire une clé. Le coffre se trouve dans **Paramètres** → **Clés**.
 
@@ -51,6 +52,8 @@ Un coffre créé dans un navigateur s’ouvre une première fois dans tTerm pour
 ## Paramètres → Clés
 
 En haut, la page indique si le coffre est ouvert ici, comment il a été ouvert et quand il se verrouillera de nouveau. Chaque clé a sa ligne : son nom, son type et son empreinte courte ; les serveurs qu’elle **Ouvre**, ou **Aucun serveur ne s’ouvre encore avec elle** ; quand elle a été enregistrée depuis un Mac ou ajoutée depuis un fichier ; et quand elle a servi pour la dernière fois, ou **pas encore utilisée**.
+
+<Screenshot name="keys" alt="« Paramètres » → « Clés » : le coffre « Ouvert dans ce navigateur » avec Touch ID, et le bouton « Verrouiller » ; deux clés avec leur type, leur empreinte abrégée et leur provenance ; « Ajouter une clé depuis un fichier », « Générer un nouveau code de récupération » et où s’ouvre le coffre." />
 
 - **Retirer** sort la clé de votre coffre, après confirmation, et tTerm supprime sa copie chiffrée. Les serveurs qui s’ouvrent avec elle restent dans tTerm mais ne s’ouvrent plus. La clé elle-même reste là d’où elle vient : sur votre Mac, ou dans son fichier.
 - **Générer un nouveau code de récupération** affiche un nouveau code une seule fois, et l’ancien cesse de fonctionner. Vos clés et vos appareils restent tels quels. Il faut confirmer avec Touch ID ou la clé d’accès de ce navigateur ; un navigateur sans clé d’accès pour votre coffre demande votre code actuel. Vous l’avez perdu ? Générez le nouveau dans tTerm pour Mac.

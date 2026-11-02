@@ -4,6 +4,7 @@ description: Jak podłączyć serwer jednym poleceniem, co robi instalator i jak
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Serwer podłącza się przez zwykłe SSH jednym poleceniem. Nie przechowujemy kluczy: dla każdego połączenia podpisujemy osobny certyfikat, który jest ważny przez dwie minuty i tylko dla tego serwera.
 
@@ -12,6 +13,8 @@ Serwer podłącza się przez zwykłe SSH jednym poleceniem. Nie przechowujemy kl
 <Steps>
 
 1. W tTerm Web otwórz **Dodaj maszynę** i wybierz **Serwer**.
+
+   <Screenshot name="add-server" alt="Okno „Dodaj maszynę”, wybrano „Serwer”: jednorazowe polecenie do uruchomienia na serwerze, z przyciskiem „Kopiuj”, a tTerm Web czeka na serwer." />
 
 2. Skopiuj polecenie i uruchom je na serwerze jako root lub jako dowolny użytkownik z sudo:
 

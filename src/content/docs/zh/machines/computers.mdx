@@ -4,6 +4,7 @@ description: 电脑上的代理：一条命令安装，从内部发起连接，�
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 电脑只需要一个小型代理。它会自己连接云端，并只保持这一条连接，因此不需要任何入站端口：电脑位于 NAT 之后也能用。
 
@@ -20,6 +21,8 @@ curl -fsSL https://connect.tterm.net/c/<token> | sh
 ```
 
 命令完成几秒钟后，电脑就会出现在项目中。命令只能使用一次，在接下来的 10 分钟内有效。
+
+<Screenshot name="add-computer" alt="“添加机器”窗口，已选择“电脑”：要在电脑上以你自己的身份运行的命令，带有“复制”按钮，tTerm Web 正在等待代理。" />
 
 ## 这条命令会做什么
 

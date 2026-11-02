@@ -4,6 +4,7 @@ description: Entrar com um código do e-mail, o código rápido num dispositivo 
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Você entra no tTerm Web com um código do e-mail. Num dispositivo de confiança, um código rápido de quatro dígitos traz você de volta.
 
@@ -40,6 +41,8 @@ Para trocar de conta, saia e entre com o outro e-mail. **Trocar de conta**, na t
 ## Seus dispositivos
 
 **Configurações** → **Dispositivos** lista os navegadores em que você entra com um código rápido e cada tTerm para Mac com login feito pelo navegador, com os nomes que o tTerm dá a eles: Chrome on macOS, tTerm for Mac on MacBook-Pro. Cada um mostra quando foi marcado como confiável ou quando fez login, e quando foi usado pela última vez; **Este dispositivo** marca aquele em que você está.
+
+<Screenshot name="devices" alt="“Configurações” → “Dispositivos”: Chrome on macOS, marcado como “Este dispositivo”, Firefox on Windows e Safari on iPhone. Cada um mostra quando foi marcado como confiável e o último login, com o botão “Esquecer”; abaixo deles, “Esquecer todos os dispositivos”." />
 
 - Clique em **Esquecer** ao lado de um navegador, e lá o login volta a ser por um código do e-mail. Esqueça um tTerm para Mac, e ele sai da conta: passa a funcionar só com aquele Mac, como antes do login. Esqueça o dispositivo em que você está, e você sai da conta aqui.
 - **Esquecer todos os dispositivos…** e depois **Esquecer todos os dispositivos**: todos os dispositivos são esquecidos e todas as sessões são encerradas, inclusive esta. Depois, cada navegador pede um código do e-mail. Seus terminais continuam rodando.

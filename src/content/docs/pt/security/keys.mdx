@@ -4,6 +4,7 @@ description: Suas próprias chaves SSH, criptografadas nos seus dispositivos ant
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 O cofre guarda as suas próprias chaves SSH, para os servidores que você acessa com elas. Uma chave é criptografada no seu dispositivo antes de sair dele, e só os seus dispositivos abrem o cofre, do jeito que você os desbloqueia. O tTerm guarda as chaves criptografadas, com a metade pública e a impressão digital de cada uma: ele não consegue abrir o cofre nem ler uma chave. O cofre fica em **Configurações** → **Chaves**.
 
@@ -51,6 +52,8 @@ Um cofre criado num navegador abre no tTerm para Mac uma vez com o código de re
 ## Configurações → Chaves
 
 No alto, a página diz se o cofre está aberto aqui, como ele foi aberto e quando vai ser bloqueado de novo. Cada chave tem uma linha: o nome, o tipo e a impressão digital curta; os servidores que ela **Abre**, ou **Nenhum servidor abre com ela ainda**; quando ela foi salva a partir de um Mac ou adicionada a partir de um arquivo; e quando foi usada pela última vez, ou **ainda não usada**.
+
+<Screenshot name="keys" alt="“Configurações” → “Chaves”: o cofre “Aberto neste navegador” com o Touch ID e o botão “Bloquear”; duas chaves com o tipo, a impressão digital abreviada e de onde vieram; “Adicionar uma chave de um arquivo”, “Gerar um novo código de recuperação” e onde o cofre abre." />
 
 - **Remover** tira a chave do seu cofre, depois de uma pergunta, e o tTerm exclui a cópia criptografada dela. Os servidores que abrem com ela continuam no tTerm, mas não abrem mais. A própria chave continua onde estava: no seu Mac ou no arquivo dela.
 - **Gerar um novo código de recuperação** mostra um código novo uma vez, e o que você tinha para de funcionar. Suas chaves e seus dispositivos continuam como estão. Ele pede o Touch ID ou a chave de acesso deste navegador; um navegador sem chave de acesso do seu cofre pede o código que você tem agora. Perdeu o código? Gere o novo no tTerm para Mac.

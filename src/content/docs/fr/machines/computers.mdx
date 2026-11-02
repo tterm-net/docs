@@ -4,6 +4,7 @@ description: L’agent pour un ordinateur – installé avec une seule commande,
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Un ordinateur n’a besoin que d’un petit agent. Il se connecte au cloud lui-même et garde cette seule connexion, aucun port entrant n’est donc nécessaire : l’ordinateur fonctionne aussi derrière un NAT.
 
@@ -20,6 +21,8 @@ curl -fsSL https://connect.tterm.net/c/<token> | sh
 ```
 
 L’ordinateur apparaît dans le projet quelques secondes après la fin de la commande. La commande fonctionne une seule fois, dans les 10 minutes.
+
+<Screenshot name="add-computer" alt="La fenêtre « Ajouter une machine » où « Ordinateur » est sélectionné : la commande à lancer sur l’ordinateur sous votre propre compte, avec le bouton « Copier », et tTerm Web en attente de l’agent." />
 
 ## Ce que fait la commande
 

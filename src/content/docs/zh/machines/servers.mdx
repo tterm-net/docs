@@ -4,6 +4,7 @@ description: 如何用一条命令连接服务器，安装程序会做什么，�
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 服务器通过普通的 SSH 连接，只需一条命令。我们不保存任何密钥：每次连接，我们都会单独签发一张证书，它只有两分钟有效期，并且只对这台服务器有效。
 
@@ -12,6 +13,8 @@ import { Steps } from '@astrojs/starlight/components';
 <Steps>
 
 1. 在 tTerm Web 中打开**添加机器**，选择**服务器**。
+
+   <Screenshot name="add-server" alt="“添加机器”窗口，已选择“服务器”：要在服务器上运行的一次性命令，带有“复制”按钮，tTerm Web 正在等待服务器。" />
 
 2. 复制命令，在服务器上以 root 或任何有 sudo 权限的用户身份运行：
 

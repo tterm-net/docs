@@ -4,6 +4,7 @@ description: Agent dla komputera – instalacja jednym poleceniem, połączenie 
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Komputer potrzebuje tylko niewielkiego agenta. Agent sam łączy się z chmurą i utrzymuje to jedno połączenie, więc porty przychodzące nie są potrzebne: komputer działa także za NAT-em.
 
@@ -20,6 +21,8 @@ curl -fsSL https://connect.tterm.net/c/<token> | sh
 ```
 
 Komputer pojawi się w projekcie kilka sekund po zakończeniu polecenia. Polecenie działa jednorazowo przez najbliższe 10 minut.
+
+<Screenshot name="add-computer" alt="Okno „Dodaj maszynę”, wybrano „Komputer”: polecenie do uruchomienia na komputerze na własnym koncie, z przyciskiem „Kopiuj”, a tTerm Web czeka na agenta." />
 
 ## Co robi polecenie
 

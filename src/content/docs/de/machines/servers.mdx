@@ -4,6 +4,7 @@ description: Wie du einen Server mit einem Befehl verbindest, was der Installer 
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Ein Server verbindet sich mit einem Befehl über ganz normales SSH. Schlüssel bewahren wir nicht auf: Für jede Verbindung signieren wir ein eigenes Zertifikat, das zwei Minuten lebt und nur für diesen einen Server gilt.
 
@@ -12,6 +13,8 @@ Ein Server verbindet sich mit einem Befehl über ganz normales SSH. Schlüssel b
 <Steps>
 
 1. Öffne in tTerm Web **Maschine hinzufügen** und wähl **Server**.
+
+   <Screenshot name="add-server" alt="Das Fenster „Maschine hinzufügen“, „Server“ ist ausgewählt: der einmalige Befehl für den Server mit dem Button „Kopieren“, und tTerm Web wartet auf den Server." />
 
 2. Kopier den Befehl und führ ihn auf dem Server aus, als root oder als beliebiger Benutzer mit sudo:
 

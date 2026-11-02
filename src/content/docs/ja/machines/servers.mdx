@@ -4,6 +4,7 @@ description: コマンド 1 つでサーバーを接続する方法、インス�
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 サーバーは、普通の SSH にコマンド 1 つで接続します。鍵は保管しません。接続のたびに専用の証明書を発行し、有効期間は 2 分、使えるのはこのサーバー 1 台だけです。
 
@@ -12,6 +13,8 @@ import { Steps } from '@astrojs/starlight/components';
 <Steps>
 
 1. tTerm Web で **マシンを追加** を開き、**サーバー** を選びます。
+
+   <Screenshot name="add-server" alt="「マシンを追加」ウィンドウで「サーバー」を選んだ状態：サーバーで実行する 1 回限りのコマンドと「コピー」ボタンがあり、tTerm Web がサーバーを待っています。" />
 
 2. コマンドをコピーし、root または sudo が使えるユーザーとしてサーバー上で実行します。
 

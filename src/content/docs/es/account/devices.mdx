@@ -4,6 +4,7 @@ description: Iniciar sesión con un código por correo, el código rápido en un
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Inicias sesión en tTerm Web con un código que te llega por correo. En un dispositivo de confianza, un código rápido de cuatro dígitos te permite volver a entrar.
 
@@ -40,6 +41,8 @@ Para cambiar a otra cuenta, cierra sesión e inicia sesión con el otro correo. 
 ## Tus dispositivos
 
 **Configuración** → **Dispositivos** muestra los navegadores en los que inicias sesión con un código rápido, y cada tTerm para Mac que inició sesión con el navegador, con el nombre con el que los ve tTerm: Chrome on macOS, tTerm for Mac on MacBook-Pro. Cada uno indica desde cuándo es de confianza o cuándo inició sesión, y cuándo se usó por última vez; **Este dispositivo** marca el que estás usando.
+
+<Screenshot name="devices" alt="«Configuración» → «Dispositivos»: Chrome on macOS, marcado como «Este dispositivo», Firefox on Windows y Safari on iPhone; cada uno indica desde cuándo es de confianza y cuándo inició sesión por última vez, y tiene el botón «Olvidar». Debajo, «Olvidar todos los dispositivos»." />
 
 - **Olvidar** un navegador hace que ahí vuelva a hacer falta un código por correo. Olvidar tTerm para Mac cierra su sesión: funciona solo con esa Mac, como antes de iniciar sesión. Olvidar el dispositivo que estás usando cierra tu sesión aquí.
 - **Olvidar todos los dispositivos…** y luego **Olvidar todos los dispositivos**: se olvidan todos los dispositivos y se cierran todas las sesiones, también esta. Después, cada navegador pide un código por correo. Tus terminales siguen en marcha.

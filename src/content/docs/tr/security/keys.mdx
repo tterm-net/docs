@@ -4,6 +4,7 @@ description: tTerm'e ulaşmadan önce cihazlarında şifrelenen kendi SSH anahta
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Kasa, onlarla bağlandığın sunucular için kendi SSH anahtarlarını saklar. Anahtar, cihazından çıkmadan önce orada şifrelenir; kasayı yalnızca senin cihazların, kilitlerini açtığın yöntemle açabilir. tTerm şifreli anahtarları, her anahtarın genel kısmı ve parmak iziyle birlikte saklar: kasayı açamaz, bir anahtarı okuyamaz. Kasa **Ayarlar** → **Anahtarlar** bölümündedir.
 
@@ -51,6 +52,8 @@ Tarayıcıda oluşturulan bir kasa, Mac için tTerm'de bir kez kurtarma koduyla 
 ## Ayarlar → Anahtarlar
 
 Sayfanın üstünde kasanın burada açık olup olmadığı, nasıl açıldığı ve ne zaman yeniden kilitleneceği yazar. Her anahtarın bir satırı vardır: adı, türü ve kısa parmak izi; **Açtığı sunucular** ya da **Henüz onunla açılan bir sunucu yok**; bir Mac'ten ne zaman kaydedildiği ya da bir dosyadan ne zaman eklendiği; en son ne zaman kullanıldığı ya da **henüz kullanılmadı**.
+
+<Screenshot name="keys" alt="“Ayarlar” → “Anahtarlar”: kasa “Bu tarayıcıda açık”, Touch ID ile açılmış, yanında “Kilitle”; iki anahtar, her birinin türü, kısa parmak izi ve nereden geldiği; “Dosyadan anahtar ekle”, “Yeni kurtarma kodu oluştur” ve kasanın nerede açıldığı." />
 
 - **Kaldır**, bir onay sorusundan sonra anahtarı kasandan çıkarır ve tTerm şifreli kopyasını siler. Onunla açılan sunucular tTerm'de kalır ama artık açılmaz. Anahtarın kendisi geldiği yerde kalır: Mac'inde ya da kendi dosyasında.
 - **Yeni kurtarma kodu oluştur** yeni bir kodu bir kez gösterir ve elindeki kod artık çalışmaz. Anahtarların ve cihazların olduğu gibi kalır. Touch ID ya da bu tarayıcının geçiş anahtarını ister; kasana ait geçiş anahtarı olmayan bir tarayıcı ise şu anki kodunu sorar. Onu kaybettin mi? Yenisini Mac için tTerm'de oluştur.

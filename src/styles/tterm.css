@@ -769,6 +769,28 @@ site-search mark {
 	color: var(--tt-amber);
 }
 
+/* Screenshots of tTerm (Screenshot.astro): the window's own edge, as the
+   cards have it, and the picture is a link to itself at full size. */
+.sl-markdown-content .tt-shot {
+	margin: 1.5rem 0;
+}
+.tt-shot a {
+	display: block;
+}
+/* One picture for each theme: the other is hidden (Starlight's own rule sits
+   in a layer, under the line above). */
+:root[data-theme='light'] .tt-shot .light\:sl-hidden,
+:root[data-theme='dark'] .tt-shot .dark\:sl-hidden {
+	display: none;
+}
+.tt-shot img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	border: 1px solid var(--tt-line);
+	border-radius: 12px;
+}
+
 /* Link buttons (LinkButton, the hero's actions). */
 .sl-link-button.primary {
 	border-color: var(--tt-amber);

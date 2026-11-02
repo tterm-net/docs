@@ -4,6 +4,7 @@ description: Come collegare un server con un solo comando, cosa fa l'installer e
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Un server si collega via SSH standard con un solo comando. Non conserviamo chiavi: per ogni connessione firmiamo un certificato dedicato, che dura due minuti e vale solo per questo server.
 
@@ -12,6 +13,8 @@ Un server si collega via SSH standard con un solo comando. Non conserviamo chiav
 <Steps>
 
 1. In tTerm Web apri **Aggiungi una macchina** e scegli **Server**.
+
+   <Screenshot name="add-server" alt="La finestra «Aggiungi una macchina» con «Server» selezionato: il comando monouso da eseguire sul server, con il pulsante «Copia», e tTerm Web in attesa del server." />
 
 2. Copia il comando ed eseguilo sul server, come root o come un qualsiasi utente con sudo:
 
