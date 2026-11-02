@@ -1,0 +1,57 @@
+---
+/**
+ * The language: the site's button, a globe and the short name of the
+ * language, opening a list of all twelve. Each item leads to this same page
+ * in that language; a page not translated there yet shows its English text
+ * with a notice. `up` opens the list upwards (the footer), `row` makes it a
+ * row of the phone menu, opening in place.
+ */
+import shell from '../shell.json';
+
+interface Props {
+	up?: boolean;
+	row?: boolean;
+}
+const { up = false, row = false } = Astro.props;
+
+const route = Astro.locals.starlightRoute;
+const current = route.locale ?? 'root';
+const here = shell[current] ?? shell.root;
+
+// The page's path without its language's folder: /ru/start/ -> /start/.
+let rest = Astro.url.pathname;
+if (route.locale) rest = rest.replace(new RegExp(`^/${route.locale}(?=/|$)`), '') || '/';
+
+const items = Object.entries(shell).map(([key, l]) => ({
+	key,
+	href: (l.folder ? `/${l.folder}` : '') + rest,
+	lang: l.lang,
+	own: l.own,
+	current: key === current,
+}));
+---
+
+<details class:list={['lang', { 'lang-up': up, 'lang-row': row }]}>
+	<summary aria-label={here.words.lang_label}>
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"></path></svg>
+		<span>{row ? here.own : here.short}</span>
+		{row && <svg class="res-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>}
+	</summary>
+	<div class="lang-menu">
+		{
+			items.map((item) => (
+				<a
+					href={item.href}
+					hreflang={item.lang}
+					lang={item.lang}
+					aria-current={item.current ? 'true' : undefined}
+				>
+					{item.own}
+					{item.current && (
+						<svg class="lang-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+					)}
+				</a>
+			))
+		}
+	</div>
+</details>

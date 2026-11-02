@@ -1,0 +1,30 @@
+---
+/**
+ * At the bottom of the menu on a phone: what the header has no room for.
+ * The language and the theme as rows opening in place, as in the site's
+ * menu, then Resources and the two buttons.
+ */
+import shell from '../shell.json';
+import LangMenu from './LangMenu.astro';
+import ThemeMenu from './ThemeMenu.astro';
+
+const route = Astro.locals.starlightRoute;
+const here = shell[route.locale ?? 'root'] ?? shell.root;
+const w = here.words;
+const base = here.folder ? `/${here.folder}` : '';
+const site = `https://tterm.net${base}`;
+---
+
+<div class="tt-mfoot">
+	<LangMenu row />
+	<ThemeMenu row />
+	<p class="menu-label">{w.resources}</p>
+	<a class="tt-mlink" href={`${site}/blog/`}>{w.blog}</a>
+	<a class="tt-mlink" href={`${site}/#faq`}>{w.faq}</a>
+	<a class="tt-mlink" href="https://t.me/tTermBlog" target="_blank" rel="noopener">{w.channel}</a>
+	<a class="tt-mlink" href="https://github.com/tterm-net" target="_blank" rel="noopener">{w.source}</a>
+	<div class="tt-mbtns">
+		<a class="btn btn-ghost" href="https://app.tterm.net">{w.signin}</a>
+		<a class="btn btn-primary" href="https://app.tterm.net">{w.start}</a>
+	</div>
+</div>

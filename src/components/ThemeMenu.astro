@@ -1,0 +1,78 @@
+---
+/**
+ * The theme: Dark, Light or Auto, which follows the computer, like
+ * Settings → Appearance in tTerm Web. A button like the language's, opening
+ * a short list. The choice is kept where Starlight keeps it
+ * (localStorage "starlight-theme"), so its early script paints the page in
+ * the right theme before anything shows. `row` makes it a row of the phone
+ * menu.
+ */
+interface Props {
+	row?: boolean;
+}
+const { row = false } = Astro.props;
+const t = Astro.locals.t;
+const choices = [
+	{ value: 'dark', label: t('themeSelect.dark') },
+	{ value: 'light', label: t('themeSelect.light') },
+	{ value: 'auto', label: t('themeSelect.auto') },
+];
+---
+
+<details class:list={['theme', 'lang', { 'lang-row': row }]} data-choice="auto">
+	<summary aria-label={t('themeSelect.accessibleLabel')}>
+		<svg class="th-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg>
+		<svg class="th-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"></path></svg>
+		<svg class="th-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16.5V20"></path></svg>
+		{row && <span>{t('themeSelect.accessibleLabel')}</span>}
+		{row && <svg class="res-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>}
+	</summary>
+	<div class="lang-menu">
+		{
+			choices.map((c) => (
+				<button type="button" data-value={c.value} aria-pressed={c.value === 'auto' ? 'true' : 'false'}>
+					{c.label}
+					<svg class="lang-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+				</button>
+			))
+		}
+	</div>
+</details>
+
+<script>
+	type Theme = 'auto' | 'dark' | 'light';
+	const key = 'starlight-theme';
+	const read = (): Theme => {
+		try {
+			const v = localStorage.getItem(key);
+			return v === 'dark' || v === 'light' ? v : 'auto';
+		} catch {
+			return 'auto';
+		}
+	};
+	const system = () => (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+	const show = (choice: Theme) => {
+		document.documentElement.dataset.theme = choice === 'auto' ? system() : choice;
+		document.querySelectorAll<HTMLElement>('details.theme').forEach((d) => {
+			d.dataset.choice = choice;
+			d.querySelectorAll<HTMLButtonElement>('button[data-value]').forEach((b) =>
+				b.setAttribute('aria-pressed', String(b.dataset.value === choice)),
+			);
+		});
+	};
+	show(read());
+	document.querySelectorAll<HTMLButtonElement>('details.theme button[data-value]').forEach((b) =>
+		b.addEventListener('click', () => {
+			const choice = (b.dataset.value as Theme) || 'auto';
+			try {
+				localStorage.setItem(key, choice === 'auto' ? '' : choice);
+			} catch {}
+			show(choice);
+			const d = b.closest('details');
+			if (d) d.open = false;
+		}),
+	);
+	matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
+		if (read() === 'auto') show('auto');
+	});
+</script>

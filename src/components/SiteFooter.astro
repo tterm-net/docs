@@ -1,0 +1,60 @@
+---
+/**
+ * The site's footer: the name and one line on what tTerm is, three columns
+ * of links (Product, Resources, Legal), the year, the version and the
+ * language, as on tterm.net. Resources also lead to the docs themselves.
+ */
+import shell from '../shell.json';
+import pkg from '../../package.json';
+import LangMenu from './LangMenu.astro';
+import Logo from './Logo.astro';
+
+const route = Astro.locals.starlightRoute;
+const here = shell[route.locale ?? 'root'] ?? shell.root;
+const w = here.words;
+const base = here.folder ? `/${here.folder}` : '';
+const site = `https://tterm.net${base}`;
+---
+
+<footer class="tt-foot print:hidden">
+	<div class="tt-foot-in">
+		<div class="foot-top">
+			<div class="foot-brand">
+				<a class="brand" href={`${site}/`} aria-label={w.home_label}>
+					<Logo size={28} />
+					<span class="brand-name">tTerm</span>
+					<span class="beta">{w.beta}</span>
+				</a>
+				<p class="foot-tag">{w.tagline}</p>
+			</div>
+			<nav class="foot-cols" aria-label={w.links}>
+				<div class="foot-col">
+					<p class="foot-h">{w.product}</p>
+					<a href="https://app.tterm.net">tTerm Web</a>
+					<a href={`${site}/download/`}>{w.mac}</a>
+					<a href="https://t.me/tTermNetBot" target="_blank" rel="noopener">{w.bot}</a>
+					<a href={`${site}/#pricing`}>{w.pricing}</a>
+					<a href={`${site}/#security`}>{w.security}</a>
+				</div>
+				<div class="foot-col">
+					<p class="foot-h">{w.resources}</p>
+					<a href={`${base}/`} aria-current="true">{w.docs}</a>
+					<a href={`${site}/blog/`}>{w.blog}</a>
+					<a href={`${site}/#faq`}>{w.faq}</a>
+					<a href="https://t.me/tTermBlog" target="_blank" rel="noopener">{w.channel}</a>
+					<a href="https://github.com/tterm-net" target="_blank" rel="noopener">{w.source}</a>
+				</div>
+				<div class="foot-col">
+					<p class="foot-h">{w.legal}</p>
+					<a href="https://tterm.net/terms/">{w.terms}</a>
+					<a href="https://tterm.net/privacy/">{w.privacy}</a>
+					<a href={`${site}/blog/open-source/`}>{w.license}</a>
+				</div>
+			</nav>
+		</div>
+		<div class="foot-bottom">
+			<p class="foot-note">2026 · tTerm · v{pkg.version}</p>
+			<LangMenu up />
+		</div>
+	</div>
+</footer>

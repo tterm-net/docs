@@ -1,0 +1,28 @@
+---
+title: tTerm Docs
+description: How to connect your servers and computers, work in the terminals and keep access under control.
+template: splash
+hero:
+  title: tTerm Docs
+  tagline: How to connect your servers and computers, work in the terminals and keep access under control.
+  actions:
+    - text: Quick start
+      link: start/quick-start/
+      icon: right-arrow
+    - text: Open tTerm Web
+      link: https://app.tterm.net
+      icon: external
+      variant: minimal
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import PlannedCard from '../../components/PlannedCard.astro';
+
+<CardGrid>
+	<LinkCard title="Start here" description="What tTerm is, and your first command in five minutes." href="start/what-is-tterm/" />
+	<LinkCard title="Machines" description="A server over SSH with one command, a computer through a small agent." href="machines/servers/" />
+	<PlannedCard title="Features" description="Blocks, the command line, search with ⌘K, notes and projects." note="Being written" />
+	<LinkCard title="Local terminal" description="The Mac version: installing it and the first launch. Windows and Linux are in the works." href="local/mac/" />
+	<LinkCard title="Security" description="Two-minute certificates, signing apart, connections only from inside." href="security/access/" />
+	<PlannedCard title="Account" description="Your plan and its limits, devices and signing in." note="Being written" />
+</CardGrid>

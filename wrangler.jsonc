@@ -1,0 +1,18 @@
+{
+  // Cloudflare builds the docs on every push to main (npm run build, then
+  // npx wrangler deploy) and serves dist/ as static assets: the same kind of
+  // Worker as tterm.net. The address, docs.tterm.net, is the Worker's custom
+  // domain, set in Cloudflare's dashboard, as the site's is.
+  "name": "tterm-docs",
+  "compatibility_date": "2026-10-15",
+  // No workers.dev address: it carries a personal account name, and two
+  // addresses for one site read as duplicates to search engines.
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./dist",
+    // /ru/local/mac and /ru/local/mac/ are one page.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

@@ -1,0 +1,20 @@
+---
+/**
+ * Starlight's frame of the page, then the site's footer across the whole
+ * window, the same on every page.
+ *
+ * Starlight pins the sidebar and the contents to the edges of the window.
+ * The footer comes after the whole frame and, on wide screens, stands above
+ * those two (tterm.css, .tt-foot), so at the end of a page it spans the
+ * width as on tterm.net and on the start of the docs.
+ */
+import Default from '@astrojs/starlight/components/PageFrame.astro';
+import SiteFooter from './SiteFooter.astro';
+---
+
+<Default>
+	<slot name="header" slot="header" />
+	<slot name="sidebar" slot="sidebar" />
+	<slot />
+</Default>
+<SiteFooter />

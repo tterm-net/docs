@@ -1,0 +1,21 @@
+{
+	"skipLink.label": "Перейти к тексту",
+	"themeSelect.accessibleLabel": "Тема",
+	"languageSelect.accessibleLabel": "Язык",
+	"i18n.untranslatedContent": "Эта страница пока не переведена на русский: вот она по-английски.",
+	"page.editLink": "Править на GitHub",
+	"404.text": "Такой страницы нет. Проверь адрес или поищи.",
+	"search.devWarning": "Поиск работает только в собранном сайте.\nСобери его и открой превью, чтобы попробовать.",
+	"expressiveCode.copyButtonTooltip": "Скопировать",
+	"heading.anchorLabel": "Раздел «{{title}}»",
+	"pagefind.clear_search": "Очистить",
+	"pagefind.load_more": "Показать ещё",
+	"pagefind.search_label": "Поиск по документации",
+	"pagefind.filters_label": "Фильтры",
+	"pagefind.zero_results": "По запросу «[SEARCH_TERM]» ничего нет",
+	"pagefind.many_results": "По запросу «[SEARCH_TERM]» нашлось: [COUNT]",
+	"pagefind.one_result": "По запросу «[SEARCH_TERM]» нашлось: [COUNT]",
+	"pagefind.alt_search": "По запросу «[SEARCH_TERM]» ничего нет. Вот что нашлось по запросу «[DIFFERENT_TERM]»",
+	"pagefind.search_suggestion": "По запросу «[SEARCH_TERM]» ничего нет. Попробуй так:",
+	"pagefind.searching": "Ищем «[SEARCH_TERM]»…"
+}

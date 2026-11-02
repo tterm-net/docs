@@ -1,0 +1,30 @@
+---
+title: Quick start
+description: Sign in to tTerm Web, add your first machine and run your first command in five minutes.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Five minutes: signing in, your first machine and your first command. You need a browser and a Linux server, or a computer where you can run a command in a terminal.
+
+<Steps>
+
+1. **Sign in.** Open [app.tterm.net](https://app.tterm.net) and enter your email: a code comes by mail. The first time, we ask your name and a quick four-digit code for this browser.
+
+2. **Add a machine.** In the sidebar, press **+** next to **Machines** and choose **Server** or **Computer**. A command appears:
+
+   ```sh title="On the server, as root or a user with sudo"
+   curl -sSL https://connect.tterm.net/s/<token> | sudo sh
+   ```
+
+   It works once, for the next 10 minutes. The server appears in the project as soon as the script finishes, usually within a minute.
+
+3. **Open a terminal.** Press **+** next to the machine in the sidebar. The terminal opens in a tab: your shell, your programs, sudo.
+
+4. **Type a command.** `uptime`, say. It comes back as a block: the output, the exit code, the time, the folder and the branch. You can close the tab: the terminal keeps running.
+
+</Steps>
+
+:::note[A computer instead of a server]
+A computer has a command of its own, and you run it without sudo: see [Computer](../../machines/computers/).
+:::

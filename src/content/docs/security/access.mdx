@@ -1,0 +1,38 @@
+---
+title: How access works
+description: Two-minute certificates, CA keys in a separate process, connections only from inside. How the cloud signs in to your machines, and how to take its access back.
+---
+
+Access to your machines is easy to give and just as easy to take back. We do not need your keys, and we open no ports.
+
+## A certificate for two minutes
+
+For each connection we sign an SSH certificate of its own with your name inside, good for this server alone. That is why the server's log shows every sign-in with the name of whoever signed in:
+
+```text title="/var/log/auth.log"
+Accepted publickey for tterm from 203.0.113.24 port 41522 ssh2: ED25519-CERT SHA256:… ID Anna via tTerm Web (…) to web-01 (serial 1042) CA ED25519 SHA256:…
+```
+
+## Signing apart
+
+The CA keys live in a separate process with no network. The core cannot read them, only ask for a signature, and every signature is written to a log.
+
+## sshd_config untouched
+
+The trust is one line in the `authorized_keys` of one user, `tterm`. Nothing is restarted, so you cannot lock yourself out.
+
+## Connections only from inside
+
+The agent on a computer dials out on its own, no incoming ports needed. One command removes it.
+
+## No one in between
+
+tTerm Web's page and the terminals go straight to our server in the EU. Cloudflare is only our DNS and never sees your commands.
+
+## Open source
+
+The code of the cloud and of the agent is open under AGPL v3: [github.com/tterm-net](https://github.com/tterm-net). The install script is short: read it before you run it.
+
+## Taking access back
+
+Remove a server on the project's page, and the cloud takes its access back on the server itself. If the server does not answer, a command that does it there appears. One command takes the agent off a computer, `~/.tterm-web/uninstall.sh`.

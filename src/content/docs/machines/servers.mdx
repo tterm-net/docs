@@ -1,0 +1,51 @@
+---
+title: Linux server
+description: How to connect a server with one command, what the installer does and how to take the access back.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+A server connects over plain SSH with one command. We keep no keys: for each connection we sign a certificate of its own, which lives two minutes and is good for this server alone.
+
+## Connect it
+
+<Steps>
+
+1. In tTerm Web, open **Add a machine** and choose **Server**.
+
+2. Copy the command and run it on the server, as root or as any user with sudo:
+
+   ```sh title="On the server"
+   curl -sSL https://connect.tterm.net/s/<token> | sudo sh
+   ```
+
+3. The server appears in the project as soon as the script finishes, usually within a minute. The cloud signs in to it on its own, checks it and reads what the machine is: its system, address and shell.
+
+</Steps>
+
+:::caution[The command works once]
+It works once, for the next 10 minutes. Too late? Press **Get a new command**.
+:::
+
+## What the script does
+
+- Creates the user `tterm`, with no password. If our Telegram bot already made it, it is reused.
+- Lets the cloud sign in as `tterm` with certificates that live two minutes and are made for this server alone. No keys stay on the server.
+- Gives `tterm` sudo, so you can manage the server. One command takes it back.
+- Never touches `sshd_config` and opens no ports. Running it twice is safe.
+
+The trust is one line in the `authorized_keys` of the user `tterm`, and every server has a line of its own:
+
+```text title="~tterm/.ssh/authorized_keys"
+cert-authority,principals="m-…" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5… tterm-web ca-…
+```
+
+:::tip[A server behind NAT, or with no SSH from outside]
+The cloud signs in to the server over SSH, so its SSH port has to be reachable from outside. If it is not, put the agent on the server, as on a [computer](../computers/): the connection then goes from inside.
+:::
+
+## Remove a server
+
+On the project's page, press ⋯ next to the server and choose **Remove machine**. The cloud stops signing in to it and takes its access back on the server itself. If the server does not answer, the command for that comes next.
+
+How to remove everything else the installer put in is written at the top of the script itself.

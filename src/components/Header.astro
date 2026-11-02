@@ -1,0 +1,83 @@
+---
+/**
+ * The header of the docs: the site's header, made for reading.
+ *
+ * On the left the logo and "tTerm", which lead to tterm.net, then the word
+ * "Docs", which leads to the start of the docs. In the middle the search.
+ * On the right what the site's header has: Resources, the language, Sign in
+ * and Start for free, plus the theme, which the site does not have. The
+ * words are the site's own (src/shell.json, scripts/shell_from_site.py).
+ *
+ * Below 50rem only the logo, the search and the menu button stay; the rest
+ * moves into the menu (MobileMenuFooter.astro).
+ */
+import Search from 'virtual:starlight/components/Search';
+import shell from '../shell.json';
+import LangMenu from './LangMenu.astro';
+import ThemeMenu from './ThemeMenu.astro';
+import Logo from './Logo.astro';
+
+const route = Astro.locals.starlightRoute;
+const here = shell[route.locale ?? 'root'] ?? shell.root;
+const w = here.words;
+const base = here.folder ? `/${here.folder}` : '';
+const site = `https://tterm.net${base}`;
+---
+
+<div class="tt-head">
+	<div class="tt-title">
+		<a class="brand" href={`${site}/`} aria-label={w.home_label}>
+			<Logo size={30} />
+			<span class="brand-name">tTerm</span>
+		</a>
+		<span class="tt-slash" aria-hidden="true">/</span>
+		<a class="tt-docs" href={`${base}/`}>{w.docs}</a>
+	</div>
+	<div class="tt-search print:hidden">
+		<Search />
+	</div>
+	<div class="tt-actions print:hidden">
+		<details class="res">
+			<summary>{w.resources}<svg class="res-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary>
+			<div class="res-menu">
+				<a href={`${site}/blog/`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"></path><path d="M8 9h8M8 13h8M8 17h5"></path></svg><span><b>{w.blog}</b><small>{w.blog_note}</small></span></a>
+				<a href={`${site}/#faq`}><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.6"></path><path d="M12 17h.01"></path></svg><span><b>{w.faq}</b><small>{w.faq_note}</small></span></a>
+				<a href="https://t.me/tTermBlog" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3L10 14"></path><path d="M21 3l-7 18-4-7-7-4z"></path></svg><span><b>{w.channel}</b><small>{w.channel_note}</small></span></a>
+				<a href="https://github.com/tterm-net" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"></path></svg><span><b>{w.source}</b><small>{w.source_note}</small></span></a>
+			</div>
+		</details>
+		<LangMenu />
+		<ThemeMenu />
+		<a class="btn btn-ghost btn-sm" href="https://app.tterm.net">{w.signin}</a>
+		<a class="btn btn-primary btn-sm tt-start" href="https://app.tterm.net">{w.start}</a>
+	</div>
+</div>
+
+<script>
+	// Resources, the language and the theme are details elements: they open
+	// without a script. This only closes them on Escape, on a click elsewhere
+	// and when another one opens, as on the site.
+	const menus = () => document.querySelectorAll<HTMLDetailsElement>('details.res, details.lang, details.theme');
+	document.addEventListener('pointerdown', (event) => {
+		menus().forEach((d) => {
+			if (d.open && !d.contains(event.target as Node)) d.open = false;
+		});
+	});
+	document.addEventListener('keydown', (event) => {
+		if (event.key !== 'Escape') return;
+		menus().forEach((d) => {
+			if (d.open) {
+				d.open = false;
+				d.querySelector('summary')?.focus();
+			}
+		});
+	});
+	menus().forEach((d) =>
+		d.addEventListener('toggle', () => {
+			if (!d.open) return;
+			menus().forEach((other) => {
+				if (other !== d && other.open && !other.contains(d)) other.open = false;
+			});
+		}),
+	);
+</script>

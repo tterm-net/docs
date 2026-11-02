@@ -1,0 +1,49 @@
+---
+title: Mac version
+description: The local terminal for Mac – how to install it, open it the first time, and how it updates.
+---
+
+import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+The local terminal is an app for the Mac: the shells of this computer as blocks, and the whole cloud in the same window. Free, macOS 11 and later, Apple Silicon and Intel in one file. Versions for [Windows](../windows/) and [Linux](../linux/) are in the works.
+
+<LinkButton href="https://tterm.net/download/">Download for Mac</LinkButton>
+
+## Install it
+
+<Steps>
+
+1. Open the `tTerm.dmg` you downloaded and drag tTerm to Applications. If you open the app right from the disk image, it offers to move itself there: it can update only from Applications.
+
+2. Open the app. The first time, macOS asks you to confirm, [here is how](#the-first-launch-once). After that the terminals of this Mac work at once, with no account and no setup.
+
+3. Sign in when you like. Signing in opens your browser: confirm it there, and your servers and notes appear in the window.
+
+</Steps>
+
+## The first launch, once
+
+The app is signed with our own certificate, not an Apple Developer ID, so the first time macOS asks you to confirm.
+
+<Tabs syncKey="macos">
+	<TabItem label="macOS 15 and later">
+		Open tTerm and press **Done**. Then **System Settings** → **Privacy & Security**: at the bottom, by the line about tTerm, press **Open Anyway** (the button stays about an hour after the attempt) and confirm with your Mac's password.
+	</TabItem>
+	<TabItem label="macOS 11–14">
+		In Finder, open Applications, Control-click tTerm, choose **Open**, then **Open** again.
+	</TabItem>
+</Tabs>
+
+From then on the app opens as usual, installs new versions itself, and macOS does not ask about them.
+
+## Updates
+
+Every six hours the app checks for a new version, downloads it and installs it when that gets in nobody's way: when you quit, or when nothing runs in its terminals. In **Settings** → **Updates** you can have it ask first.
+
+:::note[The keychain password after an update]
+After an update macOS may ask once for your keychain password: enter it and press **Always Allow**. This stays so until the app is signed with an Apple Developer ID.
+:::
+
+## Remove it
+
+Quit the app from its icon in the menu bar and drag tTerm from Applications to the Trash. If you signed in, you can forget this Mac in **Settings** → **Devices**.

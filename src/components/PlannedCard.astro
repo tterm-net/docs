@@ -1,0 +1,18 @@
+---
+/**
+ * A card on the start of the docs for a part whose pages are still being
+ * written: the same place as a link card, quieter, dashed, with a short note
+ * ("Пишется", "Being written"), and no link to a page that is not there yet.
+ */
+interface Props {
+	title: string;
+	description: string;
+	note: string;
+}
+const { title, description, note } = Astro.props;
+---
+
+<div class="tt-planned-card not-content">
+	<span class="tt-planned-title">{title}<span class="tt-planned-note">{note}</span></span>
+	<span class="tt-planned-text">{description}</span>
+</div>

@@ -1,0 +1,46 @@
+---
+title: Computer on macOS or Linux
+description: The agent for a computer – installed with one command, connected from inside, updating itself, removed with one command.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+A computer needs only a small agent. It connects to the cloud on its own and keeps that one connection, so no incoming ports are needed: the computer works behind NAT too.
+
+:::tip[On a Mac, the app is easier]
+[The local terminal for Mac](../../local/mac/) keeps the connection to the cloud while it runs, and that Mac needs no agent.
+:::
+
+## Connect it
+
+In tTerm Web, open **Add a machine** and choose **Computer**. Run the command in a terminal on that computer, as yourself, not with sudo:
+
+```sh title="On the computer"
+curl -fsSL https://connect.tterm.net/c/<token> | sh
+```
+
+The computer appears in the project a few seconds after the command finishes. The command works once, for the next 10 minutes.
+
+## What the command does
+
+- Puts the agent in `~/.tterm-web`: one file for this system from our releases, checked against the checksum in the command's script before it runs.
+- Makes this computer a key of its own and keeps it there, readable by you only. The token in the command only lets it join, once.
+- Starts the agent whenever you log in. The agent runs as you, never as root, and opens no ports.
+- The agent updates itself, only to versions signed by our release build, and only while no terminal is open on the computer.
+
+<Tabs syncKey="os">
+	<TabItem label="macOS">
+		launchd starts the agent. The first time, macOS may ask whether `tterm-agent` may open your Desktop and Documents folders: allow it if you want to work with them from the terminal.
+	</TabItem>
+	<TabItem label="Linux">
+		systemd starts the agent, as your user. A server with no SSH from outside connects the same way: the agent dials out on its own.
+	</TabItem>
+</Tabs>
+
+## Remove it
+
+Remove the computer on the project's page: the agent hears that and stops. To take the agent itself off the computer, run:
+
+```sh title="On the computer"
+~/.tterm-web/uninstall.sh
+```
