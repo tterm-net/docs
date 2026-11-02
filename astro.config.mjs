@@ -1,6 +1,7 @@
 // @ts-check
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import shell from './src/shell.json' with { type: 'json' };
 
@@ -17,6 +18,20 @@ const { version } = JSON.parse(readFileSync(new URL('./package.json', import.met
 const locales = Object.fromEntries(
 	Object.entries(shell).map(([key, l]) => [key, { label: l.own, lang: l.lang }]),
 );
+
+/**
+ * Whether a page of the docs has its own text in its language. A page that has
+ * not is the English one with a notice: search engines leave it alone
+ * (src/routeData.ts), and the map of the site leaves it out.
+ */
+const translated = (page) => {
+	const [folder, ...rest] = new URL(page).pathname.split('/').filter(Boolean);
+	if (!folder || !(folder in shell) || folder === 'root') return true;
+	const path = rest.join('/') || 'index';
+	return [`${path}.mdx`, `${path}/index.mdx`].some((file) =>
+		existsSync(new URL(`./src/content/docs/${folder}/${file}`, import.meta.url)),
+	);
+};
 
 const title = Object.fromEntries(
 	Object.values(shell).map((l) => [l.lang, `tTerm ${l.words.docs}`]),
@@ -81,9 +96,6 @@ export default defineConfig({
 			// not by their readers.
 			head: [
 				{ tag: 'meta', attrs: { name: 'version', content: version } },
-				// Until the docs are announced on tterm.net, search engines
-				// leave them alone: the texts are still being agreed on.
-				{ tag: 'meta', attrs: { name: 'robots', content: 'noindex' } },
 			],
 			customCss: ['./src/styles/fonts.css', './src/styles/tterm.css'],
 			routeMiddleware: './src/routeData.ts',
@@ -176,6 +188,15 @@ export default defineConfig({
 					items: ['whats-new/web', 'whats-new/mac'],
 				},
 			],
+		}),
+		// Starlight's own map of the site, with the same languages, less the
+		// pages a language has not translated yet.
+		sitemap({
+			i18n: {
+				defaultLocale: 'root',
+				locales: Object.fromEntries(Object.entries(locales).map(([key, l]) => [key, l.lang])),
+			},
+			filter: translated,
 		}),
 	],
 });
