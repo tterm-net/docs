@@ -8,7 +8,8 @@ import { defineRouteMiddleware } from '@astrojs/starlight/route-data';
  *   site's title after every page's).
  * - Previous and Next skip the pages still to be written: those stand in the
  *   sidebar as the plan of the docs (data-planned), but have no page yet, so
- *   their line there is no link either: a search engine would get a 404.
+ *   their line there is no link either: a search engine would get a 404. A
+ *   page whose frontmatter says `prev: false` or `next: false` has none.
  * - A page a language has not translated yet shows the English text, and
  *   search engines leave it alone: they find that text on the English page.
  */
@@ -42,7 +43,8 @@ export const onRequest = defineRouteMiddleware((context) => {
 	for (const e of links) if (!real(e)) e.href = undefined;
 	const here = links.findIndex((e) => e.isCurrent);
 	if (here < 0) return;
-	const prev = links.slice(0, here).reverse().find(real);
-	const next = links.slice(here + 1).find(real);
+	const page = route.entry.data as { prev?: unknown; next?: unknown };
+	const prev = page.prev === false ? undefined : links.slice(0, here).reverse().find(real);
+	const next = page.next === false ? undefined : links.slice(here + 1).find(real);
 	route.pagination = { prev, next } as typeof route.pagination;
 });
