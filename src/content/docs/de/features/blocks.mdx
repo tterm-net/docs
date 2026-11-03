@@ -27,6 +27,8 @@ Zeig mit der Maus auf einen fertigen Block, und seine Buttons erscheinen. Ihre T
 - **Eine Notiz zu diesem Befehl hinzufügen** öffnet ein Feld darunter, und **Enter** speichert die Notiz. Notizen kommen auch ins [Log der Maschine](../log/), bleiben, wie sie geschrieben wurden, und werden mit **Antworten** beantwortet.
 - **Block einklappen** blendet die Ausgabe aus. Ein eingeklappter Block zeigt, wie viel er verbirgt, **12 Zeilen ausgeblendet**, und ein Klick klappt ihn wieder auf.
 
+<Screenshot name="block-buttons" alt="Der fertige Block git log --oneline, auf den die Maus zeigt. Rechts stehen seine Buttons: „Befehl und Ausgabe kopieren“, „Nur die Ausgabe kopieren“, „Erneut ausführen“, „Link zu diesem Block kopieren“, „Eine Notiz zu diesem Befehl hinzufügen“, „Block einklappen“." />
+
 ## Die Eingabezeile
 
 Die Eingabezeile gehört tTerm, nicht der Shell. Was du tippst, bleibt darin, bis du **Enter** drückst: Dann geht der ganze Befehl an die Shell.
@@ -47,6 +49,8 @@ Während ein Befehl läuft, steht in der Zeile **Tastatureingaben gehen an den l
 
 Einige Befehle zerstören etwas endgültig. tTerm hält einen solchen Befehl zurück und fragt vorher nach, in einer Leiste über der Zeile: was der Befehl tun würde, auf welcher Maschine und was nicht zurückkommt. „Auf **web-01** würde dieser Befehl **ein Verzeichnis und alles darin löschen**. Das lässt sich nicht rückgängig machen, und es gibt keinen Papierkorb.“ **Ausführen** führt den Befehl aus, **Abbrechen** legt ihn zurück in die Zeile.
 
+<Screenshot name="danger" alt="rm -rf ~/app/build wird zurückgehalten: Die Leiste über der Eingabezeile sagt, dass der Befehl auf web-01 ein Verzeichnis und alles darin löschen würde, was sich nicht rückgängig machen lässt, und bietet „Ausführen“ und „Abbrechen“ an." />
+
 tTerm fragt vor diesen Befehlen nach:
 
 - `rm` mit `-r` und `-f` – ein Verzeichnis und alles darin löschen;
@@ -65,6 +69,8 @@ Zielt ein `rm -rf` auf `/` oder `~`, steht zusätzlich da: **Das zielt auf die g
 
 Im klassischen Modus ist das Terminal ein ganz gewöhnliches. Jede Taste geht direkt an die Shell, mit ihrem eigenen Tab und Verlauf, und die Shell stellt alles selbst dar, auch ihren Prompt. Es gibt keine Blöcke, und nichts wird geprüft: Unter dem Terminal steht **In diesem Modus gibt es keine Rückfrage bei gefährlichen Befehlen.**
 
+<Screenshot name="classic" alt="Ein Terminal im klassischen Modus: Die Shell stellt alles selbst dar, auch ihren eigenen Prompt anna@web-01:~/app$. Darunter „In diesem Modus gibt es keine Rückfrage bei gefährlichen Befehlen.“ und der Umschalter „Zeile“ / „Klassisch“." />
+
 **Zeile** und **Klassisch** rechts neben der Eingabezeile wechseln den Modus; im klassischen Modus sitzt der Umschalter unter dem Terminal. Die Shell läuft weiter wie zuvor, und dieser Browser merkt sich den Modus für alle deine Terminals.
 
 Eine Shell, die nicht markieren kann, wo ein Befehl beginnt, etwa bash vor Version 4.4, läuft nur im klassischen Modus. Dort ist **Zeile** ausgegraut, und der Tooltip des Umschalters sagt, warum.
@@ -73,9 +79,13 @@ Eine Shell, die nicht markieren kann, wo ein Befehl beginnt, etwa bash vor Versi
 
 `clear` (oder `reset`) und **Ctrl+L** blenden den Feed aus, löschen ihn aber nicht: **3 Blöcke ausgeblendet: anzeigen** oben holt ihn zurück. Eingeklappte Blöcke und ein ausgeblendeter Feed bleiben in diesem Browser so, auch nach einem Neuladen und nach einem Wechsel in den klassischen Modus und zurück. **Frühere Befehle anzeigen** oben holt ältere Blöcke; sie werden 30 Tage aufbewahrt.
 
+<Screenshot name="cleared" alt="Der Feed nach clear: oben „3 Blöcke ausgeblendet: anzeigen“, darunter der eingeklappte Block git show („16 Zeilen ausgeblendet“), dann git log --oneline." />
+
 ## Ein Terminal benennen
 
 Doppelklicke auf den Tab eines Terminals oder auf das Terminal in der Seitenleiste oder auf der Seite des Projekts und tipp einen Namen ein: bis zu 40 Zeichen, nicht nur eine Zahl. **Enter** speichert, **Esc** bricht ab. Der Name erscheint in der Seitenleiste, in Tabs und auf der Seite des Projekts.
+
+<Screenshot name="rename" alt="Ein Terminal wird in seinem Tab umbenannt: Hinter P/web-01 · steht ein Feld, in das der Name release getippt wird." />
 
 ## Wenn ein Terminal endet
 
@@ -89,5 +99,7 @@ Ein Terminal läuft in tTerm Web, nicht in deinem Browser: Schließ seinen Tab o
 Sein Tab sagt, warum. Nach einer Aktualisierung steht dort **tTerm Web wurde auf 0.1.24 aktualisiert.**, mit Links zu den Neuigkeiten in dieser Version und zum Log der Maschine. Die Befehle, die darin liefen, und ihre Ausgabe bleiben im [Log der Maschine](../log/).
 
 **Neues Terminal auf web-01 öffnen** startet im selben Tab ein neues, in dem Verzeichnis, in dem das alte war, sofern das Verzeichnis noch existiert.
+
+<Screenshot name="ended" alt="Der Tab eines Terminals nach einer Aktualisierung: seine Befehle, dann „Dieses Terminal wurde beendet“, „tTerm Web wurde auf 0.1.24 aktualisiert.“ mit der Erklärung dazu, „Neuigkeiten in 0.1.24“, „Log von web-01“, „Neues Terminal auf web-01 öffnen“ und „Tab schließen“." />
 
 Ein langer Job, der nicht mit seinem Terminal enden darf, etwa ein Build oder ein Backup, läuft sicherer auf der Maschine selbst unter `tmux` oder `screen` oder mit `nohup`.

@@ -4,8 +4,11 @@ description: The local terminal for Mac – how to install it, open it the first
 ---
 
 import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../components/Screenshot.astro';
 
 The local terminal is an app for the Mac: the shells of this computer as blocks, and the whole cloud in the same window. Free, macOS 11 and later, Apple Silicon and Intel in one file. Versions for [Windows](../windows/) and [Linux](../linux/) are in the works.
+
+<Screenshot name="mac-window" alt="tTerm for Mac signed in: a terminal of this Mac, MacBook-Pro, with its commands as blocks; in the sidebar the cloud's machines beside it: web-01 with a key, staging via Mac, db-1 in Client X." />
 
 <LinkButton href="https://tterm.net/download/">Download for Mac</LinkButton>
 
@@ -17,7 +20,11 @@ The local terminal is an app for the Mac: the shells of this computer as blocks,
 
 2. Open the app. The first time, macOS asks you to confirm, [here is how](#the-first-launch-once). After that the terminals of this Mac work at once, with no account and no setup.
 
+   <Screenshot name="mac-welcome" alt="The first start: Welcome to tTerm, the terminals of this computer work right away; Sign in with your browser or Later." />
+
 3. Sign in when you like. Signing in opens your browser: confirm it there, and your servers and notes appear in the window.
+
+   <Screenshot name="mac-sign-in" alt="Sign in with your browser: tTerm opened app.tterm.net in the browser and waits, showing the code that page shows too, with Open the page again and Cancel." />
 
 </Steps>
 
@@ -39,6 +46,8 @@ From then on the app opens as usual, installs new versions itself, and macOS doe
 ## Updates
 
 Every six hours the app checks for a new version, downloads it and installs it when that gets in nobody's way: when you quit, or when nothing runs in its terminals. In **Settings** → **Updates** you can have it ask first.
+
+<Screenshot name="mac-updates" alt="Settings → Updates: Update by itself (Recommended) chosen, Ask me first beside it; tTerm 0.7.1 is up to date, with Check now." />
 
 :::note[The keychain password after an update]
 After an update macOS may ask once for your keychain password: enter it and press **Always Allow**. This stays so until the app is signed with an Apple Developer ID.

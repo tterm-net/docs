@@ -3,11 +3,15 @@ title: Sposta nel cloud
 description: In tTerm per Mac, Sposta nel cloud porta nel tuo account i server che raggiungi con ssh, così si aprono da qualsiasi browser e dal tuo telefono.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 I server che raggiungi dal tuo Mac con `ssh` possono aprirsi da tTerm Web, dal tuo telefono o da qualsiasi computer su cui accedi. **Sposta nel cloud** in [tTerm per Mac](../mac/) li porta nel tuo account, ciascuno nel modo che scegli tu. Non si sposta nulla finché non premi **Sposta**.
 
 ## Dove si trova
 
 Accedi a tTerm per Mac, apri l'account in fondo alla barra laterale e scegli **Sposta nel cloud**, subito sopra **Esci**. Lo trovi anche con **⌘K**.
+
+<Screenshot name="move-menu" alt="Il menu dell'account in fondo alla barra laterale: «Sposta nel cloud» («Server e chiavi di questo Mac»), subito sopra «Esci»." />
 
 ## Cosa trova
 
@@ -17,6 +21,8 @@ Tutti i server sono spuntati, tranne un host git come github.com (**Un host git:
 
 Sotto i server, **Chiavi in ~/.ssh** elenca le tue chiavi private. Nella tua cassaforte vanno solo quelle spuntate. Una chiave viene spuntata da sola quando la usa un server spuntato con **La mia chiave**.
 
+<Screenshot name="move-found" alt="«Sposta nel cloud»: web-01, staging e backup spuntati, ciascuno con il suo modo di accesso, staging «tramite questo Mac» perché il cloud non riesce a raggiungerlo; db-1, «Già in tTerm», e github.com, un host git, non spuntati; «Chiavi in ~/.ssh» con id_ed25519 spuntata; «Sposta 3 server»." />
+
 ## Tre modi per entrare
 
 Ogni server ha una scelta tutta sua:
@@ -24,6 +30,8 @@ Ogni server ha una scelta tutta sua:
 - **La mia chiave** – la chiave va nella tua cassaforte, cifrata su questo Mac, e il server resta com'è. tTerm Web accede dal cloud, e un tuo dispositivo con la cassaforte aperta firma l'accesso: un browser in cui hai aperto la cassaforte, o questo Mac. Adatto a un server che tTerm Web raggiunge, con una chiave in `~/.ssh` che si può spostare. Maggiori dettagli in [La cassaforte delle tue chiavi SSH](../../security/keys/).
 - **Pass di tTerm** – questo Mac accede una volta e aggiunge una riga di tTerm al file `~/.ssh/authorized_keys` dell'utente con cui accede; la tua chiave resta qui. Da quel momento tTerm accede come quell'utente con un certificato che dura due minuti, come su un [server collegato con un solo comando](../../machines/servers/), e non gli serve la cassaforte. Sulla barra dopo `ssh`, questo modo si chiama **Fai entrare tTerm**.
 - **Tramite questo Mac** – non si sposta nulla: tTerm chiede a questo Mac di eseguire `ssh` verso il server, finché il Mac è acceso. Adatto a un server dietro una VPN o in una rete privata, che tTerm Web non può raggiungere, e a uno la cui chiave non può lasciare questo Mac. Il suo terminale funziona in modalità classica: ogni tasto va direttamente a ssh sul Mac, senza blocchi e senza conferma prima di un comando pericoloso.
+
+<Screenshot name="move-ways" alt="Il modo di accesso di ogni server: web-01 «La mia chiave», staging «Tramite questo Mac», per backup il menu di scelta aperto («La mia chiave», «Pass di tTerm», «Tramite questo Mac»); sotto, che cosa significa ciascun modo." />
 
 tTerm sceglie per ogni server: **La mia chiave** se la sua chiave si può spostare, **Tramite questo Mac** se tTerm Web non raggiunge il server o la sua chiave non può lasciare il Mac, altrimenti **Pass di tTerm**. Un server che tTerm Web non raggiunge ha solo **Tramite questo Mac**. Un server dietro un bastion host raggiungibile dal cloud si apre passando da quel bastion host.
 
@@ -40,6 +48,8 @@ Il pulsante conta i server spuntati: **Sposta 3 server**.
 - Con **La mia chiave**, questo Mac accede prima al server con quella sola chiave; soltanto dopo la chiave va nella tua cassaforte, una volta per tutti i suoi server. Con **Pass di tTerm**, questo Mac accede per aggiungere la riga, e tTerm accede una volta con il suo certificato per verificarla.
 - **La mia chiave** e **Pass di tTerm** richiedono la chiave host del server in `known_hosts`: a un server nuovo, collegati prima una volta da questo Mac.
 
+<Screenshot name="move-vault" alt="Il primo spostamento con «La mia chiave»: «Salva la chiave nella tua cassaforte», id_ed25519 va in una cassaforte che si apre come quando sblocchi questo Mac; «Annulla» e «Crea la cassaforte con Touch ID»." />
+
 Per un server non spostato non viene salvato nulla. Una chiave finita nella cassaforte solo per server non spostati ne esce di nuovo, e la riga che tTerm aveva aggiunto su un server del genere viene tolta.
 
 ## Dopo lo spostamento
@@ -48,9 +58,13 @@ Il risultato dice quanti server sono ora in tTerm, tutti in Personal: **Server i
 
 Nella barra laterale, un server che si apre con la tua chiave ha il simbolo di una chiave dopo il nome, e uno che passa dal tuo Mac porta la scritta **via Mac**.
 
+<Screenshot name="move-result" alt="«Server in tTerm: 2 su 3»: web-01 «Si apre con la tua chiave», staging «Tramite questo Mac, finché è acceso», entrambi con «Apri un terminale»; backup non è stato spostato (manca la chiave host in known_hosts), con «Riprova» e «Cambia»; id_ed25519 è nella cassaforte. Nella barra laterale web-01 ha una chiave e staging dice «via Mac»." />
+
 ## La barra dopo ssh
 
 Quando `ssh` termina senza errori in un terminale di questo Mac, sotto il suo blocco può comparire una barra: **droplet: aprilo ovunque tu sia**, con l'indirizzo e la tua chiave.
+
+<Screenshot name="move-strip" alt="Sotto ssh droplet in un terminale di questo Mac: «droplet: aprilo ovunque tu sia», con root@203.0.113.20 e la chiave ~/.ssh/id_ed25519; «Salva la mia chiave», «Fai entrare tTerm», «Non ora», «Non chiedere più per droplet»." />
 
 - **Salva la mia chiave** – come **La mia chiave**, se la chiave si può spostare.
 - **Fai entrare tTerm** – come **Pass di tTerm**.

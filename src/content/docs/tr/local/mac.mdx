@@ -4,8 +4,11 @@ description: Mac için yerel terminal – nasıl kurulur, ilk kez nasıl açıl�
 ---
 
 import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Yerel terminal, Mac için bir uygulama: bu bilgisayarın kabukları bloklar halinde, aynı pencerede de bulutun tamamı. Ücretsiz, macOS 11 veya üstü, Apple Silicon ve Intel tek dosyada. [Windows](../windows/) ve [Linux](../linux/) sürümleri hazırlanıyor.
+
+<Screenshot name="mac-window" alt="Giriş yapıldıktan sonra Mac için tTerm: bu Mac'in (MacBook-Pro, “bu Mac”) bir terminali, komutları bloklar halinde; kenar çubuğunda onun yanında buluttaki makineler: anahtar simgeli web-01, “Mac üzerinden” yazan staging ve Client X projesindeki db-1." />
 
 <LinkButton href="https://tterm.net/tr/download/">Mac için indir</LinkButton>
 
@@ -17,7 +20,11 @@ Yerel terminal, Mac için bir uygulama: bu bilgisayarın kabukları bloklar hali
 
 2. Uygulamayı aç. İlk açılışta macOS senden onay ister, [adımlar burada](#i̇lk-açılış-yalnızca-bir-kez). Sonrasında bu Mac'in terminalleri hesap ve ayar gerektirmeden hemen çalışır.
 
+   <Screenshot name="mac-welcome" alt="İlk açılış: “tTerm'e hoş geldin”, bu bilgisayarın terminalleri hemen çalışır; “Tarayıcınla giriş yap” ya da “Daha sonra”." />
+
 3. İstediğin zaman giriş yap. Giriş yapınca tarayıcın açılır: girişi orada onayla, sunucuların ve notların pencerede belirir.
+
+   <Screenshot name="mac-sign-in" alt="“Tarayıcınla giriş yap”: tTerm, tarayıcıda app.tterm.net adresini açtı ve bekliyor; o sayfada da görünen kodu gösteriyor; “Sayfayı yeniden aç” ve “Vazgeç” düğmeleri." />
 
 </Steps>
 
@@ -39,6 +46,8 @@ Bundan sonra uygulama her zamanki gibi açılır, yeni sürümleri kendisi kurar
 ## Güncellemeler
 
 Uygulama altı saatte bir yeni sürüm olup olmadığına bakar, varsa indirir ve hiçbir şeyi bölmeyeceği bir anda kurar: sen uygulamadan çıkarken ya da terminallerinde hiçbir şey çalışmıyorken. **Ayarlar** → **Güncellemeler** bölümünde önce sana sormasını sağlayabilirsin.
+
+<Screenshot name="mac-updates" alt="“Ayarlar” → “Güncellemeler”: “Otomatik güncelle” (“Önerilen”) seçili, yanında “Önce bana sor”; “tTerm 0.7.1 güncel.” ve “Şimdi denetle” düğmesi." />
 
 :::note[Güncellemeden sonra anahtar zinciri parolası]
 Bir güncellemeden sonra macOS bir kez anahtar zinciri parolanı sorabilir: parolayı gir ve **Her Zaman İzin Ver** düğmesine tıkla. Uygulama Apple Developer ID ile imzalanana kadar bu böyle kalacak.

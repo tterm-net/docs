@@ -4,8 +4,11 @@ description: Mac 版のローカルターミナル – インストール、初�
 ---
 
 import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 ローカルターミナルは Mac 用のアプリです。このコンピューターのシェルがブロックになり、同じウィンドウにクラウド全体が入ります。無料、macOS 11 以降、Apple シリコンと Intel が 1 つのファイルに入っています。[Windows](../windows/) 版と [Linux](../linux/) 版は開発中です。
+
+<Screenshot name="mac-window" alt="サインインした Mac 版 tTerm：「この Mac」の印が付いた MacBook-Pro のターミナルで、コマンドがブロックとして並んでいます。サイドバーには、この Mac のほかにクラウドのマシンも並んでいます：鍵のマークが付いた web-01、「Mac 経由」の staging、Client X の db-1。" />
 
 <LinkButton href="https://tterm.net/ja/download/">Mac 版をダウンロード</LinkButton>
 
@@ -17,7 +20,11 @@ import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components'
 
 2. アプリを開きます。初回は macOS から起動の確認を求められます。[手順はこちら](#初回の起動1-回だけ)。その後は、この Mac のターミナルがすぐに使えます。アカウントも設定も必要ありません。
 
+   <Screenshot name="mac-welcome" alt="初回の起動：「tTerm へようこそ」、このコンピューターのターミナルはすぐに使えます。「ブラウザーでサインイン」か「あとで」を選びます。" />
+
 3. サインインは好きなときにできます。サインインするとブラウザーが開きます。そこで確認すると、ウィンドウにサーバーとノートが表示されます。
+
+   <Screenshot name="mac-sign-in" alt="「ブラウザーでサインイン」：tTerm がブラウザーで app.tterm.net を開いて待っています。そのページにも表示されるのと同じコードと、「ページをもう一度開く」「キャンセル」があります。" />
 
 </Steps>
 
@@ -39,6 +46,8 @@ import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components'
 ## アップデート
 
 6 時間ごとにアプリが新しいバージョンがないか確認し、ダウンロードして、何の妨げにもならないときにインストールします。つまり終了するときや、tTerm のターミナルで何も実行されていないときです。**設定** → **アップデート** で、先に確認するよう設定することもできます。
+
+<Screenshot name="mac-updates" alt="「設定」→「アップデート」：「自動でアップデート」（「推奨」）が選ばれ、もう一方は「先に確認する」です。「tTerm 0.7.1 は最新です」と表示され、「今すぐ確認」があります。" />
 
 :::note[アップデート後のキーチェーンのパスワード]
 アップデートの後、macOS がキーチェーンのパスワードを一度だけ尋ねることがあります。入力して **常に許可** をクリックしてください。これは、アプリに Apple Developer ID の署名が入るまで続きます。

@@ -12,6 +12,8 @@ Bir makinede tTerm üzerinden çalıştırılan her komut, o makinenin logunda b
 
 Kenar çubuğunda, bir projenin **Notlar** bölümündeki ilk klasör **Loglar**; yanında **tTerm yazar** işareti var. Bu klasörde projenin her makinesinin logu durur ve her birinin yanında o makinede bugün kaç komut çalıştırıldığı yazar: **bugün 12**. Bir makineye tıkla, logu bir sekmede açılır: **web-01 logu**.
 
+<Screenshot name="log-open" alt="Kenar çubuğu: Personal ve Client X projelerinde “Notlar” altında “Loglar” klasörü (“tTerm yazar”), içinde her makinenin logu ve bugünkü sayısı: web-01 “bugün 27”, db-1 “bugün 7”." />
+
 Log her seferinde tek bir günü gösterir ve bugünden başlar. **Önceki gün** ve **Sonraki gün** okları, satırı olan en yakın güne gider. **Bugün** ile bugüne dönersin, **Gün seç** ise bir takvim açar. Log bugünü gösterirken komutlar bittikçe yeni satırlar gelir.
 
 Logun en üstündeki **⋯** menüsünde **Markdown olarak kopyala** var: gösterilen gün, o günün satırları ve altlarındaki notlar.
@@ -40,6 +42,8 @@ Yanında sıralama ve filtreler var:
 
 Bir filtre açıkken günün yanında kaç komutun gösterildiği yazar: **8 komuttan 2**. **Filtreleri kaldır** ile filtreler kapanır. Filtreler **Bu logda ara** ile bulunanlara da uygulanır.
 
+<Screenshot name="log-filter" alt="web-01 logu: “Bu logda ara” alanında git, “Önce en yeni” ve tek terminal olarak release. “3 komut, 1 günde”, “Filtreleri kaldır”, “Güne dön” ve bugünün üç satırı görünüyor." />
+
 [Arama](../search/) da tüm makinelerinin loglarına bakar: aramaya `l:` ile başla.
 
 ## Komutun altındaki notlar
@@ -61,6 +65,8 @@ Bir komuta ya da nota karışmış bir parola veya token silinebilir. Bunu yaln�
 3. **Metni sil** düğmesine bas.
 
 </Steps>
+
+<Screenshot name="log-redact" alt="db-1 üzerindeki export PGPASSWORD='…' komutu için “Bu komutun metni silinsin mi?” (“bugün, 18:30”, backups): neyin silineceği ve logda neyin kalacağı, “Neden” alanında parola, “Metni sil” ve “Vazgeç”." />
 
 Metin logdan, terminalin akışından, aramadan ve giriş satırının geçmişinden kalıcı olarak silinir. Silinen bir komutsa çıktısı da gider; aynı komut projede başka yerlerde de çalıştıysa oralarda da silinir. Logda metnin yerine kimin, ne zaman ve neden sildiği kalır: **Sen sildin · 09:23 · parola**. Veritabanının gece alınan yedeklerinde ise metin, bu yedekler silinene kadar durur; bu da iki hafta içinde olur.
 

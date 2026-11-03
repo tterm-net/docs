@@ -27,6 +27,8 @@ Porta il mouse su un blocco concluso, e compaiono i suoi pulsanti. I tooltip ne 
 - **Aggiungi una nota su questo comando** apre un campo sotto il blocco, e **Enter** salva la nota. Le note finiscono anche nel [log della macchina](../log/), restano come sono state scritte, e a una nota si risponde con **Rispondi**.
 - **Comprimi il blocco** nasconde l'output. Un blocco compresso dice quanto nasconde, **12 righe nascoste**, e un clic lo espande.
 
+<Screenshot name="block-buttons" alt="Il blocco completato git log --oneline con il mouse sopra. A destra i suoi pulsanti: «Copia il comando e il suo output», «Copia solo l'output», «Esegui di nuovo», «Copia il link a questo blocco», «Aggiungi una nota su questo comando», «Comprimi il blocco»." />
+
 ## La riga di input
 
 La riga di input è di tTerm, non della shell. Quello che scrivi resta lì fino a **Enter**, che passa l'intero comando alla shell.
@@ -47,6 +49,8 @@ Mentre un comando è in esecuzione, la riga dice **I tasti vanno al comando in e
 
 Alcuni comandi distruggono qualcosa per sempre. tTerm trattiene un comando del genere e prima chiede conferma, in una barra sopra la riga: cosa farebbe il comando, su quale macchina e cosa non si potrà recuperare. “Il comando sta per **eliminare una directory con tutto il suo contenuto** su **web-01**. Non si può annullare e non c'è un cestino in cui ritrovarla.” **Eseguilo** esegue il comando, **Annulla** lo rimette nella riga.
 
+<Screenshot name="danger" alt="rm -rf ~/app/build messo in attesa: la barra sopra la riga di input dice che il comando sta per eliminare una directory con tutto il suo contenuto su web-01, senza possibilità di annullare, e offre «Eseguilo» e «Annulla»." />
+
 Chiede conferma prima di eseguire:
 
 - `rm` con `-r` e `-f` – eliminare una directory con tutto il suo contenuto;
@@ -65,6 +69,8 @@ Per un `rm -rf` puntato su `/` o `~` si aggiunge **Questo comando colpisce l'int
 
 In modalità classica il terminale è un terminale come tutti gli altri. Ogni tasto va direttamente alla shell, con il suo Tab e la sua cronologia, e la shell disegna tutto, compreso il prompt. Non ci sono blocchi e non viene controllato nulla: sotto il terminale c'è scritto **In questa modalità non c'è conferma per i comandi pericolosi.**
 
+<Screenshot name="classic" alt="Un terminale in modalità «Classica»: la shell disegna tutto, compreso il proprio prompt anna@web-01:~/app$. Sotto: «In questa modalità non c'è conferma per i comandi pericolosi.» e il selettore «Riga» / «Classica»." />
+
 **Riga** e **Classica**, a destra della riga di input, cambiano modalità; in modalità Classica il selettore è sotto il terminale. La shell continua com'era, e questo browser ricorda la modalità per tutti i tuoi terminali.
 
 Una shell che non sa segnalare dove inizia un comando, come le versioni di bash precedenti alla 4.4, funziona solo in modalità classica. Lì **Riga** è in grigio, e il tooltip del selettore spiega perché.
@@ -73,9 +79,13 @@ Una shell che non sa segnalare dove inizia un comando, come le versioni di bash 
 
 `clear` (o `reset`) e **Ctrl+L** tolgono il flusso dalla vista, ma non lo cancellano: **3 blocchi nascosti: mostra** in alto lo fa ricomparire. I blocchi compressi e il flusso pulito restano così in questo browser, anche dopo aver ricaricato la pagina o essere passati a Classica e ritorno. **Mostra i comandi precedenti** in alto carica i blocchi più vecchi; si conservano per 30 giorni.
 
+<Screenshot name="cleared" alt="I blocchi del terminale dopo clear: in alto «3 blocchi nascosti: mostra», poi git show compresso («16 righe nascoste»), poi git log --oneline." />
+
 ## Dare un nome a un terminale
 
 Fai doppio clic sulla scheda di un terminale, o sul terminale nella barra laterale o nella pagina del progetto, e scrivi un nome: fino a 40 caratteri, e non solo un numero. **Enter** salva, **Esc** annulla. Il nome compare nella barra laterale, nelle schede e nella pagina del progetto.
+
+<Screenshot name="rename" alt="Rinominare un terminale nella sua scheda: dopo P/web-01 · c'è un campo con il nome che si sta digitando, release." />
 
 ## Quando un terminale termina
 
@@ -89,5 +99,7 @@ Un terminale gira in tTerm Web, non nel tuo browser: chiudi la sua scheda o il b
 La scheda del terminale dice perché. Dopo un aggiornamento dice **tTerm Web è stato aggiornato alla versione 0.1.24.**, con i link alle novità di quella versione e al log della macchina. I comandi eseguiti e il loro output restano nel [log della macchina](../log/).
 
 **Apri un nuovo terminale su web-01** ne avvia uno nuovo nella stessa scheda, nella directory in cui si trovava quello vecchio, se quella directory esiste ancora.
+
+<Screenshot name="ended" alt="La scheda di un terminale dopo un aggiornamento: i suoi comandi, poi «Questo terminale è terminato», «tTerm Web è stato aggiornato alla versione 0.1.24.» con la spiegazione, «Novità della versione 0.1.24», «Log di web-01», «Apri un nuovo terminale su web-01» e «Chiudi la scheda»." />
 
 Per un lavoro lungo che non deve fermarsi insieme al suo terminale, come una build o un backup, è più sicuro eseguirlo sulla macchina stessa in `tmux` o `screen`, oppure con `nohup`.

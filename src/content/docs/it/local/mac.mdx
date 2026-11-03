@@ -6,8 +6,11 @@ description: Il terminale locale per Mac – come installarlo, aprirlo la prima 
 ---
 
 import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Il terminale locale è un'app per Mac: le shell di questo computer a blocchi, e tutto il cloud nella stessa finestra. Gratis, macOS 11 o successivo, Apple Silicon e Intel in un solo file. Le versioni per [Windows](../windows/) e [Linux](../linux/) sono in lavorazione.
+
+<Screenshot name="mac-window" alt="tTerm per Mac dopo l'accesso: un terminale di questo Mac (MacBook-Pro, «questo Mac») con i suoi comandi come blocchi; nella barra laterale, accanto al Mac, le macchine del cloud: web-01 con una chiave, staging «via Mac», db-1 in Client X." />
 
 <LinkButton href="https://tterm.net/it/download/">Scarica per Mac</LinkButton>
 
@@ -19,7 +22,11 @@ Il terminale locale è un'app per Mac: le shell di questo computer a blocchi, e 
 
 2. Apri l'app. La prima volta macOS ti chiede di confermare l'apertura, [ecco come](#il-primo-avvio-una-volta-sola). Dopo, i terminali di questo Mac funzionano subito, senza account e senza configurazione.
 
+   <Screenshot name="mac-welcome" alt="Il primo avvio: «Ti diamo il benvenuto in tTerm», i terminali di questo computer funzionano subito; «Accedi con il browser» o «Più tardi»." />
+
 3. Accedi quando vuoi. L'accesso apre il browser: confermalo lì, e nella finestra compaiono i tuoi server e le tue note.
+
+   <Screenshot name="mac-sign-in" alt="«Accedi con il browser»: tTerm ha aperto app.tterm.net nel browser e resta in attesa, con il codice che compare anche sulla pagina, «Riapri la pagina» e «Annulla»." />
 
 </Steps>
 
@@ -41,6 +48,8 @@ Da quel momento l'app si apre come sempre e installa da sola le nuove versioni, 
 ## Aggiornamenti
 
 Ogni sei ore l'app controlla se c'è una nuova versione, la scarica e la installa quando non disturba nessuno: quando esci dall'app, o quando nei suoi terminali non è in esecuzione nulla. In **Impostazioni** → **Aggiornamenti** puoi fare in modo che prima ti chieda conferma.
+
+<Screenshot name="mac-updates" alt="«Impostazioni» → «Aggiornamenti»: selezionato «Aggiornamento automatico» («Consigliato»), accanto «Chiedimi prima»; «tTerm 0.7.1 è aggiornato», con «Controlla ora»." />
 
 :::note[La password del portachiavi dopo un aggiornamento]
 Dopo un aggiornamento macOS potrebbe chiederti una volta la password del portachiavi: inseriscila e premi **Consenti sempre**. Sarà così finché l'app non avrà una firma Apple Developer ID.

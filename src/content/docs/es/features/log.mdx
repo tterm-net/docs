@@ -12,6 +12,8 @@ Cada comando que se ejecuta en una máquina a través de tTerm se convierte en u
 
 En la barra lateral, dentro de las **Notas** de un proyecto, la primera carpeta es **Bitácoras**, con la etiqueta **por tTerm**. Contiene una bitácora por cada máquina del proyecto, con cuántos comandos se ejecutaron hoy en ella: **12 hoy**. Haz clic en una máquina y su bitácora se abre en una pestaña, **web-01: bitácora**.
 
+<Screenshot name="log-open" alt="La barra lateral: en «Notas» de Personal y de Client X, la carpeta «Bitácoras» («por tTerm») con la bitácora de cada máquina y cuántos comandos se ejecutaron hoy: web-01, «27 hoy»; db-1, «7 hoy»." />
+
 La bitácora muestra un día a la vez y se abre en el de hoy. Las flechas, **Día anterior** y **Día siguiente**, llevan al día más cercano que tenga líneas. **Hoy** te devuelve al día actual, y **Elegir un día** abre un calendario. Mientras la bitácora muestra el día de hoy, las líneas nuevas van llegando a medida que terminan los comandos.
 
 En la parte superior de la bitácora, **⋯** tiene **Copiar como Markdown**: el día que se muestra, sus líneas y las notas que tienen debajo.
@@ -40,6 +42,8 @@ A su lado están el orden y los filtros:
 
 Con un filtro activo, el día indica cuántos comandos se muestran, **2 de 8 comandos**, y **Quitar filtros** los desactiva. Los filtros también se aplican a lo que encontró **Buscar en esta bitácora**.
 
+<Screenshot name="log-filter" alt="La bitácora de web-01 con «Buscar en esta bitácora»: git, «Recientes primero» y una sola terminal, release. Muestra «3 comandos, en 1 día», «Quitar filtros», «Volver al día» y las tres líneas de hoy." />
+
 [La búsqueda](../search/) también revisa las bitácoras de todas tus máquinas: escribe `l:` al principio.
 
 ## Notas debajo de un comando
@@ -61,6 +65,8 @@ Una contraseña o un token que se haya colado en un comando o en una nota se pue
 3. Presiona **Censurar**.
 
 </Steps>
+
+<Screenshot name="log-redact" alt="«¿Censurar este comando?» para export PGPASSWORD='…' en db-1 («hoy, 18:30», backups): qué desaparece y qué conserva la bitácora, «Por qué»: una contraseña, y «Censurar» y «Cancelar»." />
 
 Las palabras desaparecen para siempre de la bitácora, de los bloques de la terminal, de la búsqueda y del historial de la línea de entrada. Si es un comando, también desaparece lo que imprimió, y lo mismo ocurre con ese comando en cualquier otro lugar del proyecto donde se haya ejecutado. En su lugar, la bitácora guarda quién las censuró, cuándo y por qué: **Texto censurado por ti · 09:23 · una contraseña**. Las copias de seguridad nocturnas de la base de datos aún las conservan hasta que esas copias se eliminan, en un plazo de dos semanas.
 

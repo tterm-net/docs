@@ -12,6 +12,8 @@ Każde polecenie uruchomione na maszynie przez tTerm staje się wierszem w logu 
 
 W panelu bocznym, w sekcji **Notatki** projektu, pierwszy folder to **Logi** z dopiskiem **prowadzi tTerm**. Jest w nim log każdej maszyny projektu i liczba poleceń uruchomionych na niej dzisiaj: **12 dzisiaj**. Kliknij maszynę, a jej log otworzy się w karcie **web-01: log**.
 
+<Screenshot name="log-open" alt="Panel boczny: w sekcji „Notatki” projektów Personal i Client X folder „Logi” („prowadzi tTerm”) z logiem każdej maszyny i liczbą dzisiejszych poleceń: web-01 „27 dzisiaj”, db-1 „7 dzisiaj”." />
+
 Log pokazuje po jednym dniu i otwiera się na dzisiejszym. Strzałki **Poprzedni dzień** i **Następny dzień** przenoszą do najbliższego dnia, w którym są wiersze. **Dzisiaj** przenosi cię z powrotem, a **Wybierz dzień** otwiera kalendarz. Gdy log pokazuje dzisiejszy dzień, nowe wiersze dochodzą w miarę, jak polecenia się kończą.
 
 U góry logu w menu **⋯** jest **Kopiuj jako Markdown**: kopiuje pokazany dzień, jego wiersze i notatki pod nimi.
@@ -40,6 +42,8 @@ Obok są kolejność wierszy i filtry:
 
 Gdy filtr jest włączony, przy dniu widać, ile poleceń jest pokazanych, **2 z 8 poleceń**, a **Wyczyść filtry** je wyłącza. Filtry działają też na to, co znalazło **Szukaj w tym logu**.
 
+<Screenshot name="log-filter" alt="Log web-01: w polu „Szukaj w tym logu” wpisano git, wybrano „Najnowsze najpierw” i jeden terminal, release. Widać „3 polecenia, z 1 dnia”, „Wyczyść filtry”, „Wróć do dnia” i trzy dzisiejsze wiersze." />
+
 [Wyszukiwanie](../search/) też przeszukuje logi wszystkich twoich maszyn: zacznij od `l:`.
 
 ## Notatki pod poleceniem
@@ -61,6 +65,8 @@ Hasło albo token, które trafiły do polecenia lub notatki, można wymazać. Mo
 3. Naciśnij **Wymaż**.
 
 </Steps>
+
+<Screenshot name="log-redact" alt="„Wymazać to polecenie?” dla export PGPASSWORD='…' na db-1 („dzisiaj, 18:30”, backups): co zniknie, a co zostanie w logu, „Powód”: hasło, przyciski „Wymaż” i „Anuluj”." />
 
 Wymazany tekst znika na zawsze z logu, z listy bloków terminala, z wyszukiwania i z historii pola wprowadzania. Razem z poleceniem znika też jego wynik, a także to samo polecenie wszędzie, gdzie jeszcze je uruchomiono w projekcie. W jego miejscu log zapisuje, kto go wymazał, kiedy i dlaczego: **Wymazane przez ciebie · 09:23 · hasło**. Nocne kopie zapasowe bazy danych przechowują go jeszcze, dopóki te kopie nie zostaną usunięte, czyli najdłużej przez dwa tygodnie.
 

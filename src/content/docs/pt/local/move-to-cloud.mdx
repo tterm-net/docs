@@ -3,11 +3,15 @@ title: Migrar para a nuvem
 description: No tTerm para Mac, Migrar para a nuvem leva para a sua conta os servidores que você acessa com ssh, para que eles abram em qualquer navegador e no celular.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 Os servidores que você acessa do seu Mac com `ssh` podem abrir pelo tTerm Web, pelo celular ou por qualquer computador em que você entrar na conta. **Migrar para a nuvem**, no [tTerm para Mac](../mac/), leva esses servidores para a sua conta, cada um do jeito que você escolher para ele. Nada é migrado até você clicar em **Migrar**.
 
 ## Onde fica
 
 No tTerm para Mac, entre na sua conta, abra o menu dela na parte de baixo da barra lateral e escolha **Migrar para a nuvem**, logo acima de **Sair**. O **⌘K** também encontra essa opção.
+
+<Screenshot name="move-menu" alt="O menu da conta na parte de baixo da barra lateral: “Migrar para a nuvem” (“Servidores e chaves deste Mac”), logo acima de “Sair”." />
 
 ## O que ele encontra
 
@@ -17,6 +21,8 @@ Todos os servidores vêm marcados, menos um host git como o github.com (**Um hos
 
 Abaixo dos servidores, **Chaves em ~/.ssh** lista as suas chaves privadas. Só as marcadas vão para o seu cofre. Uma chave é marcada automaticamente quando um servidor marcado abre com ela usando **Minha chave**.
 
+<Screenshot name="move-found" alt="“Migrar para a nuvem”: web-01, staging e backup marcados, cada um com o seu jeito de entrar, staging “Por este Mac”, já que a nuvem não o alcança; db-1, “Já está no tTerm”, e github.com, um host git, desmarcados; “Chaves em ~/.ssh” com id_ed25519 marcada; “Migrar 3 servidores”." />
+
 ## Três jeitos de entrar
 
 Cada servidor tem a sua própria escolha:
@@ -24,6 +30,8 @@ Cada servidor tem a sua própria escolha:
 - **Minha chave** – a chave vai para o seu cofre, criptografada neste Mac, e o servidor continua como está. O tTerm Web entra no servidor a partir da nuvem, e um dispositivo seu com o cofre aberto assina o login: um navegador em que você abriu o cofre, ou este Mac. Serve para um servidor que o tTerm Web alcança, com uma chave em `~/.ssh` que pode ser migrada. Mais detalhes em [Seu cofre de chaves SSH](../../security/keys/).
 - **Passe do tTerm** – este Mac entra no servidor uma vez e adiciona uma linha própria do tTerm ao `~/.ssh/authorized_keys` do usuário que ele usa para entrar; a sua chave fica aqui. A partir daí, o tTerm entra como esse usuário com um certificado que vale dois minutos, como num [servidor conectado com um comando](../../machines/servers/), e não precisa de cofre. Na faixa depois do `ssh`, esse jeito se chama **Deixar o tTerm entrar**.
 - **Por este Mac** – nada é migrado: o tTerm pede a este Mac que rode `ssh` até o servidor, enquanto o Mac estiver ligado. Serve para um servidor atrás de uma VPN ou numa rede privada, que o tTerm Web não alcança, e para um servidor cuja chave não pode sair deste Mac. O terminal dele roda no modo clássico: cada tecla vai direto para o ssh no Mac, sem blocos e sem pergunta antes de um comando perigoso.
+
+<Screenshot name="move-ways" alt="O jeito de entrar de cada servidor: web-01 com “Minha chave”, staging “Por este Mac” e a escolha de backup aberta (“Minha chave”, “Passe do tTerm”, “Por este Mac”); abaixo, o que cada jeito significa." />
 
 O tTerm escolhe para cada servidor: **Minha chave** quando a chave dele pode ser migrada, **Por este Mac** quando o tTerm Web não alcança o servidor ou a chave não pode sair, e **Passe do tTerm** nos outros casos. Um servidor que o tTerm Web não alcança só tem **Por este Mac**. Um servidor atrás de um bastion que a nuvem alcança abre por esse bastion.
 
@@ -40,6 +48,8 @@ O botão conta os servidores marcados: **Migrar 3 servidores**.
 - Com **Minha chave**, este Mac primeiro entra no servidor apenas com essa chave; só então a chave vai para o seu cofre, uma vez para todos os servidores dela. Com **Passe do tTerm**, este Mac entra para adicionar a linha, e o tTerm entra uma vez com o certificado dele para conferi-la.
 - **Minha chave** e **Passe do tTerm** precisam da chave de host do servidor no `known_hosts`: antes, conecte-se uma vez a um servidor novo a partir deste Mac.
 
+<Screenshot name="move-vault" alt="A primeira migração com “Minha chave”: “Salvar a chave no seu cofre”; id_ed25519 vai para um cofre que abre do jeito que você desbloqueia este Mac; “Cancelar” e “Criar meu cofre com Touch ID”." />
+
 Nada é salvo para um servidor que falha. Uma chave que foi para o cofre só por causa de servidores que falharam sai dele de novo, e uma linha que o tTerm adicionou num servidor desses é retirada.
 
 ## Depois da migração
@@ -48,9 +58,13 @@ O resultado diz quantos servidores agora estão no tTerm, todos em Personal: **2
 
 Na barra lateral, um servidor que abre com a sua chave tem um ícone de chave depois do nome, e um que passa pelo seu Mac mostra **via Mac**.
 
+<Screenshot name="move-result" alt="“2 de 3 servidores no tTerm”: web-01 “Abre com a sua chave”, staging “Por este Mac, enquanto ele estiver ligado”, cada um com “Abrir um terminal”; backup não foi migrado (sem chave de host no known_hosts), com “Tentar novamente” e “Alterar”; id_ed25519 está no cofre. Na barra lateral, web-01 tem uma chave, e staging mostra “via Mac”." />
+
 ## A faixa depois do ssh
 
 Quando o `ssh` termina sem erro num terminal deste Mac, pode aparecer uma faixa abaixo do bloco dele: **droplet: abra de qualquer lugar**, com o endereço e a sua chave.
+
+<Screenshot name="move-strip" alt="Abaixo de ssh droplet, num terminal deste Mac: “droplet: abra de qualquer lugar”, com root@203.0.113.20 e a chave ~/.ssh/id_ed25519; “Salvar minha chave”, “Deixar o tTerm entrar”, “Agora não” e “Não perguntar sobre droplet”." />
 
 - **Salvar minha chave** – o mesmo que **Minha chave**, quando a chave pode ser migrada.
 - **Deixar o tTerm entrar** – o mesmo que **Passe do tTerm**.

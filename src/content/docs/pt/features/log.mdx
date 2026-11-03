@@ -12,6 +12,8 @@ Cada comando executado numa máquina via tTerm vira uma linha no log dessa máqu
 
 Na barra lateral, na seção **Notas** de um projeto, a primeira pasta é **Logs**, com o rótulo **pelo tTerm**. Nela fica um log para cada máquina do projeto, com quantos comandos rodaram em cada uma hoje: **12 hoje**. Clique numa máquina, e o log dela abre numa aba, **web-01: log**.
 
+<Screenshot name="log-open" alt="A barra lateral: em “Notas”, em Personal e em Client X, a pasta “Logs” (“pelo tTerm”), com o log de cada máquina e a contagem de hoje: web-01, “27 hoje”; db-1, “7 hoje”." />
+
 O log mostra um dia por vez e abre no dia de hoje. As setas, **Dia anterior** e **Dia seguinte**, levam ao dia mais próximo que tem linhas. **Hoje** traz você de volta, e **Escolher um dia** abre um calendário. Enquanto o log mostra o dia de hoje, as linhas novas chegam à medida que os comandos terminam.
 
 No alto do log, o **⋯** tem **Copiar como Markdown**: o dia que está na tela, as linhas dele e as notas abaixo delas.
@@ -40,6 +42,8 @@ Ao lado ficam a ordem e os filtros:
 
 Com um filtro ativo, o dia mostra quantos comandos aparecem, **2 de 8 comandos**, e **Limpar filtros** desativa todos. Os filtros também valem para o que **Buscar neste log** encontrou.
 
+<Screenshot name="log-filter" alt="O log de web-01 com git em “Buscar neste log”, “Mais recentes primeiro” e um só terminal, release. Ele mostra “3 comandos, em 1 dia”, “Limpar filtros”, “Voltar ao dia” e as três linhas de hoje." />
+
 [A busca](../search/) também procura nos logs de todas as suas máquinas: comece com `l:`.
 
 ## Notas abaixo de um comando
@@ -61,6 +65,8 @@ Uma senha ou um token que foi parar num comando ou numa nota pode ser apagado. S
 3. Clique em **Apagar**.
 
 </Steps>
+
+<Screenshot name="log-redact" alt="“Apagar este comando?” para export PGPASSWORD='…' em db-1 (“hoje, 18:30”, backups): o que sai e o que o log guarda, “Motivo”: uma senha, e os botões “Apagar” e “Cancelar”." />
 
 As palavras somem para sempre do log, do feed do terminal, da busca e do histórico da linha de entrada. No caso de um comando, o que ele imprimiu também some, assim como o mesmo comando em qualquer outro lugar do projeto em que tenha rodado. No lugar das palavras apagadas, o log guarda quem as apagou, quando e por quê: **Apagado por você · 09:23 · uma senha**. As cópias noturnas do banco de dados ainda as guardam até essas cópias serem excluídas, em no máximo duas semanas.
 

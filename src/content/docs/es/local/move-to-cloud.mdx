@@ -3,11 +3,15 @@ title: Mover a la nube
 description: En tTerm para Mac, Mover a la nube lleva a tu cuenta los servidores a los que accedes con ssh, para que se abran desde cualquier navegador y desde tu teléfono.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 Los servidores a los que accedes desde tu Mac con `ssh` pueden abrirse desde tTerm Web, tu teléfono o cualquier computadora en la que inicies sesión. **Mover a la nube**, en [tTerm para Mac](../mac/), los lleva a tu cuenta, cada uno de la forma que elijas para él. No se mueve nada hasta que presiones **Mover**.
 
 ## Dónde está
 
 Inicia sesión en tTerm para Mac, haz clic en la cuenta, al pie de la barra lateral, y elige **Mover a la nube**, justo encima de **Cerrar sesión**. **⌘K** también lo encuentra.
+
+<Screenshot name="move-menu" alt="El menú de la cuenta, al pie de la barra lateral: «Mover a la nube» («Servidores y claves de esta Mac»), justo encima de «Cerrar sesión»." />
 
 ## Qué encuentra
 
@@ -17,6 +21,8 @@ Todos los servidores aparecen marcados, salvo un host de git como github.com (**
 
 Debajo de los servidores, **Claves en ~/.ssh** muestra tus claves privadas. Solo las marcadas van a tu bóveda. Una clave se marca sola cuando un servidor marcado se abre con ella mediante **Mi clave**.
 
+<Screenshot name="move-found" alt="«Mover a la nube»: web-01, staging y backup marcados, cada uno con su forma de entrar; staging, «A través de esta Mac», porque la nube no llega a él; db-1, «Ya está en tTerm», y github.com, un host de git, sin marcar; «Claves en ~/.ssh» con id_ed25519 marcada; «Mover 3 servidores»." />
+
 ## Tres formas de entrar
 
 Cada servidor tiene su propia elección:
@@ -24,6 +30,8 @@ Cada servidor tiene su propia elección:
 - **Mi clave**: la clave va a tu bóveda, cifrada en esta Mac, y el servidor sigue como está. tTerm Web inicia sesión desde la nube, y un dispositivo tuyo con la bóveda abierta firma ese inicio de sesión: un navegador en el que abriste la bóveda, o esta Mac. Para un servidor al que llega tTerm Web, con una clave de `~/.ssh` que puede moverse. Más detalles en [Tu bóveda de claves SSH](../../security/keys/).
 - **Pase de tTerm**: esta Mac inicia sesión una vez y añade la línea propia de tTerm al `~/.ssh/authorized_keys` del usuario con el que entra; tu clave se queda aquí. A partir de entonces, tTerm inicia sesión como ese usuario con un certificado que dura dos minutos, igual que en un [servidor conectado con un solo comando](../../machines/servers/), y no necesita bóveda. En la franja tras `ssh`, esta forma se llama **Dar acceso a tTerm**.
 - **A través de esta Mac**: no se mueve nada. tTerm le pide a esta Mac que ejecute `ssh` hacia el servidor, mientras la Mac esté encendida. Para un servidor detrás de una VPN o en una red privada, al que tTerm Web no puede llegar, y para uno cuya clave no puede salir de esta Mac. Su terminal funciona en modo clásico: cada tecla va directamente a ssh en la Mac, sin bloques y sin pedir confirmación antes de un comando peligroso.
+
+<Screenshot name="move-ways" alt="La forma de entrar de cada servidor: web-01, «Mi clave»; staging, «A través de esta Mac»; la lista de backup, abierta («Mi clave», «Pase de tTerm», «A través de esta Mac»); debajo, qué significa cada forma." />
 
 tTerm elige para cada servidor: **Mi clave** si su clave puede moverse, **A través de esta Mac** si tTerm Web no llega al servidor o su clave no puede salir, y **Pase de tTerm** en los demás casos. Un servidor al que tTerm Web no llega solo tiene **A través de esta Mac**. Un servidor detrás de un bastión al que llega la nube se abre a través de ese bastión.
 
@@ -40,6 +48,8 @@ El botón cuenta los servidores marcados: **Mover 3 servidores**.
 - Con **Mi clave**, esta Mac primero inicia sesión en el servidor solo con esa clave; únicamente entonces la clave va a tu bóveda, una sola vez para todos sus servidores. Con **Pase de tTerm**, esta Mac inicia sesión para añadir la línea, y tTerm inicia sesión una vez con su certificado para comprobarla.
 - **Mi clave** y **Pase de tTerm** necesitan la clave de host del servidor en `known_hosts`: a un servidor nuevo, conéctate primero una vez desde esta Mac.
 
+<Screenshot name="move-vault" alt="Al presionar «Mover» por primera vez con «Mi clave»: «Guarda tu clave en tu bóveda», id_ed25519 va a una bóveda que se abre igual que se desbloquea esta Mac; «Cancelar» y «Crear mi bóveda con Touch ID»." />
+
 Para un servidor que falla no se guarda nada. Una clave que fue a la bóveda solo por servidores que fallaron vuelve a salir de ella, y la línea que tTerm añadió en uno de esos servidores se quita.
 
 ## Después de mover
@@ -48,9 +58,13 @@ El resultado dice cuántos servidores están ahora en tTerm, todos en Personal: 
 
 En la barra lateral, un servidor que se abre con tu clave muestra una llave después de su nombre, y uno que va a través de tu Mac dice **vía Mac**.
 
+<Screenshot name="move-result" alt="«2 de 3 servidores en tTerm»: web-01 «Se abre con tu clave» y staging «A través de esta Mac, mientras esté encendida», cada uno con «Abrir una terminal»; backup no se movió (no hay clave de host en known_hosts), con «Reintentar» y «Cambiar»; id_ed25519 está en la bóveda. En la barra lateral, web-01 muestra una llave y staging dice «vía Mac»." />
+
 ## La franja tras ssh
 
 Cuando `ssh` termina sin errores en una terminal de esta Mac, puede aparecer una franja debajo de su bloque: **droplet: ábrelo desde cualquier lugar**, con la dirección y tu clave.
+
+<Screenshot name="move-strip" alt="Debajo de ssh droplet, en una terminal de esta Mac: «droplet: ábrelo desde cualquier lugar», con root@203.0.113.20 y la clave ~/.ssh/id_ed25519; «Guardar mi clave», «Dar acceso a tTerm», «Ahora no» y «No preguntar por droplet»." />
 
 - **Guardar mi clave**: lo mismo que **Mi clave**, si la clave puede moverse.
 - **Dar acceso a tTerm**: lo mismo que **Pase de tTerm**.

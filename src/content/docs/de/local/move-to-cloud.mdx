@@ -3,11 +3,15 @@ title: Umzug in die Cloud
 description: In tTerm für Mac bringt der Umzug in die Cloud die Server, die du mit ssh erreichst, in dein Konto, damit sie sich in jedem Browser und auf deinem Handy öffnen.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 Die Server, die du von deinem Mac aus mit `ssh` erreichst, können sich auch in tTerm Web öffnen, auf deinem Handy oder auf jedem Computer, an dem du dich anmeldest. **Umzug in die Cloud** in [tTerm für Mac](../mac/) bringt sie in dein Konto, jeden auf die Art, die du für ihn wählst. Nichts zieht um, bis du auf **Umziehen** drückst.
 
 ## Wo du das findest
 
 Melde dich in tTerm für Mac an, öffne unten in der Seitenleiste das Kontomenü und wähl **Umzug in die Cloud**, direkt über **Abmelden**. Auch **⌘K** findet den Punkt.
+
+<Screenshot name="move-menu" alt="Das Kontomenü unten in der Seitenleiste: „Umzug in die Cloud“ („Server und Schlüssel dieses Macs“), direkt über „Abmelden“." />
 
 ## Was gefunden wird
 
@@ -17,6 +21,8 @@ Angehakt sind alle Server außer einem git-Host wie github.com (**Ein Git-Host: 
 
 Unter den Servern listet **Schlüssel in ~/.ssh** deine privaten Schlüssel auf. Nur die angehakten kommen in deinen Tresor. Ein Schlüssel wird von selbst angehakt, wenn sich ein angehakter Server über **Mein Schlüssel** mit ihm öffnet.
 
+<Screenshot name="move-found" alt="„Umzug in die Cloud“: web-01, staging und backup sind angehakt, jeder mit seinem Weg auf den Server, staging „Über diesen Mac“, weil die Cloud ihn nicht erreicht; db-1 („Schon in tTerm“) und github.com, ein Git-Host, sind nicht angehakt; „Schlüssel in ~/.ssh“ mit angehaktem id_ed25519; „3 Server umziehen“." />
+
 ## Drei Wege auf den Server
 
 Für jeden Server wählst du einzeln:
@@ -24,6 +30,8 @@ Für jeden Server wählst du einzeln:
 - **Mein Schlüssel** – der Schlüssel wird auf diesem Mac verschlüsselt und kommt in deinen Tresor, und auf dem Server ändert sich nichts. tTerm Web meldet sich aus der Cloud an, und ein Gerät von dir mit geöffnetem Tresor signiert die Anmeldung: ein Browser, in dem du den Tresor geöffnet hast, oder dieser Mac. Passt für einen Server, den tTerm Web erreicht, mit einem Schlüssel in `~/.ssh`, der umziehen kann. Mehr dazu unter [Dein Tresor für SSH-Schlüssel](../../security/keys/).
 - **tTerm-Zugang** – dieser Mac meldet sich einmal an und fügt die eigene Zeile von tTerm in `~/.ssh/authorized_keys` des Benutzers ein, als der er sich anmeldet; dein Schlüssel bleibt hier. Ab dann meldet sich tTerm als dieser Benutzer mit einem Zertifikat an, das zwei Minuten lebt, wie bei einem [Server, der mit einem Befehl verbunden ist](../../machines/servers/), und braucht keinen Tresor. Auf der Leiste nach `ssh` heißt dieser Weg **tTerm Zugang geben**.
 - **Über diesen Mac** – nichts zieht um: tTerm bittet diesen Mac, `ssh` zum Server auszuführen, solange der Mac eingeschaltet ist. Passt für einen Server hinter einem VPN oder in einem privaten Netzwerk, den tTerm Web nicht erreicht, und für einen, dessen Schlüssel diesen Mac nicht verlassen kann. Sein Terminal läuft im klassischen Modus: Jede Taste geht direkt an ssh auf dem Mac, ohne Blöcke und ohne Rückfrage vor einem gefährlichen Befehl.
+
+<Screenshot name="move-ways" alt="Wie sich jeder Server öffnet: web-01 „Mein Schlüssel“, staging „Über diesen Mac“, bei backup ist die Auswahl aufgeklappt („Mein Schlüssel“, „tTerm-Zugang“, „Über diesen Mac“); darunter, was jeder Weg bedeutet." />
 
 tTerm wählt für jeden Server vor: **Mein Schlüssel**, wo sein Schlüssel umziehen kann, **Über diesen Mac**, wo tTerm Web den Server nicht erreicht oder sein Schlüssel den Mac nicht verlassen kann, sonst **tTerm-Zugang**. Ein Server, den tTerm Web nicht erreicht, hat nur **Über diesen Mac**. Ein Server hinter einem Bastion-Host, den die Cloud erreicht, öffnet sich über diesen Bastion-Host.
 
@@ -40,6 +48,8 @@ Der Button zählt die angehakten Server: **3 Server umziehen**.
 - Bei **Mein Schlüssel** meldet sich dieser Mac zuerst nur mit diesem Schlüssel beim Server an; erst dann kommt der Schlüssel in deinen Tresor, einmal für alle seine Server. Bei **tTerm-Zugang** meldet sich dieser Mac an, um die Zeile hinzuzufügen, und tTerm meldet sich einmal mit seinem Zertifikat an, um sie zu prüfen.
 - **Mein Schlüssel** und **tTerm-Zugang** brauchen den Host-Schlüssel des Servers in `known_hosts`: Verbinde dich mit einem neuen Server vorher einmal von diesem Mac aus.
 
+<Screenshot name="move-vault" alt="Der erste Umzug mit „Mein Schlüssel“: „Schlüssel in deinem Tresor speichern“, id_ed25519 kommt in einen Tresor, der sich so öffnet, wie du diesen Mac entsperrst; „Abbrechen“ und „Tresor mit Touch ID erstellen“." />
+
 Für einen Server, bei dem es fehlschlägt, wird nichts gespeichert. Ein Schlüssel, der nur für fehlgeschlagene Server in den Tresor kam, wird wieder daraus entfernt, und eine Zeile, die tTerm auf einem solchen Server hinzugefügt hat, wird wieder gelöscht.
 
 ## Nach dem Umzug
@@ -48,9 +58,13 @@ Das Ergebnis zeigt, wie viele Server jetzt in tTerm sind, alle in Personal: **2 
 
 In der Seitenleiste hat ein Server, der sich mit deinem Schlüssel öffnet, ein Schlüsselsymbol hinter seinem Namen, und einer, der über deinen Mac läuft, zeigt **via Mac**.
 
+<Screenshot name="move-result" alt="„2 von 3 Servern in tTerm übernommen“: web-01 „Öffnet sich mit deinem Schlüssel“, staging „Über diesen Mac, solange er eingeschaltet ist“, beide mit „Terminal öffnen“; backup ist nicht umgezogen (kein Host-Schlüssel in known_hosts), mit „Erneut versuchen“ und „Ändern“; id_ed25519 ist im Tresor. In der Seitenleiste hat web-01 ein Schlüsselsymbol, staging zeigt „via Mac“." />
+
 ## Die Leiste nach ssh
 
 Wenn `ssh` in einem Terminal dieses Macs ohne Fehler endet, kann unter seinem Block eine Leiste erscheinen: **droplet: von überall öffnen**, mit der Adresse und deinem Schlüssel.
+
+<Screenshot name="move-strip" alt="Unter dem Block ssh droplet in einem Terminal dieses Macs: „droplet: von überall öffnen“, mit root@203.0.113.20 und dem Schlüssel ~/.ssh/id_ed25519; „Schlüssel speichern“, „tTerm Zugang geben“, „Nicht jetzt“, „Bei droplet nicht mehr fragen“." />
 
 - **Schlüssel speichern** – dasselbe wie **Mein Schlüssel**, wenn der Schlüssel umziehen kann.
 - **tTerm Zugang geben** – dasselbe wie **tTerm-Zugang**.

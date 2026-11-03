@@ -12,6 +12,8 @@ Chaque commande exécutée sur une machine via tTerm devient une ligne dans le j
 
 Dans la barre latérale, sous les **Notes** d’un projet, le premier dossier est **Journaux**, marqué **par tTerm**. Il contient un journal pour chaque machine du projet, avec le nombre de commandes qui y ont été lancées aujourd’hui : **12 aujourd’hui**. Cliquez sur une machine, et son journal s’ouvre dans un onglet, **web-01 : journal**.
 
+<Screenshot name="log-open" alt="La barre latérale : sous « Notes », dans Personal et dans Client X, le dossier « Journaux » (« par tTerm ») avec le journal de chaque machine et le décompte du jour : web-01, « 27 aujourd’hui » ; db-1, « 7 aujourd’hui »." />
+
 Le journal affiche un jour à la fois et s’ouvre sur aujourd’hui. Les flèches, **Jour précédent** et **Jour suivant**, mènent au jour le plus proche qui a des lignes. **Aujourd’hui** vous y ramène, et **Choisir un jour** ouvre un calendrier. Tant que le journal affiche aujourd’hui, les nouvelles lignes arrivent à mesure que les commandes se terminent.
 
 En haut du journal, **⋯** propose **Copier en Markdown** : le jour affiché, ses lignes et leurs notes.
@@ -40,6 +42,8 @@ Dans la rangée sous le jour, **Chercher dans ce journal** parcourt tout le jour
 
 Quand un filtre est actif, le jour indique combien de commandes s’affichent, **2 sur 8 commandes**, et **Tout afficher** désactive les filtres. Les filtres s’appliquent aussi à ce qu’a trouvé **Chercher dans ce journal**.
 
+<Screenshot name="log-filter" alt="Le journal de web-01 avec « Chercher dans ce journal » : git, « Plus récentes d’abord » et un seul terminal, release. On y voit « 3 commandes, sur 1 jour », « Tout afficher », « Retour au jour » et les trois lignes du jour." />
+
 [La recherche](../search/) cherche aussi dans les journaux de toutes vos machines : commencez par `l:`.
 
 ## Notes sous une commande
@@ -61,6 +65,8 @@ Un mot de passe ou un jeton qui s’est glissé dans une commande ou une note pe
 3. Appuyez sur **Biffer**.
 
 </Steps>
+
+<Screenshot name="log-redact" alt="« Biffer cette commande ? » pour export PGPASSWORD='…' sur db-1 (« aujourd’hui à 18:30 », backups) : ce qui disparaît et ce que le journal garde, « Pourquoi » : un mot de passe, puis « Biffer » et « Annuler »." />
 
 Les mots disparaissent définitivement du journal, des blocs du terminal, de la recherche et de l’historique de la ligne de saisie. Pour une commande, sa sortie disparaît aussi, tout comme cette même commande partout où elle a été lancée ailleurs dans le projet. À leur place, le journal garde qui les a biffés, quand et pourquoi : **Texte biffé par vous · 09:23 · un mot de passe**. Les sauvegardes nocturnes de la base de données les contiennent encore jusqu’à leur suppression, sous deux semaines.
 

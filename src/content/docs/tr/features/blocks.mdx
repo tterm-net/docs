@@ -27,6 +27,8 @@ Bitmiş bir bloğun üzerine gelince düğmeleri belirir. İpuçlarında adları
 - **Bu komuta not ekle** komutun altında bir alan açar, **Enter** notu kaydeder. Notlar [makinenin loguna](../log/) da düşer, yazıldıkları gibi kalır ve **Yanıtla** ile yanıtlanır.
 - **Bloğu daralt** çıktıyı gizler. Daraltılmış blok ne kadarını gizlediğini yazar, örneğin **12 satır gizli**; bir tıklama onu yeniden açar.
 
+<Screenshot name="block-buttons" alt="Üzerinde fare imleci olan, bitmiş git log --oneline bloğu. Sağda düğmeleri: “Komutu ve çıktısını kopyala”, “Yalnızca çıktıyı kopyala”, “Yeniden çalıştır”, “Bu bloğun bağlantısını kopyala”, “Bu komuta not ekle”, “Bloğu daralt”." />
+
 ## Giriş satırı
 
 Giriş satırı kabuğa değil, tTerm'e aittir. Yazdıkların, **Enter** komutun tamamını kabuğa verene kadar satırda kalır.
@@ -47,6 +49,8 @@ Bir komut çalışırken satırda şu yazar: **Tuşlar çalışan komuta gidiyor
 
 Bazı komutlar bir şeyi kalıcı olarak yok eder. tTerm böyle bir komutu bekletir ve önce satırın üstündeki bir şeritte sorar: komut ne yapacak, hangi makinede ve geri gelmeyecek olan ne. “Bu komut **web-01** üzerinde şunu yapacak: **bir dizini ve içindeki her şeyi silmek**. Geri almanın yolu yok, bakabileceğin bir çöp kutusu da yok.” **Çalıştır** komutu çalıştırır, **Vazgeç** onu satıra geri koyar.
 
+<Screenshot name="danger" alt="rm -rf ~/app/build bekletiliyor: giriş satırının üstündeki şerit, komutun web-01 üzerinde bir dizini ve içindeki her şeyi sileceğini, geri almanın yolu olmadığını söylüyor; “Çalıştır” ve “Vazgeç” seçeneklerini sunuyor." />
+
 Şu komutlardan önce sorar:
 
 - `-r` ve `-f` ile `rm` – bir dizini ve içindeki her şeyi silmek;
@@ -65,6 +69,8 @@ Bazı komutlar bir şeyi kalıcı olarak yok eder. tTerm böyle bir komutu bekle
 
 Klasik modda terminal sıradan bir terminaldir. Her tuş doğrudan kabuğa gider, Tab ve geçmiş kabuğun kendisine aittir; komut istemi dahil her şeyi kabuk çizer. Blok yoktur ve hiçbir şey denetlenmez; terminalin altında da şu yazar: **Bu modda tehlikeli komutlar için onay istenmez.**
 
+<Screenshot name="classic" alt="Klasik modda bir terminal: her şeyi, kendi komut istemi anna@web-01:~/app$ dahil, kabuğun kendisi çiziyor. Altında “Bu modda tehlikeli komutlar için onay istenmez.” ve “Satır” / “Klasik” düğmeleri." />
+
 Giriş satırının sağındaki **Satır** ve **Klasik** düğmeleri modu değiştirir; klasik modda bu düğmeler terminalin altındadır. Kabuk olduğu gibi çalışmaya devam eder, bu tarayıcı da seçtiğin modu tüm terminallerin için hatırlar.
 
 Bir komutun nerede başladığını işaretleyemeyen bir kabuk, örneğin 4.4'ten eski bash, yalnızca klasik modda çalışır. Orada **Satır** soluk görünür, düğmenin ipucu da nedenini söyler.
@@ -73,9 +79,13 @@ Bir komutun nerede başladığını işaretleyemeyen bir kabuk, örneğin 4.4'te
 
 `clear` (ya da `reset`) ve **Ctrl+L** akışı silmez, yalnızca görünümden kaldırır: en üstteki **3 blok görünümden kaldırıldı: göster** onu geri getirir. Daraltılmış bloklar ve temizlenmiş akış bu tarayıcıda öyle kalır: sayfa yenilendikten sonra da, klasik moda geçip dönüldükten sonra da. En üstteki **Önceki komutları göster** daha eski blokları getirir; bloklar 30 gün saklanır.
 
+<Screenshot name="cleared" alt="Akış, clear komutundan sonra: en üstte “3 blok görünümden kaldırıldı: göster”, ardından daraltılmış git show (“16 satır gizli”), sonra git log --oneline." />
+
 ## Terminale ad verme
 
 Terminalin sekmesine ya da kenar çubuğunda veya proje sayfasında terminalin kendisine çift tıkla ve bir ad yaz: en fazla 40 karakter, yalnızca bir sayı olamaz. **Enter** kaydeder, **Esc** iptal eder. Ad kenar çubuğunda, sekmelerde ve proje sayfasında görünür.
+
+<Screenshot name="rename" alt="Bir terminali sekmesinde yeniden adlandırma: P/web-01 · kısmından sonra, içinde yazılmakta olan release adının bulunduğu bir alan." />
 
 ## Terminal sonlandığında
 
@@ -89,5 +99,7 @@ Terminal tarayıcında değil, tTerm Web'de çalışır: sekmesini ya da tarayı
 Neden sonlandığını sekmesi söyler. Bir güncellemeden sonra sekmede şu yazar: **tTerm Web, 0.1.24 sürümüne güncellendi.** Yanında o sürümdeki yeniliklere ve makinenin loguna bağlantılar da bulunur. Çalıştırılan komutlar ve çıktıları [makinenin logunda](../log/) kalır.
 
 **web-01 üzerinde yeni terminal aç** aynı sekmede yenisini başlatır; eskisinin bulunduğu dizin hâlâ duruyorsa yenisi o dizinde açılır.
+
+<Screenshot name="ended" alt="Bir güncellemeden sonra terminal sekmesi: komutları, ardından “Bu terminal sonlandı”, açıklamasıyla birlikte “tTerm Web, 0.1.24 sürümüne güncellendi.”, “0.1.24 sürümündeki yenilikler”, “web-01 makinesinin logu”, “web-01 üzerinde yeni terminal aç” ve “Sekmeyi kapat”." />
 
 Terminaliyle birlikte durmaması gereken uzun bir işi, örneğin bir derlemeyi ya da yedeklemeyi, makinenin kendisinde `tmux` ya da `screen` içinde veya `nohup` ile çalıştırmak daha güvenlidir.

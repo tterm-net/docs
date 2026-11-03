@@ -3,11 +3,15 @@ title: Przenieś do chmury
 description: W tTerm dla Maca opcja Przenieś do chmury przenosi na twoje konto serwery, z którymi łączysz się przez ssh, żeby otwierały się z każdej przeglądarki i z telefonu.
 ---
 
+import Screenshot from '../../../../components/Screenshot.astro';
+
 Serwery, z którymi łączysz się z Maca przez `ssh`, mogą otwierać się z tTerm Web, z telefonu albo z dowolnego komputera, na którym się zalogujesz. **Przenieś do chmury** w [tTerm dla Maca](../mac/) przenosi je na twoje konto, każdy w sposób, który dla niego wybierzesz. Nic nie zostanie przeniesione, dopóki nie naciśniesz **Przenieś**.
 
 ## Gdzie to znaleźć
 
 Zaloguj się w tTerm dla Maca, kliknij swoje konto na dole panelu bocznego i wybierz **Przenieś do chmury**, tuż nad **Wyloguj się**. Znajdziesz tę opcję także przez **⌘K**.
+
+<Screenshot name="move-menu" alt="Menu konta na dole panelu bocznego: „Przenieś do chmury” („Serwery i klucze tego Maca”), tuż nad „Wyloguj się”." />
 
 ## Co znajduje
 
@@ -17,6 +21,8 @@ Zaznaczone są wszystkie serwery oprócz hosta Gita, takiego jak github.com (**H
 
 Pod serwerami, w sekcji **Klucze w ~/.ssh**, są twoje klucze prywatne. Do sejfu trafiają tylko zaznaczone. Klucz zaznacza się sam, gdy otwiera się nim zaznaczony serwer ze sposobem **Mój klucz**.
 
+<Screenshot name="move-found" alt="„Przenieś do chmury”: zaznaczono web-01, staging i backup, każdy ze swoim sposobem dostępu, staging „przez tego Maca”, bo chmura do niego nie dociera; db-1 („Już jest w tTermie”) i github.com, host Gita, nie są zaznaczone; „Klucze w ~/.ssh” z zaznaczonym id_ed25519; „Przenieś 3 serwery”." />
+
 ## Trzy sposoby dostępu
 
 Dla każdego serwera wybierasz osobno:
@@ -24,6 +30,8 @@ Dla każdego serwera wybierasz osobno:
 - **Mój klucz** – klucz trafia do twojego sejfu, zaszyfrowany na tym Macu, a serwer zostaje bez zmian. tTerm Web loguje się na serwer z chmury, a twoje urządzenie z otwartym sejfem podpisuje to logowanie: przeglądarka, w której sejf jest otwarty, albo ten Mac. Pasuje do serwera, do którego dociera tTerm Web i którego klucz w `~/.ssh` można przenieść. Więcej: [Twój sejf na klucze SSH](../../security/keys/).
 - **Przepustka tTerma** – ten Mac raz loguje się na serwer i dodaje własny wiersz tTerma do `~/.ssh/authorized_keys` użytkownika, na którego konto się loguje; twój klucz zostaje tutaj. Od tej pory tTerm loguje się jako ten użytkownik certyfikatem ważnym dwie minuty, tak jak na [serwerze podłączonym jednym poleceniem](../../machines/servers/), i nie potrzebuje sejfu. Na pasku po `ssh` ten sposób nazywa się **Wpuść tTerm**.
 - **Przez tego Maca** – nic nie jest przenoszone: tTerm prosi tego Maca, żeby połączył się z serwerem przez `ssh`, gdy Mac jest włączony. Pasuje do serwera za VPN-em albo w sieci prywatnej, do którego tTerm Web nie dociera, i do serwera, którego klucz nie może opuścić tego Maca. Jego terminal działa w trybie klasycznym: każdy klawisz trafia prosto do ssh na Macu, bez bloków i bez pytania przed niebezpiecznym poleceniem.
+
+<Screenshot name="move-ways" alt="Sposób dostępu do każdego serwera: web-01 – „Mój klucz”, staging – „Przez tego Maca”, przy backup rozwinięta lista („Mój klucz”, „Przepustka tTerma”, „Przez tego Maca”); niżej – co oznacza każdy sposób." />
 
 tTerm sam wybiera dla każdego serwera: **Mój klucz**, gdy jego klucz można przenieść, **Przez tego Maca**, gdy tTerm Web nie dociera do serwera albo klucz nie może opuścić Maca, a w pozostałych przypadkach **Przepustka tTerma**. Serwer, do którego tTerm Web nie dociera, ma tylko **Przez tego Maca**. Serwer za bastionem, do którego dociera chmura, otwiera się przez ten bastion.
 
@@ -40,6 +48,8 @@ Przycisk podaje liczbę zaznaczonych serwerów: **Przenieś 3 serwery**.
 - Przy sposobie **Mój klucz** ten Mac najpierw loguje się na serwer samym tym kluczem i dopiero potem klucz trafia do sejfu, raz dla wszystkich swoich serwerów. Przy sposobie **Przepustka tTerma** ten Mac loguje się, żeby dodać wiersz, a tTerm loguje się raz swoim certyfikatem, żeby go sprawdzić.
 - **Mój klucz** i **Przepustka tTerma** wymagają klucza hosta serwera w `known_hosts`: z nowym serwerem najpierw połącz się raz z tego Maca.
 
+<Screenshot name="move-vault" alt="Pierwsze przeniesienie ze sposobem „Mój klucz”: „Zapisz swój klucz w sejfie”, id_ed25519 trafi do sejfu, który otwiera się tak, jak odblokowuje się ten Mac; „Anuluj” i „Utwórz sejf za pomocą Touch ID”." />
+
 Dla serwera, którego nie udało się przenieść, nic nie jest zapisywane. Klucz, który trafił do sejfu tylko dla takich serwerów, zostaje z niego usunięty, a wiersz, który tTerm dodał na takim serwerze, znika.
 
 ## Po przeniesieniu
@@ -48,9 +58,13 @@ Podsumowanie mówi, ile serwerów jest teraz w tTermie, wszystkie w projekcie Pe
 
 W panelu bocznym serwer, który otwiera się twoim kluczem, ma po nazwie ikonę klucza, a serwer otwierany przez twojego Maca ma dopisek **przez Maca**.
 
+<Screenshot name="move-result" alt="„Dodano do tTerma 2 z 3 serwerów”: web-01 „Otwiera się twoim kluczem”, staging „Przez tego Maca, gdy jest włączony”, przy obu „Otwórz terminal”; backup nie został przeniesiony (brak klucza hosta w known_hosts), z przyciskami „Spróbuj ponownie” i „Zmień”; id_ed25519 jest w sejfie. W panelu bocznym web-01 ma ikonę klucza, a staging – „przez Maca”." />
+
 ## Pasek po ssh
 
 Gdy `ssh` zakończy się bez błędu w terminalu tego Maca, pod jego blokiem może pojawić się pasek **droplet: otwieraj go z dowolnego miejsca** z adresem i twoim kluczem.
+
+<Screenshot name="move-strip" alt="Pod blokiem ssh droplet w terminalu tego Maca: „droplet: otwieraj go z dowolnego miejsca”, z adresem root@203.0.113.20 i kluczem ~/.ssh/id_ed25519; „Zapisz mój klucz”, „Wpuść tTerm”, „Nie teraz”, „Nie pytaj więcej o droplet”." />
 
 - **Zapisz mój klucz** – to samo co **Mój klucz**, gdy klucz można przenieść.
 - **Wpuść tTerm** – to samo co **Przepustka tTerma**.

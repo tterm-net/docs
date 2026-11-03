@@ -27,6 +27,8 @@ Passe o mouse sobre um bloco concluído, e os botões dele aparecem. As dicas mo
 - **Adicionar uma nota a este comando** abre um campo embaixo dele, e **Enter** salva a nota. As notas vão também para o [log da máquina](../log/), ficam como foram escritas e podem ser respondidas com **Responder**.
 - **Recolher bloco** esconde a saída. Um bloco recolhido diz quanto está escondendo, **12 linhas ocultas**, e um clique o expande de novo.
 
+<Screenshot name="block-buttons" alt="O bloco concluído git log --oneline, com o mouse sobre ele. À direita, os botões dele: “Copiar o comando e a saída”, “Copiar só a saída”, “Executar de novo”, “Copiar link deste bloco”, “Adicionar uma nota a este comando” e “Recolher bloco”." />
+
 ## A linha de entrada
 
 A linha de entrada é do próprio tTerm, não do shell. O que você digita fica nela até o **Enter**, que entrega o comando inteiro ao shell.
@@ -47,6 +49,8 @@ Enquanto um comando roda, a linha diz **As teclas vão para o comando em execuç
 
 Alguns comandos destroem algo para sempre. O tTerm segura um comando desses e pergunta antes, numa barra acima da linha: o que o comando faria, em qual máquina e o que não volta mais. “Este comando vai **excluir um diretório e tudo o que há dentro dele** em **web-01**. Não há como desfazer, nem lixeira onde procurar.” **Executar** roda o comando, e **Cancelar** o devolve para a linha.
 
+<Screenshot name="danger" alt="O tTerm segura rm -rf ~/app/build: a barra acima da linha de entrada diz que o comando vai excluir um diretório e tudo o que há dentro dele em web-01, sem ter como desfazer, e oferece “Executar” e “Cancelar”." />
+
 Ele pergunta antes de rodar:
 
 - `rm` com `-r` e `-f` – excluir um diretório e tudo o que há dentro dele;
@@ -65,6 +69,8 @@ Um `rm -rf` apontado para `/` ou `~` acrescenta **O alvo é a máquina inteira. 
 
 No modo clássico, o terminal funciona como um terminal comum. Cada tecla vai direto para o shell, com o Tab e o histórico dele, e o shell desenha tudo, inclusive o prompt. Não há blocos, e nada é verificado: embaixo do terminal aparece **Neste modo, não há confirmação para comandos perigosos.**
 
+<Screenshot name="classic" alt="Um terminal no modo clássico: o shell desenha tudo, inclusive o próprio prompt, anna@web-01:~/app$. Embaixo: “Neste modo, não há confirmação para comandos perigosos.” e o seletor “Linha” / “Clássico”." />
+
 **Linha** e **Clássico**, à direita da linha de entrada, trocam o modo; no modo clássico, o seletor fica embaixo do terminal. O shell continua como estava, e este navegador guarda o modo para todos os seus terminais.
 
 Um shell que não consegue marcar onde um comando começa, como o bash anterior à versão 4.4, só funciona no modo clássico. Nesse shell, **Linha** fica em cinza, e a dica do seletor explica por quê.
@@ -73,9 +79,13 @@ Um shell que não consegue marcar onde um comando começa, como o bash anterior 
 
 `clear` (ou `reset`) e **Ctrl+L** tiram o feed de vista, mas não o apagam: **3 blocos ocultados: mostrar**, no topo, traz tudo de volta. Blocos recolhidos e um feed limpo continuam assim neste navegador, depois de recarregar a página e depois de passar para o modo clássico e voltar. **Mostrar comandos anteriores**, no topo, traz blocos mais antigos; eles ficam guardados por 30 dias.
 
+<Screenshot name="cleared" alt="O feed depois de clear: “3 blocos ocultados: mostrar” no topo, depois git show recolhido (“16 linhas ocultas”) e, por fim, git log --oneline." />
+
 ## Nomear um terminal
 
 Clique duas vezes na aba de um terminal, ou no terminal na barra lateral ou na página do projeto, e digite um nome: até 40 caracteres, e não apenas um número. **Enter** salva, **Esc** cancela. O nome aparece na barra lateral, nas abas e na página do projeto.
+
+<Screenshot name="rename" alt="Um terminal sendo renomeado na aba dele: depois de P/web-01 · há um campo com o nome que está sendo digitado, release." />
 
 ## Quando um terminal é encerrado
 
@@ -89,5 +99,7 @@ Um terminal roda no tTerm Web, não no seu navegador: feche a aba dele ou o nave
 A aba do terminal mostra o motivo. Depois de uma atualização, aparece **O tTerm Web foi atualizado para 0.1.24.**, com links para as novidades dessa versão e para o log da máquina. Os comandos que rodaram e a saída deles ficam no [log da máquina](../log/).
 
 **Abrir um novo terminal em web-01** inicia outro na mesma aba, no diretório em que o antigo estava, se esse diretório ainda existir.
+
+<Screenshot name="ended" alt="A aba de um terminal depois de uma atualização: os comandos dele e, em seguida, “Este terminal foi encerrado”, “O tTerm Web foi atualizado para 0.1.24.” com a explicação, “Novidades da versão 0.1.24”, “Log da máquina web-01”, “Abrir um novo terminal em web-01” e “Fechar a aba”." />
 
 Uma tarefa longa que não pode parar junto com o terminal, como um build ou um backup, roda com mais segurança na própria máquina, dentro do `tmux` ou do `screen`, ou com `nohup`.

@@ -12,6 +12,8 @@ Every command run on a machine through tTerm becomes a line in that machine's lo
 
 In the sidebar, under a project's **Notes**, the first folder is **Logs**, marked **by tTerm**. It holds a log for each machine of the project, with how many commands ran there today: **12 today**. Click a machine, and its log opens in a tab, **web-01 log**.
 
+<Screenshot name="log-open" alt="The sidebar: under Notes in Personal and in Client X, the folder Logs (by tTerm) with each machine's log and today's count: web-01, 27 today; db-1, 7 today." />
+
 The log shows a day at a time and opens on today. The arrows, **The day before** and **The day after**, go to the nearest day with lines. **Today** brings you back, and **Pick a day** opens a calendar. While the log shows today, new lines come in as commands end.
 
 At the top of the log, **⋯** has **Copy as Markdown**: the day shown, its lines and the notes under them.
@@ -40,6 +42,8 @@ Beside it are the order and the filters:
 
 With a filter on, the day says how many commands show, **2 of 8 commands**, and **Clear** turns the filters off. The filters work on what **Find in this log** found, too.
 
+<Screenshot name="log-filter" alt="web-01's log with Find in this log: git, Newest first and one terminal, release. It shows 3 commands, on 1 day, Clear, Back to the day and today's three lines." />
+
 [Search](../search/) looks in the logs of all your machines as well: start with `l:`.
 
 ## Notes under a command
@@ -61,6 +65,8 @@ A password or a token that got into a command or a note can be erased. Only the 
 3. Press **Redact**.
 
 </Steps>
+
+<Screenshot name="log-redact" alt="Redact this command? for export PGPASSWORD='…' on db-1 (today, 18:30, backups): what goes and what the log keeps, Why: a password, and Redact and Cancel." />
 
 The words go for good from the log, the terminal's feed, search and the input line's history. With a command, what it printed goes too, and so does the same command wherever else it ran in the project. In their place, the log keeps who redacted them, when and why: **Redacted by You · 09:23 · a password**. The nightly backups of the database still hold them until those backups are deleted, within two weeks.
 

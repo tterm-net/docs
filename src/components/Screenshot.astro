@@ -8,8 +8,11 @@
  * is the language's folder of the docs (en for English). A language without
  * a picture of its own shows the English one: a picture with no words in it
  * is kept in en alone.
+ *
+ * The picture goes out as it is, already WebP: with a thousand of them,
+ * making a smaller copy of each at build time would take Cloudflare's build
+ * too long. A screen of ordinary density shows it at half its pixels.
  */
-import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
@@ -33,14 +36,17 @@ const light = find('light');
 const dark = find('dark');
 if (!light || !dark) throw new Error(`No screenshot "${name}" in src/assets/shots/en/`);
 // Made at 2x: shown at half their pixels, sharp on a dense screen.
-const width = Math.round(light.width / 2);
+const size = (shot: ImageMetadata) => ({
+	width: Math.round(shot.width / 2),
+	height: Math.round(shot.height / 2),
+});
 ---
 
 <figure class="tt-shot">
 	<a href={light.src} class="dark:sl-hidden">
-		<Image src={light} alt={alt} width={width} densities={[1, 2]} />
+		<img src={light.src} alt={alt} {...size(light)} loading="lazy" decoding="async" />
 	</a>
 	<a href={dark.src} class="light:sl-hidden">
-		<Image src={dark} alt={alt} width={width} densities={[1, 2]} />
+		<img src={dark.src} alt={alt} {...size(dark)} loading="lazy" decoding="async" />
 	</a>
 </figure>

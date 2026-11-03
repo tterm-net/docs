@@ -12,6 +12,8 @@ Ogni comando eseguito su una macchina tramite tTerm diventa una riga nel log di 
 
 Nella barra laterale, tra le **Note** di un progetto, la prima cartella è **Log**, con accanto la scritta **da tTerm**. Dentro c'è un log per ogni macchina del progetto, con il numero di comandi eseguiti lì oggi: **12 oggi**. Fai clic su una macchina e il suo log si apre in una scheda, **web-01: log**.
 
+<Screenshot name="log-open" alt="La barra laterale: sotto «Note» in Personal e in Client X, la cartella «Log» («da tTerm») con il log di ogni macchina e il conteggio di oggi: web-01, «27 oggi»; db-1, «7 oggi»." />
+
 Il log mostra un giorno alla volta e si apre sul giorno di oggi. Le frecce, **Giorno precedente** e **Giorno successivo**, portano al giorno più vicino che ha delle righe. **Oggi** ti riporta al giorno di oggi, e **Scegli un giorno** apre un calendario. Mentre il log mostra oggi, le nuove righe compaiono man mano che i comandi finiscono.
 
 In cima al log, nel menu **⋯** c'è **Copia come Markdown**: il giorno mostrato, le sue righe e le note che hanno sotto.
@@ -40,6 +42,8 @@ Accanto ci sono l'ordine e i filtri:
 
 Con un filtro attivo, il giorno indica quanti comandi sono mostrati, **2 di 8 comandi**, e **Azzera** disattiva i filtri. I filtri valgono anche per i risultati di **Cerca in questo log**.
 
+<Screenshot name="log-filter" alt="Il log di web-01 con «Cerca in questo log»: git, «Prima le più recenti» e un solo terminale, release. Mostra «3 comandi, in 1 giorno», «Azzera», «Torna al giorno» e le tre righe di oggi." />
+
 [La ricerca](../search/) guarda anche nei log di tutte le tue macchine: inizia con `l:`.
 
 ## Note sotto un comando
@@ -61,6 +65,8 @@ Una password o un token finiti in un comando o in una nota si possono cancellare
 3. Premi **Oscura**.
 
 </Steps>
+
+<Screenshot name="log-redact" alt="«Oscurare questo comando?» per export PGPASSWORD='…' su db-1 («oggi alle 18:30», backups): cosa scompare e cosa resta nel log, «Perché»: una password, e i pulsanti «Oscura» e «Annulla»." />
 
 Le parole spariscono per sempre dal log, dai blocchi del terminale, dalla ricerca e dalla cronologia della riga di input. Con un comando se ne va anche il suo output, e sparisce anche lo stesso comando, ovunque sia stato eseguito altrove nel progetto. Al loro posto, il log conserva chi le ha oscurate, quando e perché: **Testo oscurato da te · 09:23 · una password**. I backup notturni del database le contengono ancora finché quei backup non vengono eliminati, entro due settimane.
 

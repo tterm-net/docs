@@ -4,8 +4,11 @@ description: Le terminal local pour Mac – comment l’installer, l’ouvrir la
 ---
 
 import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Le terminal local est une application pour le Mac : les shells de cet ordinateur sous forme de blocs, et tout le cloud dans la même fenêtre. Gratuit, macOS 11 ou version ultérieure, Apple Silicon et Intel dans un seul fichier. Les versions pour [Windows](../windows/) et [Linux](../linux/) sont en préparation.
+
+<Screenshot name="mac-window" alt="tTerm pour Mac une fois connecté : un terminal de MacBook-Pro, marqué « ce Mac », avec ses commandes sous forme de blocs ; dans la barre latérale, à côté de lui, les machines du cloud : web-01 avec une clé, staging « via Mac », db-1 dans Client X." />
 
 <LinkButton href="https://tterm.net/fr/download/">Télécharger pour Mac</LinkButton>
 
@@ -17,7 +20,11 @@ Le terminal local est une application pour le Mac : les shells de cet ordinateu
 
 2. Ouvrez l’application. La première fois, macOS vous demande de confirmer l’ouverture, [voici comment faire](#le-premier-lancement-une-seule-fois). Ensuite, les terminaux de ce Mac fonctionnent tout de suite, sans compte ni configuration.
 
+   <Screenshot name="mac-welcome" alt="Le premier lancement : « Bienvenue dans tTerm », les terminaux de cet ordinateur fonctionnent tout de suite ; « Se connecter avec le navigateur » ou « Plus tard »." />
+
 3. Connectez-vous quand vous voulez. La connexion ouvre votre navigateur : confirmez-la, et vos serveurs et vos notes apparaissent dans la fenêtre.
+
+   <Screenshot name="mac-sign-in" alt="« Connexion avec le navigateur » : tTerm a ouvert app.tterm.net dans le navigateur et attend, en montrant le code que cette page affiche aussi, avec « Rouvrir la page » et « Annuler »." />
 
 </Steps>
 
@@ -39,6 +46,8 @@ Ensuite, l’application s’ouvre normalement, installe elle-même les nouvelle
 ## Mises à jour
 
 Toutes les six heures, l’application vérifie s’il existe une nouvelle version, la télécharge et l’installe quand cela ne gêne personne : quand vous quittez l’application ou quand rien ne tourne dans ses terminaux. Dans **Paramètres** → **Mises à jour**, vous pouvez lui demander de vous consulter d’abord.
+
+<Screenshot name="mac-updates" alt="« Paramètres » → « Mises à jour » : « Mettre à jour automatiquement » (« Recommandé ») est sélectionné, « Me demander d’abord » à côté ; « tTerm 0.7.1 est à jour », avec « Vérifier maintenant »." />
 
 :::note[Le mot de passe du trousseau après une mise à jour]
 Après une mise à jour, macOS peut demander une fois le mot de passe de votre trousseau : saisissez-le et appuyez sur **Toujours autoriser**. Il en sera ainsi tant que l’application n’est pas signée avec un Apple Developer ID.

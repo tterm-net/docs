@@ -4,8 +4,11 @@ description: Terminal lokalny na Maca – jak go zainstalować, otworzyć za pie
 ---
 
 import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Terminal lokalny to aplikacja na Maca: powłoki tego komputera w blokach, a w tym samym oknie cała chmura. Za darmo, macOS 11 lub nowszy, Apple Silicon i Intel w jednym pliku. Wersje na [Windows](../windows/) i [Linuksa](../linux/) są w przygotowaniu.
+
+<Screenshot name="mac-window" alt="tTerm dla Maca po zalogowaniu: terminal tego Maca, MacBook-Pro („ten Mac”), z poleceniami w postaci bloków; w panelu bocznym obok niego maszyny z chmury: web-01 z ikoną klucza, staging „przez Maca”, db-1 w projekcie Client X." />
 
 <LinkButton href="https://tterm.net/pl/download/">Pobierz na Maca</LinkButton>
 
@@ -17,7 +20,11 @@ Terminal lokalny to aplikacja na Maca: powłoki tego komputera w blokach, a w ty
 
 2. Uruchom aplikację. Za pierwszym razem macOS poprosi o potwierdzenie, [zobacz, jak to zrobić](#pierwsze-uruchomienie-tylko-raz). Potem terminale tego Maca działają od razu, bez konta i bez konfiguracji.
 
+   <Screenshot name="mac-welcome" alt="Pierwsze uruchomienie: „Witaj w tTermie”, terminale tego komputera działają od razu; „Zaloguj się przez przeglądarkę” albo „Później”." />
+
 3. Zaloguj się, kiedy zechcesz. Logowanie otworzy przeglądarkę: potwierdź je tam, a w oknie pojawią się twoje serwery i notatki.
+
+   <Screenshot name="mac-sign-in" alt="„Zaloguj się przez przeglądarkę”: tTerm otworzył app.tterm.net w przeglądarce i czeka, pokazując ten sam kod co otwarta strona; przyciski „Otwórz stronę ponownie” i „Anuluj”." />
 
 </Steps>
 
@@ -39,6 +46,8 @@ Od tej pory aplikacja otwiera się jak zwykle i sama instaluje nowe wersje, bez 
 ## Uaktualnienia
 
 Co sześć godzin aplikacja sprawdza, czy jest nowa wersja, pobiera ją i instaluje, kiedy nikomu to nie przeszkadza: gdy ją zamykasz albo gdy w jej terminalach nic nie działa. W sekcji **Ustawienia** → **Uaktualnienia** możesz ustawić, żeby najpierw pytała.
+
+<Screenshot name="mac-updates" alt="„Ustawienia” → „Uaktualnienia”: wybrano „Uaktualniaj automatycznie” („Zalecane”), obok „Najpierw zapytaj”; „tTerm 0.7.1 jest aktualny” i przycisk „Sprawdź teraz”." />
 
 :::note[Hasło pęku kluczy po uaktualnieniu]
 Po uaktualnieniu macOS może raz zapytać o hasło pęku kluczy: wpisz je i naciśnij **Zawsze pozwalaj**. Tak będzie, dopóki aplikacja nie zostanie podpisana certyfikatem Apple Developer ID.

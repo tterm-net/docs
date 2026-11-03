@@ -27,6 +27,8 @@ Pasa el puntero sobre un bloque terminado y aparecerán sus botones. Sus textos 
 - **Añadir una nota sobre este comando** abre un campo debajo, y **Enter** guarda la nota. Las notas también van a la [bitácora de la máquina](../log/), se quedan tal como se escribieron y se responden con **Responder**.
 - **Contraer bloque** oculta la salida. Un bloque contraído dice cuánto oculta, **12 líneas ocultas**, y con un clic se vuelve a expandir.
 
+<Screenshot name="block-buttons" alt="El bloque terminado git log --oneline con el puntero encima. A la derecha están sus botones: «Copiar el comando y su salida», «Copiar solo la salida», «Volver a ejecutar», «Copiar enlace a este bloque», «Añadir una nota sobre este comando» y «Contraer bloque»." />
+
 ## La línea de entrada
 
 La línea de entrada es de tTerm, no del shell. Lo que escribes se queda en ella hasta que presionas **Enter**, que le pasa el comando completo al shell.
@@ -47,6 +49,8 @@ Mientras se ejecuta un comando, la línea dice **Las teclas van al comando en ej
 
 Algunos comandos destruyen algo para siempre. tTerm retiene un comando así y pregunta antes, en una barra sobre la línea: qué haría el comando, en qué máquina y qué no se puede recuperar. «Esto va a **eliminar un directorio y todo su contenido** en **web-01**. No hay forma de deshacerlo ni papelera donde buscarlo». **Ejecutarlo** ejecuta el comando, y **Cancelar** lo devuelve a la línea.
 
+<Screenshot name="danger" alt="rm -rf ~/app/build retenido: la barra sobre la línea de entrada dice que eliminaría un directorio y todo su contenido en web-01, sin forma de deshacerlo, y ofrece «Ejecutarlo» y «Cancelar»." />
+
 Pregunta antes de:
 
 - `rm` con `-r` y `-f` – eliminar un directorio y todo su contenido;
@@ -65,6 +69,8 @@ Si un `rm -rf` apunta a `/` o a `~`, se añade **Esto apunta a toda la máquina.
 
 En el modo clásico, la terminal funciona como cualquier otra. Cada tecla va directamente al shell, con su propio Tab e historial, y el shell lo dibuja todo, también su prompt. No hay bloques y no se comprueba nada: debajo de la terminal aparece **En este modo no se pide confirmación para los comandos peligrosos.**
 
+<Screenshot name="classic" alt="Una terminal en modo clásico: el shell lo dibuja todo, también su propio prompt anna@web-01:~/app$. Debajo: «En este modo no se pide confirmación para los comandos peligrosos» y el selector «Línea» / «Clásico»." />
+
 **Línea** y **Clásico**, a la derecha de la línea de entrada, cambian el modo; en el modo clásico, el selector está debajo de la terminal. El shell sigue como estaba, y este navegador recuerda el modo para todas tus terminales.
 
 Un shell que no puede marcar dónde empieza un comando, como bash anterior a la versión 4.4, solo funciona en el modo clásico. Ahí **Línea** aparece atenuada, y el texto emergente del selector explica por qué.
@@ -73,9 +79,13 @@ Un shell que no puede marcar dónde empieza un comando, como bash anterior a la 
 
 `clear` (o `reset`) y **Ctrl+L** ocultan los bloques, pero no los borran: **Se ocultaron 3 bloques: mostrar**, arriba, los trae de vuelta. Los bloques contraídos y los ocultos siguen así en este navegador, aunque recargues la página o pases al modo clásico y vuelvas. **Mostrar comandos anteriores**, arriba, carga bloques más antiguos; se guardan 30 días.
 
+<Screenshot name="cleared" alt="La terminal después de clear: arriba, «Se ocultaron 3 bloques: mostrar»; luego git show contraído («16 líneas ocultas») y después git log --oneline." />
+
 ## Poner nombre a una terminal
 
 Haz doble clic en la pestaña de una terminal, o en la terminal en la barra lateral o en la página del proyecto, y escribe un nombre: hasta 40 caracteres, y no solo un número. **Enter** guarda, **Esc** cancela. El nombre aparece en la barra lateral, en las pestañas y en la página del proyecto.
+
+<Screenshot name="rename" alt="Poner nombre a una terminal en su pestaña: después de P/web-01 · hay un campo con el nombre que se está escribiendo, release." />
 
 ## Cuando una terminal finaliza
 
@@ -89,5 +99,7 @@ Una terminal se ejecuta en tTerm Web, no en tu navegador: si cierras su pestaña
 Su pestaña dice por qué. Después de una actualización, dice **tTerm Web se actualizó a la versión 0.1.24.**, con enlaces a las novedades de esa versión y a la bitácora de la máquina. Los comandos que se ejecutaron y lo que imprimieron quedan en la [bitácora de la máquina](../log/).
 
 **Abrir una terminal nueva en web-01** inicia otra en la misma pestaña, en el directorio en el que estaba la anterior, si ese directorio todavía existe.
+
+<Screenshot name="ended" alt="La pestaña de una terminal después de una actualización: sus comandos y luego «Esta terminal finalizó», «tTerm Web se actualizó a la versión 0.1.24» con la explicación, «Novedades de la versión 0.1.24», «Bitácora de web-01», «Abrir una terminal nueva en web-01» y «Cerrar la pestaña»." />
 
 Para un trabajo largo que no debe detenerse junto con su terminal, como una compilación o una copia de seguridad, es más seguro ejecutarlo en la propia máquina, dentro de `tmux` o `screen`, o con `nohup`.

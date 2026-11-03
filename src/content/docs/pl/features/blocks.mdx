@@ -27,6 +27,8 @@ Najedź kursorem na zakończony blok, a pojawią się jego przyciski. Podpowiedz
 - **Dodaj notatkę do tego polecenia** otwiera pod blokiem pole, a **Enter** zapisuje notatkę. Notatki trafiają też do [logu maszyny](../log/), zostają takie, jak je napisano, a odpowiada się na nie przyciskiem **Odpowiedz**.
 - **Zwiń blok** chowa wynik. Zwinięty blok pokazuje, ile ukrywa, na przykład **12 wierszy ukrytych**, a kliknięcie go rozwija.
 
+<Screenshot name="block-buttons" alt="Zakończony blok git log --oneline z kursorem myszy nad nim. Po prawej jego przyciski: „Kopiuj polecenie i jego wynik”, „Kopiuj tylko wynik”, „Uruchom ponownie”, „Kopiuj link do tego bloku”, „Dodaj notatkę do tego polecenia”, „Zwiń blok”." />
+
 ## Pole wprowadzania
 
 Pole wprowadzania należy do tTerma, nie do powłoki. To, co wpisujesz, zostaje w nim, dopóki nie naciśniesz **Enter**, a wtedy całe polecenie trafia do powłoki.
@@ -47,6 +49,8 @@ Gdy polecenie działa, w polu widać **Klawisze trafiają do działającego pole
 
 Niektóre polecenia niszczą coś bezpowrotnie. tTerm wstrzymuje takie polecenie i najpierw pyta, na pasku nad polem wprowadzania: co polecenie zrobi, na której maszynie i czego nie da się odzyskać. „To polecenie na **web-01** ma **usunąć katalog wraz z całą zawartością**. Tego nie można cofnąć, a usunięte pliki nie trafią do kosza.” **Uruchom** wykonuje polecenie, a **Anuluj** odkłada je z powrotem do pola.
 
+<Screenshot name="danger" alt="Wstrzymane polecenie rm -rf ~/app/build: pasek nad polem wprowadzania mówi, że usunie ono na web-01 katalog wraz z całą zawartością, bez możliwości cofnięcia, i proponuje „Uruchom” albo „Anuluj”." />
+
 Pyta przed takimi poleceniami:
 
 - `rm` z `-r` i `-f` – usunąć katalog wraz z całą zawartością;
@@ -65,6 +69,8 @@ Przy `rm -rf` skierowanym na `/` lub `~` dochodzi jeszcze **To polecenie dotyczy
 
 W trybie klasycznym masz zwykły terminal. Każdy klawisz trafia prosto do powłoki, z jej własnym Tab i historią, a powłoka sama rysuje wszystko, także znak zachęty. Nie ma bloków i nic nie jest sprawdzane: pod terminalem widać **W tym trybie niebezpieczne polecenia nie wymagają potwierdzenia.**
 
+<Screenshot name="classic" alt="Terminal w trybie klasycznym: wszystko rysuje sama powłoka, także własny znak zachęty anna@web-01:~/app$. Pod nim „W tym trybie niebezpieczne polecenia nie wymagają potwierdzenia.” i przełącznik „Blokowy” / „Klasyczny”." />
+
 **Blokowy** i **Klasyczny** na prawo od pola wprowadzania przełączają tryb; w trybie klasycznym przełącznik jest pod terminalem. Powłoka działa dalej tak jak przedtem, a ta przeglądarka zapamiętuje tryb dla wszystkich twoich terminali.
 
 Powłoka, która nie potrafi oznaczyć, gdzie zaczyna się polecenie, na przykład bash starszy niż 4.4, działa tylko w trybie klasycznym. Opcja **Blokowy** jest wtedy wyszarzona, a podpowiedź przełącznika wyjaśnia dlaczego.
@@ -73,9 +79,13 @@ Powłoka, która nie potrafi oznaczyć, gdzie zaczyna się polecenie, na przykł
 
 `clear` (albo `reset`) i **Ctrl+L** chowają listę bloków z widoku, ale jej nie usuwają: **3 bloki poza widokiem: pokaż** u góry ją przywraca. Zwinięte bloki i wyczyszczona lista zostają takie w tej przeglądarce, także po przeładowaniu strony i po przejściu do trybu klasycznego i z powrotem. **Pokaż wcześniejsze polecenia** u góry wczytuje starsze bloki; są przechowywane przez 30 dni.
 
+<Screenshot name="cleared" alt="Lista bloków po clear: u góry „3 bloki poza widokiem: pokaż”, niżej zwinięty git show („16 wierszy ukrytych”), a pod nim git log --oneline." />
+
 ## Nazwa terminala
 
 Kliknij dwukrotnie kartę terminala albo sam terminal w panelu bocznym lub na stronie projektu i wpisz nazwę: do 40 znaków, nie sama liczba. **Enter** zapisuje, **Esc** anuluje. Nazwa jest widoczna w panelu bocznym, na kartach i na stronie projektu.
+
+<Screenshot name="rename" alt="Zmiana nazwy terminala na jego karcie: po P/web-01 · pole z wpisywaną nazwą release." />
 
 ## Kiedy terminal się kończy
 
@@ -89,5 +99,7 @@ Terminal działa w tTerm Web, a nie w twojej przeglądarce: zamknij jego kartę 
 Karta terminala podaje powód. Po uaktualnieniu widać na niej **tTerm Web został uaktualniony do wersji 0.1.24.**, z linkami do tego, co nowego w tej wersji, i do logu maszyny. Polecenia uruchomione w terminalu i ich wyniki zostają w [logu maszyny](../log/).
 
 **Otwórz nowy terminal na web-01** uruchamia nowy w tej samej karcie, w katalogu, w którym był poprzedni, jeśli ten katalog jeszcze istnieje.
+
+<Screenshot name="ended" alt="Karta terminala po uaktualnieniu: jego polecenia, potem „Ten terminal został zakończony”, „tTerm Web został uaktualniony do wersji 0.1.24.” z wyjaśnieniem, linki „Co nowego w wersji 0.1.24” i „Log maszyny web-01”, przyciski „Otwórz nowy terminal na web-01” i „Zamknij kartę”." />
 
 Długie zadanie, które nie może zostać przerwane razem z terminalem, na przykład budowanie albo tworzenie kopii zapasowej, bezpieczniej jest uruchomić na samej maszynie w `tmux` lub `screen` albo przez `nohup`.

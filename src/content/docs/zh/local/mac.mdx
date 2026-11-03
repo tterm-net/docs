@@ -4,8 +4,11 @@ description: Mac 上的本地终端：如何安装、第一次打开，以及它
 ---
 
 import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 本地终端是一款 Mac 应用：这台电脑的 shell 以块呈现，整个云端也在同一个窗口里。免费，适用于 macOS 11 或更高版本，Apple 芯片和 Intel 共用一个文件。[Windows](../windows/) 版和 [Linux](../linux/) 版正在开发中。
+
+<Screenshot name="mac-window" alt="登录后的 tTerm Mac 版：本机 MacBook-Pro（标有“这台 Mac”）上的一个终端，命令以块的形式显示；侧边栏中，它旁边是云端的机器：web-01 带有钥匙图标，staging 标有“通过 Mac”，db-1 在 Client X 中。" />
 
 <LinkButton href="https://tterm.net/zh/download/">下载 Mac 版</LinkButton>
 
@@ -17,7 +20,11 @@ import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components'
 
 2. 打开应用。首次启动时，macOS 会要求你确认，[查看方法](#首次启动仅需一次)。之后，这台 Mac 的终端立即可用，无需账号，也无需设置。
 
+   <Screenshot name="mac-welcome" alt="首次启动：“欢迎使用 tTerm”，这台电脑的终端立即可用；“用浏览器登录”或“稍后”。" />
+
 3. 随时登录。登录会打开浏览器：在那里确认之后，你的服务器和笔记就会出现在窗口中。
+
+   <Screenshot name="mac-sign-in" alt="“用浏览器登录”：tTerm 已在浏览器中打开 app.tterm.net，正在等待，并显示页面上同样会出现的确认码，以及“重新打开页面”和“取消”。" />
 
 </Steps>
 
@@ -39,6 +46,8 @@ import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components'
 ## 更新
 
 应用每六小时检查一次有没有新版本，下载后在不打扰你的时候安装：在你退出应用时，或它的终端里没有任何程序在运行时。在**设置** → **更新**中，可以设置为安装前先询问你。
+
+<Screenshot name="mac-updates" alt="“设置”→“更新”：已选择“自动更新”（“推荐”），另一个选项是“先询问我”；“tTerm 0.7.1 已是最新版本”，以及“立即检查”。" />
 
 :::note[更新后的钥匙串密码]
 更新后，macOS 可能会询问一次你的钥匙串密码：输入密码，然后点按**始终允许**。在应用使用 Apple Developer ID 签名之前，都会是这样。

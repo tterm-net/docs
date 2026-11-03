@@ -27,6 +27,8 @@ Survolez un bloc terminé, et ses boutons apparaissent. Leurs infobulles les nom
 - **Ajouter une note sur cette commande** ouvre un champ en dessous, et **Enter** enregistre la note. Les notes vont aussi dans le [journal de la machine](../log/), restent telles qu’elles ont été écrites, et l’on y répond avec **Répondre**.
 - **Replier le bloc** masque la sortie. Un bloc replié indique ce qu’il cache, **12 lignes masquées**, et un clic le déplie.
 
+<Screenshot name="block-buttons" alt="Le bloc terminé git log --oneline, survolé par la souris. À droite, ses boutons : « Copier la commande et sa sortie », « Copier uniquement la sortie », « Relancer », « Copier le lien vers ce bloc », « Ajouter une note sur cette commande » et « Replier le bloc »." />
+
 ## La ligne de saisie
 
 La ligne de saisie appartient à tTerm, pas au shell. Ce que vous tapez y reste jusqu’à **Enter**, qui transmet la commande entière au shell.
@@ -47,6 +49,8 @@ Pendant qu’une commande tourne, la ligne indique **Les touches sont envoyées 
 
 Certaines commandes détruisent quelque chose pour de bon. tTerm retient une telle commande et demande d’abord, dans une barre au-dessus de la ligne : ce que ferait la commande, sur quelle machine, et ce qui ne reviendra pas. « Cette commande va **supprimer un répertoire et tout son contenu** sur **web-01**. Impossible d’annuler, et il n’y a pas de corbeille où le récupérer. » **Exécuter** lance la commande, **Annuler** la remet dans la ligne.
 
+<Screenshot name="danger" alt="La commande rm -rf ~/app/build retenue : la barre au-dessus de la ligne de saisie indique qu’elle supprimerait un répertoire et tout son contenu sur web-01, sans possibilité d’annuler, et propose « Exécuter » et « Annuler »." />
+
 tTerm demande confirmation avant :
 
 - `rm` avec `-r` et `-f` – supprimer un répertoire et tout son contenu ;
@@ -65,6 +69,8 @@ Un `rm -rf` qui vise `/` ou `~` ajoute **Elle vise la machine entière. Rien n�
 
 En mode classique, le terminal est un terminal ordinaire. Chaque touche est envoyée directement au shell, avec sa propre complétion par Tab et son propre historique, et c’est le shell qui dessine tout, son invite comprise. Il n’y a pas de blocs, et rien n’est vérifié : sous le terminal, il est écrit **Pas de confirmation pour les commandes dangereuses dans ce mode.**
 
+<Screenshot name="classic" alt="Un terminal en mode « Classique » : le shell dessine tout, y compris sa propre invite anna@web-01:~/app$. En dessous : « Pas de confirmation pour les commandes dangereuses dans ce mode » et le sélecteur « Ligne » / « Classique »." />
+
 **Ligne** et **Classique**, à droite de la ligne de saisie, font passer d’un mode à l’autre ; en mode classique, ce sélecteur se trouve sous le terminal. Le shell continue comme avant, et ce navigateur retient le mode pour tous vos terminaux.
 
 Un shell qui ne sait pas marquer le début d’une commande, comme bash avant la version 4.4, ne fonctionne qu’en mode classique. **Ligne** y est grisé, et l’infobulle du sélecteur explique pourquoi.
@@ -73,9 +79,13 @@ Un shell qui ne sait pas marquer le début d’une commande, comme bash avant la
 
 `clear` (ou `reset`) et **Ctrl+L** masquent le fil, sans le supprimer : **3 blocs masqués : afficher**, en haut, le fait réapparaître. Les blocs repliés et un fil effacé le restent dans ce navigateur, après un rechargement de la page comme après un aller-retour par le mode classique. **Afficher les commandes précédentes**, en haut, fait apparaître des blocs plus anciens ; ils sont conservés 30 jours.
 
+<Screenshot name="cleared" alt="Le fil après clear : « 3 blocs masqués : afficher » en haut, puis git show replié (« 16 lignes masquées »), puis git log --oneline." />
+
 ## Nommer un terminal
 
 Double-cliquez sur l’onglet d’un terminal, ou sur le terminal dans la barre latérale ou sur la page du projet, et tapez un nom : jusqu’à 40 caractères, et pas uniquement un nombre. **Enter** enregistre, **Esc** annule. Le nom apparaît dans la barre latérale, dans les onglets et sur la page du projet.
+
+<Screenshot name="rename" alt="Renommer un terminal dans son onglet : après P/web-01 · se trouve un champ avec le nom en cours de saisie, release." />
 
 ## Quand un terminal prend fin
 
@@ -89,5 +99,7 @@ Un terminal tourne dans tTerm Web, pas dans votre navigateur : fermez son ongle
 L’onglet du terminal indique pourquoi. Après une mise à jour, il affiche **tTerm Web est passé à la version 0.1.24.**, avec des liens vers les nouveautés de cette version et vers le journal de la machine. Les commandes exécutées et leur sortie restent dans le [journal de la machine](../log/).
 
 **Ouvrir un nouveau terminal sur web-01** en lance un nouveau dans le même onglet et dans le répertoire où était l’ancien, si ce répertoire existe encore.
+
+<Screenshot name="ended" alt="L’onglet d’un terminal après une mise à jour : ses commandes, puis « Ce terminal a pris fin », « tTerm Web est passé à la version 0.1.24 » avec l’explication, « Nouveautés de la version 0.1.24 », « Journal de la machine web-01 », « Ouvrir un nouveau terminal sur web-01 » et « Fermer l’onglet »." />
 
 Pour une longue tâche qui ne doit pas s’arrêter avec son terminal, comme une compilation ou une sauvegarde, il est plus sûr de la lancer sur la machine elle-même, dans `tmux` ou `screen`, ou avec `nohup`.

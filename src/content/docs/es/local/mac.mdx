@@ -6,8 +6,11 @@ description: La terminal local para Mac – cómo instalarla, cómo abrirla la p
 ---
 
 import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 La terminal local es una aplicación para Mac: los shells de esta computadora en bloques y, en la misma ventana, toda la nube. Gratis, macOS 11 o posterior, Apple Silicon e Intel en un solo archivo. Las versiones para [Windows](../windows/) y [Linux](../linux/) están en desarrollo.
+
+<Screenshot name="mac-window" alt="tTerm para Mac con la sesión iniciada: una terminal de esta Mac, MacBook-Pro, con sus comandos como bloques; en la barra lateral, junto a la Mac, las máquinas de la nube: web-01 con una llave, staging «vía Mac» y db-1 en Client X." />
 
 <LinkButton href="https://tterm.net/es/download/">Descargar para Mac</LinkButton>
 
@@ -19,7 +22,11 @@ La terminal local es una aplicación para Mac: los shells de esta computadora en
 
 2. Abre la aplicación. La primera vez, macOS te pide una confirmación, [mira cómo](#el-primer-inicio-solo-una-vez). Después, las terminales de esta Mac funcionan al momento, sin cuenta y sin configurar nada.
 
+   <Screenshot name="mac-welcome" alt="El primer inicio: «Te damos la bienvenida a tTerm», las terminales de esta computadora funcionan al momento; «Iniciar sesión con el navegador» o «Más tarde»." />
+
 3. Inicia sesión cuando quieras. Se abrirá tu navegador: confirma allí el inicio de sesión, y tus servidores y notas aparecerán en la ventana.
+
+   <Screenshot name="mac-sign-in" alt="«Iniciar sesión con el navegador»: tTerm abrió app.tterm.net en el navegador y espera; muestra el mismo código que esa página, con «Volver a abrir la página» y «Cancelar»." />
 
 </Steps>
 
@@ -41,6 +48,8 @@ A partir de entonces, la aplicación se abre como siempre e instala por sí sola
 ## Actualizaciones
 
 Cada seis horas, la aplicación busca una versión nueva, la descarga y la instala cuando no interrumpe nada: cuando sales de ella o cuando no hay nada en ejecución en sus terminales. En **Configuración** → **Actualizaciones** puedes hacer que primero te pregunte.
+
+<Screenshot name="mac-updates" alt="«Configuración» → «Actualizaciones»: «Actualizar automáticamente» («Recomendado») seleccionado y, al lado, «Preguntarme antes»; «tTerm 0.7.1 está actualizado», con «Buscar ahora»." />
 
 :::note[La contraseña del llavero tras una actualización]
 Después de una actualización, macOS puede pedirte una vez la contraseña del llavero: escríbela y haz clic en **Permitir siempre**. Será así hasta que la aplicación esté firmada con un Apple Developer ID.

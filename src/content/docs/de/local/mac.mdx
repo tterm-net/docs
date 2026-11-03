@@ -4,8 +4,11 @@ description: Das lokale Terminal für Mac – wie du es installierst, beim erste
 ---
 
 import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 Das lokale Terminal ist eine App für den Mac: die Shells dieses Computers als Blöcke, und im selben Fenster die ganze Cloud. Kostenlos, macOS 11 oder neuer, Apple Silicon und Intel in einer Datei. Versionen für [Windows](../windows/) und [Linux](../linux/) sind in Arbeit.
+
+<Screenshot name="mac-window" alt="tTerm für Mac nach der Anmeldung: ein Terminal dieses Macs, MacBook-Pro („dieser Mac“), das seine Befehle als Blöcke zeigt; in der Seitenleiste daneben die Maschinen aus der Cloud: web-01 mit Schlüsselsymbol, staging „via Mac“, db-1 in Client X." />
 
 <LinkButton href="https://tterm.net/de/download/">Für Mac herunterladen</LinkButton>
 
@@ -17,7 +20,11 @@ Das lokale Terminal ist eine App für den Mac: die Shells dieses Computers als B
 
 2. Öffne die App. Beim ersten Mal bittet dich macOS, den Start zu bestätigen, [so geht das](#der-erste-start-nur-einmal). Danach funktionieren die Terminals dieses Macs sofort, ohne Konto und ohne Einrichtung.
 
+   <Screenshot name="mac-welcome" alt="Der erste Start: „Willkommen bei tTerm“, die Terminals dieses Computers funktionieren sofort; „Mit dem Browser anmelden“ oder „Später“." />
+
 3. Melde dich an, wann du willst. Die Anmeldung öffnet deinen Browser: Bestätige sie dort, und deine Server und Notizen erscheinen im Fenster.
+
+   <Screenshot name="mac-sign-in" alt="„Mit dem Browser anmelden“: tTerm hat app.tterm.net im Browser geöffnet und wartet. Es zeigt den Code, der auch auf der Seite steht, dazu „Seite erneut öffnen“ und „Abbrechen“." />
 
 </Steps>
 
@@ -39,6 +46,8 @@ Danach öffnet sich die App wie gewohnt, installiert neue Versionen von selbst, 
 ## Updates
 
 Alle sechs Stunden sucht die App nach einer neuen Version, lädt sie herunter und installiert sie, wenn es gerade niemanden stört: beim Beenden oder wenn in ihren Terminals nichts läuft. Unter **Einstellungen** → **Updates** kannst du festlegen, dass sie vorher fragt.
+
+<Screenshot name="mac-updates" alt="„Einstellungen“ → „Updates“: „Automatisch aktualisieren“ („Empfohlen“) ist ausgewählt, daneben „Vorher fragen“; „tTerm 0.7.1 ist aktuell“, mit dem Button „Jetzt prüfen“." />
 
 :::note[Das Passwort des Schlüsselbunds nach einem Update]
 Nach einem Update fragt macOS vielleicht einmal nach dem Passwort deines Schlüsselbunds: Gib es ein und drück auf **Immer erlauben**. Das bleibt so, bis die App mit einer Apple Developer ID signiert ist.

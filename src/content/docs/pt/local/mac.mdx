@@ -6,8 +6,11 @@ description: O terminal local para Mac – como instalar, abrir pela primeira ve
 ---
 
 import { LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Screenshot from '../../../../components/Screenshot.astro';
 
 O terminal local é um app para Mac: os shells deste computador em blocos e a nuvem inteira na mesma janela. Grátis, macOS 11 ou posterior, Apple Silicon e Intel num só arquivo. As versões para [Windows](../windows/) e [Linux](../linux/) estão em desenvolvimento.
+
+<Screenshot name="mac-window" alt="O tTerm para Mac com login feito: um terminal deste Mac, MacBook-Pro (“este Mac”), com os comandos em blocos; na barra lateral, ao lado dele, as máquinas da nuvem: web-01 com uma chave, staging “via Mac” e db-1 em Client X." />
 
 <LinkButton href="https://tterm.net/pt/download/">Baixar para Mac</LinkButton>
 
@@ -19,7 +22,11 @@ O terminal local é um app para Mac: os shells deste computador em blocos e a nu
 
 2. Abra o app. Na primeira vez, o macOS pede que você confirme a abertura, [veja como](#a-primeira-abertura-só-uma-vez). Depois disso, os terminais deste Mac funcionam na hora, sem conta e sem configuração.
 
+   <Screenshot name="mac-welcome" alt="A primeira abertura: “Boas-vindas ao tTerm”, os terminais deste computador funcionam na hora; “Entrar pelo navegador” ou “Depois”." />
+
 3. Entre quando quiser. Ao entrar, o navegador abre: confirme lá, e os seus servidores e notas aparecem na janela.
+
+   <Screenshot name="mac-sign-in" alt="“Entrar pelo navegador”: o tTerm abriu app.tterm.net no navegador e aguarda, mostrando o mesmo código que aparece na página, com “Abrir a página de novo” e “Cancelar”." />
 
 </Steps>
 
@@ -41,6 +48,8 @@ Depois disso, o app abre normalmente e instala as novas versões sozinho, sem qu
 ## Atualizações
 
 A cada seis horas, o app verifica se há uma nova versão, baixa e instala quando isso não atrapalha ninguém: quando você o encerra ou quando nada está rodando nos terminais dele. Em **Configurações** → **Atualizações**, você pode fazer com que ele pergunte antes.
+
+<Screenshot name="mac-updates" alt="“Configurações” → “Atualizações”: “Atualizar automaticamente” (“Recomendado”) selecionado, com “Perguntar antes” ao lado; “O tTerm 0.7.1 está atualizado”, com “Verificar agora”." />
 
 :::note[A senha das chaves depois de uma atualização]
 Depois de uma atualização, o macOS pode pedir uma vez a senha das chaves: digite-a e clique em **Permitir Sempre**. Vai ser assim até o app ser assinado com um Apple Developer ID.

@@ -12,6 +12,8 @@ Jeder Befehl, den jemand über tTerm auf einer Maschine ausführt, wird zu einer
 
 In der Seitenleiste ist im Bereich **Notizen** eines Projekts der erste Ordner **Logs**, markiert mit **von tTerm**. Darin liegt für jede Maschine des Projekts ein Log, und daneben steht, wie viele Befehle dort heute gelaufen sind: **12 heute**. Klick auf eine Maschine, und ihr Log öffnet sich in einem Tab: **web-01-Log**.
 
+<Screenshot name="log-open" alt="Die Seitenleiste: unter „Notizen“ in Personal und in Client X der Ordner „Logs“ („von tTerm“) mit dem Log jeder Maschine und der Zahl von heute: web-01 „27 heute“, db-1 „7 heute“." />
+
 Das Log zeigt jeweils einen Tag und öffnet sich mit dem heutigen. Die Pfeile **Vorheriger Tag** und **Nächster Tag** springen zum nächstgelegenen Tag mit Zeilen. **Heute** bringt dich zurück, und **Tag wählen** öffnet einen Kalender. Solange das Log den heutigen Tag zeigt, kommen neue Zeilen dazu, sobald Befehle enden.
 
 Oben im Log findest du unter **⋯** den Punkt **Als Markdown kopieren**: Er kopiert den angezeigten Tag, seine Zeilen und die Notizen darunter.
@@ -40,6 +42,8 @@ Daneben stehen die Reihenfolge und die Filter:
 
 Ist ein Filter aktiv, steht beim Tag, wie viele Befehle zu sehen sind, **2 von 8 Befehlen**, und **Zurücksetzen** schaltet die Filter aus. Die Filter wirken auch auf das, was **In diesem Log suchen** gefunden hat.
 
+<Screenshot name="log-filter" alt="Das Log von web-01: In „In diesem Log suchen“ steht git, dazu „Neueste zuerst“ und ein Terminal, release. Es zeigt „3 Befehle, an 1 Tag“, „Zurücksetzen“, „Zurück zum Tag“ und die drei Zeilen von heute." />
+
 Auch die [Suche](../search/) durchsucht die Logs all deiner Maschinen: Fang mit `l:` an.
 
 ## Notizen unter einem Befehl
@@ -61,6 +65,8 @@ Ist ein Passwort oder ein Token in einen Befehl oder eine Notiz geraten, lässt 
 3. Drück auf **Schwärzen**.
 
 </Steps>
+
+<Screenshot name="log-redact" alt="„Diesen Befehl schwärzen?“ für export PGPASSWORD='…' auf db-1 (heute, 18:30, backups): was verschwindet und was das Log festhält, „Warum“: ein Passwort, dazu „Schwärzen“ und „Abbrechen“." />
 
 Der Text verschwindet endgültig aus dem Log, aus dem Feed des Terminals, aus der Suche und aus dem Verlauf der Eingabezeile. Bei einem Befehl verschwindet auch seine Ausgabe, ebenso derselbe Befehl überall sonst, wo er im Projekt gelaufen ist. An seiner Stelle hält das Log fest, wer ihn geschwärzt hat, wann und warum: **Geschwärzt von dir · 09:23 · ein Passwort**. In den nächtlichen Backups der Datenbank steht er noch, bis diese Backups gelöscht werden, spätestens nach zwei Wochen.
 

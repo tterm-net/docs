@@ -178,7 +178,7 @@ export default defineConfig({
 				{
 					label: 'Account',
 					translations: group.account,
-					items: ['account/plan', 'account/devices'],
+					items: ['account/plan', 'account/devices', 'account/help'],
 				},
 				{
 					// Its pages are in English and Russian only, for now (owner,
