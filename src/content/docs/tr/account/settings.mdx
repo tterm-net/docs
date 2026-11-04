@@ -1,0 +1,59 @@
+---
+title: Ayarlar
+description: "Sayfanın üzerinde açılan Ayarlar penceresi – bölümleri ve bölümlerde arama, bir de içindeki hesabın: fotoğrafın, adın ve e-posta adresin."
+---
+
+import Screenshot from '../../../../components/Screenshot.astro';
+
+Kenar çubuğunun altındaki hesap menüsündeki **Ayarlar**, o an bulunduğun sayfanın üzerinde bir pencere açar; alttaki sayfa olduğu gibi kalır. Solda bir arama alanı ve gruplara ayrılmış bölümler, sağda seçtiğin bölüm satır satır yer alır: her satırın solunda o satırın ne olduğu yazar, sağında değeri ya da düğmesi bulunur. ×, **Esc** ya da pencerenin dışına tıklamak pencereyi kapatır ve kaldığın yere dönersin.
+
+- **Tercihler**: **Genel**, **Hesap** ve **Plan**.
+- **Güvenlik**: **Anahtarlar** ve **Cihazlar**.
+- **Mac için tTerm**, uygulamada: **Bu bilgisayar** ve **Güncellemeler**.
+
+<Screenshot name="settings" alt="Bir terminal sayfasının üzerinde “Ayarlar” penceresi: solda “Ara” ve bölümler – “Tercihler” altında “Genel”, “Hesap” ve “Plan”, “Güvenlik” altında “Anahtarlar” ve “Cihazlar”; sağda “Genel”: “Görünüm” altında “Tema” (“Sistem”, “Açık”, “Koyu”) ve “Proje renkleri” (“Kod rozeti”, “Tüm proje”), “Dil” altında da “Arayüz dili”." />
+
+Hesap menüsünün en üstündeki adın ve e-posta adresin **Ayarlar** → **Hesap** bölümünü açar. Her bölümün kendi adresi vardır, örneğin app.tterm.net/settings/devices; bu yüzden yeni bir girişle ilgili e-posta seni doğrudan **Cihazlar** bölümüne götürür. Telefonda Ayarlar tüm ekranı kaplar: önce bölümler gelir, sonra dokunduğun bölüm; geri oku seni bölümlere döndürür.
+
+Mac için tTerm'de giriş yapmadan önce Ayarlar'da yalnızca **Genel** ve **Güncellemeler** bulunur; orada seçtiklerin bu bilgisayara kaydedilir.
+
+## Arama
+
+Bölümlerin üstündeki **Ara** alanı yalnızca yazdığın her kelimeyi içeren bölümleri bırakır ve eşleşen satırları vurgular: `renk` yazınca **Genel** kalır, **Proje renkleri** satırı vurgulanır. Büyük-küçük harf ve harflerdeki işaretler fark etmez. **Esc** önce aramayı temizler, ardından pencereyi kapatır.
+
+<Screenshot name="settings-search" alt="“Ayarlar” penceresinde “Ara” alanına tema yazılmış: solda yalnızca “Genel” kalmış, sağda ise onun “Tema” satırı vurgulanmış." />
+
+## Genel
+
+- **Görünüm**: **Tema** – **Sistem**, **Açık** ya da **Koyu** – ve **Proje renkleri** – **Kod rozeti** ya da **Tüm proje**; ayrıntılar [Renkler](../../features/projects/#renkler) bölümünde. Bunlar hesabına kaydedilir ve tüm cihazlarında geçerli olur.
+- **Dil**: **Arayüz dili**; hesap menüsündeki **Dil** ile aynı seçim.
+
+## Hesap
+
+- **Fotoğraf**: **Fotoğraf ekle** ya da **Fotoğrafı değiştir** ve **Fotoğrafı kaldır**. En fazla 5 MB boyutunda bir JPEG, PNG ya da WebP seç, **Fotoğrafın** penceresinde onu dairenin içine yerleştir ve **Fotoğrafı kaydet** düğmesine bas. Fotoğrafın, adının yanında baş harflerinin yerine görünür; tTerm onun 256 piksellik bir kopyasını saklar ve fotoğrafın kendisi hakkında taşıdığı bilgiler, örneğin nerede çekildiği, bu kopyada yer almaz.
+- **Ad**: **Adı düzenle** ile yeni adı yaz ve **Kaydet** düğmesine bas.
+- **E-posta**: giriş yaptığın adres. Değiştirmek için [support@tterm.net](mailto:support@tterm.net) adresine yaz.
+
+**Hesabı silme**: hesabını silmek için giriş yaptığın adresten support@tterm.net adresine yaz. **Hesabı sil** yanındaki **Destek ekibine yaz** bunun için, [Destek ekibine yaz](../help/#destek-ekibine-yaz) bölümünde anlatılan pencereyi açar; yanıt e-postana gelir.
+
+<Screenshot name="account" alt="“Ayarlar” → “Hesap”: “Profil” altında Anna'nın baş harfiyle “Fotoğraf” ve “Fotoğraf ekle”, “Ad” satırında Anna ve “Adı düzenle”, “E-posta” satırında anna@example.com – değiştirmek için support@tterm.net adresine yazılır; “Hesabı silme” altında “Hesabı sil” ve “Destek ekibine yaz” düğmesi." />
+
+## Plan
+
+Burada plan olarak **Free**, yanında da **En fazla 50 makine ve 24 açık terminal** yazar; ayrıca şu an ne kadar kullandığını gösteren iki gösterge vardır: **Makineler** ve **Açık terminaller**. Altında soluk renkte **Ödeme** durur: **Ödeme yöntemi ve faturalar** ücretli planlarla birlikte orada görünecek. Ayrıntılar [Plan ve sınırlar](../plan/) sayfasında.
+
+## Anahtarlar
+
+[SSH anahtarlarının kasası](../../security/keys/#ayarlar--anahtarlar): kasanın burada açık olup olmadığı, parolası, anahtarların ve parola olmadan nerede açıldığı.
+
+## Cihazlar
+
+Hızlı kodla giriş yaptığın tarayıcılar ve tarayıcıyla giriş yapmış Mac için tTerm: birini **Unut** ile ya da hepsini **Tüm cihazları unut…** ile unutabilirsin. Ayrıntılar [Cihazların](../devices/#cihazların) bölümünde.
+
+## Bu bilgisayar
+
+Mac için tTerm'de, giriş yaptıktan sonra: **tTerm Web'den ve telefonundan erişime izin ver** ayarı ve bu Mac'in tTerm Web ile bağlantısının durumu. Ayrıntılar [Mac için tTerm kurulu Mac](../../machines/remove/#mac-için-tterm-kurulu-mac) bölümünde.
+
+## Güncellemeler
+
+Mac için tTerm'de: **Otomatik güncelle** ya da **Önce bana sor**, bir de **Şimdi denetle**. tTerm menüsündeki **Güncellemeleri Denetle…** de bu bölümü açar. Ayrıntılar Mac sürümü sayfasının [Güncellemeler](../../local/mac/#güncellemeler) bölümünde.

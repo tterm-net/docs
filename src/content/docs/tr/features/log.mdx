@@ -12,7 +12,11 @@ Bir makinede tTerm üzerinden çalıştırılan her komut, o makinenin logunda b
 
 Kenar çubuğunda, bir projenin **Notlar** bölümündeki ilk klasör **Loglar**; yanında **tTerm yazar** işareti var. Bu klasörde projenin her makinesinin logu durur ve her birinin yanında o makinede bugün kaç komut çalıştırıldığı yazar: **bugün 12**. Bir makineye tıkla, logu bir sekmede açılır: **web-01 logu**.
 
-<Screenshot name="log-open" alt="Kenar çubuğu: Personal ve Client X projelerinde “Notlar” altında “Loglar” klasörü (“tTerm yazar”), içinde her makinenin logu ve bugünkü sayısı: web-01 “bugün 27”, db-1 “bugün 7”." />
+Anahtarlarının açık olmadığı bir cihazda bilgisayarlarının ve anahtarınla ya da Mac'in üzerinden açılan sunucuların logları orada soluk görünür: yanlarında sayı yerine bir kilit durur. Birine tıklarsan sekmesindeki bir kart anahtarlarını hemen orada açar, ardından da logu. Ayrıntılar [Anahtarların nerede açık](../../security/keys/#anahtarların-nerede-açık) bölümünde.
+
+<Screenshot name="log-open" alt="Kenar çubuğu: Personal ve Client X projelerinde “Notlar” altında “Loglar” klasörü (“tTerm yazar”), içinde her makinenin logu ve bugünkü sayısı: web-01 “bugün 27”, db-1 “bugün 9”." />
+
+<Screenshot name="closed-log" alt="Kilit simgeli “P/web-01 logu” sekmesi: “web-01 makinesinin logu bu cihazda kapalı” – logda terminaldekiyle aynı komutlar ve aynı çıktı var, bu yüzden o da aynı şekilde kapalı; anahtarları açınca log da açılır. “Kasa parolası” ve “Anahtarları aç”." />
 
 Log her seferinde tek bir günü gösterir ve bugünden başlar. **Önceki gün** ve **Sonraki gün** okları, satırı olan en yakın güne gider. **Bugün** ile bugüne dönersin, **Gün seç** ise bir takvim açar. Log bugünü gösterirken komutlar bittikçe yeni satırlar gelir.
 
@@ -20,7 +24,7 @@ Logun en üstündeki **⋯** menüsünde **Markdown olarak kopyala** var: göste
 
 ## Satırda ne yazar
 
-Her komut tek bir satırdır: saat, komutu kimin çalıştırdığı, uzunsa kısaltılmış haliyle komutun kendisi ve altında kaç not olduğu. Sağda komutun ne kadar sürdüğü, dizin, git dalı ve terminal yer alır. Başarısız olan bir komutta bir çarpı ve çıkış kodu görünür: **çıkış 1**. Log, komutların arasında bir terminalin ne zaman açıldığını ve ne zaman sonlandığını da yazar – kendiliğinden sonlandıysa nedenini de: **Terminal 1 sonlandı: tTerm Web, 0.1.24 sürümüne güncellendi.** Makinenin başka bir projeye ne zaman taşındığını da yazar: **Bu makineyi sen taşıdın: Personal projesinden Client X projesine**.
+Her komut tek bir satırdır: saat, komutu kimin çalıştırdığı, uzunsa kısaltılmış haliyle komutun kendisi ve altında kaç not olduğu. Sağda komutun ne kadar sürdüğü, dizin, git dalı ve terminal yer alır. Başarısız olan bir komutta bir çarpı ve çıkış kodu görünür: **çıkış 1**. Log, komutların arasında bir terminalin ne zaman açıldığını ve ne zaman sonlandığını da yazar – kendiliğinden sonlandıysa nedenini de: **Terminal 1 sonlandı: tTerm Web, 0.1.28 sürümüne güncellendi.** Makinenin başka bir projeye ne zaman taşındığını da yazar: **Bu makineyi sen taşıdın: Personal projesinden Client X projesine**.
 
 Bir satıra tıklayınca satır açılır: komutun tamamı, çıktısı ve altındaki notlar. Bir kez daha tıklayınca kapanır. Uzun bir çıktının ilk satırları görünür: **27 satırın tümünü göster** kalanını açar, **Çıktıyı kopyala** ise çıktıyı kopyalar.
 
@@ -69,6 +73,8 @@ Bir komuta ya da nota karışmış bir parola veya token silinebilir. Bunu yaln�
 <Screenshot name="log-redact" alt="db-1 üzerindeki export PGPASSWORD='…' komutu için “Bu komutun metni silinsin mi?” (“bugün, 18:30”, backups): neyin silineceği ve logda neyin kalacağı, “Neden” alanında parola, “Metni sil” ve “Vazgeç”." />
 
 Metin logdan, terminalin akışından, aramadan ve giriş satırının geçmişinden kalıcı olarak silinir. Silinen bir komutsa çıktısı da gider; aynı komut projede başka yerlerde de çalıştıysa oralarda da silinir. Logda metnin yerine kimin, ne zaman ve neden sildiği kalır: **Sen sildin · 09:23 · parola**. Veritabanının gece alınan yedeklerinde ise metin, bu yedekler silinene kadar durur; bu da iki hafta içinde olur.
+
+Anahtarlarının açık olmadığı bir cihazda metin silmek, bilgisayarlarının ve anahtarınla ya da Mac'in üzerinden açılan sunucuların loglarını olduğu gibi bırakır: oradaki komutun metnini anahtarlarının açık olduğu bir cihazdan sil.
 
 ## Ne kadar saklanır
 

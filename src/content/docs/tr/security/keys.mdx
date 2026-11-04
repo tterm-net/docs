@@ -1,16 +1,16 @@
 ---
 title: SSH anahtarlarının kasası
-description: tTerm'e ulaşmadan önce cihazlarında şifrelenen kendi SSH anahtarların – kasa nasıl oluşturulur, başka bir tarayıcıda nasıl açılır ve ne zaman yeniden kilitlenir.
+description: tTerm'e ulaşmadan önce cihazlarında şifrelenen kendi SSH anahtarların – kasanın nasıl oluşturulduğu, parolası, başka bir tarayıcıda nasıl açıldığı, anahtarlarının nerede açık olduğu ve ne zaman yeniden kilitlendiği.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import Screenshot from '../../../../components/Screenshot.astro';
 
-Kasa, onlarla bağlandığın sunucular için kendi SSH anahtarlarını saklar. Anahtar, cihazından çıkmadan önce orada şifrelenir; kasayı yalnızca senin cihazların, kilitlerini açtığın yöntemle açabilir. tTerm şifreli anahtarları, her anahtarın genel kısmı ve parmak iziyle birlikte saklar: kasayı açamaz, bir anahtarı okuyamaz. Kasa **Ayarlar** → **Anahtarlar** bölümündedir.
+Kasa, onlarla bağlandığın sunucular için kendi SSH anahtarlarını saklar. Anahtar, cihazından çıkmadan önce orada şifrelenir ve kasayı yalnızca sen açabilirsin: herhangi bir tarayıcıda kasa parolanla, anahtarlarını sakladığın cihazlarda ise parola olmadan. tTerm şifreli anahtarları, her anahtarın genel kısmı ve parmak iziyle birlikte saklar: kasayı açamaz, bir anahtarı okuyamaz. Kasa **Ayarlar** → **Anahtarlar** bölümündedir.
 
 ## Sunucu anahtarınla nasıl açılır
 
-Bir sunucuyu [Mac için tTerm](../../local/mac/) uygulamasından **Anahtarım** ile ya da `ssh` komutundan sonraki şeritte **Anahtarımı kaydet** ile taşıdığında sunucu anahtarınla açılır: [Buluta taşı](../../local/move-to-cloud/) sayfasına bak. Sunucuda bir terminal açtığında tTerm, kasanın açık olduğu bir cihazından (bir tarayıcı ya da Mac için tTerm) girişi imzalamasını ister. Cihaz o anahtarla yalnızca SSH girişi imzalar, başka hiçbir şey imzalamaz; anahtar da cihazdan hiç çıkmaz. tTerm imzayı kullanmadan önce anahtarın genel kısmıyla doğrular.
+Bir sunucuyu [Mac için tTerm](../../local/mac/) uygulamasından **Anahtarım** ile ya da `ssh` komutundan sonraki şeritte **Anahtarımı kaydet** ile taşıdığında sunucu anahtarınla açılır: [Buluta taşı](../../local/move-to-cloud/) sayfasına bak. Sunucuda bir terminal açtığında girişi, terminali açtığın ve anahtarlarının açık olduğu cihaz imzalar: tarayıcın ya da kendi terminallerinde Mac için tTerm. Mac'in dahil başka hiçbir cihaza sorulmaz. Cihaz o anahtarla yalnızca SSH girişi imzalar, başka hiçbir şey imzalamaz; anahtar da cihazdan hiç çıkmaz. tTerm imzayı kullanmadan önce anahtarın genel kısmıyla doğrular.
 
 ## Kasanı oluşturma
 
@@ -19,47 +19,89 @@ Bir sunucuyu [Mac için tTerm](../../local/mac/) uygulamasından **Anahtarım** 
 
 **Ayarlar** → **Anahtarlar** bölümünde **Dosyadan anahtar ekle** düğmesine bas ve özel anahtarını, yani `.pub` uzantısı olmayan dosyayı seç. Anahtarın parolası varsa parolayı yaz ve **Anahtarı aç** düğmesine bas: parola anahtarı bu tarayıcıda açar ve hiçbir yere gitmez. Anahtara bir ad ver ve **İleri** düğmesine bas.
 
-**Anahtarını kasana kaydet** penceresinde Mac'te **Kasamı Touch ID ile oluştur**, Windows'ta **Kasamı Windows Hello ile oluştur**, diğer cihazlarda **Kasamı geçiş anahtarıyla oluştur** düğmesine bas. Kasayı geçiş anahtarıyla saklayamayan bir tarayıcıda **Kasamı oluştur** görünür: orada kasa, her seferinde tek bir oturum için, kurtarma koduyla ya da Mac'inin onayıyla açılır.
+**Kasa parolası oluştur** penceresinde parolayı iki kez yaz ve **Kasayı oluştur** düğmesine bas. Ardından, anahtarları geçiş anahtarıyla saklayabilen bir tarayıcıda tTerm, anahtarlarının burada saklanıp saklanmayacağını sorar; [Başka bir tarayıcıda açma](#başka-bir-tarayıcıda-açma) bölümündeki gibi.
 
 	</TabItem>
 	<TabItem label="Mac için tTerm'de">
 
-Kasa, ilk kez bir anahtar kaydettiğinde oluşturulur: Buluta taşı özelliğiyle ya da `ssh` komutundan sonraki şeritte **Anahtarımı kaydet** ile. **Anahtarını kasana kaydet** penceresinde **Kasamı Touch ID ile oluştur** düğmesine bas ve Touch ID ya da Mac'inin parolasıyla onayla.
+Kasa, ilk kez bir anahtar kaydettiğinde oluşturulur: Buluta taşı özelliğiyle ya da `ssh` komutundan sonraki şeritte **Anahtarımı kaydet** ile. **Kasa parolası oluştur** penceresinde parolayı iki kez yaz ve **Kasayı oluştur** düğmesine bas: bunun için Touch ID istenmez. Bu Mac bundan sonra kasanın kendi kilidini tutar; bu kilit Touch ID ya da Mac'inin parolasıyla açılır.
 
 	</TabItem>
 </Tabs>
 
-### Kurtarma kodu
+### Kasa parolası
 
-Hemen ardından tTerm kurtarma kodunu gösterir: dörderli altı gruba ayrılmış 24 harf ve rakam. Kodu yalnızca bir kez görürsün. **Kopyala** ya da **Dosya olarak kaydet** düğmesine bas ve kodu kasanı açan cihazlardan uzakta, güvenli bir yerde sakla. Bir gün o cihazların hepsini kaybedersen anahtarlarına yeniden ulaşmanın tek yolu bu kod: tTerm onları senin için kurtaramaz. **Bitti** düğmesi, kodu sakladığını işaretledikten sonra çalışır.
+Parolayı kasa oluşturulurken sen belirlersin: en az 12 karakter; en kolayı, birkaç sözcükten oluşan bir ifade. Parola bundan kısayken pencere kaç karakter kaldığını söyler. İngiliz alfabesinde olmayan harfler de kullanılabilir, ama yurt dışındaki bir bilgisayarda bunlar için klavye düzeni olmayabilir.
+
+<Screenshot name="vault-password" alt="“Kasa parolası oluştur”: id_ed25519 bu tarayıcıda şifrelenip kasana gider ve bu parolayla herhangi bir tarayıcıda açılır. “Parola” ve “Tekrar” alanlarında noktalarla yazılmış parola, “Göster” düğmesi, en az 12 karakter şartı ve “Eşleşiyor”; tTerm bu parolayı bilmez ve kurtaramaz; “Vazgeç” ve “Kasayı oluştur”." />
+
+Parolanın kendisi hiçbir yere gitmez: tarayıcın ya da Mac'in ondan bir anahtar üretir; tTerm de kasanın şifreli anahtarını yalnızca parolayı bildiğini gösteren bir cihaza verir. tTerm parolayı bilmez ve kurtaramaz: onu parola yöneticinde sakla.
+
+Parola yanlışsa pencere bunu ve kaç deneme hakkın kaldığını söyler. Bir saat içinde on yanlış denemeden sonra bir saat beklemen gerekir; bir gün içinde otuz yanlış denemeden sonra ise o gün bitene kadar. Pencere ne zaman yeniden deneyebileceğini yazar.
+
+**Parolayı mı unuttun?** Yenisini, kasanın parola olmadan açıldığı bir yerde belirle: Mac'inde, Mac için tTerm'de **Ayarlar** → **Anahtarlar** → **Parolayı değiştir** ile, Touch ID kullanarak; ya da anahtarlarının saklandığı bir tarayıcıda, yine **Ayarlar** → **Anahtarlar** bölümünde. Böyle bir cihaz yoksa kasandaki anahtarlar artık açılamaz; tTerm de onları açamaz. Anahtarların kendileri ise genellikle Mac'inde, `~/.ssh` içinde durur.
+
+<Screenshot name="vault-forgot" alt="“Kasa parolanı mı unuttun?”: tTerm onu sana hatırlatamaz, ama kasanın parola olmadan açıldığı bir yerde yenisi belirlenebilir: Mac'inde, Mac için tTerm'de (Ayarlar › Anahtarlar › “Parolayı değiştir”, Touch ID ile) ya da anahtarlarının saklandığı bir tarayıcıda; böyle bir cihaz yoksa anahtarlar artık açılamaz; “Anladım”." />
 
 ## Başka bir tarayıcıda açma
 
-Kasan için yeni olan bir tarayıcı kasayı **Anahtarlarını bu tarayıcıda aç** penceresinde açar. Bu pencere, **Ayarlar** → **Anahtarlar** bölümünde **Aç** düğmesine bastığında ya da anahtarınla açılan bir sunucuyu açtığında çıkar.
+Anahtarlarının saklanmadığı bir tarayıcıda **Ayarlar** → **Anahtarlar** bölümünde **Kasan kapalı** yazar ve bir **Kasa parolası** alanı bulunur. Anahtarınla açılan bir sunucu da aynı alanı, terminali oluşturulmadan önce kartında gösterir: [Kasanı bekleyen sunucu](#kasanı-bekleyen-sunucu) bölümüne bak.
 
-- **Mac için tTerm'de onayla.** Kasan Mac için tTerm'de açılıyorsa pencere o Mac'i önerir: **Kasanı burada açmasını iste** düğmesine bas. Mac'te açılan pencere hangi tarayıcının istediğini, ne zaman ve hangi adresten giriş yaptığını gösterir. İki ekranda da aynı altı rakam görünür: yalnızca eşleşiyorlarsa **Touch ID ile izin ver** düğmesine bas. **Ben değilim** o tarayıcının oturumunu sonlandırır; **Ayarlar** → **Cihazlar** da başka neleri kontrol etmen gerektiğini gösterir. Bir istek beş dakika geçerlidir.
-- **Kurtarma kodunu kullan.** Kodu **Kurtarma kodu** alanına yaz ve **Aç** düğmesine bas.
+<Screenshot name="vault-open" alt="Kasa için yeni bir tarayıcıda “Ayarlar” → “Anahtarlar”: “Kasan kapalı”, anahtarları yalnızca kasa parolan açar, doğrudan bu tarayıcıda; parolanın noktalarla yazıldığı “Kasa parolası” alanı, “Göster”, “Anahtarları aç” ve altında “Parolayı mı unuttun?”. Aşağıda: “Kasa parolası” satırı, iki anahtar ve kasanın parola olmadan açıldığı yer." />
 
-Geçiş anahtarı saklayabilen bir tarayıcıda tTerm ardından burada bir geçiş anahtarı saklansın mı diye sorar; böylece kasa bir dahaki sefere bu bilgisayarın kilidini açtığın yöntemle açılır: **Touch ID ile sakla** (ya da Windows Hello ile, ya da geçiş anahtarıyla) veya senin olmayan bir bilgisayarda **Yalnızca bu sefer**.
+- **Kasa parolasını yaz** ve **Anahtarları aç** düğmesine bas. Anahtarlar doğrudan bu tarayıcıda açılır.
+- **Mac için tTerm'de onayla**; başkasının bilgisayarında işe yarar: orada parola yazman gerekmez. Kasan Mac için tTerm'de açılıyorsa alanın altında, o Mac'in adıyla **MacBook-Pro üzerinde onayla** bulunur: buna bas, **Anahtarlarını bu tarayıcıda aç** penceresi de hemen Mac'e sorar. Mac'te açılan pencere hangi tarayıcının istediğini, ne zaman ve hangi adresten giriş yaptığını gösterir. İki ekranda da aynı altı rakam görünür: yalnızca eşleşiyorlarsa **Touch ID ile izin ver** düğmesine bas. **Ben değilim** o tarayıcının oturumunu sonlandırır; **Ayarlar** → **Cihazlar** da başka neleri kontrol etmen gerektiğini gösterir. Bir istek beş dakika geçerlidir. **Bunun yerine parolayı yaz** seni alana geri götürür.
 
-Tarayıcıda oluşturulan bir kasa, Mac için tTerm'de bir kez kurtarma koduyla açılır: **Ayarlar** → **Anahtarlar** bölümünde **Kurtarma koduyla aç**. Ondan sonra kasayı orada Touch ID ya da Mac'inin parolası açar.
+Anahtarları geçiş anahtarıyla saklayabilen bir tarayıcıda tTerm ardından anahtarlarının burada saklanıp saklanmayacağını sorar; böylece bir dahaki sefere orada parola sorulmaz: **Touch ID ile sakla** (ya da Windows Hello ile, ya da geçiş anahtarıyla) veya senin olmayan bir bilgisayarda **Yalnızca bu sefer**: o zaman anahtarlar sekmeyi kapattığında kapanır, bir süre kullanılmazlarsa da kendiliğinden kapanır.
+
+<Screenshot name="vault-keep" alt="Kasa parolasını girdikten sonra: “Anahtarların bu tarayıcıda açık”. Anahtarlar burada Touch ID ile saklanabilir, böylece bir dahaki sefere Touch ID yeter; başkasının bilgisayarında ise “Yalnızca bu sefer”; “Yalnızca bu sefer” ve “Touch ID ile sakla” düğmeleri." />
+
+tTerm Web 0.1.26'dan önce oluşturulmuş ve henüz parolası olmayan bir kasa eskisi gibi açılır: **Ayarlar** → **Anahtarlar** bölümündeki **Aç**, **Anahtarlarını bu tarayıcıda aç** penceresini getirir; orada Mac'inin onayı için **Kasanı burada açmasını iste**, bir de **Kurtarma kodu** alanıyla **Aç** bulunur.
+
+Mac için tTerm'de, kasanın kilidi henüz olmayan bir Mac'te – ikinci bir Mac, tarayıcıda oluşturulmuş bir kasa ya da çıkış yapıp yeniden giriş yaptıktan sonra – **Bu Mac henüz kasanı kendi başına açamıyor** yazar ve kasa bir kez, Touch ID olmadan, kasa parolasıyla açılır. Ondan sonra kasayı orada Touch ID ya da Mac'inin parolası açar.
+
+## Anahtarların nerede açık
+
+Kasan varsa bilgisayarların, anahtarınla açılan sunucular ve Mac'in üzerinden açılan sunucular yalnızca anahtarlarını kendin açtığın bir cihazda açılır: kasa parolasıyla, tarayıcı onları saklıyorsa Touch ID ile ya da Mac için tTerm'deki onayla. Bilgisayarların, tTerm ajanının kurulu olduğu macOS ya da Linux makineler ve Mac için tTerm'in kurulu olduğu her Mac'tir. tTerm'e e-postayla gelen kodla giriş yapmak bunlar için yetmez; bu yüzden e-postana giren biri, Mac'in açık ve kasası açıkken bile bunların hiçbirine erişemez. tTerm'in kendi satırının bulunduğu bir sunucu – tek komutla bağlanmış ya da **tTerm'in giriş izni** ile taşınmış – bunlardan değildir: onun için giriş yapmak yeter. Kasan yoksa ya da kasanda parola da anahtar da yoksa bu şekilde hiçbir şey kapanmaz.
+
+Anahtarlarının açık olmadığı bir cihazda böyle bir makinenin yanındaki **+** yerine bir kilit bulunur, terminalleri ve logu soluk görünür, her birinin yanında bir kilit olur, sekmeleri de bir kilitle başlar. Makineden o cihaza hiçbir şey ulaşmaz: ne terminallerinin gösterdikleri, ne aramada ya da giriş satırının geçmişinde komutları, ne de logu. Kilide, bir terminale ya da loga tıklarsan sekmesindeki bir kart neden kapalı olduğunu söyler ve anahtarlarını hemen orada, bu cihazın onları açtığı yolla açar: **Kasa parolası** alanı, anahtarların tarayıcıda saklıysa **Touch ID ile aç** ya da **MacBook-Pro üzerinde onayla**. Ardından:
+
+<Screenshot name="closed-sidebar" alt="Anna'nın anahtarlarının açık olmadığı yerde kenar çubuğu: MacBook-Pro, web-01 ve staging yanında “+” yerine bir kilit duruyor; bunların shop ve deploy terminalleri ile logları soluk, her birinin yanında bir kilit var; Client X projesindeki db-1 her zamanki gibi. İmleç web-01 makinesindeki kilidin üzerinde: “Anahtarlar bu cihazda açık değil. Aç”." />
+
+- kilit: kartın yerinde o makinede yeni bir terminal açılır;
+- zaten çalışan bir terminal: şu an olduğu yerden görünür, yenisi oluşturulmaz;
+- log: açılır.
+
+<Screenshot name="closed-terminal" alt="Kilit simgeli “P/web-01 · deploy” sekmesi: “Bu terminal bu cihazda kapalı” – web-01 üzerindeki “deploy” çalışıyor, ama anahtarlar burada açılana kadar burada görünmez; sonra şu an olduğu yerden görünür. “Kasa parolası”, “Anahtarları aç”, “ya da MacBook-Pro üzerinde onayla · Parolayı mı unuttun?”." />
+
+**Makineler** sayfasında böyle bir makinede **bu cihazda kapalı** yazar; proje sayfasında ise her terminalinde, dizininin yerinde aynı şey yazar. İki sayfada da yeni terminal düğmesinde kilit bulunur ve terminaller soluk görünür. **Kaldır** ve **Başka bir projeye taşı** önce anahtarlarını doğrudan kendi pencerelerinde açar: kırmızı **web-01 makinesini kaldır** düğmesi ve makineyi taşıyan düğme anahtarlar açılınca gelir.
+
+<Screenshot name="closed-machines" alt="Anahtarların açık olmadığı yerde “Makineler” sayfası: MacBook-Pro, web-01 ve staging makinelerinde “bu cihazda kapalı” yazıyor, “Terminal aç” düğmelerinde birer kilit var; “P/MacBook-Pro · shop” ve “P/web-01 · deploy” terminalleri soluk, her birinin yanında bir kilit; Client X projesindeki db-1 her zamanki gibi. Her makinede bir “Kaldır” düğmesi var." />
+
+Anahtarlarını hangi yolla açmış olursan ol, bundan sonra bu cihazda böyle makinelerin hepsi açılır ve yalnızca istediğin terminal oluşturulur. Her kilit bir seferde tek bir terminal ister: başka bir kilit, öncekinin kartının yerini alır; başka bir sekmenin arkasında kalan bir kart ise anahtarlar açılınca terminal açılmadan kapanır. Anahtarların burada kapandığında, [Ne zaman yeniden kilitlenir](#ne-zaman-yeniden-kilitlenir) bölümündeki gibi, kilitler hemen geri gelir ve o terminallerin sekmeleri kartlarına dönüşür; terminallerin kendileri bulutta çalışmaya devam eder.
+
+Kasa parolasını değiştirdiğinde ya da kasandan bir anahtar çıkardığında anahtarlar diğer cihazlarında yeniden açılır: kendiliğinden, kasadaki bir anahtarla; kasada hiç anahtar yoksa yeni parolayla. Değişikliği yaptığın cihaz olduğu gibi kalır.
+
+Mac için tTerm'de Mac'in kendi terminalleri ve onun üzerinden açılan sunucular eskisi gibi anahtarlarına gerek olmadan açılır; anahtarınla açılan sunucular ve diğer bilgisayarların ise orada, kasan Touch ID ya da Mac'inin parolasıyla açıldıktan sonra açılır. Mac'in, anahtarınla açılan bir sunucuya yalnızca kendisi için giriş yapar: bir tarayıcı da böyle bir sunucuyu ancak anahtarlarını orada açınca açar.
 
 ## Ne zaman yeniden kilitlenir
 
 - **Tarayıcıda** – 8 saat boyunca hiçbir işlem yapılmadığında, tTerm Web'i kapattığında ya da yeniden yüklediğinde, çıkış yaptığında ve **Ayarlar** → **Anahtarlar** bölümünde **Kilitle** düğmesine bastığında.
-- **Mac için tTerm'de** – tTerm çalıştığı sürece, sen **Kilitle** düğmesine basana ya da çıkış yapana kadar açık kalır. Çıkış yapınca Mac kasanın kilidini de unutur: yeniden giriş yaptıktan sonra kasayı bir kez kurtarma kodunla açar.
+- **Mac için tTerm'de** – tTerm çalıştığı sürece, sen **Kilitle** düğmesine basana ya da çıkış yapana kadar açık kalır. Çıkış yapınca Mac kasanın kilidini de unutur: yeniden giriş yaptıktan sonra kasayı bir kez kasa parolanla açar.
 
 ## Ayarlar → Anahtarlar
 
-Sayfanın üstünde kasanın burada açık olup olmadığı, nasıl açıldığı ve ne zaman yeniden kilitleneceği yazar. Her anahtarın bir satırı vardır: adı, türü ve kısa parmak izi; **Açtığı sunucular** ya da **Henüz onunla açılan bir sunucu yok**; bir Mac'ten ne zaman kaydedildiği ya da bir dosyadan ne zaman eklendiği; en son ne zaman kullanıldığı ya da **henüz kullanılmadı**.
+Bölümün üstünde kasanın burada açık olup olmadığı, nasıl açıldığı ve ne zaman yeniden kilitleneceği yazar. Onun altında **Kasa parolası** parolanın ne zaman belirlendiğini gösterir, yanında da **Parolayı değiştir** bulunur. Her anahtarın bir satırı vardır: adı, türü ve kısa parmak izi; **Açtığı sunucular** ya da **Henüz onunla açılan bir sunucu yok**; bir Mac'ten ne zaman kaydedildiği ya da bir dosyadan ne zaman eklendiği; en son ne zaman kullanıldığı ya da **henüz kullanılmadı**.
 
-<Screenshot name="keys" alt="“Ayarlar” → “Anahtarlar”: kasa “Bu tarayıcıda açık”, Touch ID ile açılmış, yanında “Kilitle”; iki anahtar, her birinin türü, kısa parmak izi ve nereden geldiği; “Dosyadan anahtar ekle”, “Yeni kurtarma kodu oluştur” ve kasanın nerede açıldığı." />
+<Screenshot name="keys" alt="“Ayarlar” → “Anahtarlar”: kasa “Bu tarayıcıda açık”, Touch ID ile açılmış, yanında “Kilitle”; anahtarları herhangi bir tarayıcıda açan, bugün belirlenmiş “Kasa parolası”, yanında “Parolayı değiştir”; türleri ve kısa parmak izleriyle iki anahtar; “Dosyadan anahtar ekle”; bir de kasanın parola olmadan açıldığı yer: Chrome on macOS." />
 
-- **Kaldır**, bir onay sorusundan sonra anahtarı kasandan çıkarır ve tTerm şifreli kopyasını siler. Onunla açılan sunucular tTerm'de kalır ama artık açılmaz. Anahtarın kendisi geldiği yerde kalır: Mac'inde ya da kendi dosyasında.
-- **Yeni kurtarma kodu oluştur** yeni bir kodu bir kez gösterir ve elindeki kod artık çalışmaz. Anahtarların ve cihazların olduğu gibi kalır. Touch ID ya da bu tarayıcının geçiş anahtarını ister; kasana ait geçiş anahtarı olmayan bir tarayıcı ise şu anki kodunu sorar. Onu kaybettin mi? Yenisini Mac için tTerm'de oluştur.
+- **Parolayı değiştir** yeni bir parola belirler ve yenisi eskisinin yerini hemen alır: eski parola artık anahtarlarını açmaz. Mac'in ve anahtarlarının saklandığı tarayıcılar onları eskisi gibi açar. Anahtarlarının saklandığı bir tarayıcıda bunun için Touch ID (ya da Windows Hello veya geçiş anahtarın) istenir; saklanmadığı bir tarayıcıda şu anki parola, Mac için tTerm'de ise Touch ID.
+- **Kaldır**, bir onay sorusundan sonra anahtarı kasandan çıkarır ve tTerm şifreli kopyasını siler. Onunla açılan sunucular tTerm'de kalır ama artık açılmaz. Anahtarın kendisi geldiği yerde kalır: Mac'inde ya da kendi dosyasında. Kasandaki her değişiklik gibi bu da yalnızca anahtarlarının açık olduğu yerde çalışır; başka yerlerde tTerm bunu söyler.
 - **Dosyadan anahtar ekle** tarayıcıda bulunur. Mac için tTerm'de anahtarlar Buluta taşı özelliğinden ve `ssh` komutundan sonraki şeritten gelir.
 
-Anahtarların altında sayfa kasanın nerede açıldığını gösterir: kasanın kilidini tutan her Mac ve her tarayıcı ya da **Yalnızca kurtarma kodunla açılır.**
+Anahtarların altında bölüm, kasanın parola olmadan nerede açıldığını gösterir ve anahtarlarını saklayan her Mac'i ve her tarayıcıyı sayar: **Kasanın parola olmadan açıldığı yerler: MacBook-Pro · Mac için tTerm ve Chrome on macOS. Başka herhangi bir tarayıcıda kasa parolasıyla açılır.** Hiçbiri saklamıyorsa: **Kasan yalnızca parolasıyla açılır: henüz hiçbir cihazda saklanmıyor.**
+
+tTerm Web 0.1.26'dan önce oluşturulmuş ve henüz parolası olmayan bir kasada en üstte **Kasa parolası belirle** görünür: **Parolayı belirle** bir parola oluşturur, ardından kurtarma kodu artık çalışmaz. Anahtarlarının saklanmadığı bir tarayıcıda parolayı belirlemek için kurtarma kodun gerekir.
 
 ### Sakladığı anahtarlar
 
@@ -71,10 +113,16 @@ Bazı tarayıcılar Ed25519 anahtarlarıyla imza atamaz. Böyle bir tarayıcıda
 
 ## Kasanı bekleyen sunucu
 
-Cihazlarının hiçbirinde kasa açık değilken, anahtarınla açılan bir sunucudaki terminal gerektiği kadar bekler ve **web-01 anahtarınla açılır** yazar.
+Anahtarlarının açık olmadığı bir cihazda anahtarınla açılan bir sunucu artık bir terminalde beklemez: kilidi ya da yeni terminal düğmesi, terminal oluşturulmadan önce sunucunun kartını açar. Kartta **web-01 anahtarınla açılır** yazar ve anahtarlar doğrudan kartın üzerinde açılır:
 
-- Geçiş anahtarı saklayan bir tarayıcıda **Touch ID ile aç**, **Windows Hello ile aç** ya da **Geçiş anahtarıyla aç** düğmesine bas.
-- Başka bir tarayıcıda, Mac'inin adıyla başlayan **… üzerinde onayla** düğmesine ya da **Kurtarma kodunu kullan** düğmesine bas.
-- Mac için tTerm'de **Touch ID ile aç** düğmesine bas; kasanın kilidi henüz olmayan bir Mac'te ise **Kurtarma kodunu kullan** düğmesine.
+- Anahtarlarının saklanmadığı bir tarayıcıda **Kasa parolası** alanı hemen oradadır: parolayı yaz ve **Anahtarları ve terminali aç** düğmesine bas. Altında, Mac'inin adıyla **MacBook-Pro üzerinde onayla** ve **Parolayı mı unuttun?** bulunur.
+- Anahtarlarının saklandığı bir tarayıcıda **Touch ID ile aç**, **Windows Hello ile aç** ya da **Geçiş anahtarıyla aç** düğmesine bas. Altındaki **ya da kasa parolasını yaz** bağlantısı bunun yerine parola alanını getirir.
+- Mac için tTerm'de **Touch ID ile aç** düğmesine bas; kasanın kilidi henüz olmayan bir Mac'te ise kasa parolasını orada bir kez yaz.
 
-Kasa açılınca terminalde **Anahtarınla web-01 sunucusuna giriş yapılıyor…** yazar ve terminal kendiliğinden açılır.
+<Screenshot name="closed-new" alt="Kilit simgeli “P/web-01 · yeni terminal” sekmesi ve kartı: “web-01 anahtarınla açılır” – anahtarlar bu cihazda henüz açık değil; onları tam burada aç, web-01 üzerinde yeni bir terminal hemen açılır. “Kasa parolası” alanında noktalarla yazılmış parola, “Göster”, “Anahtarları ve terminali aç”, “ya da MacBook-Pro üzerinde onayla · Parolayı mı unuttun?”; altında da hangi makinelerin yalnızca anahtarların açık olduğu yerde açıldığı yazıyor." />
+
+Kasan tTerm Web 0.1.26'dan önce oluşturulmuşsa ve henüz parolası yoksa kartta, eskisi gibi, Mac'inin adıyla **MacBook-Pro üzerinde onayla** ya da **Kurtarma kodunu kullan** bulunur.
+
+Ardından kartta bir an **Anahtarlar bu cihazda açılıyor…** yazar ve kartın yerinde terminal açılır.
+
+Anahtarlarının açık olduğu ama bu cihazın sunucunun anahtarıyla giriş yapamadığı yerde terminal yine bekler: örneğin anahtar kasandan çıkarılmıştır ya da bu tarayıcıda açılmıyordur. Terminal nedenini söyler – örneğin **Kasan burada açık, ama id_ed25519 bu tarayıcıda açılmıyor.** – ve gerektiği kadar bekler. Bu cihaz girişi imzalayabildiğinde terminalde **Anahtarınla web-01 sunucusuna giriş yapılıyor…** yazar ve terminal kendiliğinden açılır.

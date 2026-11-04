@@ -23,7 +23,7 @@ The trust is one line in the `authorized_keys` of one user, `tterm`. Nothing is 
 
 ## Servers moved from a Mac
 
-A server moved from tTerm for Mac can open in two more ways. With **My key**, your own key from your [vault](../keys/) signs you in: a device of yours where the vault is open signs the login, and nothing is added on the server. With **Through this Mac**, your Mac runs `ssh` to the server, and the cloud need not reach it at all. The third way, **tTerm's pass**, is the same two-minute certificate, with tTerm's line in `authorized_keys` of your own user instead of `tterm`. More in [Move to cloud](../../local/move-to-cloud/#three-ways-in).
+A server moved from tTerm for Mac can open in two more ways. With **My key**, your own key from your [vault](../keys/) signs you in, and nothing is added on the server. The login is signed by the device that opened the terminal, where your keys are open: your browser, or tTerm for Mac for its own terminals. No other device is asked, your Mac included, so a sign-in with only the code from your email opens none of these servers. With **Through this Mac**, your Mac runs `ssh` to the server, and the cloud need not reach it at all; once you have a vault, such a server opens only where your keys are open, as your computers do: see [Where your keys are open](../keys/#where-your-keys-are-open). The third way, **tTerm's pass**, is the same two-minute certificate, with tTerm's line in `authorized_keys` of your own user instead of `tterm`. More in [Move to cloud](../../local/move-to-cloud/#three-ways-in).
 
 ## Connections only from inside
 

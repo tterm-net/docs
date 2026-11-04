@@ -1,0 +1,59 @@
+---
+title: Configurações
+description: A janela de Configurações, por cima da página – as seções dela e a busca entre elas, e a sua conta, com a sua foto, o seu nome e o seu e-mail.
+---
+
+import Screenshot from '../../../../components/Screenshot.astro';
+
+**Configurações**, no menu da conta na parte de baixo da barra lateral, abre uma janela por cima da página em que você está, e a página embaixo dela continua como estava. À esquerda ficam a busca e as seções, em grupos; à direita, a seção que você escolher, em linhas: cada linha tem à esquerda o que ela é e, à direita, o valor ou o botão dela. O ×, **Esc** ou um clique fora da janela a fecha, e você continua onde estava.
+
+- **Preferências**: **Geral**, **Conta** e **Plano**.
+- **Segurança**: **Chaves** e **Dispositivos**.
+- **tTerm para Mac**, no app: **Este computador** e **Atualizações**.
+
+<Screenshot name="settings" alt="A janela “Configurações” sobre a página de um terminal: à esquerda, “Buscar” e as seções, “Geral”, “Conta” e “Plano” em “Preferências”, “Chaves” e “Dispositivos” em “Segurança”; à direita, “Geral”: “Aparência”, com “Tema” (“Sistema”, “Claro”, “Escuro”) e “Cores dos projetos” (“Selo do código”, “Projeto inteiro”), e “Idioma”, com “Idioma da interface”." />
+
+O seu nome e o seu e-mail, no alto do menu da conta, abrem **Configurações** → **Conta**. Cada seção tem um endereço próprio, como app.tterm.net/settings/devices; por isso, o e-mail sobre um novo login leva direto a **Dispositivos**. No celular, as Configurações ocupam a tela inteira: primeiro as seções, depois a que você tocar, com a seta para voltar a elas.
+
+No tTerm para Mac, antes de você entrar na conta, as Configurações têm só **Geral** e **Atualizações**, e o que você escolher lá fica salvo neste computador.
+
+## Busca
+
+O campo **Buscar**, acima das seções, deixa só as seções que têm todas as palavras digitadas e destaca as linhas em que elas aparecem: `cor` deixa **Geral**, com a linha **Cores dos projetos** destacada. Maiúsculas e acentos não fazem diferença. **Esc** primeiro limpa a busca e, depois, fecha a janela.
+
+<Screenshot name="settings-search" alt="“Configurações”, com tema digitado em “Buscar”: à esquerda fica só “Geral”, e à direita a linha “Tema” dessa seção aparece destacada." />
+
+## Geral
+
+- **Aparência**: o **Tema** (**Sistema**, **Claro** ou **Escuro**) e as **Cores dos projetos** (**Selo do código** ou **Projeto inteiro**) – mais detalhes em [Cores](../../features/projects/#cores). Essas escolhas ficam salvas na sua conta, em todos os seus dispositivos.
+- **Idioma**: o **Idioma da interface**, a mesma escolha que fica em **Idioma**, no menu da conta.
+
+## Conta
+
+- **Foto**: **Adicionar uma foto**, ou então **Trocar foto** e **Remover foto**. Escolha um JPEG, PNG ou WebP de até 5 MB, posicione a foto no círculo, na janela **Sua foto**, e clique em **Salvar foto**. Ela aparece ao lado do seu nome, no lugar das suas iniciais; o tTerm guarda uma cópia de 256 pixels, sem os dados que a foto traz sobre si mesma, como o lugar onde foi tirada.
+- **Nome**: clique em **Editar nome**, digite o novo nome e clique em **Salvar**.
+- **E-mail**: o endereço com que você entra. Para trocá-lo, escreva para [support@tterm.net](mailto:support@tterm.net).
+
+**Exclusão da conta**: para excluir a sua conta, escreva para support@tterm.net a partir do endereço com que você entra. **Escrever para o suporte**, ao lado de **Excluir conta**, abre a janela para isso, como em [Escrever para o suporte](../help/#escrever-para-o-suporte), e a resposta vai para o seu e-mail.
+
+<Screenshot name="account" alt="“Configurações” → “Conta”: em “Perfil”, “Foto” com a inicial da Anna e “Adicionar uma foto”, “Nome” Anna com “Editar nome” e “E-mail” anna@example.com, que se troca escrevendo para support@tterm.net; em “Exclusão da conta”, “Excluir conta” com “Escrever para o suporte”." />
+
+## Plano
+
+O seu plano, **Free**, com **Até 50 máquinas e 24 terminais abertos**, e dois medidores do que você usa agora: **Máquinas** e **Terminais abertos**. Abaixo dele fica **Pagamento**, ainda esmaecido: a sua **Forma de pagamento e faturas** vão aparecer ali junto com os planos pagos. Mais detalhes em [Plano e limites](../plan/).
+
+## Chaves
+
+O seu [cofre de chaves SSH](../../security/keys/#configurações--chaves): se ele está aberto aqui, a senha dele, as suas chaves e onde o cofre abre sem a senha.
+
+## Dispositivos
+
+Os navegadores em que você entra com um código rápido e o tTerm para Mac com login feito pelo navegador: **Esquecer** um deles ou **Esquecer todos os dispositivos…**. Mais detalhes em [Seus dispositivos](../devices/#seus-dispositivos).
+
+## Este computador
+
+No tTerm para Mac, depois que você entra na conta: a opção **Acesso pelo tTerm Web e pelo celular** e o estado da conexão deste Mac com o tTerm Web. Mais detalhes em [Mac com o tTerm para Mac](../../machines/remove/#mac-com-o-tterm-para-mac).
+
+## Atualizações
+
+No tTerm para Mac: **Atualizar automaticamente** ou **Perguntar antes**, e **Verificar agora**. **Verificar Atualizações…**, no menu do tTerm, também abre esta seção. Mais detalhes em [Atualizações](../../local/mac/#atualizações), na página Versão para Mac.

@@ -1,16 +1,16 @@
 ---
 title: Tu bóveda de claves SSH
-description: Tus propias claves SSH, cifradas en tus dispositivos antes de llegar a tTerm – cómo se crea la bóveda, cómo se abre en otro navegador y cuándo vuelve a bloquearse.
+description: Tus propias claves SSH, cifradas en tus dispositivos antes de llegar a tTerm – cómo se crea la bóveda, su contraseña, cómo se abre en otro navegador, dónde están abiertas tus claves y cuándo vuelve a bloquearse.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import Screenshot from '../../../../components/Screenshot.astro';
 
-La bóveda guarda tus propias claves SSH, para los servidores a los que accedes con ellas. Una clave se cifra en tu dispositivo antes de salir de él, y solo tus dispositivos abren la bóveda, igual que se desbloquean. tTerm guarda las claves cifradas, con la parte pública y la huella de cada una: no puede abrir la bóveda ni leer una clave. La bóveda está en **Configuración** → **Claves**.
+La bóveda guarda tus propias claves SSH, para los servidores a los que accedes con ellas. Una clave se cifra en tu dispositivo antes de salir de él, y solo tú puedes abrir la bóveda: con su contraseña, en cualquier navegador, y sin ella, en los dispositivos donde guardaste tus claves. tTerm guarda las claves cifradas, con la parte pública y la huella de cada una: no puede abrir la bóveda ni leer una clave. La bóveda está en **Configuración** → **Claves**.
 
 ## Cómo se abre un servidor con tu clave
 
-Un servidor se abre con tu clave cuando lo mueves desde [tTerm para Mac](../../local/mac/) con **Mi clave**, o con **Guardar mi clave** en la franja tras `ssh`: consulta [Mover a la nube](../../local/move-to-cloud/). Cuando abres una terminal en él, tTerm le pide a un dispositivo tuyo en el que la bóveda esté abierta, un navegador o tTerm para Mac, que firme el inicio de sesión. El dispositivo firma con esa clave un inicio de sesión SSH y nada más, y la clave nunca sale de él. tTerm comprueba la firma con la parte pública de la clave antes de usarla.
+Un servidor se abre con tu clave cuando lo mueves desde [tTerm para Mac](../../local/mac/) con **Mi clave**, o con **Guardar mi clave** en la franja tras `ssh`: consulta [Mover a la nube](../../local/move-to-cloud/). Cuando abres una terminal en él, el inicio de sesión lo firma el dispositivo desde el que la abres, que tiene tus claves abiertas: tu navegador o, para sus propias terminales, tTerm para Mac. tTerm no se lo pide a ningún otro dispositivo, ni siquiera a tu Mac. El dispositivo firma con esa clave un inicio de sesión SSH y nada más, y la clave nunca sale de él. tTerm comprueba la firma con la parte pública de la clave antes de usarla.
 
 ## Crear tu bóveda
 
@@ -19,47 +19,89 @@ Un servidor se abre con tu clave cuando lo mueves desde [tTerm para Mac](../../l
 
 En **Configuración** → **Claves**, presiona **Añadir una clave desde un archivo** y elige tu clave privada, el archivo sin `.pub`. Si la clave tiene frase de contraseña, escríbela y presiona **Abrir la clave**: la frase de contraseña abre la clave en este navegador y no se envía a ningún lugar. Ponle un nombre a la clave y presiona **Siguiente**.
 
-En la ventana **Guarda tu clave en tu bóveda**, presiona **Crear mi bóveda con Touch ID** en una Mac, **Crear mi bóveda con Windows Hello** en Windows o **Crear mi bóveda con una llave de acceso** en otros dispositivos. Un navegador que no puede guardar la bóveda con una llave de acceso muestra **Crear mi bóveda**: ahí la bóveda se abre con el código de recuperación o con la aprobación de tu Mac, por una sesión a la vez.
+En la ventana **Crea la contraseña de tu bóveda**, escribe la contraseña dos veces y presiona **Crear la bóveda**. Después, en un navegador que puede guardar tus claves con una llave de acceso, tTerm te pregunta si quieres guardarlas aquí, como en [Abrirla en otro navegador](#abrirla-en-otro-navegador).
 
 	</TabItem>
 	<TabItem label="En tTerm para Mac">
 
-La bóveda se crea la primera vez que guardas una clave: con Mover a la nube o con **Guardar mi clave** en la franja tras `ssh`. En la ventana **Guarda tu clave en tu bóveda**, presiona **Crear mi bóveda con Touch ID** y confirma con Touch ID o con la contraseña de tu Mac.
+La bóveda se crea la primera vez que guardas una clave: con Mover a la nube o con **Guardar mi clave** en la franja tras `ssh`. En la ventana **Crea la contraseña de tu bóveda**, escribe la contraseña dos veces y presiona **Crear la bóveda**: para esto no se pide Touch ID. A partir de entonces, esta Mac puede abrir la bóveda por sí sola, con Touch ID o con la contraseña de tu Mac.
 
 	</TabItem>
 </Tabs>
 
-### El código de recuperación
+### La contraseña de la bóveda
 
-Justo después, tTerm muestra tu código de recuperación: 24 letras y dígitos en seis grupos de cuatro. Solo lo verás esta vez. Usa **Copiar** o **Guardar como archivo** y consérvalo en un lugar seguro, lejos de los dispositivos que abren tu bóveda. Si algún día los pierdes todos, este código es la única forma de volver a acceder a tus claves: tTerm no puede recuperarlas por ti. **Listo** se activa cuando marcas que lo guardaste.
+La eliges al crear la bóveda: al menos 12 caracteres, y lo más fácil es una frase de unas pocas palabras. Mientras sea más corta, la ventana dice cuántos caracteres faltan. También sirven letras que no están entre la A y la Z, pero puede que una computadora en otro país no tenga una distribución de teclado para escribirlas.
+
+<Screenshot name="vault-password" alt="«Crea la contraseña de tu bóveda»: id_ed25519 se cifra en este navegador, va a tu bóveda y se abre con esta contraseña en cualquier navegador. «Contraseña» y «Repítela», con la contraseña en forma de puntos, el botón «Mostrar», «Al menos 12 caracteres» y «Coincide»; tTerm no conoce esta contraseña y no puede recuperarla; «Cancelar» y «Crear la bóveda»." />
+
+La contraseña en sí no se envía a ningún lugar: tu navegador o tu Mac la convierten en una clave, y tTerm solo entrega la clave cifrada de tu bóveda a un dispositivo que demuestra que conoce la contraseña. tTerm no conoce la contraseña y no puede recuperarla: guárdala en tu administrador de contraseñas.
+
+Si la contraseña es incorrecta, la ventana lo dice, y también cuántos intentos te quedan. Tras diez contraseñas incorrectas en una hora, los intentos se pausan durante una hora; tras treinta en un día, hasta que termine ese día. La ventana te dice cuándo volver a intentarlo.
+
+**¿Olvidaste la contraseña?** Establece una nueva donde tu bóveda se abre sin ella: en tu Mac, en tTerm para Mac, **Configuración** → **Claves** → **Cambiar la contraseña**, con Touch ID; o en un navegador donde tus claves están guardadas, también en **Configuración** → **Claves**. Si no hay ningún dispositivo así, ya nadie puede abrir las claves de tu bóveda, tampoco tTerm. Las claves en sí suelen seguir en tu Mac, en `~/.ssh`.
+
+<Screenshot name="vault-forgot" alt="«¿Olvidaste la contraseña de tu bóveda?»: tTerm no puede recordártela, pero se puede establecer una nueva donde la bóveda se abre sin ella, ya sea en tu Mac, en tTerm para Mac (Configuración › Claves › «Cambiar la contraseña», con Touch ID), o en un navegador donde tus claves están guardadas; si no hay ningún dispositivo así, las claves ya no se pueden abrir; «Entendido»." />
 
 ## Abrirla en otro navegador
 
-Un navegador nuevo para tu bóveda la abre en la ventana **Abre tus claves en este navegador**. Esa ventana aparece cuando presionas **Abrir** en **Configuración** → **Claves**, o cuando abres un servidor que se abre con tu clave.
+En un navegador donde tus claves no están guardadas, **Configuración** → **Claves** dice **Tu bóveda está cerrada** y tiene un campo **Contraseña de la bóveda**. Un servidor que se abre con tu clave muestra el mismo campo en su tarjeta, antes de que se cree su terminal: consulta [Un servidor que espera a tu bóveda](#un-servidor-que-espera-a-tu-bóveda).
 
-- **Aprobar en tTerm para Mac.** Si tu bóveda se abre en tTerm para Mac, la ventana te ofrece esa Mac: presiona **Pedirle que abra tu bóveda aquí**. En la Mac, una ventana indica qué navegador lo pide, cuándo inició sesión y desde qué dirección. Las dos pantallas muestran los mismos seis dígitos: presiona **Autorizar con Touch ID** solo si coinciden. **No soy yo** cierra la sesión de ese navegador, y en **Configuración** → **Dispositivos** verás qué más revisar. Cada solicitud dura cinco minutos.
-- **Usar el código de recuperación.** Escríbelo en **Código de recuperación** y presiona **Abrir**.
+<Screenshot name="vault-open" alt="«Configuración» → «Claves» en un navegador nuevo para la bóveda: «Tu bóveda está cerrada», y solo la contraseña de tu bóveda abre las claves, aquí mismo, en este navegador; el campo «Contraseña de la bóveda» con la contraseña en forma de puntos, «Mostrar», «Abrir las claves» y, debajo, «¿Olvidaste la contraseña?». Más abajo: la fila «Contraseña de la bóveda», las dos claves y dónde se abre la bóveda sin la contraseña." />
 
-En un navegador que puede guardar una llave de acceso, tTerm te pregunta después si quieres guardar una, para que la próxima vez la bóveda se abra igual que se desbloquea esta computadora: **Guardar con Touch ID** (o con Windows Hello, o con una llave de acceso), o **Solo esta vez** en una computadora que no sea tuya.
+- **Escribe la contraseña de la bóveda** y presiona **Abrir las claves**. Las claves se abren aquí mismo, en este navegador.
+- **Aprueba este navegador en tTerm para Mac**, algo útil en la computadora de otra persona: ahí no tienes que escribir ninguna contraseña. Si tu bóveda se abre en tTerm para Mac, debajo del campo está **aprobar en MacBook-Pro**, con el nombre de esa Mac: presiónalo, y la ventana **Abre tus claves en este navegador** se lo pide a la Mac al instante. En la Mac, una ventana indica qué navegador lo pide, cuándo inició sesión y desde qué dirección. Las dos pantallas muestran los mismos seis dígitos: presiona **Autorizar con Touch ID** solo si coinciden. **No soy yo** cierra la sesión de ese navegador, y en **Configuración** → **Dispositivos** verás qué más revisar. Cada solicitud dura cinco minutos. **Escribir la contraseña** te devuelve al campo.
 
-Una bóveda creada en un navegador se abre una vez en tTerm para Mac con el código de recuperación: **Abrir con el código de recuperación** en **Configuración** → **Claves**. Después, ahí la abren Touch ID o la contraseña de tu Mac.
+En un navegador que puede guardar tus claves con una llave de acceso, tTerm te pregunta después si quieres guardarlas aquí, para que la próxima vez no se te pida ahí la contraseña: **Guardar con Touch ID** (o con Windows Hello, o con una llave de acceso), o **Solo esta vez** en una computadora que no sea tuya, y entonces las claves se cierran al cerrar la pestaña, o solas si no se usan durante un tiempo.
+
+<Screenshot name="vault-keep" alt="Después de la contraseña de la bóveda: «Tus claves están abiertas en este navegador». Ofrece guardarlas aquí con Touch ID, para que la próxima vez baste con Touch ID, o, en la computadora de otra persona, elegir «Solo esta vez»; los botones «Solo esta vez» y «Guardar con Touch ID»." />
+
+Una bóveda creada antes de tTerm Web 0.1.26 que todavía no tiene contraseña se abre como antes: **Abrir** en **Configuración** → **Claves** muestra la ventana **Abre tus claves en este navegador**, con **Pedirle que abra tu bóveda aquí** para la aprobación de tu Mac, y **Código de recuperación** con **Abrir**.
+
+En tTerm para Mac, una Mac que todavía no puede abrir tu bóveda por sí sola (una segunda Mac, una bóveda creada en un navegador, o después de cerrar sesión y volver a iniciarla) dice **Esta Mac todavía no puede abrir tu bóveda por sí sola** y la abre una vez con la contraseña de la bóveda, sin Touch ID. Después, ahí la abren Touch ID o la contraseña de tu Mac.
+
+## Dónde están abiertas tus claves
+
+Tus computadoras, los servidores con tu clave y los que van a través de tu Mac se abren, si tienes una bóveda, solo en un dispositivo donde tú mismo abriste tus claves: con la contraseña de la bóveda, con Touch ID donde el navegador las guarda o con la aprobación en tTerm para Mac. Tus computadoras son las máquinas con el agente de tTerm, en macOS o Linux, y cada Mac con tTerm para Mac. Para estas máquinas no basta con iniciar sesión en tTerm con el código de tu correo, así que quien haya entrado en tu correo no obtiene nada de ellas, ni siquiera mientras tu Mac está encendida y con la bóveda abierta. Un servidor con la línea propia de tTerm, conectado con un solo comando o movido con **Pase de tTerm**, no es una de ellas: le basta con que inicies sesión. Sin bóveda, o con una que no tiene ni contraseña ni clave, nada se cierra de esta forma.
+
+En un dispositivo donde tus claves no están abiertas, una máquina así tiene un candado en lugar de su **+**, sus terminales y su bitácora aparecen atenuadas, cada una con un candado, y sus pestañas empiezan con un candado. Nada de ella llega a ese dispositivo: ni lo que muestran sus terminales, ni sus comandos en la búsqueda o en el historial de la línea de entrada, ni su bitácora. Si haces clic en el candado, en una terminal o en la bitácora, una tarjeta en su pestaña explica por qué está cerrada y abre tus claves ahí mismo, como las abre este dispositivo: el campo **Contraseña de la bóveda**, **Abrir con Touch ID** donde el navegador guarda tus claves, o **aprobar en MacBook-Pro**. Después:
+
+<Screenshot name="closed-sidebar" alt="La barra lateral en un dispositivo donde las claves de Anna no están abiertas: MacBook-Pro, web-01 y staging tienen un candado en lugar del «+», y sus terminales shop y deploy y sus bitácoras aparecen atenuadas, cada una con un candado; db-1, en Client X, está como siempre. El puntero está sobre el candado de web-01: «Las claves no están abiertas en este dispositivo. Ábrelas»." />
+
+- el candado: en el lugar de la tarjeta se abre una terminal nueva en esa máquina;
+- una terminal que ya está en marcha: aparece tal como está ahora, y no se crea ninguna nueva;
+- la bitácora: se abre.
+
+<Screenshot name="closed-terminal" alt="La pestaña «P/web-01 · deploy», con un candado: «Este terminal está cerrado en este dispositivo». «deploy», en web-01, sigue en marcha, pero aquí no se ve hasta que las claves estén abiertas aquí; entonces aparece tal como está ahora. «Contraseña de la bóveda», «Abrir las claves», «o aprobar en MacBook-Pro · ¿Olvidaste la contraseña?»." />
+
+En la página **Máquinas**, una máquina así dice **cerrado en este dispositivo**, y en la página del proyecto lo dice cada una de sus terminales en lugar de su carpeta. En las dos, el botón para una terminal nueva lleva el candado, y las terminales aparecen atenuadas. **Quitar** y **Mover a otro proyecto** abren primero tus claves, ahí mismo en su ventana: el botón rojo **Quitar web-01** y el que mueve la máquina aparecen en cuanto las claves están abiertas.
+
+<Screenshot name="closed-machines" alt="«Máquinas» en un dispositivo donde las claves no están abiertas: MacBook-Pro, web-01 y staging dicen «cerrado en este dispositivo», su botón «Abrir una terminal» lleva un candado, y sus terminales «P/MacBook-Pro · shop» y «P/web-01 · deploy» aparecen atenuadas, cada una con un candado; db-1, en Client X, está como siempre. Cada máquina tiene «Quitar»." />
+
+Da igual cómo las hayas abierto: tus claves abren entonces en este dispositivo todas esas máquinas, y solo se crea la terminal que pediste. Un candado pide una sola terminal a la vez: otro candado ocupa el lugar de su tarjeta, y una tarjeta que quedó detrás de otra pestaña se cierra, sin terminal, cuando se abren las claves. Cuando tus claves se cierran aquí, como en [Cuándo vuelve a bloquearse](#cuándo-vuelve-a-bloquearse), los candados vuelven al instante y las pestañas de esas terminales se convierten en sus tarjetas; las propias terminales siguen en marcha en la nube.
+
+Cuando cambias la contraseña de la bóveda o sacas una clave de ella, tus otros dispositivos vuelven a abrir las claves: solos, con una clave de la bóveda, o con la contraseña nueva donde la bóveda no tiene ninguna clave. El dispositivo en el que hiciste el cambio se queda como estaba.
+
+En tTerm para Mac, las terminales de la propia Mac y los servidores a través de ella se abren sin tus claves, como antes; tus otras computadoras y los servidores con tu clave se abren ahí en cuanto tu bóveda está abierta, con Touch ID o con la contraseña de tu Mac. Tu Mac inicia sesión en un servidor con tu clave solo para sí misma: un navegador abre un servidor así en cuanto abre tus claves en él.
 
 ## Cuándo vuelve a bloquearse
 
 - **En un navegador**: tras 8 horas sin actividad, cuando cierras o vuelves a cargar tTerm Web, cuando cierras sesión y cuando presionas **Bloquear** en **Configuración** → **Claves**.
-- **En tTerm para Mac**: sigue abierta mientras tTerm se ejecuta, hasta que presionas **Bloquear** o cierras sesión. Al cerrar sesión, la Mac además deja de poder abrir la bóveda por sí sola: cuando vuelves a iniciar sesión, la abre una vez con tu código de recuperación.
+- **En tTerm para Mac**: sigue abierta mientras tTerm se ejecuta, hasta que presionas **Bloquear** o cierras sesión. Al cerrar sesión, la Mac además deja de poder abrir la bóveda por sí sola: cuando vuelves a iniciar sesión, la abre una vez con la contraseña de tu bóveda.
 
 ## Configuración → Claves
 
-Arriba, la página indica si la bóveda está abierta aquí, cómo se abrió y cuándo vuelve a bloquearse. Cada clave tiene una línea: su nombre, su tipo y su huella corta; los servidores que **Abre**, o **Aún no abre ningún servidor**; cuándo se guardó desde una Mac o se añadió desde un archivo; y cuándo se usó por última vez, o **aún sin usar**.
+Arriba, la sección indica si la bóveda está abierta aquí, cómo se abrió y cuándo vuelve a bloquearse. Debajo, **Contraseña de la bóveda** dice cuándo se estableció la contraseña, con **Cambiar la contraseña** al lado. Cada clave tiene una línea: su nombre, su tipo y su huella corta; los servidores que **Abre**, o **Aún no abre ningún servidor**; cuándo se guardó desde una Mac o se añadió desde un archivo; y cuándo se usó por última vez, o **aún sin usar**.
 
-<Screenshot name="keys" alt="«Configuración» → «Claves»: la bóveda «Abierta en este navegador», que se abrió con Touch ID, y el botón «Bloquear»; dos claves con su tipo, su huella abreviada y de dónde vienen; «Añadir una clave desde un archivo», «Crear un código de recuperación nuevo» y dónde se abre la bóveda." />
+<Screenshot name="keys" alt="«Configuración» → «Claves»: la bóveda «Abierta en este navegador», que se abrió con Touch ID, y el botón «Bloquear»; la «Contraseña de la bóveda», que abre las claves en cualquier navegador y se estableció hoy, con «Cambiar la contraseña»; dos claves con su tipo y su huella abreviada; «Añadir una clave desde un archivo», y dónde se abre la bóveda sin la contraseña: Chrome on macOS." />
 
-- **Quitar** saca la clave de tu bóveda, tras una pregunta, y tTerm elimina su copia cifrada. Los servidores que se abren con ella siguen en tTerm, pero ya no se abren. La propia clave sigue donde estaba: en tu Mac o en su archivo.
-- **Crear un código de recuperación nuevo** muestra un código nuevo una sola vez, y el que tenías deja de funcionar. Tus claves y tus dispositivos no cambian. Pide Touch ID o la llave de acceso de este navegador; un navegador sin una llave de acceso de tu bóveda pide el código que tienes ahora. ¿Lo perdiste? Crea el nuevo en tTerm para Mac.
+- **Cambiar la contraseña** establece una nueva, que reemplaza a la anterior al instante: la anterior ya no abre tus claves. Tu Mac y los navegadores donde están guardadas tus claves las abren como antes. En un navegador donde tus claves están guardadas, pide Touch ID (o Windows Hello, o tu llave de acceso); en uno donde no lo están, la contraseña actual; en tTerm para Mac, Touch ID.
+- **Quitar** saca la clave de tu bóveda, tras una pregunta, y tTerm elimina su copia cifrada. Los servidores que se abren con ella siguen en tTerm, pero ya no se abren. La propia clave sigue donde estaba: en tu Mac o en su archivo. Como cualquier cambio en tu bóveda, solo funciona donde tus claves están abiertas; en otros dispositivos, tTerm te lo indica.
 - **Añadir una clave desde un archivo** está disponible en un navegador. En tTerm para Mac, las claves llegan con Mover a la nube y con la franja tras `ssh`.
 
-Debajo de las claves, la página indica dónde se abre la bóveda: cada Mac y cada navegador que pueden abrirla por sí solos, o **Solo se abre con tu código de recuperación.**
+Debajo de las claves, la sección indica dónde se abre la bóveda sin la contraseña, cada Mac y cada navegador que guarda tus claves: **Sin la contraseña, tu bóveda se abre en: MacBook-Pro · tTerm para Mac y Chrome on macOS. En cualquier otro navegador, con la contraseña de la bóveda.** Si ninguno las guarda, **Tu bóveda solo se abre con su contraseña: todavía no la guarda ningún dispositivo.**
+
+Una bóveda creada antes de tTerm Web 0.1.26 que todavía no tiene contraseña muestra arriba **Establece la contraseña de tu bóveda**: **Establecer la contraseña** crea una, y después el código de recuperación deja de funcionar. En un navegador donde tus claves no están guardadas, para establecerla se necesita tu código de recuperación.
 
 ### Las claves que guarda
 
@@ -71,10 +113,16 @@ Algunos navegadores no pueden firmar con claves Ed25519. En ellos, **Configuraci
 
 ## Un servidor que espera a tu bóveda
 
-Mientras ninguno de tus dispositivos tenga la bóveda abierta, una terminal en un servidor con tu clave espera, el tiempo que haga falta, y dice **web-01 se abre con tu clave**.
+En un dispositivo donde tus claves no están abiertas, un servidor con tu clave ya no espera en una terminal: su candado, o el botón para una terminal nueva, abre primero su tarjeta, antes de que se cree la terminal. La tarjeta dice **web-01 se abre con tu clave**, y en ella misma se abren las claves:
 
-- En un navegador que guarda una llave de acceso, presiona **Abrir con Touch ID**, **Abrir con Windows Hello** o **Abrir con una llave de acceso**.
-- En otro navegador, presiona **Aprobar en** seguido del nombre de tu Mac, o **Usar el código de recuperación**.
-- En tTerm para Mac, presiona **Abrir con Touch ID**; en una Mac que todavía no puede abrir tu bóveda por sí sola, **Usar el código de recuperación**.
+- En un navegador donde tus claves no están guardadas, el campo **Contraseña de la bóveda** está ahí mismo: escribe la contraseña y presiona **Abrir las claves y el terminal**. Debajo están **¿Olvidaste la contraseña?** y **aprobar en MacBook-Pro**, con el nombre de tu Mac.
+- En un navegador donde tus claves están guardadas, presiona **Abrir con Touch ID**, **Abrir con Windows Hello** o **Abrir con una llave de acceso**. El enlace de debajo, **o escribir la contraseña de la bóveda**, muestra el campo en su lugar.
+- En tTerm para Mac, presiona **Abrir con Touch ID**; en una Mac que todavía no puede abrir tu bóveda por sí sola, escribe ahí la contraseña de la bóveda una vez.
 
-En cuanto se abre la bóveda, la terminal dice **Iniciando sesión en web-01 con tu clave…** y se abre sola.
+<Screenshot name="closed-new" alt="La pestaña «P/web-01 · terminal nuevo», con un candado, y su tarjeta: «web-01 se abre con tu clave». Las claves aún no están abiertas en este dispositivo; ábrelas aquí mismo y se abrirá enseguida una terminal nueva en web-01. El campo «Contraseña de la bóveda», con la contraseña escrita en forma de puntos; «Mostrar», «Abrir las claves y el terminal», «o aprobar en MacBook-Pro · ¿Olvidaste la contraseña?» y, debajo, qué máquinas se abren solo donde las claves están abiertas." />
+
+Con una bóveda creada antes de tTerm Web 0.1.26 que todavía no tiene contraseña, la tarjeta tiene, como antes, **Aprobar en MacBook-Pro**, con el nombre de tu Mac, o **Usar el código de recuperación**.
+
+Después, la tarjeta dice por un instante **Abriendo las claves en este dispositivo…**, y en su lugar se abre la terminal.
+
+Donde tus claves están abiertas pero este dispositivo no puede iniciar sesión con la clave del servidor, una terminal todavía espera: por ejemplo, si la clave se sacó de tu bóveda o si no se abre en este navegador. La terminal dice el motivo, como **Tu bóveda está abierta aquí, pero id_ed25519 no se abre en este navegador.**, y espera el tiempo que haga falta. En cuanto este dispositivo puede firmar, dice **Iniciando sesión en web-01 con tu clave…** y se abre sola.

@@ -16,7 +16,11 @@ Bunu iki yerden yapabilirsin:
 
 tTerm önce sorar ve ne olacağını söyler: **web-01 makinesi kaldırılsın mı?** Kırmızı **web-01 makinesini kaldır** düğmesi makineyi kaldırır, **Vazgeç** her şeyi olduğu gibi bırakır.
 
+Kasan varsa bir bilgisayar, anahtarınla açılan bir sunucu ve Mac'in üzerinden açılan bir sunucu yalnızca anahtarlarının açık olduğu yerde kaldırılır. Başka bir cihazda pencerede şu yazar: **web-01 bu cihazda kapalı: yalnızca anahtarların açık olduğu yerde kaldırılabilir. Anahtarları burada aç.** Pencere anahtarlarını, [Anahtarların nerede açık](../../security/keys/#anahtarların-nerede-açık) bölümündeki gibi, doğrudan kendi içinde açar; kırmızı **web-01 makinesini kaldır** düğmesi anahtarlar açılınca gelir.
+
 <Screenshot name="remove-machine" alt="Bir makine kaldırılmadan önceki soru: “web-01 makinesi kaldırılsın mı?” Makinenin terminalleri sonlanır ve ajanı durur. Kırmızı “web-01 makinesini kaldır” düğmesi makineyi kaldırır, “Vazgeç” ise olduğu gibi bırakır." />
+
+<Screenshot name="closed-remove" alt="Anahtarların açık olmadığı bir cihazda “web-01 makinesi kaldırılsın mı?”: “web-01 bu cihazda kapalı: yalnızca anahtarların açık olduğu yerde kaldırılabilir. Anahtarları burada aç.” “Kasa parolası” alanında noktalarla yazılmış parola, “Anahtarları aç”, “ya da MacBook-Pro üzerinde onayla · Parolayı mı unuttun?”; kırmızı “web-01 makinesini kaldır” düğmesi henüz yok, yalnızca “Vazgeç” var." />
 
 ## Sonra ne olur
 
@@ -66,7 +70,7 @@ Betik, ajanın otomatik başlatma ayarını ve bilgisayarın anahtarı dahil `~/
 
 ## Mac için tTerm kurulu Mac
 
-Giriş yaptığında [Mac için tTerm](../../local/mac/), Mac'in tTerm Web ile bağlantısını ajanın yerine kendisi tutar. Bunun için **Ayarlar** → **Bu bilgisayar** bölümünde bir ayar vardır: **tTerm Web'den ve telefonundan erişime izin ver**. Ayar açıkken tTerm Web ve telefonun, tTerm çalıştığı sürece bu Mac'te terminal açabilir. Ayar kapalıyken Mac tTerm Web'de çevrimdışı görünür, uygulamada ise her şey eskisi gibi çalışır; tTerm Web'den bu Mac'te açılmış terminaller sonlanır, ama tTerm önce sorar.
+Giriş yaptığında [Mac için tTerm](../../local/mac/), Mac'in tTerm Web ile bağlantısını ajanın yerine kendisi tutar. Bunun için **Ayarlar** → **Bu bilgisayar** bölümünde bir ayar vardır: **tTerm Web'den ve telefonundan erişime izin ver**. Ayar açıkken tTerm Web ve telefonun, tTerm çalıştığı sürece bu Mac'te terminal açabilir: kasan varsa yalnızca anahtarlarının açık olduğu yerde ([ayrıntılar](../../security/keys/#anahtarların-nerede-açık)). Ayar kapalıyken Mac tTerm Web'de çevrimdışı görünür, uygulamada ise her şey eskisi gibi çalışır; tTerm Web'den bu Mac'te açılmış terminaller sonlanır, ama tTerm önce sorar.
 
 Mac, tTerm Web'de her bilgisayar gibi kaldırılır. Ardından **Bu bilgisayar** bölümünde şu yazar: **Bu Mac tTerm Web'den kaldırıldı, bu yüzden ona oradan erişilemiyor. Yeniden eklemek için bu ayarı aç.**
 

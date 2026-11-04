@@ -1,0 +1,59 @@
+---
+title: Ustawienia
+description: Okno ustawień nad stroną – jego sekcje i wyszukiwanie w nich, a w nim także twoje konto, ze zdjęciem, imieniem i nazwiskiem oraz adresem e-mail.
+---
+
+import Screenshot from '../../../../components/Screenshot.astro';
+
+**Ustawienia** w menu konta na dole panelu bocznego otwierają okno nad stroną, na której jesteś, a strona pod nim zostaje taka, jaka była. Po lewej są wyszukiwanie i sekcje, podzielone na grupy, a po prawej sekcja, którą wybierzesz, ułożona w wiersze: po lewej stronie wiersza widać, czego dotyczy, a po prawej – jego wartość albo przycisk. ×, **Esc** albo kliknięcie obok okna je zamyka, a ty wracasz do poprzedniego miejsca.
+
+- **Preferencje**: **Ogólne**, **Konto** i **Plan**.
+- **Bezpieczeństwo**: **Klucze** i **Urządzenia**.
+- **tTerm dla Maca**, w aplikacji: **Ten komputer** i **Uaktualnienia**.
+
+<Screenshot name="settings" alt="Okno „Ustawienia” na tle strony terminala: po lewej „Szukaj” i sekcje – „Ogólne”, „Konto” i „Plan” w grupie „Preferencje” oraz „Klucze” i „Urządzenia” w grupie „Bezpieczeństwo”; po prawej sekcja „Ogólne”: „Wygląd” z ustawieniami „Motyw” („Systemowy”, „Jasny”, „Ciemny”) i „Kolory projektów” („Plakietka z kodem”, „Cały projekt”) oraz „Język” z ustawieniem „Język interfejsu”." />
+
+Twoje imię i adres e-mail u góry menu konta otwierają sekcję **Ustawienia** → **Konto**. Każda sekcja ma własny adres, na przykład app.tterm.net/settings/devices, więc e-mail o nowym logowaniu prowadzi prosto do sekcji **Urządzenia**. Na telefonie Ustawienia zajmują cały ekran: najpierw sekcje, potem ta, którą stukniesz, ze strzałką, która do nich wraca.
+
+W tTerm dla Maca przed zalogowaniem Ustawienia mają tylko sekcje **Ogólne** i **Uaktualnienia**, a to, co tam wybierzesz, zapisuje się na tym komputerze.
+
+## Wyszukiwanie
+
+Pole **Szukaj** nad sekcjami zostawia te, w których są wszystkie wpisane słowa, i podświetla ich wiersze: `kolor` zostawia sekcję **Ogólne** z podświetlonym wierszem **Kolory projektów**. Wielkość liter i znaki diakrytyczne nie mają znaczenia. **Esc** najpierw czyści pole wyszukiwania, a dopiero potem zamyka okno.
+
+<Screenshot name="settings-search" alt="„Ustawienia”, w polu „Szukaj” wpisano słowo motyw: po lewej została tylko sekcja „Ogólne”, a po prawej podświetlony jest jej wiersz „Motyw”." />
+
+## Ogólne
+
+- **Wygląd**: **Motyw** (**Systemowy**, **Jasny** albo **Ciemny**) i **Kolory projektów** (**Plakietka z kodem** albo **Cały projekt**, zobacz [Kolory](../../features/projects/#kolory)). Oba wybory zapisują się na twoim koncie, na wszystkich twoich urządzeniach.
+- **Język**: **Język interfejsu**, ten sam wybór co pozycja **Język** w menu konta.
+
+## Konto
+
+- **Zdjęcie**: **Dodaj zdjęcie** albo **Zmień zdjęcie** i **Usuń zdjęcie**. Wybierz plik JPEG, PNG lub WebP o rozmiarze do 5 MB, ustaw zdjęcie w kółku w oknie **Twoje zdjęcie** i naciśnij **Zapisz zdjęcie**. Pokazuje się ono obok twojego imienia, zamiast inicjałów; tTerm zachowuje jego kopię o boku 256 pikseli, bez zapisanych w zdjęciu informacji, takich jak miejsce jego wykonania.
+- **Imię i nazwisko**: **Zmień imię i nazwisko**, wpisz nowe i naciśnij **Zapisz**.
+- **Adres e-mail**: adres, którym się logujesz. Żeby go zmienić, napisz na [support@tterm.net](mailto:support@tterm.net).
+
+**Usuwanie konta**: żeby usunąć konto, napisz na support@tterm.net z adresu, którym się logujesz. **Napisz do pomocy technicznej** obok **Usuń konto** otwiera do tego okno, takie jak w części [Napisz do pomocy technicznej](../help/#napisz-do-pomocy-technicznej), a odpowiedź przyjdzie na twój adres e-mail.
+
+<Screenshot name="account" alt="„Ustawienia” → „Konto”: w części „Profil” – „Zdjęcie” z inicjałem Anny i „Dodaj zdjęcie”, „Imię i nazwisko” Anna z przyciskiem „Zmień imię i nazwisko”, „Adres e-mail” anna@example.com, który można zmienić, pisząc na support@tterm.net; w części „Usuwanie konta” – „Usuń konto” z przyciskiem „Napisz do pomocy technicznej”." />
+
+## Plan
+
+Twój plan, **Free**, z opisem **Do 50 maszyn i 24 otwartych terminali**, i dwa wskaźniki bieżącego wykorzystania: **Maszyny** i **Otwarte terminale**. Pod nim są wyszarzone **Płatności**: **Metoda płatności i faktury** pojawią się tam razem z płatnymi planami. Więcej na stronie [Plan i limity](../plan/).
+
+## Klucze
+
+Twój [sejf na klucze SSH](../../security/keys/#ustawienia--klucze): czy jest tu otwarty, jego hasło, twoje klucze i to, gdzie sejf otwiera się bez hasła.
+
+## Urządzenia
+
+Przeglądarki, w których logujesz się szybkim kodem, i tTerm dla Maca zalogowany przez przeglądarkę: **Zapomnij** wybrane urządzenie albo **Zapomnij wszystkie urządzenia…**. Więcej w części [Twoje urządzenia](../devices/#twoje-urządzenia).
+
+## Ten komputer
+
+W tTerm dla Maca, po zalogowaniu: przełącznik **Dostęp z tTerm Web i z telefonu** oraz stan połączenia tego Maca z tTerm Web. Więcej w części [Mac z tTerm dla Maca](../../machines/remove/#mac-z-tterm-dla-maca).
+
+## Uaktualnienia
+
+W tTerm dla Maca: **Uaktualniaj automatycznie** albo **Najpierw zapytaj** oraz **Sprawdź teraz**. Tę sekcję otwiera też **Sprawdź uaktualnienia…** w menu tTerma. Więcej w części [Uaktualnienia](../../local/mac/#uaktualnienia) strony „Wersja na Maca”.

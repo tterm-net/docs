@@ -24,6 +24,8 @@ curl -fsSL https://connect.tterm.net/c/<token> | sh
 
 <Screenshot name="add-computer" alt="“添加机器”窗口，已选择“电脑”：要在电脑上以你自己的身份运行的命令，带有“复制”按钮，tTerm Web 正在等待代理。" />
 
+有了 [SSH 密钥保险库](../../security/keys/)之后，电脑只在密钥已打开的设备上才能打开：在其他设备上，它的 **+** 会换成锁形图标。参见[密钥已打开的地方](../../security/keys/#密钥已打开的地方)。
+
 ## 这条命令会做什么
 
 - 把代理放到 `~/.tterm-web`：这是我们发布版本中适用于这个系统的单个文件，运行前会用命令脚本中的校验和进行核对。

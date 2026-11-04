@@ -11,7 +11,7 @@ The servers you reach from your Mac with `ssh` can open from tTerm Web, your pho
 
 Sign in to tTerm for Mac, open the account at the bottom of the sidebar and choose **Move to cloud**, right above **Sign out**. **⌘K** finds it too.
 
-<Screenshot name="move-menu" alt="The account menu at the bottom of the sidebar: Move to cloud (Servers and keys of this Mac), right above Sign out." />
+<Screenshot name="move-menu" alt="The account menu at the bottom of the sidebar: Anna and anna@example.com at the top, then Settings, Language, Get help and About us; Move to cloud (Servers and keys of this Mac), right above Sign out." />
 
 ## What it finds
 
@@ -21,17 +21,17 @@ All the servers are ticked, except a git host such as github.com (**A git host: 
 
 Under the servers, **Keys in ~/.ssh** lists your private keys. Only the ticked ones go to your vault. A key is ticked by itself when a ticked server opens with it by **My key**.
 
-<Screenshot name="move-found" alt="Move to cloud: web-01, staging and backup ticked, each with its way in, staging through this Mac since the cloud cannot reach it; db-1 In tTerm already and github.com, a git host, not ticked; Keys in ~/.ssh with id_ed25519 ticked; Move 3 servers." />
+<Screenshot name="move-found" alt="Move to cloud: web-01, staging and backup ticked, each with its way in, staging through this Mac since the cloud cannot reach it; db-1 In tTerm already and github.com, a git host, not ticked; My key opens in any browser with your vault password; Keys in ~/.ssh with id_ed25519 ticked; the keys are encrypted on this Mac, open here with Touch ID and in any browser with the vault password; Move 3 servers." />
 
 ## Three ways in
 
 Each server has a choice of its own:
 
-- **My key** – the key goes to your vault, encrypted on this Mac, and the server stays as it is. tTerm Web signs in from the cloud, and a device of yours with the vault open signs the login: a browser where you opened the vault, or this Mac. For a server tTerm Web reaches, with a key in `~/.ssh` that can move. More in [Your vault of SSH keys](../../security/keys/).
+- **My key** – the key goes to your vault, encrypted on this Mac, and the server stays as it is. It opens in any browser with your vault password. tTerm Web signs in from the cloud, and the device that opened the terminal signs the login, with your keys open there: a browser for its own terminals, this Mac for its own. For a server tTerm Web reaches, with a key in `~/.ssh` that can move. More in [Your vault of SSH keys](../../security/keys/).
 - **tTerm's pass** – this Mac signs in once and adds tTerm's own line to `~/.ssh/authorized_keys` of the user it signs in as; your key stays here. From then on tTerm signs in as that user with a certificate that lives two minutes, as on a [server connected with one command](../../machines/servers/), and needs no vault. On the strip after `ssh`, this way is **Let tTerm in**.
-- **Through this Mac** – nothing moves: tTerm asks this Mac to run `ssh` to the server, while the Mac is on. For a server behind a VPN or on a private network, which tTerm Web cannot reach, and for one whose key cannot leave this Mac. Its terminal runs in the classic mode: every key goes straight to ssh on the Mac, with no blocks and no question before a dangerous command.
+- **Through this Mac** – nothing moves: tTerm asks this Mac to run `ssh` to the server, while the Mac is on. For a server behind a VPN or on a private network, which tTerm Web cannot reach, and for one whose key cannot leave this Mac. Its terminal runs in the classic mode: every key goes straight to ssh on the Mac, with no blocks and no question before a dangerous command. From a browser or your phone, once you have a vault, it opens only where your keys are open: see [Where your keys are open](../../security/keys/#where-your-keys-are-open).
 
-<Screenshot name="move-ways" alt="Each server's way in: web-01 My key, staging Through this Mac, backup's choice open (My key, tTerm's pass, Through this Mac); below, what each way means." />
+<Screenshot name="move-ways" alt="Each server's way in: web-01 My key, staging Through this Mac, backup's choice open (My key, tTerm's pass, Through this Mac); below, what each way means: My key opens in any browser with your vault password." />
 
 tTerm picks for each server: **My key** where its key can move, **Through this Mac** where tTerm Web does not reach the server or its key cannot leave, **tTerm's pass** otherwise. A server tTerm Web does not reach has only **Through this Mac**. A server behind a bastion that the cloud reaches opens through that bastion.
 
@@ -43,12 +43,12 @@ In tTerm for Mac, turn on **Settings** → **This computer** → **Open from tTe
 
 The button counts the ticked servers: **Move 3 servers**.
 
-- **My key** needs your vault. The first time, press **Make my vault with Touch ID** and keep the [recovery code](../../security/keys/#the-recovery-code). A locked vault asks for Touch ID or your Mac's password, or, on a Mac with no lock of it yet, the recovery code once.
+- **My key** needs your vault. The first time, make up a [vault password](../../security/keys/#the-vault-password) and press **Make the vault**: no Touch ID is asked for it. A locked vault asks for Touch ID or your Mac's password, or, on a Mac with no lock of it yet, the vault password once.
 - For a key with a passphrase, tTerm asks for it once. The passphrase stays on this Mac.
 - With **My key**, this Mac first signs in to the server with that key alone; only then the key goes to your vault, once for all its servers. With **tTerm's pass**, this Mac signs in to add the line, and tTerm signs in once with its certificate to check it.
 - **My key** and **tTerm's pass** need the server's host key in `known_hosts`: connect to a new server from this Mac once first.
 
-<Screenshot name="move-vault" alt="The first Move with My key: Save your key to your vault, id_ed25519 goes to a vault that opens the way this Mac unlocks; Cancel and Make my vault with Touch ID." />
+<Screenshot name="move-vault" alt="The first Move with My key: Make up a vault password. The keys of this Mac go to your vault in the cloud, encrypted, and the password opens them in any browser; Password and Again typed as dots, and Matches; if you forget it, set a new one here, on this Mac; Cancel and Make the vault." />
 
 Nothing is saved for a server that fails. A key that went to the vault only for servers that failed comes out of it again, and a line tTerm added on such a server comes off.
 
@@ -56,15 +56,17 @@ Nothing is saved for a server that fails. A key that went to the vault only for 
 
 The result says how many servers are now in tTerm, all in Personal: **2 of 3 servers are in tTerm**. Each line says how its server opens: **Opens with your key**, **Opens with tTerm's pass** or **Through this Mac, while it is on**. Beside it, **Open a terminal** opens one there. A server that failed says why, with **Try again** and **Change**: **Change** goes back to the list with only that server ticked. At the bottom: the keys now in your vault, or **No key moved: your keys stay on this Mac.**
 
+When a server moved with **My key**, **How to open them from another computer** says what to do there: open app.tterm.net in any browser and sign in as usual, with the code from your email; open a server, and tTerm asks for your vault password – the keys open right in that browser, with no Mac; on your own computer press **Keep with Touch ID**, so that Touch ID is enough there next time, and on someone else's choose **Only this time**. A server that goes through this Mac opens only while it is on and tTerm runs on it.
+
 In the sidebar, a server that opens with your key has a key after its name, and one that goes through your Mac says **via Mac**.
 
-<Screenshot name="move-result" alt="2 of 3 servers are in tTerm: web-01 opens with your key, staging through this Mac, each with Open a terminal; backup did not move (no host key in known_hosts), with Try again and Change; id_ed25519 is in the vault. In the sidebar web-01 has a key, staging says via Mac." />
+<Screenshot name="move-result" alt="2 of 3 servers are in tTerm: web-01 opens with your key, staging through this Mac, each with Open a terminal; backup did not move (no host key in known_hosts), with Try again and Change. How to open them from another computer: open app.tterm.net and sign in, tTerm asks for your vault password, Keep with Touch ID on your own computer, Only this time on someone else's; staging only through this Mac. id_ed25519 is in the vault. In the sidebar web-01 has a key, staging says via Mac." />
 
 ## The strip after ssh
 
 When `ssh` ends without an error in a terminal of this Mac, a strip may come up under its block: **droplet: open it from anywhere**, with the address and your key.
 
-<Screenshot name="move-strip" alt="Under ssh droplet in a terminal of this Mac: droplet: open it from anywhere, with root@203.0.113.20 and the key ~/.ssh/id_ed25519; Save my key, Let tTerm in, Not now, Don't ask for droplet." />
+<Screenshot name="move-strip" alt="Under ssh droplet in a terminal of this Mac: droplet: open it from anywhere, with root@203.0.113.20 and the key ~/.ssh/id_ed25519; Save my key, Let tTerm in, Not now, Don't ask for droplet; under them, Save my key puts the key in your vault, encrypted, where it opens with your vault password in any browser." />
 
 - **Save my key** – the same as **My key**, where the key can move.
 - **Let tTerm in** – the same as **tTerm's pass**.

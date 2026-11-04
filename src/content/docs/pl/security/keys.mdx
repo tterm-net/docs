@@ -1,16 +1,16 @@
 ---
 title: Twój sejf na klucze SSH
-description: Twoje własne klucze SSH, szyfrowane na twoich urządzeniach, zanim trafią do tTerma – jak powstaje sejf, jak otworzyć go w innej przeglądarce i kiedy znów się blokuje.
+description: Twoje własne klucze SSH, szyfrowane na twoich urządzeniach, zanim trafią do tTerma – jak powstaje sejf, jego hasło, jak otworzyć go w innej przeglądarce, gdzie twoje klucze są otwarte i kiedy sejf znów się blokuje.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import Screenshot from '../../../../components/Screenshot.astro';
 
-Sejf przechowuje twoje własne klucze SSH do serwerów, na które się nimi logujesz. Klucz jest szyfrowany na twoim urządzeniu, zanim je opuści, a sejf otwierają tylko twoje urządzenia, tak jak same się odblokowują. tTerm przechowuje zaszyfrowane klucze oraz publiczną część i odcisk palca każdego z nich: nie może otworzyć sejfu ani odczytać klucza. Sejf znajdziesz w sekcji **Ustawienia** → **Klucze**.
+Sejf przechowuje twoje własne klucze SSH do serwerów, na które się nimi logujesz. Klucz jest szyfrowany na twoim urządzeniu, zanim je opuści, a sejf otwierasz tylko ty: hasłem do sejfu w dowolnej przeglądarce, a bez hasła – na urządzeniach, na których są zapisane twoje klucze. tTerm przechowuje zaszyfrowane klucze oraz publiczną część i odcisk palca każdego z nich: nie może otworzyć sejfu ani odczytać klucza. Sejf znajdziesz w sekcji **Ustawienia** → **Klucze**.
 
 ## Jak serwer otwiera się twoim kluczem
 
-Serwer otwiera się twoim kluczem, gdy przeniesiesz go z [tTerm dla Maca](../../local/mac/) sposobem **Mój klucz** albo przyciskiem **Zapisz mój klucz** na pasku po `ssh`: zobacz [Przenieś do chmury](../../local/move-to-cloud/). Gdy otwierasz na nim terminal, tTerm prosi twoje urządzenie z otwartym sejfem – przeglądarkę albo tTerm dla Maca – o podpisanie logowania. Urządzenie podpisuje tym kluczem logowanie SSH i nic poza tym, a klucz nigdy go nie opuszcza. Zanim tTerm użyje podpisu, sprawdza go publiczną częścią klucza.
+Serwer otwiera się twoim kluczem, gdy przeniesiesz go z [tTerm dla Maca](../../local/mac/) sposobem **Mój klucz** albo przyciskiem **Zapisz mój klucz** na pasku po `ssh`: zobacz [Przenieś do chmury](../../local/move-to-cloud/). Gdy otwierasz na nim terminal, logowanie podpisuje urządzenie, z którego go otwierasz, z otwartymi na nim kluczami: twoja przeglądarka albo tTerm dla Maca, jeśli terminal otwierasz w nim. tTerm nie pyta żadnego innego urządzenia, także twojego Maca. Urządzenie podpisuje tym kluczem logowanie SSH i nic poza tym, a klucz nigdy go nie opuszcza. Zanim tTerm użyje podpisu, sprawdza go publiczną częścią klucza.
 
 ## Tworzenie sejfu
 
@@ -19,47 +19,89 @@ Serwer otwiera się twoim kluczem, gdy przeniesiesz go z [tTerm dla Maca](../../
 
 W sekcji **Ustawienia** → **Klucze** naciśnij **Dodaj klucz z pliku** i wybierz swój klucz prywatny, czyli plik bez `.pub`. Jeśli klucz ma hasło, wpisz je i naciśnij **Otwórz klucz**: hasło otwiera klucz w tej przeglądarce i nigdzie nie trafia. Nazwij klucz i naciśnij **Dalej**.
 
-W oknie **Zapisz swój klucz w sejfie** naciśnij **Utwórz sejf za pomocą Touch ID** na Macu, **Utwórz sejf za pomocą Windows Hello** w systemie Windows albo **Utwórz sejf z kluczem dostępu** na innych urządzeniach. Przeglądarka, która nie może zapisać klucza dostępu do sejfu, pokazuje **Utwórz sejf**: w niej sejf otwiera się kodem odzyskiwania albo po zatwierdzeniu na twoim Macu, za każdym razem na jedną sesję.
+W oknie **Wymyśl hasło do sejfu** wpisz hasło dwa razy i naciśnij **Utwórz sejf**. Potem, jeśli przeglądarka może zapisać twoje klucze za pomocą klucza dostępu, tTerm zapyta, czy je tu zapisać, tak jak przy [otwieraniu w innej przeglądarce](#otwieranie-w-innej-przeglądarce).
 
 	</TabItem>
 	<TabItem label="W tTerm dla Maca">
 
-Sejf powstaje, gdy po raz pierwszy zapisujesz klucz: przez opcję Przenieś do chmury albo przyciskiem **Zapisz mój klucz** na pasku po `ssh`. W oknie **Zapisz swój klucz w sejfie** naciśnij **Utwórz sejf za pomocą Touch ID** i potwierdź za pomocą Touch ID albo hasła do Maca.
+Sejf powstaje, gdy po raz pierwszy zapisujesz klucz: przez opcję Przenieś do chmury albo przyciskiem **Zapisz mój klucz** na pasku po `ssh`. W oknie **Wymyśl hasło do sejfu** wpisz hasło dwa razy i naciśnij **Utwórz sejf**: Touch ID nie jest do tego potrzebny. Od tej pory ten Mac ma własny dostęp do sejfu, który otwiera Touch ID albo hasło do Maca.
 
 	</TabItem>
 </Tabs>
 
-### Kod odzyskiwania
+### Hasło do sejfu
 
-Zaraz potem tTerm pokazuje twój kod odzyskiwania: 24 litery i cyfry w sześciu grupach po cztery. Widzisz go tylko raz. Naciśnij **Kopiuj** albo **Zapisz jako plik** i przechowuj kod w bezpiecznym miejscu, z dala od urządzeń, które otwierają twój sejf. Jeśli kiedyś stracisz je wszystkie, ten kod będzie jedyną drogą do twoich kluczy: tTerm nie odzyska ich za ciebie. **Gotowe** zadziała, gdy zaznaczysz, że kod jest w bezpiecznym miejscu.
+Wymyślasz je, gdy powstaje sejf: co najmniej 12 znaków, a najłatwiej użyć frazy z kilku słów. Dopóki hasło jest krótsze, okno pokazuje, ilu znaków jeszcze brakuje. Litery spoza podstawowego alfabetu łacińskiego też działają, ale komputer za granicą może nie mieć dla nich układu klawiatury.
+
+<Screenshot name="vault-password" alt="„Wymyśl hasło do sejfu”: id_ed25519 trafi do sejfu zaszyfrowany jeszcze w tej przeglądarce i otworzy się tym hasłem w dowolnej przeglądarce. Pola „Hasło” i „Powtórz hasło” z hasłem w postaci kropek, przycisk „Pokaż”, podpowiedź „Co najmniej 12 znaków” i „Hasła się zgadzają”; tTerm nie zna tego hasła i nie może go odzyskać; „Anuluj” i „Utwórz sejf”." />
+
+Samo hasło nigdzie nie trafia: twoja przeglądarka albo twój Mac zamienia je w klucz, a tTerm wydaje zaszyfrowany klucz twojego sejfu tylko urządzeniu, które wykaże, że zna hasło. tTerm nie zna hasła i nie może go odzyskać: zapisz je w swoim menedżerze haseł.
+
+Przy błędnym haśle okno o tym informuje i podaje, ile prób zostało. Po dziesięciu błędnych hasłach w ciągu godziny następuje godzinna przerwa, a po trzydziestu w ciągu doby – przerwa do końca tej doby. Okno podaje, kiedy spróbować ponownie.
+
+**Nie pamiętasz hasła?** Ustaw nowe tam, gdzie twój sejf otwiera się bez hasła: na swoim Macu, w tTerm dla Maca (**Ustawienia** → **Klucze** → **Zmień hasło**, za pomocą Touch ID), albo w przeglądarce, w której są zapisane twoje klucze, także w sekcji **Ustawienia** → **Klucze**. Jeśli nie ma takiego urządzenia, kluczy z twojego sejfu nie otworzy już nikt, także tTerm. Same klucze zwykle zostają na twoim Macu, w `~/.ssh`.
+
+<Screenshot name="vault-forgot" alt="„Nie pamiętasz hasła do sejfu?”: tTerm nie może go przypomnieć, ale nowe można ustawić tam, gdzie sejf otwiera się bez hasła – na swoim Macu w tTerm dla Maca (Ustawienia › Klucze › „Zmień hasło”, za pomocą Touch ID) albo w przeglądarce, w której są zapisane klucze; jeśli nie ma takiego urządzenia, kluczy nie da się już otworzyć; „Rozumiem”." />
 
 ## Otwieranie w innej przeglądarce
 
-Przeglądarka, której twój sejf jeszcze nie zna, otwiera go w oknie **Otwórz swoje klucze w tej przeglądarce**. To okno pojawia się, gdy naciśniesz **Otwórz** w sekcji **Ustawienia** → **Klucze** albo otworzysz serwer, który otwiera się twoim kluczem.
+W przeglądarce, w której twoje klucze nie są zapisane, sekcja **Ustawienia** → **Klucze** pokazuje **Twój sejf jest zamknięty** i pole **Hasło do sejfu**. Serwer, który otwiera się twoim kluczem, pokazuje to samo pole na swojej planszy, zanim powstanie jego terminal: zobacz [Serwer czeka na sejf](#serwer-czeka-na-sejf).
 
-- **Zatwierdź w tTerm dla Maca.** Jeśli twój sejf otwiera się w tTerm dla Maca, okno proponuje tego Maca: naciśnij **Poproś go o otwarcie sejfu tutaj**. Na Macu pojawi się okno z informacją, która przeglądarka prosi, kiedy się zalogowała i z jakiego adresu. Oba ekrany pokazują te same sześć cyfr: naciśnij **Zezwól za pomocą Touch ID** tylko wtedy, gdy są takie same. **To nie ja** wylogowuje tamtą przeglądarkę, a sekcja **Ustawienia** → **Urządzenia** pokaże, co jeszcze sprawdzić. Prośba jest ważna przez pięć minut.
-- **Użyj kodu odzyskiwania.** Wpisz go w polu **Kod odzyskiwania** i naciśnij **Otwórz**.
+<Screenshot name="vault-open" alt="„Ustawienia” → „Klucze” w przeglądarce, której sejf jeszcze nie zna: „Twój sejf jest zamknięty”, klucze otwiera tylko hasło do sejfu, bezpośrednio w tej przeglądarce; pole „Hasło do sejfu” z hasłem w postaci kropek, „Pokaż”, „Otwórz klucze”, a pod spodem „Nie pamiętasz hasła?”. Niżej – wiersz „Hasło do sejfu”, dwa klucze i to, gdzie sejf otwiera się bez hasła." />
 
-W przeglądarce, która może zapisać klucz dostępu, tTerm zapyta potem, czy go zapisać, żeby następnym razem sejf otwierał się tak, jak odblokowuje się ten komputer: **Zapisz za pomocą Touch ID** (albo Windows Hello, albo klucza dostępu) lub, na cudzym komputerze, **Tylko tym razem**.
+- **Wpisz hasło do sejfu** i naciśnij **Otwórz klucze**. Klucze otworzą się bezpośrednio w tej przeglądarce.
+- **Zatwierdź w tTerm dla Maca** – wygodne na cudzym komputerze: nie wpisujesz na nim hasła. Jeśli twój sejf otwiera się w tTerm dla Maca, pod polem jest **zatwierdź na MacBook-Pro**, z nazwą tego Maca: naciśnij, a okno **Otwórz swoje klucze w tej przeglądarce** od razu wyśle prośbę do tego Maca. Na Macu pojawi się okno z informacją, która przeglądarka prosi, kiedy się zalogowała i z jakiego adresu. Oba ekrany pokazują te same sześć cyfr: naciśnij **Zezwól za pomocą Touch ID** tylko wtedy, gdy są takie same. **To nie ja** wylogowuje tamtą przeglądarkę, a sekcja **Ustawienia** → **Urządzenia** pokaże, co jeszcze sprawdzić. Prośba jest ważna przez pięć minut. **Zamiast tego wpisz hasło** wraca do pola.
 
-Sejf utworzony w przeglądarce za pierwszym razem otwiera się w tTerm dla Maca kodem odzyskiwania: **Otwórz kodem odzyskiwania** w sekcji **Ustawienia** → **Klucze**. Potem otwiera go tam Touch ID albo hasło do Maca.
+W przeglądarce, która może zapisać twoje klucze za pomocą klucza dostępu, tTerm zapyta potem, czy je tu zapisać, żeby następnym razem nie pytać tam o hasło: **Zapisz za pomocą Touch ID** (albo Windows Hello, albo klucza dostępu) lub, na cudzym komputerze, **Tylko tym razem**: wtedy klucze zamkną się, gdy zamkniesz kartę, albo same, jeśli przez jakiś czas nie będą używane.
+
+<Screenshot name="vault-keep" alt="Po wpisaniu hasła do sejfu: „Twoje klucze są otwarte w tej przeglądarce”. Można je tu zapisać za pomocą Touch ID, żeby następnym razem wystarczyło Touch ID, albo na cudzym komputerze wybrać „Tylko tym razem”; przyciski „Tylko tym razem” i „Zapisz za pomocą Touch ID”." />
+
+Sejf utworzony przed tTerm Web 0.1.26, który nie ma jeszcze hasła, otwiera się tak jak dotąd: **Otwórz** w sekcji **Ustawienia** → **Klucze** wyświetla okno **Otwórz swoje klucze w tej przeglądarce**, a w nim **Poproś go o otwarcie sejfu tutaj**, żeby zatwierdzić na twoim Macu, oraz pole **Kod odzyskiwania** z przyciskiem **Otwórz**.
+
+Mac, który nie ma jeszcze dostępu do twojego sejfu – drugi Mac, sejf utworzony w przeglądarce albo po wylogowaniu i ponownym zalogowaniu – pokazuje w tTerm dla Maca **Ten Mac nie ma jeszcze dostępu do twojego sejfu** i otwiera go raz hasłem do sejfu, bez Touch ID. Potem otwiera go tam Touch ID albo hasło do Maca.
+
+## Gdzie twoje klucze są otwarte
+
+Jeśli masz sejf, twoje komputery, serwery z twoim kluczem i serwery przez twojego Maca otwierają się tylko na urządzeniu, na którym osobiście otworzysz klucze: hasłem do sejfu, za pomocą Touch ID w przeglądarce, w której są zapisane, albo zatwierdzeniem w tTerm dla Maca. Twoje komputery to maszyny z agentem tTerma, z systemem macOS lub Linux, oraz każdy Mac z tTerm dla Maca. Żeby je otworzyć, nie wystarczy zalogować się do tTerma kodem z e-maila, więc ten, kto dostał się do twojej poczty, żadnej z nich nie otworzy, nawet gdy twój Mac jest włączony i ma otwarty sejf. Serwer z własnym wierszem tTerma, podłączony jednym poleceniem albo przeniesiony sposobem **Przepustka tTerma**, do nich nie należy: ten otwiera się po samym zalogowaniu. Bez sejfu albo z sejfem, który nie ma ani hasła, ani klucza, nic nie jest w ten sposób zamykane.
+
+Na urządzeniu, na którym klucze nie są otwarte, taka maszyna ma kłódkę zamiast **+**, jej terminale i log są przygaszone, każdy z kłódką, a ich karty zaczynają się od kłódki. Nic z niej nie trafia na to urządzenie: ani to, co pokazują jej terminale, ani jej polecenia w wyszukiwaniu czy w historii pola wprowadzania, ani jej log. Kliknij kłódkę, terminal albo log, a w karcie pojawi się plansza, która powie, dlaczego jest zamknięte, i od razu tam otworzy klucze, tak jak otwiera się je na tym urządzeniu: pole **Hasło do sejfu**, **Otwórz za pomocą Touch ID** w przeglądarce, w której są zapisane twoje klucze, albo **zatwierdź na MacBook-Pro**. A potem:
+
+<Screenshot name="closed-sidebar" alt="Panel boczny tam, gdzie klucze Anny nie są otwarte: MacBook-Pro, web-01 i staging mają kłódkę zamiast „+”, a ich terminale shop i deploy oraz ich logi są wyszarzone, przy każdym kłódka; db-1 w projekcie Client X – jak zwykle. Kursor na kłódce web-01: „Klucze nie są otwarte na tym urządzeniu. Otwórz”." />
+
+- kłódka – w miejscu planszy otworzy się nowy terminal na tej maszynie;
+- już działający terminal – pokaże się od miejsca, w którym jest teraz, i nowy nie powstanie;
+- log – otworzy się.
+
+<Screenshot name="closed-terminal" alt="Karta „P/web-01 · deploy” z kłódką: „Ten terminal jest zamknięty na tym urządzeniu” – „deploy” na web-01 działa, ale nie widać go tutaj, dopóki klucze nie są tu otwarte; potem pokaże się od miejsca, w którym jest teraz. „Hasło do sejfu”, „Otwórz klucze”, „lub zatwierdź na MacBook-Pro · Nie pamiętasz hasła?”." />
+
+Na stronie **Maszyny** taka maszyna ma dopisek **zamknięta na tym urządzeniu**, a na stronie projektu to samo widać przy każdym jej terminalu, w miejscu jego katalogu. Na obu stronach przycisk nowego terminala ma kłódkę, a terminale są przygaszone. **Usuń** i **Przenieś do innego projektu** najpierw otwierają klucze, bezpośrednio w swoim oknie: czerwony przycisk **Usuń web-01** i przycisk, który przenosi maszynę, pojawiają się, gdy klucze są już otwarte.
+
+<Screenshot name="closed-machines" alt="„Maszyny” tam, gdzie klucze nie są otwarte: przy MacBook-Pro, web-01 i staging – „zamknięta na tym urządzeniu”, ich przyciski „Otwórz terminal” mają kłódkę, a ich terminale „P/MacBook-Pro · shop” i „P/web-01 · deploy” są wyszarzone, przy każdym kłódka; db-1 w projekcie Client X – jak zwykle. Przy każdej maszynie jest „Usuń”." />
+
+Niezależnie od tego, jak je otworzysz, klucze otwierają potem na tym urządzeniu każdą taką maszynę, a powstaje tylko ten terminal, o który prosisz. Kłódka prosi o jeden terminal naraz: plansza kolejnej kłódki zajmuje miejsce poprzedniej, a plansza, którą zostawisz w karcie w tle, zamyka się bez terminala, gdy klucze się otworzą. Gdy klucze się tu zamkną, jak w sekcji [Kiedy sejf znów się blokuje](#kiedy-sejf-znów-się-blokuje), kłódki od razu wracają, a karty tych terminali znów stają się planszami; same terminale działają dalej w chmurze.
+
+Gdy zmienisz hasło do sejfu albo wyjmiesz z niego klucz, twoje pozostałe urządzenia otworzą klucze na nowo: same, kluczem z sejfu, albo nowym hasłem, jeśli w sejfie nie ma żadnego klucza. Urządzenie, na którym to zrobisz, zostaje tak, jak było.
+
+W tTerm dla Maca własne terminale Maca i serwery przez niego otwierają się bez kluczy, jak dotąd; twoje pozostałe komputery i serwery z twoim kluczem otwierają się w nim, gdy sejf jest otwarty – za pomocą Touch ID albo hasła do Maca. Twój Mac loguje się na serwer z twoim kluczem tylko na własny użytek: przeglądarka otwiera taki serwer, gdy sama otworzy klucze.
 
 ## Kiedy sejf znów się blokuje
 
 - **W przeglądarce** – po 8 godzinach bez żadnej aktywności, gdy zamkniesz albo odświeżysz tTerm Web, gdy się wylogujesz i gdy naciśniesz **Zablokuj** w sekcji **Ustawienia** → **Klucze**.
-- **W tTerm dla Maca** – sejf jest otwarty przez cały czas działania tTerma, dopóki nie naciśniesz **Zablokuj** albo się nie wylogujesz. Po wylogowaniu Mac traci też swój dostęp do sejfu: gdy znów się zalogujesz, otworzy go raz kodem odzyskiwania.
+- **W tTerm dla Maca** – sejf jest otwarty przez cały czas działania tTerma, dopóki nie naciśniesz **Zablokuj** albo się nie wylogujesz. Po wylogowaniu Mac traci też swój dostęp do sejfu: gdy znów się zalogujesz, otworzy go raz hasłem do sejfu.
 
 ## Ustawienia → Klucze
 
-U góry strona pokazuje, czy sejf jest tu otwarty, jak go otwarto i kiedy znów się zablokuje. W wierszu każdego klucza są: nazwa, rodzaj i skrócony odcisk palca; serwery, które **Otwiera**, albo **Nie otwiera jeszcze żadnego serwera**; kiedy zapisano go z Maca albo dodano z pliku; i kiedy był ostatnio używany, albo **jeszcze nieużywany**.
+U góry sekcja pokazuje, czy sejf jest tu otwarty, jak go otwarto i kiedy znów się zablokuje. Pod spodem wiersz **Hasło do sejfu** podaje, kiedy ustawiono hasło, a obok jest **Zmień hasło**. W wierszu każdego klucza są: nazwa, rodzaj i skrócony odcisk palca; serwery, które **Otwiera**, albo **Nie otwiera jeszcze żadnego serwera**; kiedy zapisano go z Maca albo dodano z pliku; i kiedy był ostatnio używany, albo **jeszcze nieużywany**.
 
-<Screenshot name="keys" alt="„Ustawienia” → „Klucze”: sejf „Otwarty w tej przeglądarce” za pomocą Touch ID, z przyciskiem „Zablokuj”; dwa klucze, przy każdym rodzaj, skrócony odcisk palca i to, skąd pochodzi; „Dodaj klucz z pliku”, „Wygeneruj nowy kod odzyskiwania” i to, gdzie otwiera się sejf." />
+<Screenshot name="keys" alt="„Ustawienia” → „Klucze”: sejf „Otwarty w tej przeglądarce” za pomocą Touch ID, z przyciskiem „Zablokuj”; „Hasło do sejfu”, które otwiera klucze w dowolnej przeglądarce i zostało ustawione dzisiaj, z przyciskiem „Zmień hasło”; dwa klucze, przy każdym rodzaj i skrócony odcisk palca; „Dodaj klucz z pliku” i to, gdzie sejf otwiera się bez hasła: Chrome on macOS." />
 
-- **Usuń**, po pytaniu o potwierdzenie, wyjmuje klucz z sejfu, a tTerm usuwa jego zaszyfrowaną kopię. Serwery, które się nim otwierały, zostają w tTermie, ale już się nie otwierają. Sam klucz zostaje tam, skąd pochodzi: na twoim Macu albo w swoim pliku.
-- **Wygeneruj nowy kod odzyskiwania** pokazuje jeden raz nowy kod, a dotychczasowy przestaje działać. Twoje klucze i urządzenia zostają bez zmian. Poprosi o Touch ID albo o klucz dostępu zapisany w tej przeglądarce; przeglądarka bez klucza dostępu do twojego sejfu poprosi o obecny kod. Nie masz go już? Wygeneruj nowy w tTerm dla Maca.
+- **Zmień hasło** ustawia nowe hasło, które od razu zastępuje stare: stare przestaje otwierać twoje klucze. Twój Mac i przeglądarki, w których są zapisane twoje klucze, otwierają je tak jak dotąd. W przeglądarce, w której twoje klucze są zapisane, poprosi o Touch ID (albo Windows Hello, albo twój klucz dostępu); w przeglądarce, w której nie są zapisane – o obecne hasło; w tTerm dla Maca – o Touch ID.
+- **Usuń**, po pytaniu o potwierdzenie, wyjmuje klucz z sejfu, a tTerm usuwa jego zaszyfrowaną kopię. Serwery, które się nim otwierały, zostają w tTermie, ale już się nie otwierają. Sam klucz zostaje tam, skąd pochodzi: na twoim Macu albo w swoim pliku. Jak każda zmiana sejfu, działa to tylko tam, gdzie klucze są otwarte; gdzie indziej tTerm o tym poinformuje.
 - **Dodaj klucz z pliku** jest dostępne w przeglądarce. W tTerm dla Maca klucze trafiają do sejfu przez opcję Przenieś do chmury i pasek po `ssh`.
 
-Pod kluczami strona pokazuje, gdzie otwiera się sejf: każdy Mac i każda przeglądarka, które mają do niego dostęp, albo **Otwiera się tylko kodem odzyskiwania.**
+Pod kluczami sekcja pokazuje, gdzie sejf otwiera się bez hasła – każdy Mac i każdą przeglądarkę, w których są zapisane twoje klucze: **Bez hasła twój sejf otwiera się na: MacBook-Pro · tTerm dla Maca i Chrome on macOS. W dowolnej innej przeglądarce – hasłem do sejfu.** Jeśli nigdzie nie są zapisane: **Twój sejf otwiera się tylko hasłem: nie zapisało go jeszcze żadne urządzenie.**
+
+Przy sejfie utworzonym przed tTerm Web 0.1.26, który nie ma jeszcze hasła, sekcja pokazuje u góry **Ustaw hasło do sejfu**: **Ustaw hasło** tworzy hasło, a kod odzyskiwania przestaje potem działać. W przeglądarce, w której twoje klucze nie są zapisane, do ustawienia hasła potrzebny jest kod odzyskiwania.
 
 ### Jakie klucze przechowuje sejf
 
@@ -71,10 +113,16 @@ Niektóre przeglądarki nie potrafią podpisywać kluczami Ed25519. W takiej prz
 
 ## Serwer czeka na sejf
 
-Dopóki sejf nie jest otwarty na żadnym z twoich urządzeń, terminal na serwerze z twoim kluczem czeka, ile trzeba, i pokazuje **web-01 otwiera się twoim kluczem**.
+Na urządzeniu, na którym klucze nie są otwarte, serwer z twoim kluczem nie czeka już w terminalu: jego kłódka albo przycisk nowego terminala najpierw otwiera planszę, jeszcze zanim powstanie terminal. Plansza pokazuje **web-01 otwiera się twoim kluczem**, a klucze otwierasz bezpośrednio na niej:
 
-- W przeglądarce z zapisanym kluczem dostępu naciśnij **Otwórz za pomocą Touch ID**, **Otwórz za pomocą Windows Hello** albo **Otwórz kluczem dostępu**.
-- W innej przeglądarce naciśnij **Zatwierdź na** z nazwą twojego Maca albo **Użyj kodu odzyskiwania**.
-- W tTerm dla Maca naciśnij **Otwórz za pomocą Touch ID**; na Macu, który nie ma jeszcze dostępu do twojego sejfu, **Użyj kodu odzyskiwania**.
+- W przeglądarce, w której twoje klucze nie są zapisane, od razu jest tam pole **Hasło do sejfu**: wpisz hasło i naciśnij **Otwórz klucze i terminal**. Pod polem są **zatwierdź na MacBook-Pro**, z nazwą twojego Maca, i **Nie pamiętasz hasła?**.
+- W przeglądarce, w której twoje klucze są zapisane, naciśnij **Otwórz za pomocą Touch ID**, **Otwórz za pomocą Windows Hello** albo **Otwórz kluczem dostępu**. Link pod spodem, **lub wpisz hasło do sejfu**, pokazuje zamiast tego pole hasła.
+- W tTerm dla Maca naciśnij **Otwórz za pomocą Touch ID**; na Macu, który nie ma jeszcze dostępu do twojego sejfu, wpisz tam raz hasło do sejfu.
 
-Gdy sejf się otworzy, terminal pokaże **Logowanie na web-01 twoim kluczem…** i otworzy się sam.
+<Screenshot name="closed-new" alt="Karta „P/web-01 · nowy terminal” z kłódką, a w niej: „web-01 otwiera się twoim kluczem” – na tym urządzeniu klucze nie są jeszcze otwarte; otwórz je tutaj, a od razu otworzy się nowy terminal na web-01. Pole „Hasło do sejfu” z hasłem w postaci kropek, „Pokaż”, „Otwórz klucze i terminal”, „lub zatwierdź na MacBook-Pro · Nie pamiętasz hasła?”, a pod spodem – które maszyny otwierają się tylko tam, gdzie klucze są otwarte." />
+
+Przy sejfie utworzonym przed tTerm Web 0.1.26, który nie ma jeszcze hasła, plansza, tak jak dotąd, proponuje **Zatwierdź na MacBook-Pro**, z nazwą twojego Maca, albo **Użyj kodu odzyskiwania**.
+
+Potem plansza przez chwilę pokazuje **Otwieranie kluczy na tym urządzeniu…**, a w jej miejscu otwiera się terminal.
+
+Terminal nadal czeka tam, gdzie klucze są otwarte, ale to urządzenie nie może zalogować się kluczem tego serwera: na przykład klucz wyjęto z sejfu albo nie otwiera się on w tej przeglądarce. Terminal podaje powód – na przykład **Twój sejf jest tu otwarty, ale id_ed25519 nie otwiera się w tej przeglądarce.** – i czeka, ile trzeba. Gdy to urządzenie będzie mogło podpisać logowanie, terminal pokaże **Logowanie na web-01 twoim kluczem…** i otworzy się sam.

@@ -140,7 +140,7 @@ export default defineConfig({
 				{
 					label: 'Machines',
 					translations: group.machines,
-					items: ['machines/servers', 'machines/computers', 'machines/remove'],
+					items: ['machines/servers', 'machines/computers', 'local/move-to-cloud', 'machines/remove'],
 				},
 				{
 					label: 'Features',
@@ -158,7 +158,6 @@ export default defineConfig({
 					translations: group.local,
 					items: [
 						'local/mac',
-						'local/move-to-cloud',
 						{ slug: 'local/windows', badge: soon },
 						{ slug: 'local/linux', badge: soon },
 					],
@@ -178,7 +177,7 @@ export default defineConfig({
 				{
 					label: 'Account',
 					translations: group.account,
-					items: ['account/plan', 'account/devices', 'account/help'],
+					items: ['account/settings', 'account/plan', 'account/devices', 'account/help'],
 				},
 				{
 					// Its pages are in English and Russian only, for now (owner,

@@ -1,0 +1,59 @@
+---
+title: Einstellungen
+description: Die Einstellungen als Fenster über der Seite – ihre Bereiche und die Suche darin, und dort auch dein Konto, mit Foto, Namen und E-Mail-Adresse.
+---
+
+import Screenshot from '../../../../components/Screenshot.astro';
+
+**Einstellungen** im Kontomenü unten in der Seitenleiste öffnet ein Fenster über der Seite, auf der du gerade bist, und die Seite darunter bleibt, wie sie war. Links stehen eine Suche und die Bereiche, in Gruppen; rechts steht der Bereich, den du wählst, in Zeilen: links in jeder Zeile, worum es geht, rechts ihr Wert oder ihr Button. ×, **Esc** oder ein Klick neben das Fenster schließt es, und du bist wieder dort, wo du warst.
+
+- **Präferenzen**: **Allgemein**, **Konto** und **Tarif**.
+- **Sicherheit**: **Schlüssel** und **Geräte**.
+- **tTerm für Mac**, in der App: **Dieser Computer** und **Updates**.
+
+<Screenshot name="settings" alt="Das Fenster „Einstellungen“ über der Seite eines Terminals: links „Suchen“ und die Bereiche „Allgemein“, „Konto“ und „Tarif“ unter „Präferenzen“, „Schlüssel“ und „Geräte“ unter „Sicherheit“; rechts „Allgemein“: „Darstellung“ mit „Design“ („System“, „Hell“, „Dunkel“) und „Projektfarben“ („Code-Badge“, „Ganzes Projekt“) sowie „Sprache“ mit „Sprache der Oberfläche“." />
+
+Dein Name und deine E-Mail-Adresse oben im Kontomenü öffnen **Einstellungen** → **Konto**. Jeder Bereich hat eine eigene Adresse, etwa app.tterm.net/settings/devices, deshalb führt die E-Mail zu einer neuen Anmeldung direkt in den Bereich **Geräte**. Auf dem Handy füllen die Einstellungen den ganzen Bildschirm: zuerst die Bereiche, dann der, auf den du tippst, mit dem Pfeil zurück zu ihnen.
+
+In tTerm für Mac gibt es in den Einstellungen vor der Anmeldung nur **Allgemein** und **Updates**, und was du dort wählst, wird auf diesem Computer gespeichert.
+
+## Suche
+
+Das Feld **Suchen** über den Bereichen lässt nur die Bereiche stehen, in denen jedes Wort vorkommt, das du eingibst, und hebt ihre Zeilen hervor: `farbe` lässt **Allgemein** stehen, mit **Projektfarben** hervorgehoben. Großbuchstaben und Zeichen über den Buchstaben, etwa die Punkte auf ä, ö und ü, machen keinen Unterschied. **Esc** leert zuerst die Suche und schließt dann das Fenster.
+
+<Screenshot name="settings-search" alt="„Einstellungen“, im Feld „Suchen“ ist design eingegeben: Links bleibt nur „Allgemein“ übrig, und rechts ist dessen Zeile „Design“ hervorgehoben." />
+
+## Allgemein
+
+- **Darstellung**: **Design** (**System**, **Hell** oder **Dunkel**) und **Projektfarben** (**Code-Badge** oder **Ganzes Projekt**), mehr dazu unter [Farben](../../features/projects/#farben). Beides wird in deinem Konto gespeichert, auf all deinen Geräten.
+- **Sprache**: **Sprache der Oberfläche**, dieselbe Auswahl wie **Sprache** im Kontomenü.
+
+## Konto
+
+- **Foto**: **Foto hinzufügen** oder **Foto ändern** und **Foto entfernen**. Wähl ein JPEG, PNG oder WebP bis 5 MB, platzier es im Fenster **Dein Foto** im Kreis und drück auf **Foto speichern**. Es erscheint neben deinem Namen, anstelle deiner Initialen; tTerm speichert eine 256 Pixel große Kopie, ohne die Angaben, die das Foto über sich selbst enthält, etwa wo es aufgenommen wurde.
+- **Name**: **Namen bearbeiten**, gib den neuen ein und drück auf **Speichern**.
+- **E-Mail-Adresse**: die Adresse, mit der du dich anmeldest. Um sie zu ändern, schreib an [support@tterm.net](mailto:support@tterm.net).
+
+**Kontolöschung**: Um dein Konto zu löschen, schreib von der Adresse, mit der du dich anmeldest, an support@tterm.net. **An den Support schreiben** neben **Konto löschen** öffnet das Fenster dafür, wie unter [An den Support schreiben](../help/#an-den-support-schreiben), und die Antwort kommt an deine E-Mail-Adresse.
+
+<Screenshot name="account" alt="„Einstellungen“ → „Konto“: unter „Profil“ das „Foto“ mit Annas Initiale und „Foto hinzufügen“, der „Name“ Anna mit „Namen bearbeiten“ und die „E-Mail-Adresse“ anna@example.com, die sich über eine Nachricht an support@tterm.net ändern lässt; unter „Kontolöschung“ die Zeile „Konto löschen“ mit dem Button „An den Support schreiben“." />
+
+## Tarif
+
+Hier stehen dein Tarif, **Free**, mit **Bis zu 50 Maschinen und 24 offene Terminals**, und zwei Anzeigen dafür, wie viel du gerade nutzt: **Maschinen** und **Offene Terminals**. Darunter steht ausgegraut **Zahlung**: Mit den bezahlten Tarifen erscheinen dort deine **Zahlungsmethode und Rechnungen**. Mehr dazu unter [Tarif und Limits](../plan/).
+
+## Schlüssel
+
+Dein [Tresor für SSH-Schlüssel](../../security/keys/#einstellungen--schlüssel): ob er hier geöffnet ist, sein Passwort, deine Schlüssel und wo sich der Tresor ohne Passwort öffnet.
+
+## Geräte
+
+Die Browser, in denen du dich mit einem Schnellcode anmeldest, und tTerm für Mac, wenn es über den Browser angemeldet ist: Mit **Vergessen** vergisst du eines davon, mit **Alle Geräte vergessen …** alle. Mehr dazu unter [Deine Geräte](../devices/#deine-geräte).
+
+## Dieser Computer
+
+In tTerm für Mac, sobald du angemeldet bist: der Schalter **Für tTerm Web und dein Handy öffnen** und der Zustand der Verbindung dieses Macs zu tTerm Web. Mehr dazu unter [Ein Mac mit tTerm für Mac](../../machines/remove/#ein-mac-mit-tterm-für-mac).
+
+## Updates
+
+In tTerm für Mac: **Automatisch aktualisieren** oder **Vorher fragen**, dazu **Jetzt prüfen**. Auch **Nach Updates suchen …** im Menü von tTerm öffnet diesen Bereich. Mehr dazu unter [Updates](../../local/mac/#updates) auf der Seite zur Mac-Version.

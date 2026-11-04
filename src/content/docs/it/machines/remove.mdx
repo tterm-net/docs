@@ -16,7 +16,11 @@ Lo puoi fare in due punti:
 
 Prima tTerm chiede conferma e dice cosa succederà: **Rimuovere web-01?** Il pulsante rosso **Rimuovi web-01** la rimuove, **Annulla** lascia tutto com'era.
 
+Un computer, un server con la tua chiave e un server tramite il tuo Mac, se hai una cassaforte, si rimuovono solo dove le tue chiavi sono aperte. Su un altro dispositivo la finestra dice **web-01 è chiuso su questo dispositivo: si può rimuovere solo dove le chiavi sono aperte. Aprile qui.**, e apre le tue chiavi direttamente al suo interno, come in [Dove le tue chiavi sono aperte](../../security/keys/#dove-le-tue-chiavi-sono-aperte); il pulsante rosso **Rimuovi web-01** compare appena sono aperte.
+
 <Screenshot name="remove-machine" alt="La domanda prima di rimuovere una macchina, «Rimuovere web-01?»: i suoi terminali terminano e il suo agente si ferma. Il pulsante rosso «Rimuovi web-01» la rimuove, «Annulla» la lascia com'è." />
+
+<Screenshot name="closed-remove" alt="«Rimuovere web-01?» su un dispositivo in cui le chiavi non sono aperte: «web-01 è chiuso su questo dispositivo: si può rimuovere solo dove le chiavi sono aperte. Aprile qui.» Il campo «Password della cassaforte» con la password digitata e visualizzata come puntini, «Apri le chiavi», «oppure approva su MacBook-Pro · Hai dimenticato la password?»; il pulsante rosso «Rimuovi web-01» non c'è ancora, solo «Annulla»." />
 
 ## Cosa succede
 
@@ -66,7 +70,7 @@ Lo script rimuove l'avvio automatico dell'agente e tutta la cartella `~/.tterm-w
 
 ## Un Mac con tTerm per Mac
 
-Dopo l'accesso, [tTerm per Mac](../../local/mac/) tiene da solo il collegamento del Mac con tTerm Web, al posto dell'agente. In **Impostazioni** → **Questo computer** c'è un interruttore apposta, **Accesso da tTerm Web e dal telefono**. Se è attivo, tTerm Web e il tuo telefono aprono terminali su questo Mac finché tTerm è in esecuzione lì. Se è disattivato, in tTerm Web il Mac risulta offline, mentre nell'app tutto funziona come prima; i terminali aperti sul Mac da tTerm Web terminano, dopo una richiesta di conferma.
+Dopo l'accesso, [tTerm per Mac](../../local/mac/) tiene da solo il collegamento del Mac con tTerm Web, al posto dell'agente. In **Impostazioni** → **Questo computer** c'è un interruttore apposta, **Accesso da tTerm Web e dal telefono**. Se è attivo, tTerm Web e il tuo telefono aprono terminali su questo Mac finché tTerm è in esecuzione lì: con una cassaforte, solo dove le tue chiavi sono aperte ([dettagli](../../security/keys/#dove-le-tue-chiavi-sono-aperte)). Se è disattivato, in tTerm Web il Mac risulta offline, mentre nell'app tutto funziona come prima; i terminali aperti sul Mac da tTerm Web terminano, dopo una richiesta di conferma.
 
 Un Mac si rimuove in tTerm Web come qualsiasi altro computer. **Questo computer** allora dice: **Questo Mac è stato rimosso da tTerm Web, quindi non è accessibile da lì. Attiva l'opzione per aggiungerlo di nuovo.**
 

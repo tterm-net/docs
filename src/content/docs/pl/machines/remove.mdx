@@ -16,7 +16,11 @@ Można to zrobić w dwóch miejscach:
 
 tTerm najpierw pyta i mówi, co się stanie: **Usunąć web-01?** Czerwony przycisk **Usuń web-01** usuwa maszynę, a **Anuluj** zostawia wszystko tak, jak było.
 
+Jeśli masz sejf, to komputer, serwer z twoim kluczem i serwer przez twojego Maca można usunąć tylko tam, gdzie klucze są otwarte. Na innym urządzeniu okno pokazuje **Maszyna web-01 jest zamknięta na tym urządzeniu: usunąć ją można tylko tam, gdzie klucze są otwarte. Otwórz je tutaj.** i pozwala otworzyć klucze bezpośrednio w nim, tak jak w sekcji [Gdzie twoje klucze są otwarte](../../security/keys/#gdzie-twoje-klucze-są-otwarte); czerwony przycisk **Usuń web-01** pojawia się, gdy klucze są już otwarte.
+
 <Screenshot name="remove-machine" alt="Pytanie przed usunięciem maszyny, „Usunąć web-01?”: jej terminale zostaną zakończone, a jej agent się zatrzyma. Czerwony przycisk „Usuń web-01” usuwa maszynę, a „Anuluj” ją zostawia." />
+
+<Screenshot name="closed-remove" alt="„Usunąć web-01?” na urządzeniu, na którym klucze nie są otwarte: „Maszyna web-01 jest zamknięta na tym urządzeniu: usunąć ją można tylko tam, gdzie klucze są otwarte. Otwórz je tutaj.” Pole „Hasło do sejfu” z hasłem w postaci kropek, „Otwórz klucze”, „lub zatwierdź na MacBook-Pro · Nie pamiętasz hasła?”; czerwonego przycisku „Usuń web-01” jeszcze nie ma, jest tylko „Anuluj”." />
 
 ## Co się dzieje
 
@@ -66,7 +70,7 @@ Skrypt usuwa autostart agenta i cały katalog `~/.tterm-web`, łącznie z klucze
 
 ## Mac z tTerm dla Maca
 
-Po zalogowaniu [tTerm dla Maca](../../local/mac/) sam, zamiast agenta, utrzymuje połączenie Maca z tTerm Web. Na stronie **Ustawienia** → **Ten komputer** jest do tego przełącznik **Dostęp z tTerm Web i z telefonu**. Gdy jest włączony, tTerm Web i twój telefon otwierają terminale na tym Macu, dopóki działa na nim tTerm. Gdy jest wyłączony, Mac jest w tTerm Web offline, a w aplikacji wszystko działa jak dotąd; terminale otwarte na nim z tTerm Web zostaną zakończone, gdy to potwierdzisz.
+Po zalogowaniu [tTerm dla Maca](../../local/mac/) sam, zamiast agenta, utrzymuje połączenie Maca z tTerm Web. Na stronie **Ustawienia** → **Ten komputer** jest do tego przełącznik **Dostęp z tTerm Web i z telefonu**. Gdy jest włączony, tTerm Web i twój telefon otwierają terminale na tym Macu, dopóki działa na nim tTerm: jeśli masz sejf, tylko tam, gdzie klucze są otwarte ([więcej](../../security/keys/#gdzie-twoje-klucze-są-otwarte)). Gdy jest wyłączony, Mac jest w tTerm Web offline, a w aplikacji wszystko działa jak dotąd; terminale otwarte na nim z tTerm Web zostaną zakończone, gdy to potwierdzisz.
 
 Maca usuwa się w tTerm Web tak samo jak każdy komputer. Sekcja **Ten komputer** pokazuje wtedy: **Ten Mac został usunięty z tTerm Web, więc nie jest tam udostępniony. Włącz tę opcję, aby dodać go ponownie.**
 

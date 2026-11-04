@@ -16,7 +16,11 @@ Cela se fait à deux endroits :
 
 tTerm demande d’abord confirmation et dit ce qui va se passer : **Retirer web-01 ?** Le bouton rouge **Retirer web-01** la retire, **Annuler** laisse tout comme avant.
 
+Un ordinateur, un serveur avec votre clé et un serveur via votre Mac ne se retirent, dès que vous avez un coffre, que là où vos clés sont ouvertes. Sur un autre appareil, la fenêtre indique : **web-01 est fermé sur cet appareil : on ne peut le retirer que là où les clés sont ouvertes. Ouvrez-les ici.** Elle ouvre vos clés sur place, comme dans [Où vos clés sont ouvertes](../../security/keys/#où-vos-clés-sont-ouvertes) ; le bouton rouge **Retirer web-01** apparaît une fois qu’elles sont ouvertes.
+
 <Screenshot name="remove-machine" alt="La question posée avant de retirer une machine, « Retirer web-01 ? » : ses terminaux prendront fin et son agent s’arrêtera. Le bouton rouge « Retirer web-01 » la retire, « Annuler » la garde." />
+
+<Screenshot name="closed-remove" alt="« Retirer web-01 ? » sur un appareil où les clés ne sont pas ouvertes : « web-01 est fermé sur cet appareil : on ne peut le retirer que là où les clés sont ouvertes. Ouvrez-les ici. » Le « Mot de passe du coffre » saisi, masqué par des points, « Ouvrir les clés », « ou approuver sur MacBook-Pro · Mot de passe oublié ? » ; pas encore de bouton rouge « Retirer web-01 », seulement « Annuler »." />
 
 ## Ce qui se passe
 
@@ -66,7 +70,7 @@ Le script supprime le démarrage automatique de l’agent et tout le dossier `~/
 
 ## Un Mac avec tTerm pour Mac
 
-Une fois connecté, [tTerm pour Mac](../../local/mac/) assure lui-même le lien du Mac avec tTerm Web, à la place de l’agent. Dans **Paramètres** → **Cet ordinateur**, il a pour cela une option, **Ouvrir à tTerm Web et à votre téléphone**. Activée, tTerm Web et votre téléphone ouvrent des terminaux sur ce Mac tant que tTerm y tourne. Désactivée, le Mac est hors ligne dans tTerm Web, et dans l’application tout fonctionne comme avant ; les terminaux ouverts dessus depuis tTerm Web prennent fin, après confirmation.
+Une fois connecté, [tTerm pour Mac](../../local/mac/) assure lui-même le lien du Mac avec tTerm Web, à la place de l’agent. Dans **Paramètres** → **Cet ordinateur**, il a pour cela une option, **Ouvrir à tTerm Web et à votre téléphone**. Activée, tTerm Web et votre téléphone ouvrent des terminaux sur ce Mac tant que tTerm y tourne : dès que vous avez un coffre, seulement là où vos clés sont ouvertes ([en savoir plus](../../security/keys/#où-vos-clés-sont-ouvertes)). Désactivée, le Mac est hors ligne dans tTerm Web, et dans l’application tout fonctionne comme avant ; les terminaux ouverts dessus depuis tTerm Web prennent fin, après confirmation.
 
 Un Mac se retire de tTerm Web comme n’importe quel ordinateur. **Cet ordinateur** indique alors : **Ce Mac a été retiré de tTerm Web : il n’y est donc plus ouvert. Activez cette option pour l’ajouter de nouveau.**
 

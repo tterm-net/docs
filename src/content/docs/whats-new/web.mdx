@@ -5,6 +5,34 @@ description: What each version of tTerm Web changed, from the newest – new fea
 
 What each version of tTerm Web changed for you, the newest first. The technical details are in the [commits on GitHub](https://github.com/tterm-net/tterm-web/commits/main).
 
+## 0.1.28
+
+4 November 2026
+
+- Once you have a vault, your computers, the servers with your key and those through your Mac open only on a device where you opened [your keys](../../security/keys/) yourself: with the vault password, with Touch ID where the browser keeps them, or with the approval in tTerm for Mac. Signing in is not enough for them any more, so whoever got into your email gets nothing of them.
+- Where your keys are not open, such a machine has a lock in place of **+**, and its terminals and its log are dimmed, with a lock. Click one: the card in its tab opens your keys right there, then a new terminal. A terminal already running shows from where it is now, and the log opens.
+- On **Machines**, such a machine says **closed on this device**, and on the project's page its terminals say so; the button for a new terminal has the lock. **Remove** and **Move to another project** open your keys first, right in their window.
+- Opening your keys once opens every such machine on this device, and makes only the terminal you asked for.
+- When your keys close – **Lock**, 8 hours idle, closing or reloading the page, signing out – the locks come back at once; the terminals go on in the cloud.
+
+## 0.1.27
+
+4 November 2026
+
+- [**Settings**](../../account/settings/) opens over the page you are on: the sections on the left, the one you choose on the right. ×, **Esc** or a click beside it closes it, and you are where you were.
+- **Account** and **Plan** are in Settings now. Your name on top of the account menu opens your account there; payment will appear under the plan, once there are paid plans.
+- A search on top of the sections finds a setting by a word of its name.
+- Each section has an address of its own: the email about a new sign-in leads straight to **Devices**.
+
+## 0.1.26
+
+2 November 2026
+
+- Your [vault of SSH keys](../../security/keys/) has a vault password now, in place of the recovery code: you make it up when the vault is made, and with it your keys open in any browser, even on someone else's computer and with no Mac. The password itself goes nowhere: tTerm does not know it and cannot recover it.
+- After the password, a browser can keep your keys with Touch ID, Windows Hello or a passkey, so that the password is not asked there again: **Keep with Touch ID**, or **Only this time** on a computer that is not yours.
+- A vault made before keeps its recovery code until you set a password: **Settings** → **Keys** → **Set the password**.
+- **Forgot the password?** says where to set a new one: on your Mac, or in a browser where your keys are kept.
+
 ## 0.1.25
 
 2 November 2026

@@ -12,7 +12,11 @@ Jeder Befehl, den jemand über tTerm auf einer Maschine ausführt, wird zu einer
 
 In der Seitenleiste ist im Bereich **Notizen** eines Projekts der erste Ordner **Logs**, markiert mit **von tTerm**. Darin liegt für jede Maschine des Projekts ein Log, und daneben steht, wie viele Befehle dort heute gelaufen sind: **12 heute**. Klick auf eine Maschine, und ihr Log öffnet sich in einem Tab: **web-01-Log**.
 
-<Screenshot name="log-open" alt="Die Seitenleiste: unter „Notizen“ in Personal und in Client X der Ordner „Logs“ („von tTerm“) mit dem Log jeder Maschine und der Zahl von heute: web-01 „27 heute“, db-1 „7 heute“." />
+Auf einem Gerät, auf dem deine Schlüssel nicht geöffnet sind, erscheinen dort die Logs deiner Computer und der Server mit deinem Schlüssel oder über deinen Mac ausgegraut, mit einem Schloss und ohne Zahl. Klick auf eines, und eine Karte in seinem Tab öffnet direkt dort deine Schlüssel und danach das Log: siehe [Wo deine Schlüssel geöffnet sind](../../security/keys/#wo-deine-schlüssel-geöffnet-sind).
+
+<Screenshot name="log-open" alt="Die Seitenleiste: unter „Notizen“ in Personal und in Client X der Ordner „Logs“ („von tTerm“) mit dem Log jeder Maschine und der Zahl von heute: web-01 „27 heute“, db-1 „9 heute“." />
+
+<Screenshot name="closed-log" alt="Der Tab „P/web-01-Log“ mit einem Schloss: „Das Log von web-01 ist auf diesem Gerät gesperrt“ – im Log stehen dieselben Befehle und dieselbe Ausgabe wie im Terminal, deshalb ist es genauso gesperrt; öffne die Schlüssel, und das Log öffnet sich. „Tresorpasswort“ und „Schlüssel öffnen“." />
 
 Das Log zeigt jeweils einen Tag und öffnet sich mit dem heutigen. Die Pfeile **Vorheriger Tag** und **Nächster Tag** springen zum nächstgelegenen Tag mit Zeilen. **Heute** bringt dich zurück, und **Tag wählen** öffnet einen Kalender. Solange das Log den heutigen Tag zeigt, kommen neue Zeilen dazu, sobald Befehle enden.
 
@@ -20,7 +24,7 @@ Oben im Log findest du unter **⋯** den Punkt **Als Markdown kopieren**: Er kop
 
 ## Was in einer Zeile steht
 
-Jeder Befehl ist eine Zeile: die Uhrzeit, wer ihn ausgeführt hat, der Befehl, gekürzt, wenn er lang ist, und wie viele Notizen darunter stehen. Rechts stehen, wie lange er gedauert hat, das Verzeichnis, der git-Branch und das Terminal. Ein fehlgeschlagener Befehl hat ein Kreuz und seinen Exit-Code, **exit 1**. Zwischen den Befehlen vermerkt das Log außerdem, wann ein Terminal geöffnet und wann es beendet wurde – und warum, wenn es von selbst endete: **Terminal 1 wurde beendet: tTerm Web wurde auf 0.1.24 aktualisiert.** Es vermerkt auch, wann die Maschine in ein anderes Projekt verschoben wurde: **Du hast diese Maschine von Personal nach Client X verschoben**.
+Jeder Befehl ist eine Zeile: die Uhrzeit, wer ihn ausgeführt hat, der Befehl, gekürzt, wenn er lang ist, und wie viele Notizen darunter stehen. Rechts stehen, wie lange er gedauert hat, das Verzeichnis, der git-Branch und das Terminal. Ein fehlgeschlagener Befehl hat ein Kreuz und seinen Exit-Code, **exit 1**. Zwischen den Befehlen vermerkt das Log außerdem, wann ein Terminal geöffnet und wann es beendet wurde – und warum, wenn es von selbst endete: **Terminal 1 wurde beendet: tTerm Web wurde auf 0.1.28 aktualisiert.** Es vermerkt auch, wann die Maschine in ein anderes Projekt verschoben wurde: **Du hast diese Maschine von Personal nach Client X verschoben**.
 
 Ein Klick auf eine Zeile öffnet sie: der ganze Befehl, seine Ausgabe und die Notizen darunter. Ein zweiter Klick schließt sie wieder. Von einer langen Ausgabe siehst du die ersten Zeilen: **Alle 27 Zeilen zeigen** zeigt den Rest, und **Ausgabe kopieren** kopiert sie.
 
@@ -69,6 +73,8 @@ Ist ein Passwort oder ein Token in einen Befehl oder eine Notiz geraten, lässt 
 <Screenshot name="log-redact" alt="„Diesen Befehl schwärzen?“ für export PGPASSWORD='…' auf db-1 (heute, 18:30, backups): was verschwindet und was das Log festhält, „Warum“: ein Passwort, dazu „Schwärzen“ und „Abbrechen“." />
 
 Der Text verschwindet endgültig aus dem Log, aus dem Feed des Terminals, aus der Suche und aus dem Verlauf der Eingabezeile. Bei einem Befehl verschwindet auch seine Ausgabe, ebenso derselbe Befehl überall sonst, wo er im Projekt gelaufen ist. An seiner Stelle hält das Log fest, wer ihn geschwärzt hat, wann und warum: **Geschwärzt von dir · 09:23 · ein Passwort**. In den nächtlichen Backups der Datenbank steht er noch, bis diese Backups gelöscht werden, spätestens nach zwei Wochen.
+
+Schwärzt du auf einem Gerät, auf dem deine Schlüssel nicht geöffnet sind, bleiben die Logs deiner Computer und der Server mit deinem Schlüssel oder über deinen Mac, wie sie sind: In diesen Logs schwärzt du den Befehl von einem Gerät aus, auf dem deine Schlüssel geöffnet sind.
 
 ## Wie lange das Log aufbewahrt wird
 

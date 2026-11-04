@@ -12,7 +12,11 @@ Ogni comando eseguito su una macchina tramite tTerm diventa una riga nel log di 
 
 Nella barra laterale, tra le **Note** di un progetto, la prima cartella è **Log**, con accanto la scritta **da tTerm**. Dentro c'è un log per ogni macchina del progetto, con il numero di comandi eseguiti lì oggi: **12 oggi**. Fai clic su una macchina e il suo log si apre in una scheda, **web-01: log**.
 
-<Screenshot name="log-open" alt="La barra laterale: sotto «Note» in Personal e in Client X, la cartella «Log» («da tTerm») con il log di ogni macchina e il conteggio di oggi: web-01, «27 oggi»; db-1, «7 oggi»." />
+Su un dispositivo in cui le tue chiavi non sono aperte, in questa cartella i log dei tuoi computer e dei server con la tua chiave o tramite il tuo Mac sono in grigio, con un lucchetto e senza conteggio. Fai clic su uno di essi e un riquadro nella sua scheda apre le tue chiavi proprio lì, poi il log: vedi [Dove le tue chiavi sono aperte](../../security/keys/#dove-le-tue-chiavi-sono-aperte).
+
+<Screenshot name="log-open" alt="La barra laterale: sotto «Note» in Personal e in Client X, la cartella «Log» («da tTerm») con il log di ogni macchina e il conteggio di oggi: web-01, «27 oggi»; db-1, «9 oggi»." />
+
+<Screenshot name="closed-log" alt="La scheda «P/web-01: log», con un lucchetto: «Il log di web-01 è chiuso su questo dispositivo»; nel log ci sono gli stessi comandi e lo stesso output del terminale, quindi è chiuso allo stesso modo: apri le chiavi e il log si apre. «Password della cassaforte» e «Apri le chiavi»." />
 
 Il log mostra un giorno alla volta e si apre sul giorno di oggi. Le frecce, **Giorno precedente** e **Giorno successivo**, portano al giorno più vicino che ha delle righe. **Oggi** ti riporta al giorno di oggi, e **Scegli un giorno** apre un calendario. Mentre il log mostra oggi, le nuove righe compaiono man mano che i comandi finiscono.
 
@@ -20,7 +24,7 @@ In cima al log, nel menu **⋯** c'è **Copia come Markdown**: il giorno mostrat
 
 ## Cosa dice una riga
 
-Ogni comando è una riga: l'ora, chi l'ha eseguito, il comando, accorciato se è lungo, e quante note ha sotto. A destra ci sono la durata, la cartella, il branch git e il terminale. Un comando non riuscito ha una croce e il suo codice di uscita, **uscita 1**. Tra un comando e l'altro, il log dice anche quando un terminale è stato aperto e quando è terminato – e perché, se è terminato da solo: **Terminale 1 è terminato: tTerm Web è stato aggiornato alla versione 0.1.24.** Indica anche quando la macchina è passata a un altro progetto: **Hai spostato questa macchina da Personal a Client X**.
+Ogni comando è una riga: l'ora, chi l'ha eseguito, il comando, accorciato se è lungo, e quante note ha sotto. A destra ci sono la durata, la cartella, il branch git e il terminale. Un comando non riuscito ha una croce e il suo codice di uscita, **uscita 1**. Tra un comando e l'altro, il log dice anche quando un terminale è stato aperto e quando è terminato – e perché, se è terminato da solo: **Terminale 1 è terminato: tTerm Web è stato aggiornato alla versione 0.1.28.** Indica anche quando la macchina è passata a un altro progetto: **Hai spostato questa macchina da Personal a Client X**.
 
 Un clic su una riga la apre: il comando per intero, il suo output e le note sotto. Un altro clic la chiude. Di un output lungo si vedono le prime righe: **Mostra tutte le 27 righe** mostra il resto, e **Copia output** lo copia.
 
@@ -69,6 +73,8 @@ Una password o un token finiti in un comando o in una nota si possono cancellare
 <Screenshot name="log-redact" alt="«Oscurare questo comando?» per export PGPASSWORD='…' su db-1 («oggi alle 18:30», backups): cosa scompare e cosa resta nel log, «Perché»: una password, e i pulsanti «Oscura» e «Annulla»." />
 
 Le parole spariscono per sempre dal log, dai blocchi del terminale, dalla ricerca e dalla cronologia della riga di input. Con un comando se ne va anche il suo output, e sparisce anche lo stesso comando, ovunque sia stato eseguito altrove nel progetto. Al loro posto, il log conserva chi le ha oscurate, quando e perché: **Testo oscurato da te · 09:23 · una password**. I backup notturni del database le contengono ancora finché quei backup non vengono eliminati, entro due settimane.
+
+Se oscuri qualcosa su un dispositivo in cui le tue chiavi non sono aperte, i log dei tuoi computer e dei server con la tua chiave o tramite il tuo Mac restano come sono: in quei log, oscura il comando da un dispositivo in cui le tue chiavi sono aperte.
 
 ## Per quanto tempo si conserva
 

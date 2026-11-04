@@ -16,7 +16,11 @@ There are two places for it:
 
 tTerm asks first and says what will happen: **Remove web-01?** The red **Remove web-01** removes it, **Cancel** leaves everything as it was.
 
+Once you have a vault, a computer, a server with your key and a server through your Mac are removed only where your keys are open. On another device the window says **web-01 is closed on this device: it can be removed only where the keys are open. Open them here.**, and opens your keys right in it, as in [Where your keys are open](../../security/keys/#where-your-keys-are-open); the red **Remove web-01** comes once they are open.
+
 <Screenshot name="remove-machine" alt="The question before a machine is removed, Remove web-01?: its terminals end and its agent stops. The red Remove web-01 removes it, Cancel leaves it." />
+
+<Screenshot name="closed-remove" alt="Remove web-01? on a device where the keys are not open: web-01 is closed on this device: it can be removed only where the keys are open. Open them here. The Vault password typed (dots), Open the keys, or approve on MacBook-Pro · Forgot the password?; no red Remove web-01 yet, only Cancel." />
 
 ## What happens
 
@@ -66,7 +70,7 @@ It removes the agent's autostart and the whole of `~/.tterm-web`, the computer's
 
 ## A Mac with tTerm for Mac
 
-Signed in, [tTerm for Mac](../../local/mac/) keeps the Mac's link to tTerm Web itself, in the agent's place. In **Settings** → **This computer** it has a switch for that, **Open from tTerm Web and your phone**. On, tTerm Web and your phone open terminals on this Mac while tTerm runs there. Off, the Mac is offline in tTerm Web, and in the app everything works as before; terminals opened on it from tTerm Web end, after a question.
+Signed in, [tTerm for Mac](../../local/mac/) keeps the Mac's link to tTerm Web itself, in the agent's place. In **Settings** → **This computer** it has a switch for that, **Open from tTerm Web and your phone**. On, tTerm Web and your phone open terminals on this Mac while tTerm runs there: once you have a vault, only where your keys are open ([more](../../security/keys/#where-your-keys-are-open)). Off, the Mac is offline in tTerm Web, and in the app everything works as before; terminals opened on it from tTerm Web end, after a question.
 
 A Mac is removed in tTerm Web as any computer is. **This computer** then says: **This Mac was removed from tTerm Web, so it is not opened from there. Turn this on to add it again.**
 

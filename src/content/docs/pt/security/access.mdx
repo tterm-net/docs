@@ -23,7 +23,7 @@ A confiança é uma linha no `authorized_keys` de um único usuário, o `tterm`.
 
 ## Servidores migrados de um Mac
 
-Um servidor migrado do tTerm para Mac pode abrir de mais duas maneiras. Com **Minha chave**, você entra com a sua própria chave, do seu [cofre](../keys/): um dispositivo seu em que o cofre está aberto assina o login, e nada é adicionado ao servidor. Com **Por este Mac**, o seu Mac executa o `ssh` até o servidor, e a nuvem nem precisa alcançá-lo. A terceira maneira, **Passe do tTerm**, é o mesmo certificado de dois minutos, com a linha do tTerm no `authorized_keys` do seu próprio usuário, em vez do `tterm`. Mais em [Migrar para a nuvem](../../local/move-to-cloud/#três-jeitos-de-entrar).
+Um servidor migrado do tTerm para Mac pode abrir de mais duas maneiras. Com **Minha chave**, você entra com a sua própria chave, do seu [cofre](../keys/), e nada é adicionado ao servidor. Quem assina o login é o dispositivo que abriu o terminal, onde as chaves estão abertas: o seu navegador, ou o tTerm para Mac, para os terminais dele. Nenhum outro dispositivo é consultado, nem o seu Mac, então um login só com o código do seu e-mail não abre nenhum desses servidores. Com **Por este Mac**, o seu Mac executa o `ssh` até o servidor, e a nuvem nem precisa alcançá-lo; se você tiver um cofre, um servidor assim só abre onde as chaves estão abertas, como os seus computadores: veja [Onde as chaves estão abertas](../keys/#onde-as-chaves-estão-abertas). A terceira maneira, **Passe do tTerm**, é o mesmo certificado de dois minutos, com a linha do tTerm no `authorized_keys` do seu próprio usuário, em vez do `tterm`. Mais em [Migrar para a nuvem](../../local/move-to-cloud/#três-jeitos-de-entrar).
 
 ## Conexões só de dentro para fora
 

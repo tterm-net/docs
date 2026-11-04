@@ -16,7 +16,11 @@ Puedes hacerlo en dos lugares:
 
 Antes, tTerm pregunta y explica lo que va a pasar: **¿Quitar web-01?** El botón rojo **Quitar web-01** la quita; **Cancelar** deja todo como estaba.
 
+Si tienes una bóveda, solo puedes quitar una computadora, un servidor con tu clave o un servidor a través de tu Mac donde tus claves están abiertas. En otro dispositivo, la ventana dice **web-01 está cerrado en este dispositivo: solo se puede quitar donde las claves están abiertas. Ábrelas aquí.** y abre tus claves ahí mismo, como en [Dónde están abiertas tus claves](../../security/keys/#dónde-están-abiertas-tus-claves); el botón rojo **Quitar web-01** aparece en cuanto están abiertas.
+
 <Screenshot name="remove-machine" alt="La pregunta antes de quitar una máquina, «¿Quitar web-01?»: sus terminales finalizan y su agente se detiene. El botón rojo «Quitar web-01» la quita y «Cancelar» la deja como está." />
+
+<Screenshot name="closed-remove" alt="«¿Quitar web-01?» en un dispositivo donde las claves no están abiertas: «web-01 está cerrado en este dispositivo: solo se puede quitar donde las claves están abiertas. Ábrelas aquí». El campo «Contraseña de la bóveda», con la contraseña escrita en forma de puntos; «Abrir las claves», «o aprobar en MacBook-Pro · ¿Olvidaste la contraseña?»; el botón rojo «Quitar web-01» todavía no aparece, solo «Cancelar»." />
 
 ## Qué pasa después
 
@@ -66,7 +70,7 @@ El script elimina el inicio automático del agente y todo `~/.tterm-web`, inclui
 
 ## Una Mac con tTerm para Mac
 
-Con la sesión iniciada, es [tTerm para Mac](../../local/mac/) quien mantiene la conexión de la Mac con tTerm Web, en lugar del agente. En **Configuración** → **Esta computadora** tiene un interruptor para eso: **Acceso desde tTerm Web y tu teléfono**. Si está activado, tTerm Web y tu teléfono abren terminales en esta Mac mientras tTerm se ejecuta en ella. Si está desactivado, la Mac aparece desconectada en tTerm Web, y en la aplicación todo funciona como antes; las terminales que se abrieron en ella desde tTerm Web finalizan, pero tTerm pregunta antes.
+Con la sesión iniciada, es [tTerm para Mac](../../local/mac/) quien mantiene la conexión de la Mac con tTerm Web, en lugar del agente. En **Configuración** → **Esta computadora** tiene un interruptor para eso: **Acceso desde tTerm Web y tu teléfono**. Si está activado, tTerm Web y tu teléfono abren terminales en esta Mac mientras tTerm se ejecuta en ella: si tienes una bóveda, solo donde tus claves están abiertas ([más detalles](../../security/keys/#dónde-están-abiertas-tus-claves)). Si está desactivado, la Mac aparece desconectada en tTerm Web, y en la aplicación todo funciona como antes; las terminales que se abrieron en ella desde tTerm Web finalizan, pero tTerm pregunta antes.
 
 Una Mac se quita en tTerm Web como cualquier computadora. Entonces **Esta computadora** dice: **Esta Mac se quitó de tTerm Web, así que no se puede abrir desde allí. Activa esta opción para volver a añadirla.**
 

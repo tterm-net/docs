@@ -12,7 +12,11 @@ Każde polecenie uruchomione na maszynie przez tTerm staje się wierszem w logu 
 
 W panelu bocznym, w sekcji **Notatki** projektu, pierwszy folder to **Logi** z dopiskiem **prowadzi tTerm**. Jest w nim log każdej maszyny projektu i liczba poleceń uruchomionych na niej dzisiaj: **12 dzisiaj**. Kliknij maszynę, a jej log otworzy się w karcie **web-01: log**.
 
-<Screenshot name="log-open" alt="Panel boczny: w sekcji „Notatki” projektów Personal i Client X folder „Logi” („prowadzi tTerm”) z logiem każdej maszyny i liczbą dzisiejszych poleceń: web-01 „27 dzisiaj”, db-1 „7 dzisiaj”." />
+Na urządzeniu, na którym klucze nie są otwarte, logi twoich komputerów i serwerów z twoim kluczem lub przez twojego Maca są w tym folderze przygaszone, z kłódką i bez licznika. Kliknij taki log: plansza w jego karcie od razu otworzy klucze, a potem log: zobacz [Gdzie twoje klucze są otwarte](../../security/keys/#gdzie-twoje-klucze-są-otwarte).
+
+<Screenshot name="log-open" alt="Panel boczny: w sekcji „Notatki” projektów Personal i Client X folder „Logi” („prowadzi tTerm”) z logiem każdej maszyny i liczbą dzisiejszych poleceń: web-01 „27 dzisiaj”, db-1 „9 dzisiaj”." />
+
+<Screenshot name="closed-log" alt="Karta „P/web-01: log” z kłódką: „Log maszyny web-01 jest zamknięty na tym urządzeniu” – w logu są te same polecenia i te same wyniki co w terminalu, więc jest zamknięty tak samo; otwórz klucze, a log się otworzy. „Hasło do sejfu” i „Otwórz klucze”." />
 
 Log pokazuje po jednym dniu i otwiera się na dzisiejszym. Strzałki **Poprzedni dzień** i **Następny dzień** przenoszą do najbliższego dnia, w którym są wiersze. **Dzisiaj** przenosi cię z powrotem, a **Wybierz dzień** otwiera kalendarz. Gdy log pokazuje dzisiejszy dzień, nowe wiersze dochodzą w miarę, jak polecenia się kończą.
 
@@ -20,7 +24,7 @@ U góry logu w menu **⋯** jest **Kopiuj jako Markdown**: kopiuje pokazany dzie
 
 ## Co jest w wierszu
 
-Każde polecenie to jeden wiersz: godzina, kto je uruchomił, samo polecenie (skrócone, jeśli jest długie) i liczba notatek pod nim. Po prawej: czas trwania, katalog, gałąź git i terminal. Nieudane polecenie ma krzyżyk i kod, z jakim się zakończyło: **kod wyjścia 1**. Między poleceniami log odnotowuje też, kiedy otwarto terminal i kiedy się zakończył – a jeśli zakończył się sam, to także dlaczego: **Terminal 1 zakończył się: tTerm Web został uaktualniony do wersji 0.1.24.** Odnotowuje również przeniesienie maszyny do innego projektu: **Maszyna przeniesiona przez ciebie z projektu Personal do projektu Client X**.
+Każde polecenie to jeden wiersz: godzina, kto je uruchomił, samo polecenie (skrócone, jeśli jest długie) i liczba notatek pod nim. Po prawej: czas trwania, katalog, gałąź git i terminal. Nieudane polecenie ma krzyżyk i kod, z jakim się zakończyło: **kod wyjścia 1**. Między poleceniami log odnotowuje też, kiedy otwarto terminal i kiedy się zakończył – a jeśli zakończył się sam, to także dlaczego: **Terminal 1 zakończył się: tTerm Web został uaktualniony do wersji 0.1.28.** Odnotowuje również przeniesienie maszyny do innego projektu: **Maszyna przeniesiona przez ciebie z projektu Personal do projektu Client X**.
 
 Kliknięcie wiersza go rozwija: całe polecenie, jego wynik i notatki pod nim. Drugie kliknięcie go zwija. Z długiego wyniku widać pierwsze wiersze: **Pokaż wszystkie 27 wierszy** pokazuje resztę, a **Kopiuj wynik** kopiuje cały wynik.
 
@@ -69,6 +73,8 @@ Hasło albo token, które trafiły do polecenia lub notatki, można wymazać. Mo
 <Screenshot name="log-redact" alt="„Wymazać to polecenie?” dla export PGPASSWORD='…' na db-1 („dzisiaj, 18:30”, backups): co zniknie, a co zostanie w logu, „Powód”: hasło, przyciski „Wymaż” i „Anuluj”." />
 
 Wymazany tekst znika na zawsze z logu, z listy bloków terminala, z wyszukiwania i z historii pola wprowadzania. Razem z poleceniem znika też jego wynik, a także to samo polecenie wszędzie, gdzie jeszcze je uruchomiono w projekcie. W jego miejscu log zapisuje, kto go wymazał, kiedy i dlaczego: **Wymazane przez ciebie · 09:23 · hasło**. Nocne kopie zapasowe bazy danych przechowują go jeszcze, dopóki te kopie nie zostaną usunięte, czyli najdłużej przez dwa tygodnie.
+
+Wymazywanie na urządzeniu, na którym klucze nie są otwarte, nie zmienia logów twoich komputerów ani serwerów z twoim kluczem lub przez twojego Maca: z tych logów wymażesz polecenie na urządzeniu, na którym klucze są otwarte.
 
 ## Jak długo log jest przechowywany
 

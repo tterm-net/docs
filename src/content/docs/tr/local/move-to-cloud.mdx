@@ -11,7 +11,7 @@ Mac'inden `ssh` ile bağlandığın sunucular tTerm Web'den, telefonundan ya da 
 
 Mac için tTerm'de giriş yap, kenar çubuğunun altındaki hesap menüsünü aç ve **Çıkış yap** seçeneğinin hemen üstündeki **Buluta taşı** seçeneğini seç. **⌘K** ile de bulabilirsin.
 
-<Screenshot name="move-menu" alt="Kenar çubuğunun altındaki hesap menüsü: “Çıkış yap” seçeneğinin hemen üstünde “Buluta taşı” (“Bu Mac'in sunucuları ve anahtarları”)." />
+<Screenshot name="move-menu" alt="Kenar çubuğunun altındaki hesap menüsü: en üstte Anna ve anna@example.com, ardından “Ayarlar”, “Dil”, “Yardım al” ve “Hakkımızda”; “Çıkış yap” seçeneğinin hemen üstünde “Buluta taşı” (“Bu Mac'in sunucuları ve anahtarları”)." />
 
 ## Neleri bulur
 
@@ -21,17 +21,17 @@ Mac için tTerm'de giriş yap, kenar çubuğunun altındaki hesap menüsünü a�
 
 Sunucuların altında **~/.ssh içindeki anahtarlar** bölümü özel anahtarlarını listeler. Yalnızca işaretlenenler kasana gider. İşaretli bir sunucu **Anahtarım** yoluyla bir anahtarla açılıyorsa o anahtar kendiliğinden işaretlenir.
 
-<Screenshot name="move-found" alt="“Buluta taşı”: web-01, staging ve backup işaretli, her birinin kendi giriş yolu var; staging, bulut ona erişemediği için “Bu Mac üzerinden”; “Zaten tTerm'de” olan db-1 ve bir git sunucusu olan github.com işaretli değil; “~/.ssh içindeki anahtarlar” altında id_ed25519 işaretli; “3 sunucuyu taşı”." />
+<Screenshot name="move-found" alt="“Buluta taşı”: web-01, staging ve backup işaretli, her birinin kendi giriş yolu var; staging, bulut ona erişemediği için “Bu Mac üzerinden”; “Zaten tTerm'de” olan db-1 ve bir git sunucusu olan github.com işaretli değil; “Anahtarım” herhangi bir tarayıcıda kasa parolanla açılır; “~/.ssh içindeki anahtarlar” altında id_ed25519 işaretli; anahtarlar bu Mac'te şifrelenir, burada Touch ID ile, herhangi bir tarayıcıda ise kasa parolasıyla açılır; “3 sunucuyu taşı”." />
 
 ## Üç giriş yolu
 
 Her sunucu için ayrı bir seçim yapılır:
 
-- **Anahtarım** – anahtar bu Mac'te şifrelenip kasana gider, sunucu olduğu gibi kalır. tTerm Web buluttan giriş yapar, girişi de kasanın açık olduğu cihazlarından biri imzalar: kasayı açtığın bir tarayıcı ya da bu Mac. tTerm Web'in erişebildiği ve `~/.ssh` içindeki anahtarı taşınabilen bir sunucu için. Ayrıntılar [SSH anahtarlarının kasası](../../security/keys/) sayfasında.
+- **Anahtarım** – anahtar bu Mac'te şifrelenip kasana gider, sunucu olduğu gibi kalır. Böyle bir sunucu her tarayıcıda kasa parolanla açılır. tTerm Web buluttan giriş yapar, girişi de terminali açan cihaz, anahtarların orada açıkken imzalar: bir tarayıcı kendi terminalleri için, bu Mac de kendininkiler için. tTerm Web'in erişebildiği ve `~/.ssh` içindeki anahtarı taşınabilen bir sunucu için. Ayrıntılar [SSH anahtarlarının kasası](../../security/keys/) sayfasında.
 - **tTerm'in giriş izni** – bu Mac sunucuya bir kez giriş yapar ve hangi kullanıcıyla girdiyse onun `~/.ssh/authorized_keys` dosyasına tTerm'in kendi satırını ekler; anahtarın burada kalır. Bundan sonra tTerm, [tek komutla bağlanan bir sunucuda](../../machines/servers/) olduğu gibi o kullanıcı olarak iki dakikalık bir sertifikayla giriş yapar ve kasaya ihtiyaç duymaz. `ssh` komutundan sonraki şeritte bu yolun adı **tTerm'i içeri al**.
-- **Bu Mac üzerinden** – hiçbir şey taşınmaz: Mac açık olduğu sürece tTerm, bu Mac'ten sunucuya `ssh` ile bağlanmasını ister. tTerm Web'in erişemediği, VPN arkasındaki ya da özel bir ağdaki bir sunucu ve anahtarı bu Mac'ten çıkamayan bir sunucu için. Terminali klasik modda çalışır: her tuş doğrudan Mac'teki ssh komutuna gider; blok yoktur, tehlikeli bir komuttan önce soru da sorulmaz.
+- **Bu Mac üzerinden** – hiçbir şey taşınmaz: Mac açık olduğu sürece tTerm, bu Mac'ten sunucuya `ssh` ile bağlanmasını ister. tTerm Web'in erişemediği, VPN arkasındaki ya da özel bir ağdaki bir sunucu ve anahtarı bu Mac'ten çıkamayan bir sunucu için. Terminali klasik modda çalışır: her tuş doğrudan Mac'teki ssh komutuna gider; blok yoktur, tehlikeli bir komuttan önce soru da sorulmaz. Kasan varsa böyle bir sunucu bir tarayıcıdan ya da telefonundan yalnızca anahtarlarının açık olduğu yerde açılır: [Anahtarların nerede açık](../../security/keys/#anahtarların-nerede-açık) bölümüne bak.
 
-<Screenshot name="move-ways" alt="Her sunucunun giriş yolu: web-01 için “Anahtarım”, staging için “Bu Mac üzerinden”; backup sunucusunun seçim listesi açık (“Anahtarım”, “tTerm'in giriş izni”, “Bu Mac üzerinden”); altta her yolun ne anlama geldiği." />
+<Screenshot name="move-ways" alt="Her sunucunun giriş yolu: web-01 için “Anahtarım”, staging için “Bu Mac üzerinden”; backup sunucusunun seçim listesi açık (“Anahtarım”, “tTerm'in giriş izni”, “Bu Mac üzerinden”); altta her yolun ne anlama geldiği: “Anahtarım” herhangi bir tarayıcıda kasa parolanla açılır." />
 
 tTerm her sunucu için kendisi seçer: anahtarı taşınabiliyorsa **Anahtarım**, tTerm Web sunucuya erişemiyorsa ya da anahtarı Mac'ten çıkamıyorsa **Bu Mac üzerinden**, diğer durumlarda **tTerm'in giriş izni**. tTerm Web'in erişemediği bir sunucu için yalnızca **Bu Mac üzerinden** vardır. Bulutun erişebildiği bir bastion sunucusunun arkasındaki sunucu, o bastion sunucusu üzerinden açılır.
 
@@ -43,12 +43,12 @@ Mac için tTerm'de **Ayarlar** → **Bu bilgisayar** → **tTerm Web'den ve tele
 
 Düğme işaretli sunucuları sayar: **3 sunucuyu taşı**.
 
-- **Anahtarım** için kasan gerekir. İlk seferde **Kasamı Touch ID ile oluştur** düğmesine bas ve [kurtarma kodunu](../../security/keys/#kurtarma-kodu) sakla. Kilitli bir kasa Touch ID ya da Mac'inin parolasını ister; kasanın kilidi henüz olmayan bir Mac'te ise bir kez kurtarma kodunu ister.
+- **Anahtarım** için kasan gerekir. İlk seferde bir [kasa parolası](../../security/keys/#kasa-parolası) oluştur ve **Kasayı oluştur** düğmesine bas: bunun için Touch ID istenmez. Kilitli bir kasa Touch ID ya da Mac'inin parolasını ister; kasanın kilidi henüz olmayan bir Mac'te ise bir kez kasa parolasını ister.
 - Anahtarın parolası varsa tTerm onu bir kez sorar. Parola bu Mac'te kalır.
 - **Anahtarım** seçiliyse bu Mac önce sunucuya yalnızca o anahtarla giriş yapar; anahtar ancak ondan sonra, tüm sunucuları için bir kez kasana gider. **tTerm'in giriş izni** seçiliyse bu Mac satırı eklemek için giriş yapar, tTerm de satırı denetlemek için kendi sertifikasıyla bir kez giriş yapar.
 - **Anahtarım** ve **tTerm'in giriş izni** için sunucunun host anahtarı `known_hosts` dosyasında olmalı: yeni bir sunucuya önce bu Mac'ten bir kez bağlan.
 
-<Screenshot name="move-vault" alt="“Anahtarım” ile ilk taşıma: “Anahtarını kasana kaydet”; id_ed25519, bu Mac'in kilidini açtığın yöntemle açılan bir kasaya gider; “Vazgeç” ve “Kasamı Touch ID ile oluştur”." />
+<Screenshot name="move-vault" alt="“Anahtarım” ile ilk taşıma: “Kasa parolası oluştur”. Bu Mac'in anahtarları şifrelenerek buluttaki kasana gider ve parola onları herhangi bir tarayıcıda açar; “Parola” ve “Tekrar” alanlarında noktalarla yazılmış parola ve “Eşleşiyor”; unutursan yenisini burada, bu Mac'te belirle; “Vazgeç” ve “Kasayı oluştur”." />
 
 Taşınamayan bir sunucu için hiçbir şey kaydedilmez. Kasaya yalnızca taşınamayan sunucular için giden bir anahtar kasadan yeniden çıkar; tTerm'in böyle bir sunucuya eklediği satır da kaldırılır.
 
@@ -56,15 +56,17 @@ Taşınamayan bir sunucu için hiçbir şey kaydedilmez. Kasaya yalnızca taşı
 
 Sonuç, artık kaç sunucunun tTerm'de olduğunu söyler; hepsi Personal projesindedir: **3 sunucudan 2 tanesi tTerm'de**. Her satırda sunucunun nasıl açıldığı yazar: **Anahtarınla açılır**, **tTerm'in giriş izniyle açılır** ya da **Bu Mac üzerinden, açık olduğu sürece**. Yanındaki **Terminal aç** orada bir terminal açar. Taşınamayan bir sunucunun satırında nedeni yazar, yanında da **Yeniden dene** ve **Değiştir** bulunur: **Değiştir** seni yalnızca o sunucunun işaretli olduğu listeye geri götürür. En altta: artık kasanda olan anahtarlar ya da **Hiçbir anahtar taşınmadı: anahtarların bu Mac'te kalıyor.**
 
+Bir sunucu **Anahtarım** ile taşındıysa **Başka bir bilgisayardan nasıl açılır** bölümü orada ne yapacağını anlatır: herhangi bir tarayıcıda app.tterm.net adresini aç ve her zamanki gibi, e-postayla gelen kodla giriş yap; bir sunucu aç, tTerm senden kasa parolanı ister – anahtarlar Mac'e gerek kalmadan doğrudan o tarayıcıda açılır; kendi bilgisayarında **Touch ID ile sakla** düğmesine bas, böylece bir dahaki sefere orada Touch ID yeter; başkasının bilgisayarında ise **Yalnızca bu sefer** seçeneğini seç. Bu Mac üzerinden açılan bir sunucu yalnızca Mac açıkken ve üzerinde tTerm çalışırken açılır.
+
 Kenar çubuğunda, anahtarınla açılan bir sunucunun adından sonra bir anahtar simgesi bulunur; Mac'in üzerinden açılan bir sunucunun yanında ise **Mac üzerinden** yazar.
 
-<Screenshot name="move-result" alt="“3 sunucudan 2 tanesi tTerm'de”: web-01 “Anahtarınla açılır”, staging “Bu Mac üzerinden, açık olduğu sürece”, ikisinde de “Terminal aç”; backup taşınamadı (known_hosts içinde host anahtarı yok), yanında “Yeniden dene” ve “Değiştir”; id_ed25519 artık kasanda. Kenar çubuğunda web-01 yanında bir anahtar var, staging yanında “Mac üzerinden” yazıyor." />
+<Screenshot name="move-result" alt="“3 sunucudan 2 tanesi tTerm'de”: web-01 “Anahtarınla açılır”, staging bu Mac üzerinden açılır, ikisinde de “Terminal aç”; backup taşınmadı (known_hosts içinde host anahtarı yok), yanında “Yeniden dene” ve “Değiştir”. “Başka bir bilgisayardan nasıl açılır”: app.tterm.net adresini aç ve giriş yap, tTerm kasa parolanı ister, kendi bilgisayarında “Touch ID ile sakla”, başkasınınkinde “Yalnızca bu sefer”; staging yalnızca bu Mac üzerinden. id_ed25519 kasada. Kenar çubuğunda web-01 yanında bir anahtar var, staging yanında “Mac üzerinden” yazıyor." />
 
 ## ssh komutundan sonraki şerit
 
 Bu Mac'in bir terminalinde `ssh` hatasız sona erdiğinde, bloğunun altında bir şerit çıkabilir: adres ve anahtarınla birlikte **droplet: her yerden aç**.
 
-<Screenshot name="move-strip" alt="Bu Mac'in bir terminalinde ssh droplet bloğunun altında: “droplet: her yerden aç”, root@203.0.113.20 adresi ve ~/.ssh/id_ed25519 anahtarıyla; “Anahtarımı kaydet”, “tTerm'i içeri al”, “Şimdi değil”, “droplet için bir daha sorma”." />
+<Screenshot name="move-strip" alt="Bu Mac'in bir terminalinde ssh droplet bloğunun altında: “droplet: her yerden aç”, root@203.0.113.20 adresi ve ~/.ssh/id_ed25519 anahtarıyla; “Anahtarımı kaydet”, “tTerm'i içeri al”, “Şimdi değil”, “droplet için bir daha sorma”; altlarında, “Anahtarımı kaydet” anahtarı şifrelenmiş olarak kasana koyar; anahtar orada herhangi bir tarayıcıda kasa parolanla açılır." />
 
 - **Anahtarımı kaydet** – anahtar taşınabiliyorsa **Anahtarım** ile aynı.
 - **tTerm'i içeri al** – **tTerm'in giriş izni** ile aynı.

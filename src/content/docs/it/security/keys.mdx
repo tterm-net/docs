@@ -1,16 +1,16 @@
 ---
 title: La cassaforte delle tue chiavi SSH
-description: Le tue chiavi SSH, cifrate sui tuoi dispositivi prima di arrivare a tTerm – come si crea la cassaforte, come si apre in un altro browser e quando si blocca di nuovo.
+description: Le tue chiavi SSH, cifrate sui tuoi dispositivi prima di arrivare a tTerm – come si crea la cassaforte, la sua password, come aprirla in un altro browser, dove le tue chiavi sono aperte e quando si blocca di nuovo.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import Screenshot from '../../../../components/Screenshot.astro';
 
-La cassaforte custodisce le tue chiavi SSH, quelle con cui raggiungi i tuoi server. Una chiave viene cifrata sul tuo dispositivo prima di lasciarlo, e solo i tuoi dispositivi aprono la cassaforte, come quando li sblocchi. tTerm conserva le chiavi cifrate, con la parte pubblica e l'impronta di ciascuna: non può aprire la cassaforte né leggere una chiave. La cassaforte si trova in **Impostazioni** → **Chiavi**.
+La cassaforte custodisce le tue chiavi SSH, quelle con cui raggiungi i tuoi server. Una chiave viene cifrata sul tuo dispositivo prima di lasciarlo, e solo tu puoi aprire la cassaforte: con la sua password in qualsiasi browser, e senza password sui dispositivi in cui hai salvato le tue chiavi. tTerm conserva le chiavi cifrate, con la parte pubblica e l'impronta di ciascuna: non può aprire la cassaforte né leggere una chiave. La cassaforte si trova in **Impostazioni** → **Chiavi**.
 
 ## Come un server si apre con la tua chiave
 
-Un server si apre con la tua chiave quando lo sposti da [tTerm per Mac](../../local/mac/) con **La mia chiave**, oppure con **Salva la mia chiave** sulla barra dopo `ssh`: vedi [Sposta nel cloud](../../local/move-to-cloud/). Quando apri un terminale su quel server, tTerm chiede a un tuo dispositivo su cui la cassaforte è aperta, un browser o tTerm per Mac, di firmare l'accesso. Il dispositivo firma con quella chiave un accesso SSH e nient'altro, e la chiave non lo lascia mai. Prima di usare la firma, tTerm la verifica con la parte pubblica della chiave.
+Un server si apre con la tua chiave quando lo sposti da [tTerm per Mac](../../local/mac/) con **La mia chiave**, oppure con **Salva la mia chiave** sulla barra dopo `ssh`: vedi [Sposta nel cloud](../../local/move-to-cloud/). Quando apri un terminale su quel server, l'accesso lo firma il dispositivo da cui lo apri, con le tue chiavi aperte lì: il tuo browser, oppure tTerm per Mac per i suoi terminali. tTerm non chiede la firma a nessun altro dispositivo, nemmeno al tuo Mac. Il dispositivo firma con quella chiave un accesso SSH e nient'altro, e la chiave non lo lascia mai. Prima di usare la firma, tTerm la verifica con la parte pubblica della chiave.
 
 ## Creare la cassaforte
 
@@ -19,47 +19,89 @@ Un server si apre con la tua chiave quando lo sposti da [tTerm per Mac](../../lo
 
 In **Impostazioni** → **Chiavi**, premi **Aggiungi una chiave da un file** e scegli la tua chiave privata, il file senza `.pub`. Se la chiave ha una passphrase, digitala e premi **Apri la chiave**: la passphrase apre la chiave in questo browser e non viene inviata da nessuna parte. Dai un nome alla chiave e premi **Avanti**.
 
-Nella finestra **Salva la chiave nella tua cassaforte**, premi **Crea la cassaforte con Touch ID** su un Mac, **Crea la cassaforte con Windows Hello** su Windows, oppure **Crea la cassaforte con una passkey** altrove. Un browser che non può salvare una passkey per la cassaforte mostra **Crea la cassaforte**: lì la cassaforte si apre con il codice di recupero o con l'approvazione del tuo Mac, una sessione alla volta.
+Nella finestra **Scegli la password della cassaforte**, digita due volte la password e premi **Crea la cassaforte**. Poi, in un browser che può salvare le chiavi con una passkey, tTerm chiede se salvarle qui, come in [Aprirla in un altro browser](#aprirla-in-un-altro-browser).
 
 	</TabItem>
 	<TabItem label="In tTerm per Mac">
 
-La cassaforte viene creata la prima volta che salvi una chiave: con Sposta nel cloud, oppure con **Salva la mia chiave** sulla barra dopo `ssh`. Nella finestra **Salva la chiave nella tua cassaforte**, premi **Crea la cassaforte con Touch ID** e conferma con Touch ID o con la password del tuo Mac.
+La cassaforte viene creata la prima volta che salvi una chiave: con Sposta nel cloud, oppure con **Salva la mia chiave** sulla barra dopo `ssh`. Nella finestra **Scegli la password della cassaforte**, digita due volte la password e premi **Crea la cassaforte**: per questo non serve Touch ID. Da quel momento questo Mac può aprire la cassaforte da solo, con Touch ID o con la password del tuo Mac.
 
 	</TabItem>
 </Tabs>
 
-### Il codice di recupero
+### La password della cassaforte
 
-Subito dopo, tTerm mostra il tuo codice di recupero: 24 lettere e cifre, in sei gruppi da quattro. Lo vedi una volta sola. Usa **Copia** o **Salva come file**, e conservalo in un posto sicuro, lontano dai dispositivi che aprono la tua cassaforte. Se un giorno li perdessi tutti, questo codice sarebbe l'unico modo per riavere le tue chiavi: tTerm non può recuperarle per te. **Fine** si attiva quando confermi con la spunta di averlo conservato.
+La scegli tu quando crei la cassaforte: almeno 12 caratteri, e la cosa più semplice è una frase di qualche parola. Finché è più corta, la finestra dice quanti caratteri mancano. Vanno bene anche le lettere accentate o non latine, ma un computer all'estero potrebbe non avere il layout di tastiera per digitarle.
+
+<Screenshot name="vault-password" alt="«Scegli la password della cassaforte»: id_ed25519 viene cifrata in questo browser e va nella tua cassaforte, e con questa password si apre in qualsiasi browser. «Password» e «Conferma» digitate e visualizzate come puntini, con «Mostra», l'indicazione «Almeno 12 caratteri» e «Coincide»; tTerm non conosce questa password e non può recuperarla; «Annulla» e «Crea la cassaforte»." />
+
+La password non viene inviata da nessuna parte: il browser o il Mac la trasforma in una chiave, e tTerm consegna la chiave cifrata della tua cassaforte solo a un dispositivo che dimostra di conoscere la password. tTerm non conosce la password e non può recuperarla: salvala nel tuo gestore di password.
+
+Se la password è sbagliata, la finestra te lo dice, insieme a quanti tentativi restano. Dopo dieci password errate in un'ora scatta una pausa di un'ora; dopo trenta in un giorno, la pausa dura fino alla fine di quel giorno. La finestra dice quando riprovare.
+
+**Hai dimenticato la password?** Impostane una nuova dove la tua cassaforte si apre senza password: sul tuo Mac, in tTerm per Mac, **Impostazioni** → **Chiavi** → **Cambia la password**, con Touch ID; oppure in un browser in cui le tue chiavi sono salvate, anche lì in **Impostazioni** → **Chiavi**. Se un dispositivo del genere non c'è, le chiavi nella tua cassaforte non si possono più aprire, nemmeno da tTerm. Le chiavi stesse, di solito, restano sul tuo Mac, in `~/.ssh`.
+
+<Screenshot name="vault-forgot" alt="«Hai dimenticato la password della cassaforte?»: tTerm non può ricordartela, ma se ne può impostare una nuova dove la cassaforte si apre senza password, sul tuo Mac in tTerm per Mac (Impostazioni › Chiavi › «Cambia la password», con Touch ID) o in un browser in cui le tue chiavi sono salvate; senza un dispositivo del genere le chiavi non si possono più aprire; «Ho capito»." />
 
 ## Aprirla in un altro browser
 
-Un browser che la tua cassaforte non conosce ancora la apre nella finestra **Apri le tue chiavi in questo browser**. La finestra compare quando premi **Apri** in **Impostazioni** → **Chiavi**, o quando apri un server che si apre con la tua chiave.
+In un browser in cui le tue chiavi non sono salvate, **Impostazioni** → **Chiavi** dice **La tua cassaforte è chiusa** e ha un campo **Password della cassaforte**. Un server che si apre con la tua chiave mostra lo stesso campo nel suo riquadro, prima che venga creato il suo terminale: vedi [Un server che aspetta la tua cassaforte](#un-server-che-aspetta-la-tua-cassaforte).
 
-- **Approvalo in tTerm per Mac.** Se la tua cassaforte si apre in tTerm per Mac, la finestra propone quel Mac: premi **Chiedigli di aprire qui la tua cassaforte**. Sul Mac, una finestra dice quale browser lo chiede, quando ha effettuato l'accesso e da quale indirizzo. Entrambi gli schermi mostrano le stesse sei cifre: premi **Consenti con Touch ID** solo se coincidono. **Non sono io** fa terminare l'accesso di quel browser, e **Impostazioni** → **Dispositivi** mostra cos'altro controllare. Una richiesta dura cinque minuti.
-- **Usa il codice di recupero.** Digitalo in **Codice di recupero** e premi **Apri**.
+<Screenshot name="vault-open" alt="«Impostazioni» → «Chiavi» in un browser in cui la cassaforte non è ancora stata aperta: «La tua cassaforte è chiusa», le chiavi si aprono solo con la password della cassaforte, direttamente in questo browser; il campo «Password della cassaforte» con la password digitata e visualizzata come puntini, «Mostra», «Apri le chiavi» e sotto «Hai dimenticato la password?». Più in basso: la riga «Password della cassaforte», le due chiavi e dove la cassaforte si apre senza password." />
 
-In un browser che può salvare una passkey, tTerm poi chiede se salvarne una, così la prossima volta la cassaforte si apre come quando sblocchi questo computer: **Salva con Touch ID** (o con Windows Hello, o con una passkey), oppure **Solo questa volta** su un computer che non è tuo.
+- **Digita la password della cassaforte** e premi **Apri le chiavi**. Le chiavi si aprono direttamente in questo browser.
+- **Approvalo in tTerm per Mac**, comodo su un computer che non è tuo: lì non serve digitare la password. Se la tua cassaforte si apre in tTerm per Mac, sotto il campo c'è **approva su MacBook-Pro**, con il nome di quel Mac: premilo, e la finestra **Apri le tue chiavi in questo browser** invia subito la richiesta al Mac. Sul Mac, una finestra dice quale browser lo chiede, quando ha effettuato l'accesso e da quale indirizzo. Entrambi gli schermi mostrano le stesse sei cifre: premi **Consenti con Touch ID** solo se coincidono. **Non sono io** fa terminare l'accesso di quel browser, e **Impostazioni** → **Dispositivi** mostra cos'altro controllare. Una richiesta dura cinque minuti. **Digita invece la password** ti riporta al campo.
 
-Una cassaforte creata in un browser si apre in tTerm per Mac una prima volta con il codice di recupero: **Apri con il codice di recupero** in **Impostazioni** → **Chiavi**. Dopo, lì la aprono Touch ID o la password del tuo Mac.
+In un browser che può salvare le chiavi con una passkey, tTerm poi chiede se salvarle qui, così la prossima volta lì la password non ti viene chiesta: **Salva con Touch ID** (o con Windows Hello, o con una passkey), oppure **Solo questa volta** su un computer che non è tuo: in quel caso le chiavi si chiudono quando chiudi la scheda, oppure da sole quando non le usi per un po'.
+
+<Screenshot name="vault-keep" alt="Dopo la password della cassaforte: «Le tue chiavi sono aperte in questo browser». Salvarle qui con Touch ID, perché la prossima volta basti Touch ID, o, sul computer di un altro, scegliere «Solo questa volta»; i pulsanti «Solo questa volta» e «Salva con Touch ID»." />
+
+Una cassaforte creata prima di tTerm Web 0.1.26 che non ha ancora una password si apre come prima: **Apri** in **Impostazioni** → **Chiavi** fa comparire **Apri le tue chiavi in questo browser**, con **Chiedigli di aprire qui la tua cassaforte** per l'approvazione del tuo Mac, e **Codice di recupero** con **Apri**.
+
+In tTerm per Mac, un Mac che non può ancora aprire la tua cassaforte da solo – un secondo Mac, una cassaforte creata in un browser, oppure dopo un'uscita dall'account e un nuovo accesso – dice **Questo Mac non può ancora aprire la tua cassaforte da solo** e la apre una volta con la password della cassaforte, senza Touch ID. Dopo, lì la aprono Touch ID o la password del tuo Mac.
+
+## Dove le tue chiavi sono aperte
+
+I tuoi computer, i server con la tua chiave e quelli tramite il tuo Mac, se hai una cassaforte, si aprono solo su un dispositivo in cui hai aperto le chiavi tu stesso: con la password della cassaforte, con Touch ID dove il browser le ha salvate, oppure con l'approvazione in tTerm per Mac. I tuoi computer sono le macchine con l'agente di tTerm, su macOS o Linux, e ogni Mac con tTerm per Mac. Per queste macchine non basta accedere a tTerm con il codice dall'email, quindi chi è entrato nella tua email non ne ottiene nulla, nemmeno mentre il tuo Mac è acceso con la cassaforte aperta. Un server con la riga di tTerm, collegato con un solo comando o spostato con **Pass di tTerm**, non è tra queste: per aprirlo basta l'accesso. Senza una cassaforte, o con una che non ha né una password né una chiave, in questo modo non si chiude nulla.
+
+Su un dispositivo in cui le tue chiavi non sono aperte, una macchina del genere ha un lucchetto al posto del suo **+**, i suoi terminali e il suo log sono in grigio, ciascuno con un lucchetto, e le loro schede iniziano con un lucchetto. Di quella macchina non arriva nulla a quel dispositivo: né quello che mostrano i suoi terminali, né i suoi comandi nella ricerca o nella cronologia della riga di input, né il suo log. Fai clic sul lucchetto, su un terminale o sul log, e un riquadro nella sua scheda dice perché è chiuso e apre le tue chiavi proprio lì, nel modo in cui le apre questo dispositivo: il campo **Password della cassaforte**, **Apri con Touch ID** dove il browser ha salvato le tue chiavi, oppure **approva su MacBook-Pro**. Poi:
+
+<Screenshot name="closed-sidebar" alt="La barra laterale dove le chiavi di Anna non sono aperte: MacBook-Pro, web-01 e staging hanno un lucchetto al posto del +, e i loro terminali shop e deploy e i loro log sono in grigio, ciascuno con un lucchetto; db-1 in Client X è come sempre. Il puntatore è sul lucchetto di web-01: «Le chiavi non sono aperte su questo dispositivo. Aprile»." />
+
+- il lucchetto: al posto del riquadro si apre un nuovo terminale su quella macchina;
+- un terminale già in esecuzione: compare da dove si trova adesso, e non se ne crea uno nuovo;
+- il log: si apre.
+
+<Screenshot name="closed-terminal" alt="La scheda «P/web-01 · deploy», con un lucchetto: «Questo terminale è chiuso su questo dispositivo»; «deploy» su web-01 è in esecuzione, ma qui non si vede finché qui le chiavi non sono aperte; poi compare da dove si trova adesso. «Password della cassaforte», «Apri le chiavi», «oppure approva su MacBook-Pro · Hai dimenticato la password?»." />
+
+Nella pagina **Macchine**, una macchina del genere dice **chiuso su questo dispositivo**, e nella pagina del progetto lo dice ognuno dei suoi terminali, al posto della sua cartella. In entrambe, il pulsante per un nuovo terminale ha il lucchetto, e i terminali sono in grigio. **Rimuovi** e **Sposta in un altro progetto** aprono prima le tue chiavi, direttamente nella loro finestra: il pulsante rosso **Rimuovi web-01** e quello che sposta la macchina compaiono appena le chiavi sono aperte.
+
+<Screenshot name="closed-machines" alt="La pagina «Macchine» dove le chiavi non sono aperte: MacBook-Pro, web-01 e staging dicono «chiuso su questo dispositivo», il loro «Apri un terminale» ha un lucchetto, e i loro terminali «P/MacBook-Pro · shop» e «P/web-01 · deploy» sono in grigio, ciascuno con un lucchetto; db-1 in Client X è come sempre. Ogni macchina ha «Rimuovi»." />
+
+Comunque tu le abbia aperte, a quel punto le tue chiavi aprono su questo dispositivo tutte le macchine del genere, e viene creato solo il terminale che hai chiesto. Un lucchetto chiede un terminale alla volta: un altro lucchetto prende il posto del suo riquadro, e un riquadro rimasto dietro un'altra scheda si chiude, senza terminale, quando le chiavi si aprono. Quando qui le tue chiavi si chiudono, come in [Quando si blocca di nuovo](#quando-si-blocca-di-nuovo), i lucchetti tornano subito, e le schede di quei terminali diventano i loro riquadri; i terminali stessi continuano a girare nel cloud.
+
+Quando cambi la password della cassaforte o ne togli una chiave, gli altri tuoi dispositivi riaprono le chiavi: da soli, con una chiave della cassaforte, oppure con la nuova password se nella cassaforte non c'è nessuna chiave. Il dispositivo su cui hai fatto la modifica resta com'era.
+
+In tTerm per Mac, i terminali del Mac stesso e i server tramite il Mac si aprono senza le tue chiavi, come prima; gli altri tuoi computer e i server con la tua chiave si aprono lì quando la cassaforte è aperta, con Touch ID o con la password del tuo Mac. Il tuo Mac accede a un server con la tua chiave solo per sé: un browser apre un server del genere quando apre anche lui le tue chiavi.
 
 ## Quando si blocca di nuovo
 
 - **In un browser** – dopo 8 ore di inattività, quando chiudi o ricarichi tTerm Web, quando esci dall'account e quando premi **Blocca** in **Impostazioni** → **Chiavi**.
-- **In tTerm per Mac** – resta aperta finché tTerm è in esecuzione, fino a quando premi **Blocca** o esci dall'account. Uscendo dall'account, il Mac perde anche la possibilità di aprirla da solo: dopo un nuovo accesso, apre la cassaforte una volta con il tuo codice di recupero.
+- **In tTerm per Mac** – resta aperta finché tTerm è in esecuzione, fino a quando premi **Blocca** o esci dall'account. Uscendo dall'account, il Mac perde anche la possibilità di aprirla da solo: dopo un nuovo accesso, la apre una volta con la password della cassaforte.
 
 ## Impostazioni → Chiavi
 
-In cima, la pagina dice se la cassaforte è aperta qui, come è stata aperta e quando si bloccherà di nuovo. Ogni chiave ha una riga: il nome, il tipo e l'impronta abbreviata; i server che **Apre**, oppure **Non apre ancora nessun server**; quando è stata salvata da un Mac o aggiunta da un file; e quando è stata usata l'ultima volta, oppure **non ancora usata**.
+In cima, la sezione dice se la cassaforte è aperta qui, come è stata aperta e quando si bloccherà di nuovo. Sotto, **Password della cassaforte** dice quando è stata impostata la password, con **Cambia la password** accanto. Ogni chiave ha una riga: il nome, il tipo e l'impronta abbreviata; i server che **Apre**, oppure **Non apre ancora nessun server**; quando è stata salvata da un Mac o aggiunta da un file; e quando è stata usata l'ultima volta, oppure **non ancora usata**.
 
-<Screenshot name="keys" alt="«Impostazioni» → «Chiavi»: la cassaforte «Aperta in questo browser» con Touch ID, e accanto il pulsante «Blocca»; due chiavi con il tipo, l'impronta abbreviata e da dove vengono; «Aggiungi una chiave da un file», «Crea un nuovo codice di recupero» e dove si apre la cassaforte." />
+<Screenshot name="keys" alt="«Impostazioni» → «Chiavi»: la cassaforte «Aperta in questo browser» con Touch ID, e accanto «Blocca»; «Password della cassaforte», che apre le chiavi in qualsiasi browser, impostata oggi, con «Cambia la password»; due chiavi con il tipo e l'impronta abbreviata; «Aggiungi una chiave da un file»; e dove la cassaforte si apre senza password: Chrome on macOS." />
 
-- **Rimuovi** toglie la chiave dalla tua cassaforte, dopo una conferma, e tTerm elimina la sua copia cifrata. I server che si aprono con questa chiave restano in tTerm, ma non si aprono più. La chiave in sé resta dov'era: sul tuo Mac o nel suo file.
-- **Crea un nuovo codice di recupero** mostra un nuovo codice una volta sola, e quello che avevi smette di funzionare. Le tue chiavi e i tuoi dispositivi restano come sono. Chiede Touch ID o la passkey di questo browser; un browser senza una passkey della tua cassaforte chiede il codice che hai ora. L'hai perso? Crea quello nuovo in tTerm per Mac.
+- **Cambia la password** imposta una nuova password, che sostituisce subito quella vecchia: la vecchia non apre più le tue chiavi. Il tuo Mac e i browser in cui le tue chiavi sono salvate continuano ad aprirle come prima. In un browser in cui le chiavi sono salvate, chiede Touch ID (o Windows Hello, o la tua passkey); in un browser in cui non lo sono, la password attuale; in tTerm per Mac, Touch ID.
+- **Rimuovi** toglie la chiave dalla tua cassaforte, dopo una conferma, e tTerm elimina la sua copia cifrata. I server che si aprono con questa chiave restano in tTerm, ma non si aprono più. La chiave in sé resta dov'era: sul tuo Mac o nel suo file. Come ogni modifica della tua cassaforte, funziona solo dove le tue chiavi sono aperte; altrove tTerm te lo dice.
 - **Aggiungi una chiave da un file** c'è nel browser. In tTerm per Mac, le chiavi arrivano da Sposta nel cloud e dalla barra dopo `ssh`.
 
-Sotto le chiavi, la pagina dice dove si apre la cassaforte: ogni Mac e ogni browser che può aprirla da solo, oppure **Si apre solo con il tuo codice di recupero.**
+Sotto le chiavi, la sezione dice dove la cassaforte si apre senza password, cioè ogni Mac e ogni browser in cui le tue chiavi sono salvate: **Senza password la tua cassaforte si apre su: MacBook-Pro · tTerm per Mac e Chrome on macOS. In qualsiasi altro browser, con la password della cassaforte.** Se non sono salvate da nessuna parte, **La tua cassaforte si apre solo con la sua password: nessun dispositivo l'ha ancora salvata.**
+
+Una cassaforte creata prima di tTerm Web 0.1.26 che non ha ancora una password mostra in cima **Imposta la password della cassaforte**: **Imposta la password** ne crea una, e da quel momento il codice di recupero smette di funzionare. In un browser in cui le tue chiavi non sono salvate, per impostarla serve il tuo codice di recupero.
 
 ### Le chiavi che conserva
 
@@ -71,10 +113,16 @@ Alcuni browser non sanno firmare con chiavi Ed25519. In quei browser lo dice **I
 
 ## Un server che aspetta la tua cassaforte
 
-Finché nessuno dei tuoi dispositivi ha la cassaforte aperta, un terminale su un server con la tua chiave aspetta, per tutto il tempo necessario, e dice **web-01 si apre con la tua chiave**.
+Su un dispositivo in cui le tue chiavi non sono aperte, un server con la tua chiave non aspetta più in un terminale: il suo lucchetto, o il pulsante per un nuovo terminale, apre innanzitutto il suo riquadro, prima che venga creato il terminale. Il riquadro dice **web-01 si apre con la tua chiave**, e le chiavi si aprono direttamente nel riquadro:
 
-- In un browser che ha salvato una passkey, premi **Apri con Touch ID**, **Apri con Windows Hello** o **Apri con una passkey**.
-- In un altro browser, premi **Approva su** seguito dal nome del tuo Mac, oppure **Usa il codice di recupero**.
-- In tTerm per Mac, premi **Apri con Touch ID**; su un Mac che non può ancora aprire la tua cassaforte da solo, **Usa il codice di recupero**.
+- In un browser in cui le tue chiavi non sono salvate, il campo **Password della cassaforte** è proprio lì: digita la password e premi **Apri le chiavi e il terminale**. Sotto ci sono **approva su MacBook-Pro**, con il nome del tuo Mac, e **Hai dimenticato la password?**
+- In un browser in cui le tue chiavi sono salvate, premi **Apri con Touch ID**, **Apri con Windows Hello** o **Apri con una passkey**. Il link sotto, **oppure digita la password della cassaforte**, fa comparire invece il campo.
+- In tTerm per Mac, premi **Apri con Touch ID**; su un Mac che non può ancora aprire la tua cassaforte da solo, digita lì una volta la password della cassaforte.
 
-Appena la cassaforte è aperta, il terminale dice **Accesso a web-01 con la tua chiave…** e si apre da solo.
+<Screenshot name="closed-new" alt="La scheda «P/web-01 · nuovo terminale», con un lucchetto, e il suo riquadro: «web-01 si apre con la tua chiave»; le chiavi non sono ancora aperte su questo dispositivo: aprile qui e si apre subito un nuovo terminale su web-01. Il campo «Password della cassaforte» con la password digitata e visualizzata come puntini, «Mostra», «Apri le chiavi e il terminale», «oppure approva su MacBook-Pro · Hai dimenticato la password?»; sotto, quali macchine si aprono solo dove le chiavi sono aperte." />
+
+Con una cassaforte creata prima di tTerm Web 0.1.26 che non ha ancora una password, il riquadro ha, come prima, **Approva su MacBook-Pro**, con il nome del tuo Mac, oppure **Usa il codice di recupero**.
+
+Poi il riquadro dice per un attimo **Apertura delle chiavi su questo dispositivo…**, e al suo posto si apre il terminale.
+
+Un terminale resta invece in attesa dove le tue chiavi sono aperte, ma questo dispositivo non può accedere con la chiave del server: magari la chiave è stata tolta dalla tua cassaforte, oppure non si apre in questo browser. Il terminale dice perché, per esempio **La tua cassaforte è aperta qui, ma id_ed25519 non si apre in questo browser.**, e aspetta per tutto il tempo necessario. Appena questo dispositivo può firmare, il terminale dice **Accesso a web-01 con la tua chiave…** e si apre da solo.

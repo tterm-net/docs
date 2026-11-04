@@ -12,7 +12,11 @@ Chaque commande exécutée sur une machine via tTerm devient une ligne dans le j
 
 Dans la barre latérale, sous les **Notes** d’un projet, le premier dossier est **Journaux**, marqué **par tTerm**. Il contient un journal pour chaque machine du projet, avec le nombre de commandes qui y ont été lancées aujourd’hui : **12 aujourd’hui**. Cliquez sur une machine, et son journal s’ouvre dans un onglet, **web-01 : journal**.
 
-<Screenshot name="log-open" alt="La barre latérale : sous « Notes », dans Personal et dans Client X, le dossier « Journaux » (« par tTerm ») avec le journal de chaque machine et le décompte du jour : web-01, « 27 aujourd’hui » ; db-1, « 7 aujourd’hui »." />
+Sur un appareil où vos clés ne sont pas ouvertes, les journaux de vos ordinateurs et des serveurs avec votre clé ou via votre Mac sont grisés dans le dossier, avec un cadenas et sans décompte. Cliquez sur l’un d’eux, et une carte dans son onglet ouvre vos clés sur place, puis le journal : voir [Où vos clés sont ouvertes](../../security/keys/#où-vos-clés-sont-ouvertes).
+
+<Screenshot name="log-open" alt="La barre latérale : sous « Notes », dans Personal et dans Client X, le dossier « Journaux » (« par tTerm ») avec le journal de chaque machine et le décompte du jour : web-01, « 27 aujourd’hui » ; db-1, « 9 aujourd’hui »." />
+
+<Screenshot name="closed-log" alt="L’onglet « P/web-01 : journal », avec un cadenas : « Le journal de la machine web-01 est fermé sur cet appareil ». Le journal contient les mêmes commandes et la même sortie que le terminal, il est donc fermé de la même façon ; ouvrez les clés, et le journal s’ouvre. « Mot de passe du coffre » et « Ouvrir les clés »." />
 
 Le journal affiche un jour à la fois et s’ouvre sur aujourd’hui. Les flèches, **Jour précédent** et **Jour suivant**, mènent au jour le plus proche qui a des lignes. **Aujourd’hui** vous y ramène, et **Choisir un jour** ouvre un calendrier. Tant que le journal affiche aujourd’hui, les nouvelles lignes arrivent à mesure que les commandes se terminent.
 
@@ -20,7 +24,7 @@ En haut du journal, **⋯** propose **Copier en Markdown** : le jour affiché, 
 
 ## Ce que dit une ligne
 
-Chaque commande tient sur une ligne : l’heure, qui l’a lancée, la commande, raccourcie si elle est longue, et le nombre de notes en dessous. À droite figurent la durée, le répertoire, la branche git et le terminal. Une commande qui a échoué porte une croix et son code de retour, **code 1**. Entre les commandes, le journal indique aussi quand un terminal a été ouvert et quand il a pris fin – et pourquoi, s’il a pris fin de lui-même : **Terminal 1 a pris fin : tTerm Web est passé à la version 0.1.24.** Il indique également le passage de la machine dans un autre projet : **Vous avez déplacé cette machine de Personal vers Client X**.
+Chaque commande tient sur une ligne : l’heure, qui l’a lancée, la commande, raccourcie si elle est longue, et le nombre de notes en dessous. À droite figurent la durée, le répertoire, la branche git et le terminal. Une commande qui a échoué porte une croix et son code de retour, **code 1**. Entre les commandes, le journal indique aussi quand un terminal a été ouvert et quand il a pris fin – et pourquoi, s’il a pris fin de lui-même : **Terminal 1 a pris fin : tTerm Web est passé à la version 0.1.28.** Il indique également le passage de la machine dans un autre projet : **Vous avez déplacé cette machine de Personal vers Client X**.
 
 Un clic sur une ligne l’ouvre : la commande en entier, sa sortie et les notes en dessous. Un autre clic la referme. Pour une longue sortie, seules les premières lignes s’affichent : **Tout voir (27 lignes)** affiche le reste, et **Copier la sortie** la copie.
 
@@ -69,6 +73,8 @@ Un mot de passe ou un jeton qui s’est glissé dans une commande ou une note pe
 <Screenshot name="log-redact" alt="« Biffer cette commande ? » pour export PGPASSWORD='…' sur db-1 (« aujourd’hui à 18:30 », backups) : ce qui disparaît et ce que le journal garde, « Pourquoi » : un mot de passe, puis « Biffer » et « Annuler »." />
 
 Les mots disparaissent définitivement du journal, des blocs du terminal, de la recherche et de l’historique de la ligne de saisie. Pour une commande, sa sortie disparaît aussi, tout comme cette même commande partout où elle a été lancée ailleurs dans le projet. À leur place, le journal garde qui les a biffés, quand et pourquoi : **Texte biffé par vous · 09:23 · un mot de passe**. Les sauvegardes nocturnes de la base de données les contiennent encore jusqu’à leur suppression, sous deux semaines.
+
+Biffer sur un appareil où vos clés ne sont pas ouvertes laisse tels quels les journaux de vos ordinateurs et des serveurs avec votre clé ou via votre Mac : pour ceux-là, biffez la commande depuis un appareil où vos clés sont ouvertes.
 
 ## Durée de conservation
 

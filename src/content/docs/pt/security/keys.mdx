@@ -1,16 +1,16 @@
 ---
 title: Seu cofre de chaves SSH
-description: Suas próprias chaves SSH, criptografadas nos seus dispositivos antes de chegarem ao tTerm – como o cofre é criado, aberto em outro navegador e bloqueado de novo.
+description: Suas próprias chaves SSH, criptografadas nos seus dispositivos antes de chegarem ao tTerm – como o cofre é criado, a senha dele, como abri-lo em outro navegador, onde as chaves estão abertas e quando ele é bloqueado de novo.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import Screenshot from '../../../../components/Screenshot.astro';
 
-O cofre guarda as suas próprias chaves SSH, para os servidores que você acessa com elas. Uma chave é criptografada no seu dispositivo antes de sair dele, e só os seus dispositivos abrem o cofre, do jeito que você os desbloqueia. O tTerm guarda as chaves criptografadas, com a metade pública e a impressão digital de cada uma: ele não consegue abrir o cofre nem ler uma chave. O cofre fica em **Configurações** → **Chaves**.
+O cofre guarda as suas próprias chaves SSH, para os servidores que você acessa com elas. Uma chave é criptografada no seu dispositivo antes de sair dele, e só você abre o cofre: com a senha do cofre, em qualquer navegador, e sem ela, nos dispositivos em que você guardou as suas chaves. O tTerm guarda as chaves criptografadas, com a metade pública e a impressão digital de cada uma: ele não consegue abrir o cofre nem ler uma chave. O cofre fica em **Configurações** → **Chaves**.
 
 ## Como um servidor abre com a sua chave
 
-Um servidor abre com a sua chave quando você o migra do [tTerm para Mac](../../local/mac/) com **Minha chave**, ou com **Salvar minha chave** na faixa depois do `ssh`: veja [Migrar para a nuvem](../../local/move-to-cloud/). Quando você abre um terminal nele, o tTerm pede a um dispositivo seu em que o cofre está aberto, um navegador ou o tTerm para Mac, que assine o login. O dispositivo assina com essa chave um login SSH e nada mais, e a chave nunca sai dele. O tTerm confere a assinatura com a metade pública da chave antes de usá-la.
+Um servidor abre com a sua chave quando você o migra do [tTerm para Mac](../../local/mac/) com **Minha chave**, ou com **Salvar minha chave** na faixa depois do `ssh`: veja [Migrar para a nuvem](../../local/move-to-cloud/). Quando você abre um terminal nele, o login é assinado pelo dispositivo em que você o abriu, com as chaves abertas ali: o seu navegador, ou o tTerm para Mac, para os terminais dele. Nenhum outro dispositivo é consultado, nem o seu Mac. O dispositivo assina com essa chave um login SSH e nada mais, e a chave nunca sai dele. O tTerm confere a assinatura com a metade pública da chave antes de usá-la.
 
 ## Criar o seu cofre
 
@@ -19,47 +19,89 @@ Um servidor abre com a sua chave quando você o migra do [tTerm para Mac](../../
 
 Em **Configurações** → **Chaves**, clique em **Adicionar uma chave de um arquivo** e escolha a sua chave privada, o arquivo sem `.pub`. Se a chave tiver frase secreta, digite-a e clique em **Abrir a chave**: a frase secreta abre a chave neste navegador e não vai para lugar nenhum. Dê um nome à chave e clique em **Continuar**.
 
-Em **Salvar a chave no seu cofre**, clique em **Criar meu cofre com Touch ID** num Mac, em **Criar meu cofre com Windows Hello** no Windows ou em **Criar meu cofre com uma chave de acesso** em outros sistemas. Um navegador que não consegue guardar o cofre com uma chave de acesso mostra **Criar meu cofre**: nele, o cofre abre com o código de recuperação ou com a aprovação do seu Mac, uma sessão por vez.
+Em **Criar a senha do cofre**, digite a senha duas vezes e clique em **Criar o cofre**. Depois, num navegador que consegue guardar as chaves com uma chave de acesso, o tTerm pergunta se deve guardá-las aqui, como em [Abrir em outro navegador](#abrir-em-outro-navegador).
 
 	</TabItem>
 	<TabItem label="No tTerm para Mac">
 
-O cofre é criado na primeira vez que você salva uma chave: com Migrar para a nuvem ou com **Salvar minha chave** na faixa depois do `ssh`. Em **Salvar a chave no seu cofre**, clique em **Criar meu cofre com Touch ID** e confirme com o Touch ID ou a senha do seu Mac.
+O cofre é criado na primeira vez que você salva uma chave: com Migrar para a nuvem ou com **Salvar minha chave** na faixa depois do `ssh`. Em **Criar a senha do cofre**, digite a senha duas vezes e clique em **Criar o cofre**: não é preciso Touch ID para isso. A partir daí, este Mac consegue abrir o cofre sozinho, com o Touch ID ou a senha do seu Mac.
 
 	</TabItem>
 </Tabs>
 
-### O código de recuperação
+### A senha do cofre
 
-Logo depois, o tTerm mostra o seu código de recuperação: 24 letras e dígitos em seis grupos de quatro. Ele aparece só uma vez. Use **Copiar** ou **Salvar como arquivo** e guarde o código num lugar seguro, longe dos dispositivos que abrem o seu cofre. Se um dia você perder todos eles, este código é a única forma de voltar a ter acesso às suas chaves: o tTerm não tem como recuperá-las para você. **Concluído** funciona depois que você marca que guardou o código.
+Você cria a senha junto com o cofre: pelo menos 12 caracteres, e o mais fácil é uma frase de algumas palavras. Enquanto ela for mais curta, a janela diz quantos caracteres faltam. Acentos, ç e letras não latinas também funcionam, mas um computador no exterior pode não ter layout de teclado para digitá-los.
+
+<Screenshot name="vault-password" alt="“Criar a senha do cofre”: id_ed25519 vai para o seu cofre, já criptografada neste navegador, e abre com esta senha em qualquer navegador. Os campos “Senha” e “Repita a senha” preenchidos com pontos, com “Mostrar”, a dica “Pelo menos 12 caracteres” e “As senhas conferem”; o tTerm não conhece esta senha e não tem como recuperá-la; “Cancelar” e “Criar o cofre”." />
+
+A senha em si não vai para lugar nenhum: o seu navegador ou o seu Mac a transforma numa chave, e o tTerm só entrega a chave criptografada do seu cofre a um dispositivo que mostre que conhece a senha. O tTerm não conhece a senha e não tem como recuperá-la: guarde-a no seu gerenciador de senhas.
+
+Se a senha estiver errada, a janela avisa e diz quantas tentativas restam. Depois de dez senhas erradas em uma hora, as tentativas ficam suspensas por uma hora; depois de trinta em um dia, até o fim desse dia. A janela diz quando tentar de novo.
+
+**Esqueceu a senha?** Defina uma nova onde o seu cofre abre sem ela: no seu Mac, no tTerm para Mac, em **Configurações** → **Chaves** → **Alterar a senha**, com o Touch ID; ou num navegador em que as suas chaves estão guardadas, também em **Configurações** → **Chaves**. Se não houver nenhum dispositivo assim, as chaves do seu cofre não podem mais ser abertas, nem pelo tTerm. As próprias chaves costumam continuar no seu Mac, em `~/.ssh`.
+
+<Screenshot name="vault-forgot" alt="“Esqueceu a senha do cofre?”: o tTerm não tem como lembrar você da senha, mas dá para definir uma nova onde o cofre abre sem ela: no seu Mac, no tTerm para Mac (Configurações › Chaves › “Alterar a senha”, com o Touch ID), ou num navegador em que as suas chaves estão guardadas; se não houver nenhum dispositivo assim, as chaves não podem mais ser abertas; “Entendi”." />
 
 ## Abrir em outro navegador
 
-Num navegador novo para o seu cofre, você o abre na janela **Abrir suas chaves neste navegador**. Essa janela aparece quando você clica em **Abrir** em **Configurações** → **Chaves** ou abre um servidor que abre com a sua chave.
+Num navegador em que as suas chaves não estão guardadas, **Configurações** → **Chaves** mostra **Seu cofre está fechado** e um campo **Senha do cofre**. Um servidor que abre com a sua chave mostra o mesmo campo no card dele, antes que o terminal seja criado: veja [Um servidor que espera pelo seu cofre](#um-servidor-que-espera-pelo-seu-cofre).
 
-- **Aprovar no tTerm para Mac.** Se houver um Mac em que o tTerm para Mac abre o seu cofre, a janela oferece esse Mac: clique em **Pedir para abrir o seu cofre aqui**. No Mac, uma janela diz qual navegador está pedindo, quando ele entrou na conta e de qual endereço. As duas telas mostram os mesmos seis dígitos: clique em **Autorizar com Touch ID** só se eles forem iguais. **Não sou eu** encerra o login desse navegador, e **Configurações** → **Dispositivos** mostra o que mais conferir. Um pedido vale por cinco minutos.
-- **Usar o código de recuperação.** Digite o código em **Código de recuperação** e clique em **Abrir**.
+<Screenshot name="vault-open" alt="“Configurações” → “Chaves” num navegador novo para o cofre: “Seu cofre está fechado”, só a senha do cofre abre as chaves, aqui mesmo, neste navegador; o campo “Senha do cofre” preenchido com pontos, “Mostrar”, “Abrir as chaves” e, abaixo, “Esqueceu a senha?”; mais abaixo, a linha “Senha do cofre”, as duas chaves e onde o cofre abre sem a senha." />
 
-Num navegador que consegue guardar uma chave de acesso, o tTerm pergunta em seguida se deve guardar uma, para que da próxima vez o cofre abra do jeito que você desbloqueia este computador: **Guardar com Touch ID** (ou com Windows Hello, ou com uma chave de acesso), ou **Só desta vez** num computador que não é seu.
+- **Digite a senha do cofre** e clique em **Abrir as chaves**. As chaves abrem aqui mesmo, neste navegador.
+- **Aprove no tTerm para Mac**, o que é prático num computador que não é seu: você não digita nenhuma senha nele. Se houver um Mac em que o tTerm para Mac abre o seu cofre, embaixo do campo aparece **aprovar em MacBook-Pro**, com o nome desse Mac: clique nele, e a janela **Abrir suas chaves neste navegador** faz o pedido ao Mac na hora. No Mac, uma janela diz qual navegador está pedindo, quando ele entrou na conta e de qual endereço. As duas telas mostram os mesmos seis dígitos: clique em **Autorizar com Touch ID** só se eles forem iguais. **Não sou eu** encerra o login desse navegador, e **Configurações** → **Dispositivos** mostra o que mais conferir. Um pedido vale por cinco minutos. **Digitar a senha em vez disso** leva você de volta ao campo.
 
-Um cofre criado num navegador abre no tTerm para Mac uma vez com o código de recuperação: **Abrir com o código de recuperação** em **Configurações** → **Chaves**. Depois disso, o Touch ID ou a senha do seu Mac o abrem lá.
+Num navegador que consegue guardar as chaves com uma chave de acesso, o tTerm pergunta em seguida se deve guardá-las aqui, para que, da próxima vez, esse navegador não peça a senha: **Guardar com Touch ID** (ou com Windows Hello, ou com uma chave de acesso), ou **Só desta vez** num computador que não é seu: aí as chaves fecham quando você fecha a aba, ou sozinhas, depois de um tempo sem uso.
+
+<Screenshot name="vault-keep" alt="Depois da senha do cofre: “Suas chaves estão abertas neste navegador”. Dá para guardá-las aqui com o Touch ID, para que da próxima vez baste o Touch ID, ou, num computador que não é seu, escolher “Só desta vez”; os botões “Só desta vez” e “Guardar com Touch ID”." />
+
+Um cofre criado antes do tTerm Web 0.1.26 que ainda não tem senha abre como antes: **Abrir**, em **Configurações** → **Chaves**, mostra a janela **Abrir suas chaves neste navegador**, com **Pedir para abrir o seu cofre aqui**, para a aprovação do seu Mac, e **Código de recuperação**, com **Abrir**.
+
+No tTerm para Mac, um Mac que ainda não abre o seu cofre sozinho – um segundo Mac, um cofre criado num navegador, ou depois que você saiu da conta e entrou de novo – mostra **Este Mac ainda não consegue abrir o seu cofre sozinho** e o abre uma vez com a senha do cofre, sem Touch ID. Depois disso, o Touch ID ou a senha do seu Mac o abrem lá.
+
+## Onde as chaves estão abertas
+
+Se você tiver um cofre, os seus computadores, os servidores com a sua chave e os que passam pelo seu Mac só abrem num dispositivo em que você mesmo abriu as chaves: com a senha do cofre, com o Touch ID onde o navegador as guarda, ou com a aprovação no tTerm para Mac. Os seus computadores são as máquinas com o agente do tTerm, no macOS ou no Linux, e cada Mac com o tTerm para Mac. Para eles, não basta entrar no tTerm com o código do seu e-mail, então quem entrou no seu e-mail não tem acesso a nada deles, nem enquanto o seu Mac estiver ligado e com o cofre aberto. Um servidor com a linha própria do tTerm, conectado com um comando ou migrado com **Passe do tTerm**, não é um deles: para ele, basta entrar na conta. Sem cofre, ou com um cofre que não tem nem senha nem chave, nada fica fechado desse jeito.
+
+Num dispositivo em que as chaves não estão abertas, uma máquina assim tem um cadeado no lugar do **+**, os terminais e o log dela ficam esmaecidos, cada um com um cadeado, e as abas deles começam com um cadeado. Nada dela chega a esse dispositivo: nem o que os terminais dela mostram, nem os comandos dela na busca ou no histórico da linha de entrada, nem o log dela. Clique no cadeado, num terminal ou no log, e um card na aba dele diz por que está fechado e abre as chaves ali mesmo, do jeito que este dispositivo as abre: o campo **Senha do cofre**, **Abrir com Touch ID** onde o navegador guarda as suas chaves, ou **aprovar em MacBook-Pro**. Depois:
+
+<Screenshot name="closed-sidebar" alt="A barra lateral onde as chaves da Anna não estão abertas: MacBook-Pro, web-01 e staging têm um cadeado no lugar do +, e os terminais dessas máquinas, shop e deploy, e os logs delas aparecem em tom apagado, cada um com um cadeado; db-1, em Client X, aparece como de costume. O mouse está sobre o cadeado de web-01: “As chaves não estão abertas neste dispositivo. Abrir”." />
+
+- o cadeado: um novo terminal nessa máquina abre no lugar do card;
+- um terminal que já está rodando: ele aparece de onde está agora, e nenhum terminal novo é criado;
+- o log: ele abre.
+
+<Screenshot name="closed-terminal" alt="A aba “P/web-01 · deploy”, com um cadeado: “Este terminal está fechado neste dispositivo”. O “deploy” em web-01 está rodando, mas não aparece aqui enquanto as chaves não estiverem abertas aqui; depois, ele aparece de onde está agora. “Senha do cofre”, “Abrir as chaves”, “ou aprovar em MacBook-Pro · Esqueceu a senha?”." />
+
+Na página **Máquinas**, uma máquina assim mostra **fechado neste dispositivo**, e na página do projeto cada terminal dela mostra o mesmo no lugar da pasta. Nas duas, o botão de novo terminal tem o cadeado, e os terminais ficam esmaecidos. **Remover** e **Mover para outro projeto** abrem as chaves primeiro, ali mesmo, na própria janela: o botão vermelho **Remover web-01** e o botão que move a máquina aparecem quando elas estiverem abertas.
+
+<Screenshot name="closed-machines" alt="“Máquinas” onde as chaves não estão abertas: MacBook-Pro, web-01 e staging mostram “fechado neste dispositivo” e um cadeado em “Abrir um terminal”, e os terminais dessas máquinas, “P/MacBook-Pro · shop” e “P/web-01 · deploy”, aparecem em tom apagado, cada um com um cadeado; db-1, em Client X, aparece como de costume. Cada máquina tem “Remover”." />
+
+Não importa como você abriu as chaves: elas passam a abrir todas essas máquinas neste dispositivo, e só o terminal que você pediu é criado. Um cadeado pede um terminal por vez: outro cadeado toma o lugar do card dele, e um card que ficou atrás de outra aba se fecha, sem terminal, quando as chaves abrem. Quando as chaves se fecham aqui, como em [Quando o cofre é bloqueado de novo](#quando-o-cofre-é-bloqueado-de-novo), os cadeados voltam na hora, e as abas desses terminais viram os cards deles; os terminais em si continuam rodando na nuvem.
+
+Quando você altera a senha do cofre ou tira uma chave do seu cofre, os seus outros dispositivos abrem as chaves de novo: sozinhos, com uma chave do cofre, ou com a nova senha, quando o cofre não tem nenhuma chave. O dispositivo em que você fez a mudança continua como estava.
+
+No tTerm para Mac, os terminais do próprio Mac e os servidores que passam por ele abrem sem as chaves, como antes; os seus outros computadores e os servidores com a sua chave abrem ali assim que o cofre estiver aberto, com o Touch ID ou a senha do seu Mac. O seu Mac entra num servidor com a sua chave só para si mesmo: um navegador abre um servidor assim quando as chaves estiverem abertas no próprio navegador.
 
 ## Quando o cofre é bloqueado de novo
 
 - **No navegador** – depois de 8 horas sem nenhuma atividade, quando você fecha ou recarrega o tTerm Web, quando sai da conta e quando clica em **Bloquear** em **Configurações** → **Chaves**.
-- **No tTerm para Mac** – ele fica aberto enquanto o tTerm estiver rodando, até você clicar em **Bloquear** ou sair da conta. Ao sair da conta, o Mac também deixa de conseguir abrir o cofre sozinho: depois que você entrar de novo, ele abre o cofre uma vez com o seu código de recuperação.
+- **No tTerm para Mac** – ele fica aberto enquanto o tTerm estiver rodando, até você clicar em **Bloquear** ou sair da conta. Ao sair da conta, o Mac também deixa de conseguir abrir o cofre sozinho: depois que você entrar de novo, ele abre o cofre uma vez com a senha do cofre.
 
 ## Configurações → Chaves
 
-No alto, a página diz se o cofre está aberto aqui, como ele foi aberto e quando vai ser bloqueado de novo. Cada chave tem uma linha: o nome, o tipo e a impressão digital curta; os servidores que ela **Abre**, ou **Nenhum servidor abre com ela ainda**; quando ela foi salva a partir de um Mac ou adicionada a partir de um arquivo; e quando foi usada pela última vez, ou **ainda não usada**.
+No alto, a seção diz se o cofre está aberto aqui, como ele foi aberto e quando vai ser bloqueado de novo. Abaixo, **Senha do cofre** diz quando a senha foi definida, com **Alterar a senha** ao lado. Cada chave tem uma linha: o nome, o tipo e a impressão digital curta; os servidores que ela **Abre**, ou **Nenhum servidor abre com ela ainda**; quando ela foi salva a partir de um Mac ou adicionada a partir de um arquivo; e quando foi usada pela última vez, ou **ainda não usada**.
 
-<Screenshot name="keys" alt="“Configurações” → “Chaves”: o cofre “Aberto neste navegador” com o Touch ID e o botão “Bloquear”; duas chaves com o tipo, a impressão digital abreviada e de onde vieram; “Adicionar uma chave de um arquivo”, “Gerar um novo código de recuperação” e onde o cofre abre." />
+<Screenshot name="keys" alt="“Configurações” → “Chaves”: o cofre “Aberto neste navegador”, com o Touch ID, e o botão “Bloquear”; “Senha do cofre”, que abre as chaves em qualquer navegador e foi definida hoje, com “Alterar a senha”; duas chaves com o tipo e a impressão digital abreviada; “Adicionar uma chave de um arquivo”; e onde o cofre abre sem a senha: Chrome on macOS." />
 
-- **Remover** tira a chave do seu cofre, depois de uma pergunta, e o tTerm exclui a cópia criptografada dela. Os servidores que abrem com ela continuam no tTerm, mas não abrem mais. A própria chave continua onde estava: no seu Mac ou no arquivo dela.
-- **Gerar um novo código de recuperação** mostra um código novo uma vez, e o que você tinha para de funcionar. Suas chaves e seus dispositivos continuam como estão. Ele pede o Touch ID ou a chave de acesso deste navegador; um navegador sem chave de acesso do seu cofre pede o código que você tem agora. Perdeu o código? Gere o novo no tTerm para Mac.
+- **Alterar a senha** define uma nova, que substitui a antiga na hora: a antiga não abre mais as suas chaves. No seu Mac e nos navegadores em que as suas chaves estão guardadas, elas abrem como antes. Num navegador em que as suas chaves estão guardadas, isso pede o Touch ID (ou o Windows Hello, ou a sua chave de acesso); num navegador em que elas não estão, a senha atual; no tTerm para Mac, o Touch ID.
+- **Remover** tira a chave do seu cofre, depois de uma pergunta, e o tTerm exclui a cópia criptografada dela. Os servidores que abrem com ela continuam no tTerm, mas não abrem mais. A própria chave continua onde estava: no seu Mac ou no arquivo dela. Como qualquer mudança no seu cofre, isso só funciona onde as chaves estão abertas; em outros dispositivos, o tTerm avisa.
 - **Adicionar uma chave de um arquivo** fica disponível no navegador. No tTerm para Mac, as chaves vêm de Migrar para a nuvem e da faixa depois do `ssh`.
 
-Abaixo das chaves, a página diz onde o cofre abre: cada Mac e cada navegador que consegue abri-lo sozinho, ou **Abre só com o seu código de recuperação.**
+Abaixo das chaves, a seção diz onde o cofre abre sem a senha, cada Mac e cada navegador que guarda as suas chaves: **Sem a senha, o seu cofre abre em: MacBook-Pro · tTerm para Mac e Chrome on macOS. Em qualquer outro navegador, com a senha do cofre.** Se não houver nenhum, **Seu cofre só abre com a senha: nenhum dispositivo o guarda ainda.**
+
+Um cofre criado antes do tTerm Web 0.1.26 que ainda não tem senha mostra **Definir a senha do cofre** no alto: **Definir a senha** cria uma, e depois disso o código de recuperação deixa de funcionar. Num navegador em que as suas chaves não estão guardadas, para definir a senha você precisa do seu código de recuperação.
 
 ### As chaves que o cofre guarda
 
@@ -71,10 +113,16 @@ Alguns navegadores não conseguem assinar com chaves Ed25519. Nesses navegadores
 
 ## Um servidor que espera pelo seu cofre
 
-Enquanto nenhum dos seus dispositivos estiver com o cofre aberto, um terminal num servidor com a sua chave espera o tempo que for preciso e mostra **web-01 abre com a sua chave**.
+Num dispositivo em que as chaves não estão abertas, um servidor com a sua chave não espera mais num terminal: o cadeado dele, ou o botão de novo terminal, primeiro abre o card do servidor, antes que o terminal seja criado. O card mostra **web-01 abre com a sua chave**, e as chaves abrem no próprio card:
 
-- Num navegador que guarda uma chave de acesso, clique em **Abrir com Touch ID**, **Abrir com Windows Hello** ou **Abrir com uma chave de acesso**.
-- Em outro navegador, clique em **Aprovar em** seguido do nome do seu Mac, ou em **Usar o código de recuperação**.
-- No tTerm para Mac, clique em **Abrir com Touch ID**; num Mac que ainda não consegue abrir o seu cofre sozinho, em **Usar o código de recuperação**.
+- Num navegador em que as suas chaves não estão guardadas, o campo **Senha do cofre** está ali mesmo: digite a senha e clique em **Abrir as chaves e o terminal**. Embaixo dele ficam **aprovar em MacBook-Pro**, com o nome do seu Mac, e **Esqueceu a senha?**.
+- Num navegador em que as suas chaves estão guardadas, clique em **Abrir com Touch ID**, **Abrir com Windows Hello** ou **Abrir com uma chave de acesso**. O link embaixo, **ou digitar a senha do cofre**, mostra o campo em vez disso.
+- No tTerm para Mac, clique em **Abrir com Touch ID**; num Mac que ainda não consegue abrir o seu cofre sozinho, digite ali a senha do cofre uma vez.
 
-Assim que o cofre abre, o terminal mostra **Entrando em web-01 com a sua chave…** e abre sozinho.
+<Screenshot name="closed-new" alt="A aba “P/web-01 · novo terminal”, com um cadeado, e o cartão dela: “web-01 abre com a sua chave”. As chaves ainda não estão abertas neste dispositivo; abra-as aqui mesmo, e um novo terminal em web-01 abre na hora. O campo “Senha do cofre” preenchido com pontos, “Mostrar”, “Abrir as chaves e o terminal”, “ou aprovar em MacBook-Pro · Esqueceu a senha?” e, abaixo, quais máquinas só abrem onde as chaves estão abertas." />
+
+Com um cofre criado antes do tTerm Web 0.1.26 que ainda não tem senha, o card tem, como antes, **Aprovar em MacBook-Pro**, com o nome do seu Mac, ou **Usar o código de recuperação**.
+
+Depois, o card mostra **Abrindo as chaves neste dispositivo…** por um instante, e o terminal abre no lugar dele.
+
+Um terminal ainda espera quando as chaves estão abertas, mas este dispositivo não consegue entrar com a chave do servidor: a chave foi tirada do seu cofre, por exemplo, ou não abre neste navegador. O terminal espera o tempo que for preciso e diz por quê, como em **Seu cofre está aberto aqui, mas id_ed25519 não abre neste navegador.** Assim que este dispositivo conseguir assinar, ele mostra **Entrando em web-01 com a sua chave…** e abre sozinho.

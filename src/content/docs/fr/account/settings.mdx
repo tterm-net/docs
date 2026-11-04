@@ -1,0 +1,59 @@
+---
+title: Paramètres
+description: La fenêtre Paramètres au-dessus de la page – ses sections et la recherche parmi elles, et votre compte, avec votre photo, votre nom et votre adresse e-mail.
+---
+
+import Screenshot from '../../../../components/Screenshot.astro';
+
+**Paramètres**, dans le menu du compte en bas de la barre latérale, ouvre une fenêtre au-dessus de la page où vous êtes, et la page en dessous reste telle qu’elle était. À gauche se trouvent une recherche et les sections, par groupes ; à droite, la section que vous choisissez, en lignes : l’intitulé de chaque ligne à gauche, sa valeur ou son bouton à droite. ×, **Esc** ou un clic à côté de la fenêtre la ferment, et vous revenez là où vous étiez.
+
+- **Préférences** : **Général**, **Compte** et **Offre**.
+- **Sécurité** : **Clés** et **Appareils**.
+- **tTerm pour Mac**, dans l’application : **Cet ordinateur** et **Mises à jour**.
+
+<Screenshot name="settings" alt="La fenêtre « Paramètres » par-dessus la page d’un terminal : à gauche, « Rechercher » et les sections, « Général », « Compte » et « Offre » sous « Préférences », « Clés » et « Appareils » sous « Sécurité » ; à droite, « Général » : « Apparence », avec « Thème » (« Système », « Clair », « Sombre ») et « Couleurs des projets » (« Pastille du code », « Projet entier »), et « Langue », avec « Langue de l’interface »." />
+
+Votre nom et votre adresse e-mail, en haut du menu du compte, ouvrent **Paramètres** → **Compte**. Chaque section a sa propre adresse, comme app.tterm.net/settings/devices : l’e-mail qui signale une nouvelle connexion mène ainsi directement à **Appareils**. Sur un téléphone, les paramètres occupent tout l’écran : d’abord les sections, puis celle que vous touchez, avec la flèche pour y revenir.
+
+Dans tTerm pour Mac, avant la connexion, les paramètres se limitent à **Général** et **Mises à jour**, et ce que vous y choisissez est enregistré sur cet ordinateur.
+
+## Recherche
+
+Le champ **Rechercher**, au-dessus des sections, ne garde que celles qui contiennent tous les mots que vous tapez, et surligne leurs lignes : `couleur` ne laisse que **Général**, avec la ligne **Couleurs des projets** surlignée. Les majuscules et les accents ne comptent pas. **Esc** efface d’abord la recherche, puis ferme la fenêtre.
+
+<Screenshot name="settings-search" alt="« Paramètres », avec le mot thème saisi dans le champ « Rechercher » : à gauche, il ne reste que « Général », et à droite, sa ligne « Thème » est en surbrillance." />
+
+## Général
+
+- **Apparence** : le **Thème** (**Système**, **Clair** ou **Sombre**) et les **Couleurs des projets** (**Pastille du code** ou **Projet entier**), plus de détails dans [Couleurs](../../features/projects/#couleurs). Ces choix sont enregistrés dans votre compte, sur tous vos appareils.
+- **Langue** : la **Langue de l’interface**, le même choix que **Langue** dans le menu du compte.
+
+## Compte
+
+- **Photo** : **Ajouter une photo**, ou **Changer de photo** et **Supprimer la photo**. Choisissez une image JPEG, PNG ou WebP de 5 Mo maximum, placez-la dans le cercle de la fenêtre **Votre photo** et appuyez sur **Enregistrer la photo**. Elle s’affiche à côté de votre nom, à la place de vos initiales ; tTerm en conserve une copie de 256 pixels, sans les informations que la photo contient sur elle-même, comme le lieu de la prise de vue.
+- **Nom** : **Modifier le nom**, puis saisissez le nouveau nom et appuyez sur **Enregistrer**.
+- **Adresse e-mail** : l’adresse avec laquelle vous vous connectez. Pour la changer, écrivez à [support@tterm.net](mailto:support@tterm.net).
+
+**Suppression du compte** : pour supprimer votre compte, écrivez à support@tterm.net depuis l’adresse avec laquelle vous vous connectez. **Écrire au support**, à côté de **Supprimer le compte**, ouvre la fenêtre prévue pour cela, comme dans [Écrire au support](../help/#écrire-au-support), et la réponse arrive à votre adresse e-mail.
+
+<Screenshot name="account" alt="« Paramètres » → « Compte » : sous « Profil », « Photo » avec l’initiale d’Anna et « Ajouter une photo », « Nom » Anna avec « Modifier le nom », « Adresse e-mail » anna@example.com, que l’on change en écrivant à support@tterm.net ; sous « Suppression du compte », « Supprimer le compte » avec « Écrire au support »." />
+
+## Offre
+
+Votre offre, **Free**, avec **Jusqu’à 50 machines et 24 terminaux ouverts**, et deux compteurs de ce que vous utilisez en ce moment : **Machines** et **Terminaux ouverts**. En dessous, en grisé, **Paiement** : **Moyen de paiement et factures** y apparaîtront avec les offres payantes. Plus de détails dans [Offre et limites](../plan/).
+
+## Clés
+
+Votre [coffre de clés SSH](../../security/keys/#paramètres--clés) : s’il est ouvert ici, son mot de passe, vos clés, et où le coffre s’ouvre sans mot de passe.
+
+## Appareils
+
+Les navigateurs où vous vous connectez avec un code court, et tTerm pour Mac connecté via le navigateur : **Oublier** l’un d’eux, ou **Oublier tous les appareils…**. Plus de détails dans [Vos appareils](../devices/#vos-appareils).
+
+## Cet ordinateur
+
+Dans tTerm pour Mac, une fois connecté : l’option **Ouvrir à tTerm Web et à votre téléphone**, et l’état de la connexion de ce Mac à tTerm Web. Plus de détails dans [Un Mac avec tTerm pour Mac](../../machines/remove/#un-mac-avec-tterm-pour-mac).
+
+## Mises à jour
+
+Dans tTerm pour Mac : **Mettre à jour automatiquement** ou **Me demander d’abord**, et **Vérifier maintenant**. **Rechercher les mises à jour…**, dans le menu tTerm, ouvre aussi cette section. Plus de détails dans [Mises à jour](../../local/mac/#mises-à-jour), sur la page Version Mac.

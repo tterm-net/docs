@@ -12,7 +12,11 @@ Every command run on a machine through tTerm becomes a line in that machine's lo
 
 In the sidebar, under a project's **Notes**, the first folder is **Logs**, marked **by tTerm**. It holds a log for each machine of the project, with how many commands ran there today: **12 today**. Click a machine, and its log opens in a tab, **web-01 log**.
 
-<Screenshot name="log-open" alt="The sidebar: under Notes in Personal and in Client X, the folder Logs (by tTerm) with each machine's log and today's count: web-01, 27 today; db-1, 7 today." />
+On a device where your keys are not open, the logs of your computers and of the servers with your key or through your Mac are dimmed there, with a lock and no count. Click one, and a card in its tab opens your keys right there, then the log: see [Where your keys are open](../../security/keys/#where-your-keys-are-open).
+
+<Screenshot name="log-open" alt="The sidebar: under Notes in Personal and in Client X, the folder Logs (by tTerm) with each machine's log and today's count: web-01, 27 today; db-1, 9 today." />
+
+<Screenshot name="closed-log" alt="The tab P/web-01 log, with a lock: The log of web-01 is closed on this device. The log has the same commands and the same output as the terminal, so it is closed the same way; open the keys, and the log opens. Vault password and Open the keys." />
 
 The log shows a day at a time and opens on today. The arrows, **The day before** and **The day after**, go to the nearest day with lines. **Today** brings you back, and **Pick a day** opens a calendar. While the log shows today, new lines come in as commands end.
 
@@ -20,7 +24,7 @@ At the top of the log, **⋯** has **Copy as Markdown**: the day shown, its line
 
 ## What a line says
 
-Each command is one line: the time, who ran it, the command, cut short where it is long, and how many notes are under it. On the right are how long it took, the folder, the git branch and the terminal. A command that failed has a cross and its exit code, **exit 1**. Between the commands, the log also says when a terminal was opened and when it ended – and why, when it ended by itself: **Terminal 1 ended: tTerm Web was updated to 0.1.24.** It says, too, when the machine moved to another project: **You moved this machine from Personal to Client X**.
+Each command is one line: the time, who ran it, the command, cut short where it is long, and how many notes are under it. On the right are how long it took, the folder, the git branch and the terminal. A command that failed has a cross and its exit code, **exit 1**. Between the commands, the log also says when a terminal was opened and when it ended – and why, when it ended by itself: **Terminal 1 ended: tTerm Web was updated to 0.1.28.** It says, too, when the machine moved to another project: **You moved this machine from Personal to Client X**.
 
 A click on a line opens it: the command in full, what it printed and the notes under it. Another click closes it. A long output shows its first lines: **Show all 27 lines** shows the rest, and **Copy output** copies it.
 
@@ -69,6 +73,8 @@ A password or a token that got into a command or a note can be erased. Only the 
 <Screenshot name="log-redact" alt="Redact this command? for export PGPASSWORD='…' on db-1 (today, 18:30, backups): what goes and what the log keeps, Why: a password, and Redact and Cancel." />
 
 The words go for good from the log, the terminal's feed, search and the input line's history. With a command, what it printed goes too, and so does the same command wherever else it ran in the project. In their place, the log keeps who redacted them, when and why: **Redacted by You · 09:23 · a password**. The nightly backups of the database still hold them until those backups are deleted, within two weeks.
+
+Redacting on a device where your keys are not open leaves the logs of your computers and of the servers with your key or through your Mac as they are: redact the command there from a device where your keys are open.
 
 ## How long it is kept
 

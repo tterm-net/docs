@@ -12,7 +12,11 @@ Cada comando executado numa máquina via tTerm vira uma linha no log dessa máqu
 
 Na barra lateral, na seção **Notas** de um projeto, a primeira pasta é **Logs**, com o rótulo **pelo tTerm**. Nela fica um log para cada máquina do projeto, com quantos comandos rodaram em cada uma hoje: **12 hoje**. Clique numa máquina, e o log dela abre numa aba, **web-01: log**.
 
-<Screenshot name="log-open" alt="A barra lateral: em “Notas”, em Personal e em Client X, a pasta “Logs” (“pelo tTerm”), com o log de cada máquina e a contagem de hoje: web-01, “27 hoje”; db-1, “7 hoje”." />
+Num dispositivo em que as chaves não estão abertas, os logs dos seus computadores e dos servidores com a sua chave ou pelo seu Mac ficam esmaecidos na pasta, com um cadeado e sem a contagem. Clique num deles, e um card na aba dele abre as chaves ali mesmo e, depois, o log: veja [Onde as chaves estão abertas](../../security/keys/#onde-as-chaves-estão-abertas).
+
+<Screenshot name="log-open" alt="A barra lateral: em “Notas”, em Personal e em Client X, a pasta “Logs” (“pelo tTerm”), com o log de cada máquina e a contagem de hoje: web-01, “27 hoje”; db-1, “9 hoje”." />
+
+<Screenshot name="closed-log" alt="A aba “P/web-01: log”, com um cadeado: “O log da máquina web-01 está fechado neste dispositivo”. O log tem os mesmos comandos e a mesma saída que o terminal, por isso fica fechado do mesmo jeito; abra as chaves, e o log abre. “Senha do cofre” e “Abrir as chaves”." />
 
 O log mostra um dia por vez e abre no dia de hoje. As setas, **Dia anterior** e **Dia seguinte**, levam ao dia mais próximo que tem linhas. **Hoje** traz você de volta, e **Escolher um dia** abre um calendário. Enquanto o log mostra o dia de hoje, as linhas novas chegam à medida que os comandos terminam.
 
@@ -20,7 +24,7 @@ No alto do log, o **⋯** tem **Copiar como Markdown**: o dia que está na tela,
 
 ## O que diz uma linha
 
-Cada comando é uma linha: a hora, quem o executou, o comando, cortado quando é longo, e quantas notas há abaixo dele. À direita ficam quanto tempo ele levou, a pasta, a branch do git e o terminal. Um comando que falhou tem um X e o código de retorno, **retorno 1**. Entre os comandos, o log também mostra quando um terminal foi aberto e quando foi encerrado – e, se ele se encerrou sozinho, o motivo: **O terminal 1 foi encerrado: O tTerm Web foi atualizado para 0.1.24.** O log mostra ainda quando a máquina passou para outro projeto: **Você moveu esta máquina do projeto Personal para o projeto Client X**.
+Cada comando é uma linha: a hora, quem o executou, o comando, cortado quando é longo, e quantas notas há abaixo dele. À direita ficam quanto tempo ele levou, a pasta, a branch do git e o terminal. Um comando que falhou tem um X e o código de retorno, **retorno 1**. Entre os comandos, o log também mostra quando um terminal foi aberto e quando foi encerrado – e, se ele se encerrou sozinho, o motivo: **O terminal 1 foi encerrado: O tTerm Web foi atualizado para 0.1.28.** O log mostra ainda quando a máquina passou para outro projeto: **Você moveu esta máquina do projeto Personal para o projeto Client X**.
 
 Clique numa linha para abri-la: o comando completo, o que ele imprimiu e as notas abaixo dele. Outro clique a fecha. Uma saída longa mostra só as primeiras linhas: **Ver todas as 27 linhas** mostra o resto, e **Copiar saída** copia a saída inteira.
 
@@ -69,6 +73,8 @@ Uma senha ou um token que foi parar num comando ou numa nota pode ser apagado. S
 <Screenshot name="log-redact" alt="“Apagar este comando?” para export PGPASSWORD='…' em db-1 (“hoje, 18:30”, backups): o que sai e o que o log guarda, “Motivo”: uma senha, e os botões “Apagar” e “Cancelar”." />
 
 As palavras somem para sempre do log, do feed do terminal, da busca e do histórico da linha de entrada. No caso de um comando, o que ele imprimiu também some, assim como o mesmo comando em qualquer outro lugar do projeto em que tenha rodado. No lugar das palavras apagadas, o log guarda quem as apagou, quando e por quê: **Apagado por você · 09:23 · uma senha**. As cópias noturnas do banco de dados ainda as guardam até essas cópias serem excluídas, em no máximo duas semanas.
+
+Apagar num dispositivo em que as chaves não estão abertas deixa como estão os logs dos seus computadores e dos servidores com a sua chave ou pelo seu Mac: nesses logs, apague o comando a partir de um dispositivo em que as chaves estão abertas.
 
 ## Por quanto tempo fica guardado
 

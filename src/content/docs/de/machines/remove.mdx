@@ -16,7 +16,11 @@ Das geht an zwei Stellen:
 
 tTerm fragt vorher nach und sagt, was passieren wird: **web-01 entfernen?** Der rote Button **web-01 entfernen** entfernt die Maschine, **Abbrechen** lässt alles, wie es war.
 
+Sobald du einen Tresor hast, lassen sich ein Computer, ein Server mit deinem Schlüssel und ein Server über deinen Mac nur dort entfernen, wo deine Schlüssel geöffnet sind. Auf einem anderen Gerät zeigt das Fenster **web-01 ist auf diesem Gerät gesperrt: Entfernen geht nur dort, wo die Schlüssel geöffnet sind. Öffne sie hier.** und öffnet deine Schlüssel direkt darin, wie unter [Wo deine Schlüssel geöffnet sind](../../security/keys/#wo-deine-schlüssel-geöffnet-sind); der rote Button **web-01 entfernen** erscheint, sobald sie geöffnet sind.
+
 <Screenshot name="remove-machine" alt="Die Rückfrage vor dem Entfernen einer Maschine, „web-01 entfernen?“: Die Terminals werden beendet, und der Agent stoppt. Der rote Button „web-01 entfernen“ entfernt die Maschine, mit „Abbrechen“ bleibt sie." />
+
+<Screenshot name="closed-remove" alt="„web-01 entfernen?“ auf einem Gerät, auf dem die Schlüssel nicht geöffnet sind: „web-01 ist auf diesem Gerät gesperrt: Entfernen geht nur dort, wo die Schlüssel geöffnet sind. Öffne sie hier.“ Das „Tresorpasswort“ ist eingegeben und zeigt nur Punkte, dazu „Schlüssel öffnen“ und „oder auf MacBook-Pro freigeben · Passwort vergessen?“; den roten Button „web-01 entfernen“ gibt es noch nicht, nur „Abbrechen“." />
 
 ## Was dann passiert
 
@@ -66,7 +70,7 @@ Das Skript entfernt den Autostart des Agenten und das ganze Verzeichnis `~/.tter
 
 ## Ein Mac mit tTerm für Mac
 
-Wenn du angemeldet bist, hält [tTerm für Mac](../../local/mac/) die Verbindung des Macs zu tTerm Web selbst, anstelle des Agenten. Unter **Einstellungen** → **Dieser Computer** gibt es dafür einen Schalter, **Für tTerm Web und dein Handy öffnen**. Ist er an, öffnen tTerm Web und dein Handy Terminals auf diesem Mac, solange tTerm dort läuft. Ist er aus, ist der Mac in tTerm Web offline, und in der App funktioniert alles wie bisher; Terminals, die aus tTerm Web auf ihm geöffnet wurden, werden nach einer Rückfrage beendet.
+Wenn du angemeldet bist, hält [tTerm für Mac](../../local/mac/) die Verbindung des Macs zu tTerm Web selbst, anstelle des Agenten. Unter **Einstellungen** → **Dieser Computer** gibt es dafür einen Schalter, **Für tTerm Web und dein Handy öffnen**. Ist er an, öffnen tTerm Web und dein Handy Terminals auf diesem Mac, solange tTerm dort läuft: sobald du einen Tresor hast, nur dort, wo deine Schlüssel geöffnet sind ([mehr](../../security/keys/#wo-deine-schlüssel-geöffnet-sind)). Ist er aus, ist der Mac in tTerm Web offline, und in der App funktioniert alles wie bisher; Terminals, die aus tTerm Web auf ihm geöffnet wurden, werden nach einer Rückfrage beendet.
 
 Einen Mac entfernst du in tTerm Web wie jeden anderen Computer. Unter **Dieser Computer** steht dann: **Dieser Mac wurde aus tTerm Web entfernt, deshalb ist er nicht für tTerm Web geöffnet. Schalte die Option oben ein, um ihn wieder hinzuzufügen.**
 

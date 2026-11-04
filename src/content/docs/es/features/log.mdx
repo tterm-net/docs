@@ -12,7 +12,11 @@ Cada comando que se ejecuta en una máquina a través de tTerm se convierte en u
 
 En la barra lateral, dentro de las **Notas** de un proyecto, la primera carpeta es **Bitácoras**, con la etiqueta **por tTerm**. Contiene una bitácora por cada máquina del proyecto, con cuántos comandos se ejecutaron hoy en ella: **12 hoy**. Haz clic en una máquina y su bitácora se abre en una pestaña, **web-01: bitácora**.
 
-<Screenshot name="log-open" alt="La barra lateral: en «Notas» de Personal y de Client X, la carpeta «Bitácoras» («por tTerm») con la bitácora de cada máquina y cuántos comandos se ejecutaron hoy: web-01, «27 hoy»; db-1, «7 hoy»." />
+En un dispositivo donde tus claves no están abiertas, las bitácoras de tus computadoras y de los servidores con tu clave o a través de tu Mac aparecen atenuadas en esa carpeta, con un candado y sin contador. Haz clic en una: en su pestaña, una tarjeta abre tus claves ahí mismo y luego la bitácora. Consulta [Dónde están abiertas tus claves](../../security/keys/#dónde-están-abiertas-tus-claves).
+
+<Screenshot name="log-open" alt="La barra lateral: en «Notas» de Personal y de Client X, la carpeta «Bitácoras» («por tTerm») con la bitácora de cada máquina y cuántos comandos se ejecutaron hoy: web-01, «27 hoy»; db-1, «9 hoy»." />
+
+<Screenshot name="closed-log" alt="La pestaña «P/web-01: bitácora», con un candado: «La bitácora de web-01 está cerrada en este dispositivo». La bitácora tiene los mismos comandos y la misma salida que la terminal, así que está cerrada igual; abre las claves y la bitácora se abrirá. «Contraseña de la bóveda» y «Abrir las claves»." />
 
 La bitácora muestra un día a la vez y se abre en el de hoy. Las flechas, **Día anterior** y **Día siguiente**, llevan al día más cercano que tenga líneas. **Hoy** te devuelve al día actual, y **Elegir un día** abre un calendario. Mientras la bitácora muestra el día de hoy, las líneas nuevas van llegando a medida que terminan los comandos.
 
@@ -20,7 +24,7 @@ En la parte superior de la bitácora, **⋯** tiene **Copiar como Markdown**: el
 
 ## Qué dice una línea
 
-Cada comando es una línea: la hora, quién lo ejecutó, el comando, recortado si es largo, y cuántas notas tiene debajo. A la derecha aparecen cuánto tardó, la carpeta, la rama de git y la terminal. Un comando que falló lleva una cruz y su código de salida, **código 1**. Entre los comandos, la bitácora también indica cuándo se abrió una terminal y cuándo finalizó – y por qué, si finalizó por sí sola: **Terminal 1 finalizó: tTerm Web se actualizó a la versión 0.1.24.** También indica cuándo la máquina pasó a otro proyecto: **Moviste esta máquina de Personal a Client X**.
+Cada comando es una línea: la hora, quién lo ejecutó, el comando, recortado si es largo, y cuántas notas tiene debajo. A la derecha aparecen cuánto tardó, la carpeta, la rama de git y la terminal. Un comando que falló lleva una cruz y su código de salida, **código 1**. Entre los comandos, la bitácora también indica cuándo se abrió una terminal y cuándo finalizó – y por qué, si finalizó por sí sola: **Terminal 1 finalizó: tTerm Web se actualizó a la versión 0.1.28.** También indica cuándo la máquina pasó a otro proyecto: **Moviste esta máquina de Personal a Client X**.
 
 Un clic en una línea la abre: el comando completo, lo que imprimió y las notas que tiene debajo. Otro clic la cierra. De una salida larga se ven las primeras líneas: **Ver las 27 líneas** muestra el resto, y **Copiar salida** la copia.
 
@@ -69,6 +73,8 @@ Una contraseña o un token que se haya colado en un comando o en una nota se pue
 <Screenshot name="log-redact" alt="«¿Censurar este comando?» para export PGPASSWORD='…' en db-1 («hoy, 18:30», backups): qué desaparece y qué conserva la bitácora, «Por qué»: una contraseña, y «Censurar» y «Cancelar»." />
 
 Las palabras desaparecen para siempre de la bitácora, de los bloques de la terminal, de la búsqueda y del historial de la línea de entrada. Si es un comando, también desaparece lo que imprimió, y lo mismo ocurre con ese comando en cualquier otro lugar del proyecto donde se haya ejecutado. En su lugar, la bitácora guarda quién las censuró, cuándo y por qué: **Texto censurado por ti · 09:23 · una contraseña**. Las copias de seguridad nocturnas de la base de datos aún las conservan hasta que esas copias se eliminan, en un plazo de dos semanas.
+
+Censurar en un dispositivo donde tus claves no están abiertas deja como están las bitácoras de tus computadoras y de los servidores con tu clave o a través de tu Mac: en ellas, censura el comando desde un dispositivo donde tus claves estén abiertas.
 
 ## Cuánto tiempo se guarda
 

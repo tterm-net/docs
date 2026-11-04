@@ -5,6 +5,25 @@ description: What each version of tTerm for Mac changed, from the newest – new
 
 What each version of tTerm for Mac changed for you, the newest first. Where a version brought a new page of tTerm Web into the window, its entry links to [what changed there](../web/), and the technical details are in the [releases on GitHub](https://github.com/tterm-net/tterm-app/releases).
 
+## 0.8.1
+
+4 November 2026
+
+- Your Mac signs in to a server with [your key](../../security/keys/) only for itself now: a browser opens such a server once it opens your keys there. In the app, this Mac's own terminals and the servers through it open as before, without your keys; your other computers, like the servers with your key, open once your vault is open here.
+- ECDSA keys that the app could not read, one in 256 (their secret number starts with a zero), move to your vault now.
+- The page [0.1.28](../web/#0128) – and with it [0.1.27](../web/#0127): the locks where your keys are not open, [**Settings**](../../account/settings/) as a window over the page, and the account menu without **Account**: your name on top of it opens your account in Settings.
+
+## 0.8.0
+
+3 November 2026
+
+- Your vault is made with a [vault password](../../security/keys/) you make up, with no Touch ID and no recovery code; with it your keys open in any browser, with no Mac.
+- A Mac with no lock of your vault yet, a second one or one you signed in to again, opens it once with the vault password: after that Touch ID or your Mac's password opens it there.
+- **Change the password** in **Settings** → **Keys** sets a new one with Touch ID, also when you forgot the old one.
+- [**Write to support**](../../account/help/) works before you sign in too: the window asks for your email, and the answer comes there.
+- **What's new**, next to a new version that is ready and after the restart, opens that version's entry on this page.
+- The page [0.1.26](../web/#0126) – and with it [0.1.20](../web/#0120) to [0.1.25](../web/#0125): the machine's log, the new account menu with **Get help**.
+
 ## 0.7.1
 
 1 November 2026
